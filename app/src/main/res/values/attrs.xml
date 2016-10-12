@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TextImage">
+        <attr name="TextImage_seat" format="integer"></attr>
+        <attr name="TextImage_drawable" format="reference"></attr>
+        <attr name="TextImage_height" format="dimension" />
+        <attr name="TextImage_width" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="TitleRelativeLayout">
+        <attr name="TitleRelativeLayout_title_image" format="reference"></attr>
+        <attr name="TitleRelativeLayout_title" format="string"></attr>
+        <attr name="TitleRelativeLayout_title_style" format="reference"></attr>
+        <attr name="TitleRelativeLayout_content_style" format="reference"></attr>
+        <attr name="TitleRelativeLayout_content" format="string"></attr>
+        <attr name="TitleRelativeLayout_title_w" format="dimension"></attr>
+        <attr name="TitleRelativeLayout_title_h" format="dimension"></attr>
+        <attr name="TitleRelativeLayout_view_visi" format="boolean"></attr>
+        <attr name="TitleRelativeLayout_content_visi" format="boolean"></attr>
+        <attr name="TitleRelativeLayout_show_view" format="integer"></attr>
+        <attr name="TitleRelativeLayout_content_image_visi" format="boolean"></attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="Color2Text">
+        <attr name="Color2Text_size" format="dimension"></attr>
+        <attr name="Color2Text_color" format="color"></attr>
+        <attr name="Color2Text_content" format="string"></attr>
+    </declare-styleable>
+</resources>

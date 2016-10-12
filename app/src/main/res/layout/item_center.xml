@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/touch_bg_fff"
+    android:paddingBottom="@dimen/size15"
+    android:paddingTop="@dimen/size15">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/size33"
+            android:layout_height="@dimen/size33"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextSize11Color666"
+            android:layout_below="@id/iv_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/size5"
+            android:gravity="center"
+            android:text="茶品订单" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/iv_icon"
+            android:background="@drawable/round_f00"
+            android:padding="@dimen/size2"
+            android:text="30"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp8"
+            android:visibility="gone" />
+    </RelativeLayout>
+</FrameLayout>

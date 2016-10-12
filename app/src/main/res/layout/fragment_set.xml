@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#70e1e1e1"
+    android:orientation="vertical">
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size10"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_title="头像">
+
+    </client.ediancha.com.myview.TitleRelativeLayout>
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_nick_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_content="邓如果"
+        tool:TitleRelativeLayout_title="昵称" />
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_tel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_content_image_visi="false"
+        tool:TitleRelativeLayout_content="18326167257"
+        tool:TitleRelativeLayout_title="手机号" />
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_set_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_content="未设置"
+        tool:TitleRelativeLayout_title="密码设置"
+        tool:TitleRelativeLayout_view_visi="false" />
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size15"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_title="意见反馈" />
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_title="清除缓存" />
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_about_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_title="关于我们" />
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_contact_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_bg_fff"
+        tool:TitleRelativeLayout_title="联系我们"
+        tool:TitleRelativeLayout_view_visi="false" />
+
+
+    <Button
+        android:id="@+id/bt_exit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size45"
+        android:layout_marginLeft="@dimen/size20"
+        android:layout_marginRight="@dimen/size20"
+        android:layout_marginTop="@dimen/size35"
+        android:background="@drawable/touch_bg_51b338"
+        android:text="退出登录"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp15" />
+</LinearLayout>

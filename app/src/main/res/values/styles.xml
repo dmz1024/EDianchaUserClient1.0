@@ -17,4 +17,155 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+
+    <style name="MyTabLayoutAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="MyTabLayoutAppearanceInverse" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#999</item>
+    </style>
+
+
+    <style name="Text">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <!--size:13sp color:#333 -->
+    <style name="TextSize13Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <!--size:13sp color:#333 -->
+    <style name="TextSize20Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp20</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <!--size:14sp color:#333 -->
+    <style name="TextSize14Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="TextSize14Colorbfa74a" parent="Text">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">#bfa74a</item>
+    </style>
+
+    <style name="TextSize13Color666" parent="Text">
+        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:textColor">#666</item>
+    </style>
+
+    <style name="TextSize15Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp15</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <!--size:14sp color:#666 -->
+    <style name="TextSize14Color666" parent="Text">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">#666</item>
+    </style>
+
+    <style name="TextSize14Color999" parent="Text">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">#999</item>
+    </style>
+
+    <style name="TextSize12Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="TextSize19Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp19</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="TextSize11Color666" parent="Text">
+        <item name="android:textSize">@dimen/sp11</item>
+        <item name="android:textColor">#666</item>
+    </style>
+
+    <style name="TextSize13Color999" parent="Text">
+        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:textColor">#999</item>
+    </style>
+
+    <style name="TextSize12Color999" parent="Text">
+        <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:textColor">#999</item>
+    </style>
+
+    <style name="TextSize14Color51B338" parent="Text">
+        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:textColor">#51B338</item>
+    </style>
+
+    <style name="TextSize11Color999" parent="Text">
+        <item name="android:textSize">@dimen/sp11</item>
+        <item name="android:textColor">#999</item>
+    </style>
+
+    <style name="TextSize11Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp11</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="TextSize14Colorfff" parent="Text">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="TextSize10Color666" parent="Text">
+        <item name="android:textSize">@dimen/sp10</item>
+        <item name="android:textColor">#666</item>
+    </style>
+
+    <style name="TextSize10Color333" parent="Text">
+        <item name="android:textSize">@dimen/sp10</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="TextSize12Color666" parent="Text">
+        <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:textColor">#666</item>
+    </style>
+
+    <style name="TextSize10Color999" parent="Text">
+        <item name="android:textSize">@dimen/sp10</item>
+        <item name="android:textColor">#999</item>
+    </style>
+
+    <style name="TextSize9Color999" parent="Text">
+        <item name="android:textSize">@dimen/sp9</item>
+        <item name="android:textColor">#999</item>
+    </style>
+
+    <style name="TextSize13Colorc9a06c" parent="Text">
+        <item name="android:textSize">@dimen/sp13</item>
+        <item name="android:textColor">#c9a06c</item>
+    </style>
+
+    <style name="TextSize14Color51b338" parent="Text">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:textColor">#51b338</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/sp23</item>
+        <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="MyTabLayoutTextAppearanceInverse" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+    </style>
 </resources>

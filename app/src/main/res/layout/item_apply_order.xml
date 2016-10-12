@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fbfbfb"
+    android:paddingBottom="@dimen/size5"
+    android:paddingLeft="@dimen/size10"
+    android:paddingRight="@dimen/size10"
+    android:paddingTop="@dimen/size5">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size1"
+        android:background="#fff"
+        android:padding="@dimen/size10">
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/TextSize14Color666"
+            android:text="活动时间: 07/28  14:00" />
+
+        <TextView
+            android:id="@+id/tv_state"
+            style="@style/TextSize14Color666"
+            android:layout_alignParentRight="true"
+            android:text="即将开始"
+            android:textColor="#cd6638" />
+
+        <View
+            android:id="@+id/view_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size1"
+            android:layout_below="@id/tv_time"
+            android:layout_marginTop="@dimen/size10"
+            android:background="#ebebeb" />
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="@dimen/size80"
+            android:layout_height="@dimen/size80"
+            android:layout_below="@id/view_1"
+            android:layout_marginTop="@dimen/size15"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextSize15Color333"
+            android:layout_alignTop="@id/iv_img"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_toRightOf="@id/iv_img"
+            android:text="主题名称" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/TextSize13Color333"
+            android:layout_below="@id/tv_name"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginTop="@dimen/size10"
+            android:layout_toRightOf="@id/iv_img"
+            android:text="主办方：艺草堂 | 参加人：如果大人"
+            android:textColor="#999" />
+
+
+        <client.ediancha.com.myview.TextImage
+            android:id="@+id/tv_remaining_time"
+            style="@style/TextSize13Color333"
+            android:layout_alignBottom="@id/iv_img"
+            android:layout_marginBottom="@dimen/size5"
+            android:layout_toRightOf="@id/iv_img"
+            android:drawablePadding="@dimen/size5"
+            android:layout_marginLeft="@dimen/size10"
+            android:text="1天3小时"
+            android:textColor="#cd6638"
+            app:TextImage_drawable="@mipmap/icon_time_orange"
+            app:TextImage_height="@dimen/size15"
+            app:TextImage_seat="1"
+            app:TextImage_width="@dimen/size15" />
+
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/TextSize15Color333"
+            android:layout_alignBottom="@id/iv_img"
+            android:layout_alignParentRight="true"
+            android:text="￥399"
+            android:textColor="#cd6638"
+            android:textSize="@dimen/sp17" />
+
+        <View
+            android:id="@+id/view_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size1"
+            android:layout_below="@id/iv_img"
+            android:layout_marginTop="@dimen/size10"
+            android:background="#ebebeb" />
+
+
+        <Button
+            android:id="@+id/bt_right"
+            android:layout_width="@dimen/size80"
+            android:layout_height="@dimen/size35"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/view_2"
+            android:layout_marginTop="@dimen/size10"
+            android:background="@drawable/touch_bg_ebebeb"
+            android:text="取消报名"
+            android:textColor="#666"
+            android:textSize="@dimen/sp14" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fbfbfb">
+
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size200"
+        android:scaleType="fitXY" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bt_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_img"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size22"
+        app:backgroundTint="#fff"
+        app:rippleColor="#33728dff"
+        app:srcCompat="@mipmap/icon_event_like" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize14Color333"
+        android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/iv_img"
+        android:background="#fff"
+        android:maxLines="2"
+        android:padding="@dimen/size10" />
+</RelativeLayout>
