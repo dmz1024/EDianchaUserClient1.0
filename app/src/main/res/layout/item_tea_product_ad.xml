@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingBottom="@dimen/size30"
+    android:paddingLeft="@dimen/size10"
+    android:paddingRight="@dimen/size10"
+    android:paddingTop="@dimen/size30">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="@dimen/size130"
+        android:layout_height="@dimen/size130"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="品牌特惠"
+            android:textColor="#333"
+            android:textSize="@dimen/sp18" />
+
+        <TextView
+            android:id="@+id/tv_have_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size8"
+            android:text="距离特惠开始还剩"
+            android:textColor="#333"
+            android:textSize="@dimen/sp14" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size10"
+            android:orientation="horizontal">
+
+            <client.ediancha.com.myview.Color2Text
+                android:id="@+id/tv_hour"
+                android:layout_width="@dimen/size45"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_333"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/size12"
+                android:padding="@dimen/size5"
+                android:text="23"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp23"
+                app:Color2Text_color="#fff"
+                app:Color2Text_content="\n小时"
+                app:Color2Text_size="@dimen/sp14" />
+
+            <client.ediancha.com.myview.Color2Text
+                android:id="@+id/tv_minute"
+                android:layout_width="@dimen/size45"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size10"
+                android:background="@drawable/rectangle_333"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/size12"
+                android:padding="@dimen/size5"
+                android:text="09"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp23"
+                app:Color2Text_color="#fff"
+                app:Color2Text_content="\n分钟"
+                app:Color2Text_size="@dimen/sp14" />
+
+            <client.ediancha.com.myview.Color2Text
+                android:id="@+id/tv_miao"
+                android:layout_width="@dimen/size45"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size10"
+                android:background="@drawable/rectangle_333"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/size12"
+                android:padding="@dimen/size5"
+                android:text="50"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp23"
+                app:Color2Text_color="#fff"
+                app:Color2Text_content="\n秒钟"
+                app:Color2Text_size="@dimen/sp14" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size10"
+            android:text="普洱茶"
+            android:textColor="#333"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size10"
+            android:text="抢购价：￥199"
+            android:textColor="#cd663b"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+
+</RelativeLayout>

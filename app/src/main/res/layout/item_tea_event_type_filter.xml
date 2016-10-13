@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/touch_bg_fff"
+    android:paddingBottom="@dimen/size15"
+    android:paddingTop="@dimen/size15"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:scaleType="fitXY"
+        android:layout_width="@dimen/size35"
+        android:layout_height="@dimen/size35"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize13Color333"
+        android:layout_below="@id/iv_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/size5"
+        android:gravity="center"
+        android:text="友谊茶会" />
+
+    <View
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/size5"
+        android:layout_height="@dimen/size5"/>
+</RelativeLayout>

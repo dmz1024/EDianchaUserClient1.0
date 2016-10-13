@@ -60,7 +60,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        if(isLoading){
+        if (isLoading) {
             return;
         }
         super.setUserVisibleHint(isVisibleToUser);
@@ -89,7 +89,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
         RetrofitUtil.OnRequestListener<T> onRequestListener = new RetrofitUtil.OnRequestListener<T>() {
             @Override
             public void noNetwork() {
-                page=currentPage;
+                page = currentPage;
                 if (havaDataView != null) {
                     MyToast.showToast("网络似乎出了点问题");
                 } else {
@@ -97,7 +97,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                 }
                 setStopRefresh();
 
-                if(rl_load!=null && rl_load.getVisibility()==View.VISIBLE){
+                if (rl_load != null && rl_load.getVisibility() == View.VISIBLE) {
                     rl_load.setVisibility(View.GONE);
                     isLoading = false;
                 }
@@ -105,7 +105,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
 
             @Override
             public void serverErr() {
-                page=currentPage;
+                page = currentPage;
                 setStopRefresh();
                 if (totalList.size() > 0) {
                     Toast.makeText(getContext(), "服务器异常!", Toast.LENGTH_LONG).show();
@@ -113,7 +113,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                     getCurrentView(VIEW_SERVER_ERR);
                 }
 
-                if(rl_load!=null && rl_load.getVisibility()==View.VISIBLE){
+                if (rl_load != null && rl_load.getVisibility() == View.VISIBLE) {
                     rl_load.setVisibility(View.GONE);
                     isLoading = false;
                 }
@@ -147,11 +147,11 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                     }
 
                 } else {
-                    if(rl_load!=null && rl_load.getVisibility()==View.VISIBLE){
+                    if (rl_load != null && rl_load.getVisibility() == View.VISIBLE) {
                         rl_load.setVisibility(View.GONE);
                         isLoading = false;
                     }
-                    page=currentPage;
+                    page = currentPage;
                     resultNot0(t);
 
                 }
@@ -225,7 +225,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                     //获取最后一个完全显示的ItemPosition
                     int lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition();
                     int totalItemCount = layoutManager.getItemCount();
-                    if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast && isHaveData) {
+                    if (lastVisibleItem == (totalItemCount - 1) && isSlidingToLast && isHaveData && getLoadMore()) {
                         if (!isLoading) {
                             isLoading = true;
                             swipeRefreshLayout.setEnabled(false);
@@ -233,7 +233,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                             currentPage = page;
                             page += 1;
                             currentType = RequestType.LOAD_MORE;
-                            layoutManager.scrollToPosition(totalList.size()-1);
+                            layoutManager.scrollToPosition(totalList.size() - 1);
                             swipeRefreshLayout.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {

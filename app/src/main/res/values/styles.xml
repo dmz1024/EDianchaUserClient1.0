@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/FeelyouWindowAnimTheme</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -18,10 +21,38 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
+    <style name="popwin_anim_style">
+        <item name="android:windowEnterAnimation">@anim/in_from_right</item>
+        <item name="android:windowExitAnimation">@anim/out_from_left</item>
+    </style>
+
+
+    <style name="FeelyouWindowAnimTheme" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/out_from_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/in_from_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_from_right</item>
+    </style>
+
+    <!--<style name="MyDialogStyle" parent="">-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:windowFrame">@null</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="android:windowIsFloating">true</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>-->
+        <!--<item name="android:backgroundDimEnabled">true</item>-->
+    <!--</style>-->
 
     <style name="MyTabLayoutAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">#333</item>
+    </style>
+
+    <style name="pop_message">
+        <item name="android:windowEnterAnimation">@anim/small_2_big</item>
+        <item name="android:windowExitAnimation">@anim/big_2_small</item>
     </style>
 
     <style name="MyTabLayoutAppearanceInverse" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">

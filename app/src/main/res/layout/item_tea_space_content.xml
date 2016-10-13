@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingBottom="@dimen/size15">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size12"
+        android:background="#fbfbfb" />
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size250"
+        android:layout_below="@id/view"
+        android:scaleType="fitXY" />
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize15Color333"
+        android:layout_below="@id/iv_img"
+        android:layout_marginLeft="@dimen/size5"
+        android:layout_marginRight="@dimen/size70"
+        android:layout_marginTop="@dimen/size10"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_count"
+        style="@style/TextSize14Color666"
+        android:layout_below="@id/tv_title"
+        android:layout_marginLeft="@dimen/size5"
+        android:layout_marginTop="@dimen/size20"
+        android:drawablePadding="@dimen/size5"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="11/26  9:00-15:30"
+        app:TextImage_drawable="@mipmap/icon_teahouse_num"
+        app:TextImage_height="@dimen/size13"
+        app:TextImage_seat="1"
+        app:TextImage_width="@dimen/size18" />
+
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_pos"
+        style="@style/TextSize14Color666"
+        android:layout_below="@id/tv_title"
+        android:layout_marginLeft="@dimen/size35"
+        android:layout_marginTop="@dimen/size20"
+        android:layout_toRightOf="@id/tv_count"
+        android:drawablePadding="@dimen/size5"
+        android:gravity="center"
+        android:maxLines="1"
+
+        android:text="1.1km"
+        app:TextImage_drawable="@mipmap/icon_teahouse_pos"
+        app:TextImage_height="@dimen/size17"
+        app:TextImage_seat="1"
+        app:TextImage_width="@dimen/size13" />
+
+
+    <TextView
+        android:id="@+id/tv_state"
+        style="@style/TextSize12Color333"
+        android:layout_below="@id/view"
+        android:layout_marginTop="@dimen/size20"
+        android:background="#e77f2f"
+        android:paddingBottom="@dimen/size10"
+        android:paddingLeft="@dimen/size15"
+        android:paddingRight="@dimen/size15"
+        android:paddingTop="@dimen/size10"
+        android:text="推荐"
+        android:textColor="#fff" />
+</RelativeLayout>

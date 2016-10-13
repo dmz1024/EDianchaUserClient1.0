@@ -63,13 +63,13 @@ public abstract class BaseFragment extends Fragment implements PopupWindow.OnDis
 
         if (!isPrepared) {
             return;
-        } else {
-            isFirst = false;
         }
 
         if (isRefresh) {
             return;
         }
+
+
 
         if (isCanRefresh()) {
             swipeRefreshLayout.post(new Runnable() {
@@ -84,7 +84,7 @@ public abstract class BaseFragment extends Fragment implements PopupWindow.OnDis
                 public void run() {
                     onRefresh();
                 }
-            }, 350);
+            }, 50);
 
         } else {
             swipeRefreshLayout.postDelayed(new Runnable() {
@@ -169,7 +169,7 @@ public abstract class BaseFragment extends Fragment implements PopupWindow.OnDis
         } else {
             isRefresh = true;
         }
-
+        isFirst = false;
         initData();
     }
 

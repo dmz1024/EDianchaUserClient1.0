@@ -22,21 +22,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.MyCenterActivity"
-            android:label="@string/title_activity_my_center"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".activity.MyCenterActivity" />
+        <activity android:name=".activity.SetActivity" />
+        <activity android:name=".activity.TeaOrderActivity" />
+        <activity android:name=".activity.LikeActivity" />
+        <activity android:name=".activity.ApplyOrderActivity" />
+        <activity android:name=".activity.AppointmentActivity" />
+        <activity android:name=".activity.TeaEventFilterActivity" />
+        <activity android:name=".activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SetActivity" />
-        <activity android:name=".activity.TeaOrderActivity"></activity>
-        <activity android:name=".activity.LikeActivity"></activity>
-        <activity android:name=".activity.ApplyOrderActivity"></activity>
-        <activity android:name=".activity.AppointmentActivity"></activity>
     </application>
 
 </manifest>

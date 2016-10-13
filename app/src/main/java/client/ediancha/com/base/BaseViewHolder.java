@@ -28,14 +28,21 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        onClick(getLayoutPosition());
+        if(view==itemView){
+            onClick(getLayoutPosition());
+        }
+
     }
 
 
     @Override
     public boolean onLongClick(View view) {
-        onLongClick(getLayoutPosition());
-        return true;
+        if(view==itemView){
+            onLongClick(getLayoutPosition());
+            return true;
+        }
+
+        return false;
     }
 
     protected void onLongClick(int layoutPosition) {

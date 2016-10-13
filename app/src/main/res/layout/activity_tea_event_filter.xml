@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical">
+        <!--茶·活动", "茶·空间", "茶·文化-->
+        <TextView
+            android:id="@+id/tv_tea_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/size15"
+            android:paddingLeft="@dimen/size25"
+            android:paddingRight="@dimen/size25"
+            android:paddingTop="@dimen/size15"
+            android:text="茶·活动"
+             />
+
+        <TextView
+            android:id="@+id/tv_tea_space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/size15"
+            android:paddingLeft="@dimen/size25"
+            android:paddingRight="@dimen/size25"
+            android:paddingTop="@dimen/size15"
+            android:text="茶·空间" />
+
+        <TextView
+            android:id="@+id/tv_tea_culture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/size15"
+            android:paddingLeft="@dimen/size25"
+            android:paddingRight="@dimen/size25"
+            android:paddingTop="@dimen/size15"
+            android:text="茶·文化" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size50"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/ll_menu">
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#999"
+            android:gravity="center"
+            android:text="重置"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#61c12c"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fg_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_bottom"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/ll_menu"
+        android:background="#fbfbfb"></FrameLayout>
+
+
+</RelativeLayout>

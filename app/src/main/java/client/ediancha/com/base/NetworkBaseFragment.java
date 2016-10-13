@@ -172,8 +172,8 @@ public abstract class NetworkBaseFragment<D> extends BaseFragment {
             frameLayout.addView(showView);
         }
 
-        if (showView != isLoadingView) {
-            isCanRefresh=true;
+        if (showView != isLoadingView &&getCanRefresh()) {
+            isCanRefresh = true;
             swipeRefreshLayout.setEnabled(true);
         }
 
@@ -256,4 +256,9 @@ public abstract class NetworkBaseFragment<D> extends BaseFragment {
     public boolean isCanRefresh() {
         return isCanRefresh;
     }
+
+    protected boolean getCanRefresh() {
+        return true;
+    }
+
 }
