@@ -107,7 +107,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
 
         public TeaEventTypeViewHolder(View itemView) {
             super(itemView);
-            rv_type = (RecyclerView) itemView;
+            rv_type = (RecyclerView) itemView.findViewById(R.id.rv_content);
         }
 
         @Override

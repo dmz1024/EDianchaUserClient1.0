@@ -241,9 +241,11 @@ public abstract class NetworkBaseFragment<D> extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bt_err:
+                isFirst=true;
                 setUserVisibleHint(true);
                 break;
             case R.id.bt_empty:
+                isFirst=true;
                 setUserVisibleHint(true);
                 break;
             case R.id.bt_network:

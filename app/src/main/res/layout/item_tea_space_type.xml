@@ -8,19 +8,11 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size15" />
+        android:layout_height="@dimen/size10" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_content"
         android:layout_below="@id/view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <View
-        android:id="@+id/view_content"
-        android:layout_alignTop="@id/rv_content"
-        android:layout_alignBottom="@id/rv_content"
-        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

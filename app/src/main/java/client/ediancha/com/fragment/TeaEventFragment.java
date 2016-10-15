@@ -45,4 +45,6 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
         return TeaEvent.class;
     }
 
+
+
 }

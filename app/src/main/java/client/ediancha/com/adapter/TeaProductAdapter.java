@@ -92,7 +92,7 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 4) {
+        if (position == 6) {
             return VIEW_SHOW_AD;
         } else if (position == 3) {
             return VIEW_SHOW_TYPE;
@@ -126,7 +126,6 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
         public TeaProductTypeViewHolder(View itemView) {
             super(itemView);
             rv_type = (RecyclerView) itemView.findViewById(R.id.rv_content);
-            itemView.findViewById(R.id.view_content).setOnClickListener(this);
         }
 
         @Override

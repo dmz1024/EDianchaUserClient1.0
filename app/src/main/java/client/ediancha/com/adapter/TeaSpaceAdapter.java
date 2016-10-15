@@ -147,7 +147,6 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
         public TeaSpaceTypeViewHolder(View itemView) {
             super(itemView);
             rv_type = (RecyclerView) itemView.findViewById(R.id.rv_content);
-            itemView.findViewById(R.id.view_content).setOnClickListener(this);
         }
 
         @Override

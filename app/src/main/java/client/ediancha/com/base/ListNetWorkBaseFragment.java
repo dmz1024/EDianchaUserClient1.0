@@ -200,28 +200,56 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
             rv_base.addItemDecoration(itemDecoration);
         }
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
         rv_base.addOnScrollListener(new RecyclerView.OnScrollListener() {
             //用来标记是否正在向最后一个滑动
             boolean isSlidingToLast = false;
 
+            private static final int HIDE_THRESHOLD = 20;
+            private int scrolledDistance = 0;
+            private boolean controlsVisible = true;
+
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 isSlidingToLast = dy > 0 ? true : false;
-
+                if (d != null) {
+                    if (isSlidingToLast)
+                        d.isUp();
+                    else
+                        d.isDown();
+                }
             }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if (getCanRefresh()) {
+                    isCanRefresh = layoutManager.findFirstCompletelyVisibleItemPosition() == 0;
+                    swipeRefreshLayout.setEnabled(isCanRefresh);
+
+                }
+
                 // 当不滚动时
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     if (swipeRefreshLayout.isRefreshing()) {
                         return;
                     }
 
-                    LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+//                    if (d != null) {
+//                        if (isSlidingToLast) {
+//                            d.isUp();
+//                        } else {
+//                            d.isDown();
+//                        }
+//                    }
+
                     //获取最后一个完全显示的ItemPosition
                     int lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition();
                     int totalItemCount = layoutManager.getItemCount();
@@ -292,5 +320,10 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
         LOAD_MORE, LOAD_NEW, LOAD_fILTER
     }
 
+    private RecycleScrollViewListener d;
+
+    public void setA(RecycleScrollViewListener d) {
+        this.d = d;
+    }
 
 }

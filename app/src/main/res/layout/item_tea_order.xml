@@ -57,14 +57,7 @@
                 android:layout_below="@id/view_1"
                 android:layout_marginTop="@dimen/size5" />
 
-            <View
-                android:id="@+id/rv_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/rv_shop"
-                android:layout_alignRight="@id/rv_shop"
-                android:layout_alignBottom="@id/rv_shop"
-                android:layout_alignTop="@+id/rv_shop" />
+
 
             <client.ediancha.com.myview.Color2Text
                 android:id="@+id/tv_total_price"

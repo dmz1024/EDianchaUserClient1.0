@@ -60,24 +60,19 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
         public Button bt_right;
         public Button bt_left;
         public TextView tv_state;
-        public View rv_view;
+
 
         public TeaOrderViewHolder(View itemView) {
             super(itemView);
             tv_name = (TextImage) itemView.findViewById(R.id.tv_name);
-            rv_view = itemView.findViewById(R.id.rv_view);
+
             rv_shop = (RecyclerView) itemView.findViewById(R.id.rv_shop);
             tv_total_price = (Color2Text) itemView.findViewById(R.id.tv_total_price);
             bt_right = (Button) itemView.findViewById(R.id.bt_right);
             bt_left = (Button) itemView.findViewById(R.id.bt_left);
             bt_left = (Button) itemView.findViewById(R.id.bt_left);
             tv_state = (TextView) itemView.findViewById(R.id.tv_state);
-            rv_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
         }
     }
 

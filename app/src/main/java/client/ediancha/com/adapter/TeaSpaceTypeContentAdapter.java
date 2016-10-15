@@ -49,7 +49,7 @@ public class TeaSpaceTypeContentAdapter extends SingleBaseAdapter<String> {
 
         @Override
         protected void onClick(int layoutPosition) {
-            Log.d("点击", layoutPosition + "");
+            Log.d("茶", layoutPosition + "");
         }
     }
 }
