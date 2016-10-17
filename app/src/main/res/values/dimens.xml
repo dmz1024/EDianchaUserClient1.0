@@ -5,8 +5,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-
-
     <dimen name="card_view__margin_10">0dp</dimen>
     <dimen name="card_view__margin_15">5dp</dimen>
     <dimen name="card_view__margin_20">0dp</dimen>

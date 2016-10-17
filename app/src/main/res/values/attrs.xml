@@ -10,12 +10,15 @@
 
     <declare-styleable name="TitleRelativeLayout">
         <attr name="TitleRelativeLayout_title_image" format="reference"></attr>
+        <attr name="TitleRelativeLayout_content_image" format="reference"></attr>
         <attr name="TitleRelativeLayout_title" format="string"></attr>
         <attr name="TitleRelativeLayout_title_style" format="reference"></attr>
         <attr name="TitleRelativeLayout_content_style" format="reference"></attr>
         <attr name="TitleRelativeLayout_content" format="string"></attr>
         <attr name="TitleRelativeLayout_title_w" format="dimension"></attr>
+        <attr name="TitleRelativeLayout_content_w" format="dimension"></attr>
         <attr name="TitleRelativeLayout_title_h" format="dimension"></attr>
+        <attr name="TitleRelativeLayout_content_h" format="dimension"></attr>
         <attr name="TitleRelativeLayout_view_visi" format="boolean"></attr>
         <attr name="TitleRelativeLayout_content_visi" format="boolean"></attr>
         <attr name="TitleRelativeLayout_show_view" format="integer"></attr>
@@ -27,5 +30,31 @@
         <attr name="Color2Text_size" format="dimension"></attr>
         <attr name="Color2Text_color" format="color"></attr>
         <attr name="Color2Text_content" format="string"></attr>
+
+    </declare-styleable>
+
+    <declare-styleable name="RatingBarView">
+
+        <attr name="starImageSize" format="dimension"/>
+        <attr name="starCount" format="integer"/>
+        <attr name="starEmpty" format="reference"/>
+        <attr name="starFill" format="reference"/>
+
+    </declare-styleable>
+
+
+    <declare-styleable name="RatingBar">
+        <!-- 选中的图片资源 -->
+        <attr name="starSrc" format="reference" />
+        <!-- 未选中的图片资源 -->
+        <attr name="starDst" format="reference" />
+        <!-- boolean值 -->
+        <attr name="clickable" format="boolean" />
+        <!-- 分辨率,比如设置为0.2最小可以显示0.2颗星星 -->
+        <attr name="step" format="float" />
+        <!-- 每两个星星见距离 -->
+        <attr name="space" format="float" />
+        <!-- 星星的个数 -->
+        <attr name="starNumber" format="integer" />
     </declare-styleable>
 </resources>

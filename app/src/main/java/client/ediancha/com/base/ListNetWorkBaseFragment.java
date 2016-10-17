@@ -242,13 +242,6 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                     }
 
 
-//                    if (d != null) {
-//                        if (isSlidingToLast) {
-//                            d.isUp();
-//                        } else {
-//                            d.isDown();
-//                        }
-//                    }
 
                     //获取最后一个完全显示的ItemPosition
                     int lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition();
@@ -320,7 +313,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
         LOAD_MORE, LOAD_NEW, LOAD_fILTER
     }
 
-    private RecycleScrollViewListener d;
+    protected RecycleScrollViewListener d;
 
     public void setA(RecycleScrollViewListener d) {
         this.d = d;

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tea_event_desc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="client.ediancha.com.activity.TeaEventDescActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size55"
+        android:layout_alignParentBottom="true"
+        android:weightSum="10">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="#fff">
+
+            <client.ediancha.com.myview.TextImage
+                android:id="@+id/tv_buy_car"
+                style="@style/TextSize13Color333"
+                android:layout_gravity="center"
+                android:drawablePadding="@dimen/size3"
+                android:gravity="center"
+                android:text="购物车"
+                app:TextImage_drawable="@mipmap/home_shopcart"
+                app:TextImage_height="@dimen/size20"
+                app:TextImage_seat="2"
+                app:TextImage_width="@dimen/size22" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_add_buy_car"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="#603a9409"
+            android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/tv_buy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="#3a9409"
+            android:gravity="center"
+            android:text="立即购买"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+
+    <client.ediancha.com.myview.ScrollChangedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_bottom"
+        android:layout_alignParentTop="true"
+        android:background="#fff">
+
+        <LinearLayout
+            android:id="@+id/ll_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+
+            <com.jude.rollviewpager.RollPagerView
+                android:id="@+id/roll_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size250"
+                android:background="#fff"
+                app:rollviewpager_hint_gravity="left"
+                app:rollviewpager_hint_paddingLeft="@dimen/size10" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextSize15Color333"
+                android:layout_below="@id/roll_view_pager"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size12"
+                android:text="安吉白茶" />
+
+            <client.ediancha.com.myview.Color2Text
+                android:id="@+id/tv_price"
+                style="@style/TextSize14Color333"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size15"
+                android:background="#fff"
+                android:text="￥"
+                android:textColor="#cd673a"
+                android:textSize="@dimen/sp14"
+                app:Color2Text_color="#cd673a"
+                app:Color2Text_content="100.00"
+                app:Color2Text_size="@dimen/sp18" />
+
+            <TextView
+                android:id="@+id/tv_count_info"
+                style="@style/TextSize14Color666"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size15"
+                android:text="运费：￥10.00       剩余：100件" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_marginTop="@dimen/size15"
+                android:background="#e1e1e1" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="艺草堂文化基地"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/activity_detail_name"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_title="18326167257"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/icon_detail_tel"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14"
+                app:TitleRelativeLayout_view_visi="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size15"
+                android:background="#fbfbfb" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="#333"
+                app:tabIndicatorHeight="2dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="#333"
+                app:tabTextColor="#333" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#ebebeb" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_content"
+                android:layout_width="match_parent"
+                android:layout_height="500dp" />
+        </LinearLayout>
+    </client.ediancha.com.myview.ScrollChangedScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:alpha="0"
+        android:background="#333" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize15Color333"
+        android:layout_centerHorizontal="true"
+        android:height="?attr/actionBarSize"
+        android:alpha="0"
+        android:gravity="center"
+        android:text="邓如果"
+        android:textColor="#fff" />
+</RelativeLayout>

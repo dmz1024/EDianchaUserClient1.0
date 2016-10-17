@@ -5,19 +5,19 @@
     android:layout_height="@dimen/size42">
 
     <client.ediancha.com.myview.TextImage
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_title1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/size12"
-        android:drawablePadding="@dimen/size5"
+        android:drawablePadding="@dimen/size10"
         android:gravity="center"
         tool:TextImage_height="@dimen/size10"
         tool:TextImage_seat="1"
         tool:TextImage_width="@dimen/size10" />
 
     <client.ediancha.com.myview.TextImage
-        android:id="@+id/tv_content"
+        android:id="@+id/tv_content1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -34,7 +34,7 @@
         tool:TextImage_width="@dimen/size5" />
 
     <View
-        android:id="@+id/view_1"
+        android:id="@+id/view_11"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size0.5"
         android:layout_alignParentBottom="true"
@@ -43,7 +43,7 @@
         android:visibility="invisible" />
 
     <View
-        android:id="@+id/view_2"
+        android:id="@+id/view_22"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size0.5"
         android:layout_alignParentBottom="true"

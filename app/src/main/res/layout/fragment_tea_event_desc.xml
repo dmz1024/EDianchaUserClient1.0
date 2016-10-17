@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tea_event_desc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="client.ediancha.com.activity.TeaEventDescActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size55"
+        android:layout_alignParentBottom="true"
+        android:weightSum="7">
+
+        <client.ediancha.com.myview.Color2Text
+            android:id="@+id/tv_apply_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="#fff"
+            android:gravity="fill_vertical"
+            android:paddingLeft="@dimen/size10"
+            android:text="￥"
+            android:textColor="#cd673a"
+            android:textSize="@dimen/sp14"
+            app:Color2Text_color="#cd673a"
+            app:Color2Text_content="260"
+            app:Color2Text_size="@dimen/sp24" />
+
+        <TextView
+            android:id="@+id/tv_apply"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="#3a9409"
+            android:gravity="center"
+            android:text="我要参加"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+
+    <client.ediancha.com.myview.ScrollChangedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_bottom"
+        android:layout_alignParentTop="true"
+        android:background="#fff">
+
+        <LinearLayout
+            android:id="@+id/ll_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+
+            <com.jude.rollviewpager.RollPagerView
+                android:id="@+id/roll_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size250"
+                android:background="#fff"
+                app:rollviewpager_hint_gravity="left"
+                app:rollviewpager_hint_paddingLeft="@dimen/size10" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextSize15Color333"
+                android:layout_below="@id/roll_view_pager"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size12"
+                android:text="福祥茶业'教你懂得怎样懂茶'" />
+
+            <client.ediancha.com.myview.Color2Text
+                android:id="@+id/tv_price"
+                style="@style/TextSize14Color333"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size15"
+                android:background="#fff"
+                android:text="￥"
+                android:textColor="#cd673a"
+                android:textSize="@dimen/sp14"
+                app:Color2Text_color="#cd673a"
+                app:Color2Text_content="260"
+                app:Color2Text_size="@dimen/sp18" />
+
+            <View
+                android:id="@+id/view_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_marginTop="@dimen/size15"
+                android:background="#e1e1e1" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="艺草堂文化基地"
+
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/activity_detail_name"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_content_image_visi="false"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="09-14  19:00 - 21:00"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/activity_detail_calendar"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="北京市朝阳区汇园公寓N座1206"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/activity_detail_pos"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14" />
+
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_num"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_content_image_visi="false"
+                app:TitleRelativeLayout_title="已报名人数：18 | 可报名总数：20"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/activity_detail_num"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14"
+                app:TitleRelativeLayout_view_visi="false" />
+
+            <View
+                android:id="@+id/view_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size15"
+                android:background="#fbfbfb" />
+
+            <TextView
+                android:id="@+id/tv_event_desc_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/size15"
+                android:text="- 活动详情 -"
+                android:textColor="#333"
+                android:textSize="@dimen/sp15" />
+
+            <View
+                android:id="@+id/view_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+
+                android:layout_marginTop="@dimen/size5"
+                android:background="#e1e1e1" />
+
+            <TextView
+                android:id="@+id/tv_event_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:lineSpacingExtra="@dimen/size3"
+                android:padding="@dimen/size15"
+                android:text="活动是由共同目的联合起来并完成一定社会职能的动作的总和。活动由目的、动机和动作构成，具有完整的结构系统。苏联心理学家从20年代起就对活动进行了一系列研究。其中Α.Н.列昂节夫的活动理论对苏联心理学的发展影响很大，成为现代苏联心理学的重要理论基石。"
+                android:textColor="#666"
+                android:textSize="@dimen/sp13" />
+
+            <View
+                android:id="@+id/view_4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size15"
+
+                android:background="#fbfbfb" />
+
+            <TextView
+                android:id="@+id/tv_event_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:padding="@dimen/size15"
+                android:text="- 活动相关 -"
+                android:textColor="#333"
+                android:textSize="@dimen/sp15" />
+
+            <View
+                android:id="@+id/view_5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_marginTop="@dimen/size5"
+                android:background="#e1e1e1" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </client.ediancha.com.myview.ScrollChangedScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:alpha="0"
+        android:background="#333" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:textColor="#fff"
+        android:alpha="0"
+        style="@style/TextSize15Color333"
+        android:layout_centerHorizontal="true"
+        android:height="?attr/actionBarSize"
+        android:gravity="center"
+        android:text="邓如果" />
+</RelativeLayout>

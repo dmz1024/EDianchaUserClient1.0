@@ -1,5 +1,6 @@
 package client.ediancha.com.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.TeaSpaceDescActivity;
 import client.ediancha.com.activity.TestActivity;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
@@ -28,6 +30,8 @@ import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.entity.TeaSpace;
 import client.ediancha.com.myview.GlideCircleTransform;
 import client.ediancha.com.myview.TextImage;
+import client.ediancha.com.util.Util;
+import retrofit2.http.Url;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -122,7 +126,7 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
         return VIEW_SHOW_CONTENT;
     }
 
-    public static class TeaSpaceViewHolder extends BaseViewHolder {
+    public  class TeaSpaceViewHolder extends BaseViewHolder {
         public ImageView iv_img;
         public TextView tv_state;
         public TextView tv_title;
@@ -136,6 +140,11 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_count = (TextImage) itemView.findViewById(R.id.tv_count);
             tv_pos = (TextImage) itemView.findViewById(R.id.tv_pos);
+        }
+
+        @Override
+        protected void onClick(int layoutPosition) {
+            Util.skip(((Activity) ctx), TeaSpaceDescActivity.class);
         }
     }
 

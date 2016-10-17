@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tea_event_desc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="client.ediancha.com.activity.TeaEventDescActivity">
+
+    <client.ediancha.com.myview.ScrollChangedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="#fff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <com.jude.rollviewpager.RollPagerView
+                android:id="@+id/roll_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size250"
+                android:background="#fff"
+                app:rollviewpager_hint_gravity="left"
+                app:rollviewpager_hint_paddingLeft="@dimen/size10" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextSize15Color333"
+                android:layout_below="@id/roll_view_pager"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size12"
+                android:text="邓如果茶楼'" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/size12">
+
+                <TextView
+                    style="@style/TextSize14Color666"
+                    android:text="总体评价" />
+
+                <client.ediancha.com.myview.RatingBar
+                    android:id="@+id/ratingbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="@dimen/size6"
+                    android:layout_marginTop="@dimen/size1"
+                    app:clickable="false"
+                    app:space="0.1"
+                    app:starNumber="5"
+                    app:step="0.5" />
+
+                <TextView
+                    android:id="@+id/tv_ratingbar"
+                    style="@style/TextSize14Color666"
+                    android:layout_marginLeft="@dimen/size8"
+                    android:text="4.9分" />
+
+                <TextView
+                    android:id="@+id/tv_ping_num"
+                    style="@style/TextSize14Color666"
+                    android:layout_marginLeft="@dimen/size8"
+                    android:text="100条" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/TextSize14Color333"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="100元/人"
+                    android:textColor="#cd673a" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:background="#ebebeb" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="北京市朝阳区汇园公寓N座1206"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/activity_detail_pos"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14" />
+
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_title="18326167257"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/icon_detail_tel"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14"
+                app:TitleRelativeLayout_view_visi="false" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size15"
+                android:background="#fbfbfb" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_tea_package"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_content="更多"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="店铺茶包" />
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size12">
+
+                <ImageView
+                    android:id="@+id/iv_package"
+                    android:layout_width="@dimen/size75"
+                    android:layout_height="@dimen/size75"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/tv_package_name"
+                    style="@style/TextSize14Color333"
+                    android:layout_marginLeft="@dimen/size12"
+                    android:layout_marginTop="@dimen/size2"
+                    android:layout_toRightOf="@id/iv_package"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="茶包名称" />
+
+                <TextView
+                    android:id="@+id/tv_package_content"
+                    style="@style/TextSize13Color666"
+                    android:layout_alignLeft="@id/tv_package_name"
+                    android:layout_below="@id/tv_package_name"
+
+                    android:layout_marginTop="@dimen/size6"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="这家店这家店这家店这家店" />
+
+
+                <TextView
+                    android:id="@+id/tv_package_price"
+                    style="@style/TextSize15Color333"
+                    android:layout_alignLeft="@id/tv_package_name"
+                    android:layout_below="@id/tv_package_content"
+                    android:layout_marginTop="@dimen/size8"
+                    android:text="￥100"
+                    android:textColor="#cd673a" />
+
+                <TextView
+                    android:id="@+id/tv_package_old_price"
+                    style="@style/TextSize15Color666"
+                    android:layout_alignBottom="@id/tv_package_price"
+                    android:layout_marginLeft="@dimen/size15"
+                    android:layout_toRightOf="@id/tv_package_price"
+                    android:text="￥200" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size15"
+                android:layout_marginTop="@dimen/size5"
+                android:background="#fbfbfb" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_tea_recommend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_content="更多"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="包厢推荐" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/size12"
+                android:paddingLeft="@dimen/size12"
+                android:paddingTop="@dimen/size12" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size15"
+                android:layout_marginTop="@dimen/size5"
+                android:background="#fbfbfb" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_tea_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+
+                app:TitleRelativeLayout_content_image_visi="false"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="商户信息" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size12" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginRight="@dimen/size12"
+                android:background="#ebebeb" />
+
+            <TextView
+                android:id="@+id/tv_info"
+                style="@style/TextSize13Color666"
+                android:paddingLeft="@dimen/size12"
+                android:paddingRight="@dimen/size12"
+                android:paddingTop="@dimen/size12"
+                android:text="商户名称：邓如果茶楼\n\n营业时间：10:00-22:00\n\n" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_introduce_name"
+                    style="@style/TextSize13Color666"
+                    android:paddingLeft="@dimen/size12"
+                    android:paddingTop="@dimen/size12"
+                    android:text="茶馆介绍：" />
+
+                <TextView
+                    android:id="@+id/tv_introduce_content"
+                    style="@style/TextSize13Color666"
+                    android:layout_toRightOf="@id/tv_introduce_name"
+                    android:lineSpacingExtra="@dimen/size5"
+                    android:paddingRight="@dimen/size12"
+                    android:paddingTop="@dimen/size12"
+                    android:text="茶（学名：Camellia sinensis (L.) O. Ktze.），灌木或小乔木，嫩枝无毛。叶革质，长圆形或椭圆形，先端钝或尖锐，基部楔形，上面发亮，下面无毛或初时有柔毛，边缘有锯齿，叶柄无毛。花白色，花柄有时稍长；萼片阔卵形至圆形，无毛，宿存；花瓣阔卵形，基部略连合，背面无毛，有时有短柔毛；子房密生白毛；花柱无毛。蒴果3球形或1-2球形，高1.1-1.5厘米，每球有种子1-2粒。花期10月至翌年2月。" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_event_content"
+                style="@style/TextSize13Color666"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/size12"
+                android:paddingRight="@dimen/size12"
+                android:paddingTop="@dimen/size12"
+                android:text="活动介绍：卡座双人套餐优惠享卡座卡座双人套餐优惠享卡座" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginRight="@dimen/size12"
+                android:layout_marginTop="@dimen/size12"
+                android:background="#ebebeb" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_immediately"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_content_visi="false"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="人气最高排行榜：第12名"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color666" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_title="其他分店"
+                app:TitleRelativeLayout_view_visi="false" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size15"
+                android:background="#fbfbfb" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_evaluate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_content="写评价"
+                app:TitleRelativeLayout_content_h="@dimen/size12"
+                app:TitleRelativeLayout_content_image="@mipmap/icon_detail_ping"
+                app:TitleRelativeLayout_content_w="@dimen/size10"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="用户评价(333)" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_evaluate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/bt_more"
+                android:layout_width="@dimen/size100"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/size40"
+                android:paddingRight="@dimen/size15"
+                android:paddingLeft="@dimen/size15"
+                android:layout_marginBottom="@dimen/size20"
+                android:layout_marginTop="@dimen/size15"
+                android:background="@drawable/rectangle_fbfbfb"
+                android:text="更多评价"
+                android:textColor="#333"
+                android:textSize="@dimen/sp16" />
+
+        </LinearLayout>
+    </client.ediancha.com.myview.ScrollChangedScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:alpha="0"
+        android:background="#333" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize15Color333"
+        android:layout_centerHorizontal="true"
+        android:height="?attr/actionBarSize"
+        android:alpha="0"
+        android:gravity="center"
+        android:text="邓如果"
+        android:textColor="#fff" />
+</RelativeLayout>

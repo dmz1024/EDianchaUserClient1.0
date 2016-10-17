@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:padding="@dimen/size12">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="@dimen/size110"
+        android:layout_height="@dimen/size100"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize14Color333"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginTop="@dimen/size3"
+        android:layout_toRightOf="@id/iv_img"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="福祥茶业'教你懂得怎样懂茶'" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/TextSize12Color666"
+        android:layout_alignLeft="@id/tv_title"
+        android:layout_below="@id/tv_title"
+        android:layout_marginTop="@dimen/size10"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="让现在的年轻人提升自己的品味带你走入" />
+
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_name"
+        style="@style/TextSize11Color666"
+        android:layout_alignLeft="@id/tv_title"
+        android:layout_below="@id/tv_content"
+        android:layout_marginTop="@dimen/size10"
+        android:drawablePadding="@dimen/size5"
+        android:text="邓如果茶楼"
+        app:TextImage_drawable="@mipmap/activity_detail_name"
+        app:TextImage_height="@dimen/size13"
+        app:TextImage_seat="1"
+        app:TextImage_width="@dimen/size13" />
+
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_time"
+        style="@style/TextSize11Color666"
+        android:layout_alignLeft="@id/tv_title"
+        android:layout_below="@id/tv_name"
+        android:layout_marginTop="@dimen/size10"
+        android:drawablePadding="@dimen/size5"
+        android:text="11/26 9:00-15:00"
+        app:TextImage_drawable="@mipmap/icon_time"
+        app:TextImage_height="@dimen/size13"
+        app:TextImage_seat="1"
+        app:TextImage_width="@dimen/size13" />
+</RelativeLayout>

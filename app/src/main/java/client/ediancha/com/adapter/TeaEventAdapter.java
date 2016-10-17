@@ -1,5 +1,6 @@
 package client.ediancha.com.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,12 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.TeaEventDescActivity;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.myview.GlideCircleTransform;
 import client.ediancha.com.myview.TextImage;
+import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -80,7 +83,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
         return VIEW_SHOW_CONTENT;
     }
 
-    public static class TeaEventViewHolder extends BaseViewHolder {
+    public class TeaEventViewHolder extends BaseViewHolder {
         public ImageView iv_img;
         public ImageView iv_logo;
         public TextView tv_state;
@@ -98,6 +101,11 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
             tv_content = (TextView) itemView.findViewById(R.id.tv_content);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             tv_time = (TextImage) itemView.findViewById(R.id.tv_time);
+        }
+
+        @Override
+        protected void onClick(int layoutPosition) {
+            Util.skip(((Activity) ctx), TeaEventDescActivity.class);
         }
     }
 

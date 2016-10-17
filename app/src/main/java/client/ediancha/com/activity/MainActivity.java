@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ll_tab = (LinearLayout) findViewById(R.id.ll_tab);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("");
 
 //        CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
 //        mCollapsingToolbarLayout.setTitle("");
@@ -80,35 +81,34 @@ public class MainActivity extends AppCompatActivity {
         final String[] titles = {"茶·活动", "茶·空间", "茶·产品"};
 
         TeaEventFragment a = new TeaEventFragment();
-        a.setA(new RecycleScrollViewListener() {
-
-            @Override
-            public void isUp() {
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) ll_tab.getLayoutParams();
-                if (ll_tab.getBottom() > 0) {
-                    layoutParams.topMargin = layoutParams.topMargin - 5;
-
-                    ll_tab.setLayoutParams(layoutParams);
-
-                }
-
-
-            }
-
-            @Override
-            public void isDown() {
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) ll_tab.getLayoutParams();
-                if (ll_tab.getTop() != 0) {
-                    layoutParams.topMargin = layoutParams.topMargin + 5;
-                    ll_tab.setLayoutParams(layoutParams);
-                }
-            }
-
-            @Override
-            public void dy(int y) {
-
-            }
-        });
+//        a.setA(new RecycleScrollViewListener() {
+//
+//            @Override
+//            public void isUp() {
+//                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) ll_tab.getLayoutParams();
+//                if (ll_tab.getBottom() > 0) {
+//                    layoutParams.topMargin = layoutParams.topMargin - 1;
+//                    ll_tab.setLayoutParams(layoutParams);
+//
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void isDown() {
+//                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) ll_tab.getLayoutParams();
+//                if (ll_tab.getTop() != 0) {
+//                    layoutParams.topMargin = layoutParams.topMargin + 1;
+//                    ll_tab.setLayoutParams(layoutParams);
+//                }
+//            }
+//
+//            @Override
+//            public void dy(int y) {
+//
+//            }
+//        });
 
         final List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(a);

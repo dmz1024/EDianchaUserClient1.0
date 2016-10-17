@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/size12">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="@dimen/size18"
+        android:layout_height="@dimen/size18"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize14Color666"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/size2"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_img"
+        android:text="WIFI" />
+
+</RelativeLayout>

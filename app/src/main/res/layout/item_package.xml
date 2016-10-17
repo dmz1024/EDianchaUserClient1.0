@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:padding="@dimen/size10">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="@dimen/size75"
+        android:layout_height="@dimen/size75"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextSize14Color333"
+        android:layout_marginLeft="@dimen/size12"
+        android:layout_marginTop="@dimen/size2"
+        android:layout_toRightOf="@id/iv_img"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="茶包名称" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/TextSize13Color666"
+        android:layout_alignLeft="@id/tv_name"
+        android:layout_below="@id/tv_name"
+        android:layout_marginTop="@dimen/size6"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="这家店这家店这家店这家店" />
+
+
+    <TextView
+        android:id="@+id/tv_price"
+        style="@style/TextSize15Color333"
+        android:layout_alignLeft="@id/tv_name"
+        android:layout_below="@id/tv_content"
+        android:layout_marginTop="@dimen/size8"
+        android:text="￥100"
+        android:textColor="#cd673a" />
+
+    <TextView
+        android:id="@+id/tv_old_price"
+        style="@style/TextSize15Color666"
+        android:layout_alignBottom="@id/tv_price"
+        android:layout_marginLeft="@dimen/size15"
+        android:layout_toRightOf="@id/tv_price"
+        android:text="￥200" />
+
+</RelativeLayout>
