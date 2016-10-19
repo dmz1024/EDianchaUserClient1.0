@@ -6,6 +6,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import client.ediancha.com.R;
+import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 2016/10/18.
@@ -14,13 +22,20 @@ public abstract class ToolBarActivity extends AppCompatActivity implements View.
     private ToolBarHelper mToolBarHelper;
     public Toolbar toolbar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getRid());
         initView();
         initData();
+        onCreateCustomToolBar(toolbar);
+        setSupportActionBar(toolbar);
+        ((TextView) toolbar.findViewById(R.id.tv_toolBar_title)).setText(getToolBarTitle() != null ? getToolBarTitle() : "");
+
     }
+
+    protected abstract String getToolBarTitle();
 
 
     protected abstract void initView();
@@ -31,18 +46,44 @@ public abstract class ToolBarActivity extends AppCompatActivity implements View.
 
     @Override
     public void setContentView(int layoutResID) {
-        mToolBarHelper = new ToolBarHelper(this, layoutResID);
-        toolbar = mToolBarHelper.getToolBar();
-        setContentView(mToolBarHelper.getContentView());
-        /*把 toolbar 设置到Activity 中*/
-        setSupportActionBar(toolbar);
-        /*自定义的一些操作*/
-        onCreateCustomToolBar(toolbar);
+//        mToolBarHelper = new ToolBarHelper(this, layoutResID);
+//        toolbar = mToolBarHelper.getToolBar();
+//        setContentView(mToolBarHelper.getContentView());
+//        /*把 toolbar 设置到Activity 中*/
+//        setSupportActionBar(toolbar);
+//        /*自定义的一些操作*/
+//        onCreateCustomToolBar(toolbar);
+
+        ViewGroup rootView = (ViewGroup) findViewById(android.R.id.content);
+        RelativeLayout baseLinearLayout = new RelativeLayout(this);
+        baseLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorf00));
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        baseLinearLayout.setLayoutParams(params);
+        View v = View.inflate(this, layoutResID, null);
+        baseLinearLayout.addView(v);
+        RelativeLayout.LayoutParams vLayoutParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
+        setMargins(vLayoutParams);
+        v.setLayoutParams(vLayoutParams);
+        rootView.addView(baseLinearLayout);
+        toolbar = (Toolbar) View.inflate(this, R.layout.toolbar, null);
+        baseLinearLayout.addView(toolbar);
+        RelativeLayout.LayoutParams toolBarParams = (RelativeLayout.LayoutParams) toolbar.getLayoutParams();
+        toolBarParams.width = Util.getWidth();
+        toolbar.setLayoutParams(toolBarParams);
     }
 
+    protected void setMargins(RelativeLayout.LayoutParams vLayoutParams) {
+        vLayoutParams.setMargins(0, getTop(), 0, 0);
+    }
+
+    protected int getTop() {
+        return Util.dp2Px(56f);
+    }
+
+
     public void onCreateCustomToolBar(Toolbar toolbar) {
-        toolbar.setTitle("3333");
         toolbar.setContentInsetsRelative(0, 0);
+        toolbar.setTitle("");
     }
 
     @Override
@@ -63,5 +104,20 @@ public abstract class ToolBarActivity extends AppCompatActivity implements View.
     @Override
     public void onClick(View v) {
 
+    }
+
+
+    /**
+     * 获取状态栏高度
+     *
+     * @return
+     */
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }

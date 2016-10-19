@@ -25,7 +25,7 @@ import java.util.Map;
 
 import client.ediancha.com.R;
 import client.ediancha.com.adapter.AdNormalAdapter;
-import client.ediancha.com.adapter.EvaluateAdapter;
+//import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescInfoAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescRecommendAdapter;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
@@ -155,8 +155,8 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
     private void fillTabLayout() {
         final String[] titles = {"图文详情", "用户评价"};
         final List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(EvaluateFragment.getInstance(false,false));
-        fragmentList.add(EvaluateFragment.getInstance(false,false));
+//        fragmentList.add(EvaluateFragment.getInstance(false,false));
+//        fragmentList.add(EvaluateFragment.getInstance(false,false));
         vp_content.setOffscreenPageLimit(fragmentList.size());
         vp_content.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override

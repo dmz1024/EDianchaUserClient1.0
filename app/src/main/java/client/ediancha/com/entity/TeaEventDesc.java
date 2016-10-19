@@ -1,14 +1,45 @@
 package client.ediancha.com.entity;
 
+import java.util.List;
+
 /**
  * Created by dengmingzhi on 16/10/11.
  */
 
-public class TeaEventDesc extends BaseListEntity<TeaEventDesc.Event> {
-    public int count;
+public class TeaEventDesc extends BaseEntity {
 
-    public static class Event extends Data {
-        public String title;
-        public String image;
+    public Data data;
+
+    public static class Data {
+        public Show show;
+        public List<Lists> list;
     }
+
+
+    public static class Show {
+        public String address;
+        public String bm;
+        public String content;
+        public String endtime;
+        public String images;
+        public String name;
+        public String price;
+        public String renshu;
+        public String storename;
+        public String sttime;
+        public String url;
+    }
+
+    public static class Lists {
+        public String address;
+        public String desc;
+        public String endtime;
+        public String images;
+        public String name;
+        public String pigcms_id;
+        public String storename;
+        public String sttime;
+    }
+
+
 }

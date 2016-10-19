@@ -49,6 +49,11 @@ public class MainActivity extends ToolBarActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
+    protected String getToolBarTitle() {
+        return "E点茶";
+    }
+
+    @Override
     protected void initView() {
         ll_tab = (LinearLayout) findViewById(R.id.ll_tab);
         tv_filter = (TextView) findViewById(R.id.tv_filter);
@@ -112,6 +117,8 @@ public class MainActivity extends ToolBarActivity {
     public void onCreateCustomToolBar(Toolbar toolbar) {
         super.onCreateCustomToolBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.icon_my);
+//        toolbar.setVisibility(View.GONE);
+//        toolbar.setBackgroundColor(getResources().getColor(R.color.color00000000));
     }
 
     @Override

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        tools:context="client.ediancha.com.activity.LoginActivity">
+
+        <ImageView
+            android:id="@+id/iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size250"
+            android:scaleType="fitXY"
+            android:src="@mipmap/center_bg" />
+
+        <TextView
+            android:id="@+id/tv_tel"
+            style="@style/TextSize15Color666"
+            android:layout_alignBottom="@id/iv_bg"
+            android:layout_marginBottom="@dimen/size15"
+            android:layout_marginLeft="@dimen/size85"
+            android:text="手机号"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/tv_password"
+            style="@style/TextSize15Color666"
+            android:layout_alignBottom="@id/iv_bg"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/size15"
+            android:layout_marginRight="@dimen/size85"
+            android:text="密码"
+            android:textColor="#fff" />
+
+        <ImageView
+            android:id="@+id/iv_sanjiao"
+            android:layout_width="@dimen/size19"
+            android:layout_height="@dimen/size15"
+            android:layout_alignBottom="@id/iv_bg"
+            android:layout_marginBottom="-1dp"
+            android:layout_marginLeft="@dimen/size99"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_sanjiao" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/iv_bg"
+            android:layout_marginTop="@dimen/size10"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/et_password_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="手机号"
+                android:inputType="number"
+                android:maxLength="11"
+                android:padding="@dimen/size8"
+                android:textColor="#999"
+                android:textColorHint="#999"
+                android:textSize="@dimen/sp14" />
+
+            <View
+                android:id="@+id/view_password_tel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_below="@id/et_password_tel"
+                android:layout_marginTop="@dimen/size5"
+                android:background="#ebebeb" />
+
+
+            <Button
+                android:id="@+id/bt_login"
+                android:layout_width="@dimen/size80"
+                android:layout_height="@dimen/size30"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/view_password_tel"
+                android:layout_marginRight="@dimen/size10"
+                android:layout_marginTop="@dimen/size8"
+                android:alpha="0.2"
+                android:background="@drawable/touch_bg_51b338"
+                android:enabled="false"
+                android:text="登  录"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sp13" />
+
+            <EditText
+                android:id="@+id/et_password_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/view_password_tel"
+                android:layout_marginRight="@dimen/size10"
+                android:layout_marginTop="@dimen/size5"
+                android:layout_toLeftOf="@id/bt_login"
+                android:background="@null"
+                android:hint="密码"
+                android:inputType="textPassword"
+                android:padding="@dimen/size8"
+                android:textColor="#999"
+                android:textColorHint="#999"
+                android:textSize="@dimen/sp14" />
+
+            <View
+                android:id="@+id/view_password_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_below="@id/et_password_password"
+                android:layout_marginTop="@dimen/size5"
+                android:background="#ebebeb" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_tel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/iv_bg"
+            android:padding="@dimen/size10">
+
+            <EditText
+                android:id="@+id/et_tel_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="手机号"
+                android:inputType="number"
+                android:maxLength="11"
+                android:padding="@dimen/size8"
+                android:textColor="#999"
+                android:textColorHint="#999"
+                android:textSize="@dimen/sp14" />
+
+            <Button
+                android:id="@+id/bt_tel_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size40"
+                android:layout_below="@id/et_tel_tel"
+                android:layout_marginTop="@dimen/size10"
+                android:background="@drawable/touch_bg_51b338"
+                android:text="登     录"
+                android:enabled="false"
+                android:alpha="0.2"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/sp15" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

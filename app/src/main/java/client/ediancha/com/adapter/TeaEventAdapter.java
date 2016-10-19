@@ -2,8 +2,10 @@ package client.ediancha.com.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -50,21 +52,20 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-
         if (holder instanceof TeaEventViewHolder) {
             TeaEventViewHolder mHolder = (TeaEventViewHolder) holder;
-            TeaEvent.Data data = list.get(position);
-            Glide.with(ctx).load(data.images.large).into(mHolder.iv_img);
-            mHolder.tv_title.setText(data.title);
-            Glide.with(ctx).load(Constant.IMAGE).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_logo);
+            TeaEvent.Data data = list.get(position - 1);
+            Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+            Glide.with(ctx).load(data.logo).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_logo);
+            mHolder.tv_title.setText(data.name);
+            mHolder.tv_time.setText(data.sttime + "至" + data.endtime);
+            mHolder.tv_price.setText("￥" + data.price);
         } else {
             TeaEventTypeViewHolder mHolder = (TeaEventTypeViewHolder) holder;
             GridLayoutManager manager = new GridLayoutManager(ctx, 4);
-            List<TeaEvent.Type> types = new ArrayList<>();
+            List<String> types = new ArrayList<>();
             for (int i = 0; i < 13; i++) {
-                TeaEvent.Type type = new TeaEvent.Type();
-                type.title = "友谊茶会";
-                types.add(type);
+                types.add("友谊茶会");
             }
             TeaEventTypeFilterAdapter mAdapter = new TeaEventTypeFilterAdapter(ctx, types);
             mHolder.rv_type.setLayoutManager(manager);
@@ -74,6 +75,10 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
 
     }
 
+    @Override
+    public int getItemCount() {
+        return list.size() + 1;
+    }
 
     @Override
     public int getItemViewType(int position) {
@@ -105,7 +110,10 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
 
         @Override
         protected void onClick(int layoutPosition) {
-            Util.skip(((Activity) ctx), TeaEventDescActivity.class);
+            Intent intent = new Intent(ctx, TeaEventDescActivity.class);
+            intent.putExtra("title", list.get(layoutPosition-1).name);
+            intent.putExtra("id", list.get(layoutPosition-1).pigcms_id);
+            ctx.startActivity(intent);
         }
     }
 

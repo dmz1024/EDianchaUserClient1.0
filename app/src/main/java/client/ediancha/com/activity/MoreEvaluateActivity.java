@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.fragment.EvaluateFragment;
+//import client.ediancha.com.fragment.EvaluateFragment;
 import client.ediancha.com.fragment.MyCenterFragment;
 import client.ediancha.com.fragment.TeaOrderFragment;
 
@@ -27,8 +27,8 @@ public class MoreEvaluateActivity extends AppCompatActivity {
         final String[] titles = {"评价", "带图评价"};
 
         final List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(EvaluateFragment.getInstance(false));
-        fragmentList.add(EvaluateFragment.getInstance(true));
+//        fragmentList.add(EvaluateFragment.getInstance(false));
+//        fragmentList.add(EvaluateFragment.getInstance(true));
         viewPager.setOffscreenPageLimit(fragmentList.size());
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override

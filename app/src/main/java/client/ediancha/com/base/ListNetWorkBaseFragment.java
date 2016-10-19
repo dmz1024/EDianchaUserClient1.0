@@ -122,7 +122,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
 
             @Override
             public void haveData(T t) {
-                if (t.start >= 0) {
+                if (t.page_info.page_index >= 0) {
                     if (currentType == RequestType.LOAD_NEW || currentType == RequestType.LOAD_fILTER) {
                         totalList.clear();
                     } else {
@@ -130,11 +130,11 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                         isLoading = false;
                     }
 
-                    if (t.start == t.total) {
+                    if (t.page_info.page_count == t.page_info.page_index) {
                         isHaveData = false;
                     }
 
-                    totalList.addAll(t.subjects);
+                    totalList.addAll(t.data);
 
                     if (totalList.size() > 0) {
                         getCurrentView(VIEW_HAVE_DATA);
@@ -254,7 +254,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                             currentPage = page;
                             page += 1;
                             currentType = RequestType.LOAD_MORE;
-                            layoutManager.scrollToPosition(totalList.size() - 1);
+                            layoutManager.scrollToPosition(totalList.size()-getJian());
                             swipeRefreshLayout.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
@@ -269,6 +269,10 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
             }
         });
         return view;
+    }
+
+    protected int getJian() {
+        return 1;
     }
 
     protected String getSize() {

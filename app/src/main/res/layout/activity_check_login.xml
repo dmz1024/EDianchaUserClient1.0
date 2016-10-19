@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_check_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:padding="@dimen/size15"
+    tools:context="client.ediancha.com.activity.CheckLoginActivity">
+
+    <TextView
+        android:id="@+id/tv_tips"
+        style="@style/TextSize14Color666"
+        android:paddingBottom="@dimen/size10"
+        android:paddingTop="@dimen/size10"
+        android:text="我们已发送验证码短信到这个号码18326167257" />
+
+    <RelativeLayout
+        android:id="@+id/rl_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_tips"
+        android:layout_marginTop="@dimen/size10">
+
+        <Button
+            android:id="@+id/bt_again"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size30"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/size8"
+            android:alpha="0.5"
+            android:background="@drawable/touch_bg_ebebeb"
+            android:clickable="false"
+            android:enabled="false"
+            android:text="重新获取"
+            android:textColor="#666"
+            android:textSize="@dimen/sp13" />
+
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/bt_again"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:maxLength="4"
+            android:inputType="number"
+            android:paddingBottom="@dimen/size10"
+            android:paddingTop="@dimen/size10"
+            android:textColor="#999"
+            android:textColorHint="#999"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size0.5"
+            android:layout_below="@id/et_code"
+            android:layout_marginTop="@dimen/size10"
+            android:background="#ebebeb" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_tips_again"
+        style="@style/TextSize12Color999"
+        android:layout_below="@id/rl_code"
+        android:layout_marginTop="@dimen/size10"
+        android:text="没有收到验证码?尝试重新获取" />
+
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size40"
+        android:layout_below="@id/tv_tips_again"
+        android:layout_marginLeft="@dimen/size20"
+        android:layout_marginRight="@dimen/size20"
+        android:layout_marginTop="@dimen/size20"
+        android:alpha="0.2"
+        android:background="@drawable/touch_bg_51b338"
+        android:clickable="false"
+        android:enabled="false"
+        android:text="提     交"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/sp15" />
+
+</RelativeLayout>

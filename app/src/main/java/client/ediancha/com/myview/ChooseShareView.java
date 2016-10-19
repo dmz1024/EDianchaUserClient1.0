@@ -101,17 +101,6 @@ public class ChooseShareView implements PopupWindow.OnDismissListener {
 
 
         ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 0.3f).duration(500).start();
-
-//        for (int i = 0; i < 5; i++) {
-//            final int a = i;
-//            view.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Util.backgroundAlpha(((Activity) ctx), 0.9f - (0.1f * a));
-//                }
-//            }, 150 + (50 * i));
-//        }
-
         return view;
     }
 

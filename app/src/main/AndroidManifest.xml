@@ -26,18 +26,17 @@
         <activity android:name=".activity.ApplyOrderActivity" />
         <activity android:name=".activity.AppointmentActivity" />
         <activity android:name=".activity.TeaEventFilterActivity" />
-        <activity android:name=".activity.TestActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.TeaEventDescActivity" />
+        <activity android:name=".activity.TeaSpaceDescActivity" />
+        <activity android:name=".activity.TeaDescActivity" />
+        <activity android:name=".activity.MoreEvaluateActivity" />
+        <activity android:name=".activity.MoreTeaPackageActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.CheckLoginActivity" />
+        <activity android:name=".activity.TeaEventFilterResultActivity">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".activity.TeaEventDescActivity"></activity>
-        <activity android:name=".activity.TeaSpaceDescActivity"></activity>
-        <activity android:name=".activity.TeaDescActivity"></activity>
-        <activity android:name=".activity.MoreEvaluateActivity"></activity>
-        <activity android:name=".activity.MoreTeaPackageActivity"></activity>
     </application>
 
 </manifest>

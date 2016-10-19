@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.github.florent37.viewanimator.ViewAnimator;
+
 import java.util.List;
 
 import client.ediancha.com.R;
@@ -93,15 +95,7 @@ public class ChooseStringView implements PopupWindow.OnDismissListener {
         });
 
 
-        for (int i = 0; i < 5; i++) {
-            final int a = i;
-            lv_content.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Util.backgroundAlpha(((Activity) ctx), 0.9f - (0.1f * a));
-                }
-            }, 150 + (50 * i));
-        }
+        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 0.3f).duration(500).start();
 
         return lv_content;
     }
@@ -113,6 +107,6 @@ public class ChooseStringView implements PopupWindow.OnDismissListener {
 
     @Override
     public void onDismiss() {
-        Util.backgroundAlpha(((Activity) ctx), 1f);
+        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 1f).duration(600).start();
     }
 }

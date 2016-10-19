@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.fragment.EvaluateFragment;
+//import client.ediancha.com.fragment.EvaluateFragment;
 import client.ediancha.com.fragment.TeaDescFragment;
 import client.ediancha.com.fragment.TeaPackageFragment;
 

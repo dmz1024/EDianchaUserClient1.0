@@ -14,6 +14,7 @@ import client.ediancha.com.adapter.TeaEventAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
 import client.ediancha.com.entity.LikeEvent;
 import client.ediancha.com.entity.TeaEvent;
+import client.ediancha.com.interfaces.OnTeaEventMapListener;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -21,6 +22,7 @@ import client.ediancha.com.entity.TeaEvent;
 
 public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, TeaEvent> {
     private boolean isScrollEnabled = true;
+    private OnTeaEventMapListener onTeaEventMapListener;
 
     @Override
     protected RecyclerView.Adapter getAdapter(List<TeaEvent.Data> totalList) {
@@ -29,19 +31,23 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
 
     @Override
     protected String getUrl() {
-        return "top250";
+        return "app.php";
     }
 
     @Override
     protected Map<String, String> getMap() {
+        if (onTeaEventMapListener != null) {
+            return onTeaEventMapListener.getMap(map);
+        }
+        map.put("c", "chahui");
+        map.put("a", "index");
         return map;
     }
 
-    @Override
-    protected void initMap() {
-        map.put("start", (page * 10) + "");
-        map.put("count", 10 + "");
+    protected int getJian() {
+        return 0;
     }
+
 
     @Override
     protected Class<TeaEvent> getTClass() {
@@ -62,7 +68,7 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
 //                        d.isDown();
 //                    }
 //                }
-                return isScrollEnabled && super.canScrollVertically();
+                return true;
             }
         };
     }
@@ -71,4 +77,23 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
     public void setScrollEnable(boolean flag) {
         this.isScrollEnabled = flag;
     }
+
+    @Override
+    protected boolean isOnlyInitOne() {
+        return onTeaEventMapListener == null;
+    }
+
+    public void setOnTeaEventMapListener(OnTeaEventMapListener onTeaEventMapListener) {
+        this.onTeaEventMapListener = onTeaEventMapListener;
+    }
+
+
+    public void setCurrentPosition(int position) {
+        if (totalList.size() > 0) {
+            if (currentType == RequestType.LOAD_NEW || currentType == RequestType.LOAD_fILTER) {
+                layoutManager.scrollToPosition(position);
+            }
+        }
+    }
+
 }

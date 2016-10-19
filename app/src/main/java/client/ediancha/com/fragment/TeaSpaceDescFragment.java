@@ -23,7 +23,7 @@ import client.ediancha.com.R;
 import client.ediancha.com.activity.MoreEvaluateActivity;
 import client.ediancha.com.activity.MoreTeaPackageActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
-import client.ediancha.com.adapter.EvaluateAdapter;
+//import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.adapter.TeaEventDescEventAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescInfoAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescRecommendAdapter;
@@ -185,20 +185,20 @@ public class TeaSpaceDescFragment extends SingleNetWorkBaseFragment<TeaSpaceDesc
      * 填充评价
      */
     private void fillEvaluate() {
-        TeaEventDesc.Event event1 = new TeaEventDesc.Event();
-        event1.image = Constant.IMAGE;
-
-        List<TeaEventDesc.Event> events = new ArrayList<>();
-        events.add(event1);
-        LinearLayoutManager manager = new LinearLayoutManager(getContext()) {
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };
-        rv_evaluate.addItemDecoration(new ItemDecoration(getContext(), LinearLayout.VERTICAL, 2, "#ebebeb"));
-        rv_evaluate.setLayoutManager(manager);
-        rv_evaluate.setAdapter(new EvaluateAdapter(getContext(), events));
+//        TeaEventDesc.Event event1 = new TeaEventDesc.Event();
+//        event1.image = Constant.IMAGE;
+//
+//        List<TeaEventDesc.Event> events = new ArrayList<>();
+//        events.add(event1);
+//        LinearLayoutManager manager = new LinearLayoutManager(getContext()) {
+//            @Override
+//            public boolean canScrollVertically() {
+//                return false;
+//            }
+//        };
+//        rv_evaluate.addItemDecoration(new ItemDecoration(getContext(), LinearLayout.VERTICAL, 2, "#ebebeb"));
+//        rv_evaluate.setLayoutManager(manager);
+//        rv_evaluate.setAdapter(new EvaluateAdapter(getContext(), events));
     }
 
     /**

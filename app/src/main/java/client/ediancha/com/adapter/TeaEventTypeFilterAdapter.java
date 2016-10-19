@@ -23,16 +23,16 @@ import client.ediancha.com.util.Util;
  * Created by dengmingzhi on 16/10/11.
  */
 
-public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Type> {
+public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<String> {
     private boolean isHaveMore;
     private boolean isNowMore;
     private boolean isCanMore = true;
 
-    public TeaEventTypeFilterAdapter(Context ctx, List<TeaEvent.Type> list) {
+    public TeaEventTypeFilterAdapter(Context ctx, List<String> list) {
         super(ctx, list);
     }
 
-    public TeaEventTypeFilterAdapter(List<TeaEvent.Type> list) {
+    public TeaEventTypeFilterAdapter(List<String> list) {
         super(list);
     }
 
@@ -44,19 +44,19 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Type> 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaEventTypeViewHolder mHolder = ((TeaEventTypeViewHolder) holder);
-        TeaEvent.Type type = list.get(position);
+        String type = list.get(position);
 //        R.mipmap.center_tea_order
         if (isHaveMore && !isNowMore) {
             if (position < 7) {
                 Glide.with(ctx).load(R.mipmap.center_tea_order).into(mHolder.iv_icon);
-                mHolder.tv_title.setText(type.title);
+                mHolder.tv_title.setText(type);
             } else {
                 Glide.with(ctx).load(R.mipmap.center_address).into(mHolder.iv_icon);
                 mHolder.tv_title.setText("更多");
             }
         } else {
             Glide.with(ctx).load(R.mipmap.center_tea_order).into(mHolder.iv_icon);
-            mHolder.tv_title.setText(type.title);
+            mHolder.tv_title.setText(type);
         }
 
 
@@ -92,7 +92,7 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Type> 
                 isCanMore = false;
                 notifyDataSetChanged();
             } else {
-                Log.d("点击了", list.get(layoutPosition).title);
+                Log.d("点击了", list.get(layoutPosition));
             }
         }
     }

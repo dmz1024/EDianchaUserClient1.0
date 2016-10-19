@@ -1,5 +1,7 @@
 package client.ediancha.com.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,23 +27,52 @@ import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.interfaces.ScrollViewListener;
 import client.ediancha.com.myview.Color2Text;
 import client.ediancha.com.myview.ScrollChangedScrollView;
+import client.ediancha.com.myview.TitleRelativeLayout;
 
 /**
  * Created by dengmingzhi on 16/10/17.
  */
 
 public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc> {
+    private String id;
     private Color2Text tv_price;
+    private RollPagerView rollPagerView;
+    private TextView tv_name;
+    private TitleRelativeLayout trl_name;
+    private TitleRelativeLayout trl_time;
+    private TitleRelativeLayout trl_address;
+    private TitleRelativeLayout trl_num;
+    private TextView tv_event_desc;
+    private TextView tv_apply;
+    private RecyclerView rv_event;
+    private ScrollChangedScrollView scrollView;
+    private ScrollViewListener scrollViewListener;
+
+    public static TeaEventDescFragment getInstance(String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        TeaEventDescFragment teaEventDescFragment = new TeaEventDescFragment();
+        teaEventDescFragment.setArguments(bundle);
+        return teaEventDescFragment;
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        id = getArguments().getString("id");
+    }
 
     @Override
     protected String getUrl() {
-        return "top250";
+        return "app.php";
     }
 
     @Override
     protected Map<String, String> getMap() {
-        map.put("start", "0");
-        map.put("count", "10");
+        map.put("pigcms_id", id);
+        map.put("c", "chahui");
+        map.put("a", "show");
         return map;
     }
 
@@ -59,45 +90,56 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
 
     @Override
     protected View getHaveDataView() {
+
         View view = View.inflate(getContext(), R.layout.fragment_tea_event_desc, null);
         tv_price = (Color2Text) view.findViewById(R.id.tv_price);
-        final RollPagerView rollPagerView = (RollPagerView) view.findViewById(R.id.roll_view_pager);
-        //设置播放时间间隔
-        rollPagerView.setPlayDelay(2500);
-        //设置透明度
+        rollPagerView = (RollPagerView) view.findViewById(R.id.roll_view_pager);
+        tv_name = (TextView) view.findViewById(R.id.tv_name);
+        trl_name = (TitleRelativeLayout) view.findViewById(R.id.trl_name);
+        trl_time = (TitleRelativeLayout) view.findViewById(R.id.trl_time);
+        trl_address = (TitleRelativeLayout) view.findViewById(R.id.trl_address);
+        trl_num = (TitleRelativeLayout) view.findViewById(R.id.trl_num);
+        tv_event_desc = (TextView) view.findViewById(R.id.tv_event_desc);
+        tv_apply = (TextView) view.findViewById(R.id.tv_apply);
+        rv_event = (RecyclerView) view.findViewById(R.id.rv_event);
+        rollPagerView.setPlayDelay(0);
         rollPagerView.setAnimationDurtion(500);
-        //设置适配器
-        List<String> urls = new ArrayList<>();
-        urls.add("https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p480747492.jpg");
-        urls.add("https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p511118051.jpg");
-        urls.add("https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p1910813120.jpg");
-        urls.add("https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p510876377.jpg");
-        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, urls));
-
-        //mRollViewPager.setHintView(new IconHintView(this, R.drawable.point_focus, R.drawable.point_normal));
-//        rollPagerView.setHintView(new ColorPointHintView(getContext(), getContext().getResources().getColor(R.color.color51b338), Color.WHITE));
-
         rollPagerView.setHintView(new TextHintView(getContext()));
-        //mRollViewPager.setHintView(null);
+        scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
+        scrollView.setScrollViewListener(scrollViewListener);
+        return view;
+    }
+
+    @Override
+    protected void writeData(TeaEventDesc t) {
+        fillRollPager(t.data.show.images);
+        fillEvent(t.data.list);
+        fillData(t.data.show);
+    }
 
 
+    /**
+     * 详情
+     *
+     * @param show
+     */
+    private void fillData(TeaEventDesc.Show show) {
+        tv_name.setText(show.name);
+        tv_price.setTextNotChange(show.price);
+        trl_name.setTitle(show.storename);
+        trl_address.setTitle(show.address);
+        trl_num.setTitle("已报名人数：" + show.bm + " | 可报名总数：" + show.renshu);
+        trl_time.setTitle(show.sttime + " -- " + show.endtime);
+        tv_event_desc.setText(show.content);
+    }
 
-
-
-        RecyclerView rv_event = (RecyclerView) view.findViewById(R.id.rv_event);
-        TeaEventDesc.Event event1 = new TeaEventDesc.Event();
-        event1.title = "这个世界是很神奇的";
-        event1.image = Constant.IMAGE;
-
-        TeaEventDesc.Event event2 = new TeaEventDesc.Event();
-        event2.title = "这个世界是很神奇的";
-        event2.image = Constant.IMAGE;
-
-        List<TeaEventDesc.Event> events = new ArrayList<>();
-        events.add(event1);
-        events.add(event2);
-
-        LinearLayoutManager manager = new LinearLayoutManager(getContext()){
+    /**
+     * 相关活动
+     *
+     * @param list
+     */
+    private void fillEvent(List<TeaEventDesc.Lists> list) {
+        LinearLayoutManager manager = new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -105,40 +147,19 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
         };
         rv_event.addItemDecoration(new ItemDecoration(getContext(), LinearLayout.VERTICAL, 2, "#ebebeb"));
         rv_event.setLayoutManager(manager);
-        rv_event.setAdapter(new TeaEventDescEventAdapter(getContext(), events));
+        rv_event.setAdapter(new TeaEventDescEventAdapter(getContext(), list));
 
-        final Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-
-        final TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
-
-        ScrollChangedScrollView scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
-
-        scrollView.setScrollViewListener(new ScrollViewListener() {
-            int rollPagerView_height = -1;
-
-            @Override
-            public void onScrollChanged(ScrollView scrollView, int x, int y, int oldx, int oldy) {
-                if (rollPagerView_height == -1) {
-                    rollPagerView_height = rollPagerView.getHeight();
-                }
-
-                if (y >= rollPagerView_height) {
-                    toolbar.setAlpha(1f);
-                    tv_title.setAlpha(1f);
-                } else {
-                    toolbar.setAlpha(0f);
-                    tv_title.setAlpha(0f);
-
-                }
-            }
-        });
-        return view;
     }
 
-    @Override
-    protected void writeData(TeaEventDesc t) {
-        tv_price.setTextNotChange(t.count + "");
+    /**
+     * 轮播图
+     *
+     * @param images
+     */
+    private void fillRollPager(String images) {
+        List<String> urls = new ArrayList<>();
+        urls.add(images);
+        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, urls));
     }
 
 
@@ -151,5 +172,10 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
     @Override
     public boolean isCanRefresh() {
         return false;
+    }
+
+
+    public void setScrollViewListener(ScrollViewListener scrollViewListener) {
+        this.scrollViewListener = scrollViewListener;
     }
 }

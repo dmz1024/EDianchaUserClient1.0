@@ -9,18 +9,15 @@ import java.util.List;
 public class TeaEvent extends BaseListEntity<TeaEvent.Data> {
 
     public static class Data extends client.ediancha.com.entity.Data {
-        public String title;
-        public Images images;
-        public Type type;
-    }
-
-    public static class Images {
-        public String large;
-    }
-
-
-    public static class Type {
-        public String title;
+        public String address;
+        public String desc;
+        public String endtime;
+        public String images;
+        public String logo;
+        public String name;
+        public String pigcms_id;
+        public String price;
+        public String sttime;
     }
 
 }

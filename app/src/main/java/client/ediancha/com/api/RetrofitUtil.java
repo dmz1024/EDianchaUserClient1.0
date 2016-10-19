@@ -26,7 +26,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class RetrofitUtil {
-    public static final String BASE_URL = "https://api.douban.com/v2/movie/";
+    public static final String BASE_URL = "http://t.mobaoxiu.com/";
     private static RetrofitUtil retrofitUtil;
     private static final int DEFAULT_TIMEOUT = 5;
     private Retrofit retrofit;
@@ -102,7 +102,12 @@ public class RetrofitUtil {
                         if (gson == null) {
                             gson = new Gson();
                         }
-                        onRequestListener.haveData(gson.fromJson(s, cla));
+                        try {
+                            onRequestListener.haveData(gson.fromJson(s, cla));
+                        } catch (Exception e) {
+                            haveData(s);
+                        }
+
                     }
 
                     @Override
@@ -112,6 +117,10 @@ public class RetrofitUtil {
 
                 });
 
+    }
+
+    protected void haveData(String s) {
+        Log.d("错误格式", s);
     }
 
 

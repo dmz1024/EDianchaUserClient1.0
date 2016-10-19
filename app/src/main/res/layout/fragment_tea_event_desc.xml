@@ -189,20 +189,4 @@
         </LinearLayout>
     </client.ediancha.com.myview.ScrollChangedScrollView>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:alpha="0"
-        android:background="#333" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:textColor="#fff"
-        android:alpha="0"
-        style="@style/TextSize15Color333"
-        android:layout_centerHorizontal="true"
-        android:height="?attr/actionBarSize"
-        android:gravity="center"
-        android:text="邓如果" />
 </RelativeLayout>

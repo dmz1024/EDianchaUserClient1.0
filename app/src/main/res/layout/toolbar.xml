@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_tool_bar"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="45dp"
+    android:background="#333"
+    app:navigationIcon="@mipmap/icon_back"
+    app:title=""
+    app:titleTextColor="#fff">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/id_tool_bar"
+    <TextView
+        android:id="@+id/tv_toolBar_title"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#333"
-        app:navigationIcon="@mipmap/icon_back"/>
-</FrameLayout>
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxEms="8"
+        android:maxLines="1"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp17" />
+</android.support.v7.widget.Toolbar>
