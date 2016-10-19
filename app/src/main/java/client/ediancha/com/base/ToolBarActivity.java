@@ -1,0 +1,67 @@
+package client.ediancha.com.base;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
+/**
+ * Created by dengmingzhi on 2016/10/18.
+ */
+public abstract class ToolBarActivity extends AppCompatActivity implements View.OnClickListener {
+    private ToolBarHelper mToolBarHelper;
+    public Toolbar toolbar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getRid());
+        initView();
+        initData();
+    }
+
+
+    protected abstract void initView();
+
+    protected abstract void initData();
+
+    protected abstract int getRid();
+
+    @Override
+    public void setContentView(int layoutResID) {
+        mToolBarHelper = new ToolBarHelper(this, layoutResID);
+        toolbar = mToolBarHelper.getToolBar();
+        setContentView(mToolBarHelper.getContentView());
+        /*把 toolbar 设置到Activity 中*/
+        setSupportActionBar(toolbar);
+        /*自定义的一些操作*/
+        onCreateCustomToolBar(toolbar);
+    }
+
+    public void onCreateCustomToolBar(Toolbar toolbar) {
+        toolbar.setTitle("3333");
+        toolbar.setContentInsetsRelative(0, 0);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            back();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    protected void back() {
+        finish();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+    }
+}

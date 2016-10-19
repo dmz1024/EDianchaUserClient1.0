@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="client.ediancha.com.activity.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/item_search"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="搜索"
+        android:icon="@mipmap/icon_search"
+        app:showAsAction="always" />
 </menu>

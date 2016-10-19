@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/size15">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextSize12Color999"
+        android:layout_centerHorizontal="true"
+        android:text="分享到" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size15"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size15"
+        android:visibility="invisible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size0.5"
+        android:layout_below="@id/rv_content"
+        android:background="#ebebeb" />
+
+    <TextView
+        android:id="@+id/tv_cancle"
+        android:layout_marginTop="@dimen/size0.5"
+        style="@style/TextSize14Color333"
+        android:layout_width="match_parent"
+        android:layout_below="@id/rv_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:padding="@dimen/size15"
+        android:text="取消分享" />
+</RelativeLayout>

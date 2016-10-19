@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -26,6 +28,7 @@ import java.util.List;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.RecycleScrollViewListener;
+import client.ediancha.com.base.ToolBarActivity;
 import client.ediancha.com.fragment.AppointmentFragment;
 import client.ediancha.com.fragment.TeaEventFilterFragment;
 import client.ediancha.com.fragment.TeaEventFragment;
@@ -36,85 +39,40 @@ import client.ediancha.com.util.Util;
 /**
  * 茶品订单
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ToolBarActivity {
     private TextView tv_filter;
     private ViewPager viewPager;
     private LinearLayout ll_tab;
     private LinearLayout ll_root;
+    private TabLayout layout;
+    private final String[] titles = {"茶·活动", "茶·空间", "茶·产品"};
+    private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initView() {
         ll_tab = (LinearLayout) findViewById(R.id.ll_tab);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle("");
-
-//        CollapsingToolbarLayout mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-//        mCollapsingToolbarLayout.setTitle("");
-
-
         tv_filter = (TextView) findViewById(R.id.tv_filter);
+        tv_filter.setOnClickListener(this);
+        layout = (TabLayout) findViewById(R.id.tablayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+    }
 
-        tv_filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_filter:
                 Intent intent = new Intent(MainActivity.this, TeaEventFilterActivity.class);
                 intent.putExtra("position", viewPager.getCurrentItem());
                 startActivity(intent);
-            }
-        });
+                break;
+        }
+    }
 
-        tv_filter.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Util.skip(MainActivity.this, MyCenterActivity.class);
-                return true;
-            }
-        });
-
-        final TabLayout layout = (TabLayout) findViewById(R.id.tablayout);
-
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-//
-        final String[] titles = {"茶·活动", "茶·空间", "茶·产品"};
-
-        TeaEventFragment a = new TeaEventFragment();
-//        a.setA(new RecycleScrollViewListener() {
-//
-//            @Override
-//            public void isUp() {
-//                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) ll_tab.getLayoutParams();
-//                if (ll_tab.getBottom() > 0) {
-//                    layoutParams.topMargin = layoutParams.topMargin - 1;
-//                    ll_tab.setLayoutParams(layoutParams);
-//
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void isDown() {
-//                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) ll_tab.getLayoutParams();
-//                if (ll_tab.getTop() != 0) {
-//                    layoutParams.topMargin = layoutParams.topMargin + 1;
-//                    ll_tab.setLayoutParams(layoutParams);
-//                }
-//            }
-//
-//            @Override
-//            public void dy(int y) {
-//
-//            }
-//        });
-
-        final List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(a);
+    @Override
+    protected void initData() {
+        fragmentList.add(new TeaEventFragment());
         fragmentList.add(new TeaSpaceFragment());
         fragmentList.add(new TeaProductFragment());
-
         viewPager.setOffscreenPageLimit(fragmentList.size());
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -135,5 +93,29 @@ public class MainActivity extends AppCompatActivity {
 
 
         layout.setupWithViewPager(viewPager);
+    }
+
+    @Override
+    protected int getRid() {
+        return R.layout.activity_main;
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+
+    @Override
+    public void onCreateCustomToolBar(Toolbar toolbar) {
+        super.onCreateCustomToolBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.icon_my);
+    }
+
+    @Override
+    protected void back() {
+        Util.skip(this, MyCenterActivity.class);
     }
 }

@@ -7,45 +7,22 @@
     android:layout_height="match_parent"
     tools:context="client.ediancha.com.activity.TeaEventDescActivity">
 
-    <LinearLayout
-        android:id="@+id/ll_bottom"
+    <TextView
+        android:id="@+id/tv_apply"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size55"
+        android:layout_height="@dimen/size45"
         android:layout_alignParentBottom="true"
-        android:weightSum="7">
-
-        <client.ediancha.com.myview.Color2Text
-            android:id="@+id/tv_apply_price"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:background="#fff"
-            android:gravity="fill_vertical"
-            android:paddingLeft="@dimen/size10"
-            android:text="￥"
-            android:textColor="#cd673a"
-            android:textSize="@dimen/sp14"
-            app:Color2Text_color="#cd673a"
-            app:Color2Text_content="260"
-            app:Color2Text_size="@dimen/sp24" />
-
-        <TextView
-            android:id="@+id/tv_apply"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="#3a9409"
-            android:gravity="center"
-            android:text="我要参加"
-            android:textColor="#fff"
-            android:textSize="@dimen/sp15" />
-    </LinearLayout>
+        android:background="#3a9409"
+        android:gravity="center"
+        android:text="我要参加"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp15" />
 
     <client.ediancha.com.myview.ScrollChangedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/ll_bottom"
+        android:layout_above="@id/tv_apply"
         android:layout_alignParentTop="true"
         android:background="#fff">
 
