@@ -13,9 +13,7 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.entity.TeaSpaceDesc;
-import client.ediancha.com.myview.TextImage;
 
 /**
  * Created by dengmingzhi on 16/10/12.

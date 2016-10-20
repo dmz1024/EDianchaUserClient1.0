@@ -1,7 +1,5 @@
 package client.ediancha.com.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,10 +7,8 @@ import android.util.Log;
 import java.util.List;
 import java.util.Map;
 
-import client.ediancha.com.adapter.LikeEventAdapter;
 import client.ediancha.com.adapter.TeaEventAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
-import client.ediancha.com.entity.LikeEvent;
 import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.interfaces.OnTeaEventMapListener;
 

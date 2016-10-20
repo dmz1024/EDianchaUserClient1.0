@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:layout_margin="@dimen/size20"
+    >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#333"
+        android:gravity="center"
+        android:padding="@dimen/size15"
+        android:text="报名"
+        android:textColor="#fff" />
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:orientation="vertical"
+        android:padding="@dimen/size10">
+
+        <TextView
+            style="@style/TextSize12Color999"
+            android:layout_marginLeft="@dimen/size5"
+            android:layout_marginTop="@dimen/size10"
+            android:text="手机号" />
+
+        <EditText
+            android:id="@+id/et_tel"
+            android:inputType="phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size5"
+            android:hint="请输入报名人手机号"
+
+            android:textColor="#666"
+            android:textColorHint="#999"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            style="@style/TextSize12Color999"
+            android:layout_marginLeft="@dimen/size5"
+            android:layout_marginTop="@dimen/size15"
+            android:text="姓名" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size5"
+            android:hint="请输入报名人姓名"
+            android:textColor="#666"
+            android:textColorHint="#999"
+            android:textSize="@dimen/sp15" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_apply"
+        android:alpha="0.2"
+        android:enabled="false"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size40"
+        android:layout_below="@id/ll_content"
+        android:layout_margin="@dimen/size10"
+        android:background="#999"
+        android:text="确定"
+        android:textColor="#fff" />
+
+</RelativeLayout>

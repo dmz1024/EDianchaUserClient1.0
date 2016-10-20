@@ -12,8 +12,7 @@ import java.util.List;
 
 import client.ediancha.com.R;
 //import client.ediancha.com.fragment.EvaluateFragment;
-import client.ediancha.com.fragment.MyCenterFragment;
-import client.ediancha.com.fragment.TeaOrderFragment;
+
 
 public class MoreEvaluateActivity extends AppCompatActivity {
 

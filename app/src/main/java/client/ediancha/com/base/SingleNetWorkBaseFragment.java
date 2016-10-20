@@ -1,19 +1,15 @@
 package client.ediancha.com.base;
 
-import android.util.Log;
-import android.view.View;
-
-import java.util.Map;
-
 import client.ediancha.com.api.RetrofitUtil;
-import client.ediancha.com.entity.Data;
+import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.util.MyToast;
 
 /**
  * Created by dengmingzhi on 16/10/11.
  */
 
-public abstract class SingleNetWorkBaseFragment<D> extends NetworkBaseFragment<D> {
+public abstract class SingleNetWorkBaseFragment<D extends BaseEntity> extends NetworkBaseFragment<D> {
+    public boolean result;
 
     protected abstract void writeData(D t);
 
@@ -47,7 +43,14 @@ public abstract class SingleNetWorkBaseFragment<D> extends NetworkBaseFragment<D
             public void haveData(D t) {
                 setStopRefresh();
                 getCurrentView(ShowCurrentViewENUM.VIEW_HAVE_DATA);
-                writeData(t);
+                if (t.result == 0) {
+                    result = true;
+                    writeData(t);
+                } else {
+                    result = false;
+                    resultNo0(t);
+                }
+
 
             }
 
@@ -63,6 +66,10 @@ public abstract class SingleNetWorkBaseFragment<D> extends NetworkBaseFragment<D
         } else {
             retrofitUtil.post(getUrl(), getMap(), getTClass(), onRequestListener);
         }
+
+    }
+
+    protected void resultNo0(D t) {
 
     }
 }

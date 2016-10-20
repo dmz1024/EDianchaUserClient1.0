@@ -10,7 +10,6 @@ import java.util.Map;
 
 import client.ediancha.com.adapter.AppointmentAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
-import client.ediancha.com.entity.ApplyOrder;
 import client.ediancha.com.entity.Appointment;
 
 /**

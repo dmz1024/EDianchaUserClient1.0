@@ -2,27 +2,17 @@ package client.ediancha.com.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.constant.Constant;
-import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.TeaEventFilter;
-import client.ediancha.com.entity.TeaOrder;
-import client.ediancha.com.myview.MyViewGroup;
 
 /**
  * Created by dengmingzhi on 16/10/12.

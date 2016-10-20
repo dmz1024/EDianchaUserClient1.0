@@ -5,10 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import java.util.List;
 import java.util.Map;
 
-import client.ediancha.com.adapter.TeaEventAdapter;
 import client.ediancha.com.adapter.TeaSpaceAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
-import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.entity.TeaSpace;
 
 /**

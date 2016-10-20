@@ -8,7 +8,6 @@ import client.ediancha.com.R;
 import client.ediancha.com.fragment.MyCenterFragment;
 import client.ediancha.com.fragment.TeaEventFilterFragment;
 import client.ediancha.com.fragment.TeaOrderFragment;
-import client.ediancha.com.myview.NoScrollViewPager;
 
 public class TeaEventFilterActivity extends AppCompatActivity {
 

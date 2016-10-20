@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.adapter.ApplyOrderAdapter;
-import client.ediancha.com.adapter.TeaOrderAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
 import client.ediancha.com.entity.ApplyOrder;
-import client.ediancha.com.entity.TeaOrder;
 
 /**
  * Created by dengmingzhi on 16/10/12.

@@ -1,7 +1,5 @@
 package client.ediancha.com.entity;
 
-import java.util.List;
-
 /**
  * Created by dengmingzhi on 16/10/12.
  */

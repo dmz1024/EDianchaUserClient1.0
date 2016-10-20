@@ -2,7 +2,6 @@ package client.ediancha.com.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.jude.rollviewpager.RollPagerView;
-import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +22,7 @@ import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.TeaProduct;
-import client.ediancha.com.entity.TeaSpace;
 import client.ediancha.com.myview.GlideCircleTransform;
-import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.util.Util;
 
 /**

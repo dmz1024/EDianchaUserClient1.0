@@ -1,39 +1,31 @@
 package client.ediancha.com.activity;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import client.ediancha.com.R;
-import client.ediancha.com.base.RecycleScrollViewListener;
 import client.ediancha.com.base.ToolBarActivity;
-import client.ediancha.com.fragment.AppointmentFragment;
-import client.ediancha.com.fragment.TeaEventFilterFragment;
+import client.ediancha.com.constant.UserInfo;
+import client.ediancha.com.entity.Test;
 import client.ediancha.com.fragment.TeaEventFragment;
 import client.ediancha.com.fragment.TeaProductFragment;
 import client.ediancha.com.fragment.TeaSpaceFragment;
+import client.ediancha.com.util.SharedPreferenUtil;
 import client.ediancha.com.util.Util;
 
 /**
@@ -50,6 +42,12 @@ public class MainActivity extends ToolBarActivity {
 
     @Override
     protected String getToolBarTitle() {
+
+        Test test = new Gson().fromJson("{\"result\":\"0\",\"data\":[{\"r\":1,\"product_id\":\"104\",\"name\":\"\\u5609\\u53f6\\u6e90\\u67a3\\u9999\\u7816\",\"image\":\"http:\\/\\/www.ediancha.com\\/upload\\/images\\/000\\/000\\/068\\/201609\\/57ea7acc50788.png\",\"price\":\"400.00\",\"original_price\":\"400.00\",\"is_recommend\":\"1\",\"recommend_title\":\"\\u53d1\\u751f\\u7684\\u53d1\\u751f\\u7684\"},{\"name\":\"\\u4e91\\u5357\\u666e\\u6d31\",\"r\":2},{\"name\":\"\\u6b63\\u5c71\\u5c0f\\u79cd\",\"r\":2},{\"name\":\"\\u82f1\\u5fb7\\u7ea2\\u8336\",\"r\":2}],\"msg\":\"\"}", Test.class);
+        for (int i = 0; i < test.data.size(); i++) {
+            Log.d("name", test.data.get(i).name);
+        }
+
         return "E点茶";
     }
 
@@ -98,6 +96,8 @@ public class MainActivity extends ToolBarActivity {
 
 
         layout.setupWithViewPager(viewPager);
+
+       Util.setUserInfo(this);
     }
 
     @Override

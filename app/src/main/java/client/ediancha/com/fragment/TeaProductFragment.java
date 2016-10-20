@@ -6,10 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.adapter.TeaProductAdapter;
-import client.ediancha.com.adapter.TeaSpaceAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
 import client.ediancha.com.entity.TeaProduct;
-import client.ediancha.com.entity.TeaSpace;
 
 /**
  * Created by dengmingzhi on 16/10/12.

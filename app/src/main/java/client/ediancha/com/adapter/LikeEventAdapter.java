@@ -14,11 +14,7 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.LikeEvent;
-import client.ediancha.com.entity.TeaOrder;
-
-import static client.ediancha.com.R.id.tv_count;
 
 /**
  * Created by dengmingzhi on 16/10/12.

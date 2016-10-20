@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.fragment.ApplyOrderFragment;
 import client.ediancha.com.fragment.AppointmentFragment;
 
 /**

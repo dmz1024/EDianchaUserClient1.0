@@ -6,35 +6,41 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".base.MyApplication"
+        android:name="client.ediancha.com.base.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="client.ediancha.com.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MyCenterActivity" />
-        <activity android:name=".activity.SetActivity" />
-        <activity android:name=".activity.TeaOrderActivity" />
-        <activity android:name=".activity.LikeActivity" />
-        <activity android:name=".activity.ApplyOrderActivity" />
-        <activity android:name=".activity.AppointmentActivity" />
-        <activity android:name=".activity.TeaEventFilterActivity" />
-        <activity android:name=".activity.TestActivity" />
-        <activity android:name=".activity.TeaEventDescActivity" />
-        <activity android:name=".activity.TeaSpaceDescActivity" />
-        <activity android:name=".activity.TeaDescActivity" />
-        <activity android:name=".activity.MoreEvaluateActivity" />
-        <activity android:name=".activity.MoreTeaPackageActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.CheckLoginActivity" />
-        <activity android:name=".activity.TeaEventFilterResultActivity">
+        <activity android:name="client.ediancha.com.activity.MyCenterActivity" />
+        <activity android:name="client.ediancha.com.activity.SetActivity" />
+        <activity android:name="client.ediancha.com.activity.TeaOrderActivity" />
+        <activity android:name="client.ediancha.com.activity.LikeActivity" />
+        <activity android:name="client.ediancha.com.activity.ApplyOrderActivity" />
+        <activity android:name="client.ediancha.com.activity.AppointmentActivity" />
+        <activity android:name="client.ediancha.com.activity.TeaEventFilterActivity" />
+        <activity android:name="client.ediancha.com.activity.TestActivity" />
+        <activity android:name="client.ediancha.com.activity.TeaEventDescActivity" />
+        <activity android:name="client.ediancha.com.activity.TeaSpaceDescActivity" />
+        <activity android:name="client.ediancha.com.activity.TeaDescActivity" />
+        <activity android:name="client.ediancha.com.activity.MoreEvaluateActivity" />
+        <activity android:name="client.ediancha.com.activity.MoreTeaPackageActivity" />
+        <activity android:name="client.ediancha.com.activity.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="client.ediancha.com.activity.CheckLoginActivity" />
+        <activity android:name="client.ediancha.com.activity.TeaEventFilterResultActivity">
 
         </activity>
     </application>

@@ -1,11 +1,8 @@
 package client.ediancha.com.myview;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +18,6 @@ import com.github.florent37.viewanimator.ViewAnimator;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 2016/10/18.

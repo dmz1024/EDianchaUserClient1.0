@@ -5,9 +5,16 @@ package client.ediancha.com.entity;
  */
 
 public class UserInfo extends BaseEntity {
-    public String newuser;
-    public String sign;
-    public String time;
-    public String type;
-    public String uid;
+
+    public Data data;
+
+    public static class Data {
+        public String newuser;
+        public String sign;
+        public String time;
+        public String type;
+        public String uid;
+    }
+
+
 }

@@ -3,7 +3,6 @@ package client.ediancha.com.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,9 +13,7 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.entity.ApplyOrder;
 import client.ediancha.com.entity.TeaPackage;
-import client.ediancha.com.myview.TextImage;
 
 /**
  * Created by dengmingzhi on 16/10/12.

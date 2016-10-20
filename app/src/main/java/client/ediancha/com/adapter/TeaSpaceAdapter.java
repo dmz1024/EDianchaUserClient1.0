@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.jude.rollviewpager.RollPagerView;
-import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 import java.util.ArrayList;
@@ -21,17 +20,12 @@ import java.util.List;
 
 import client.ediancha.com.R;
 import client.ediancha.com.activity.TeaSpaceDescActivity;
-import client.ediancha.com.activity.TestActivity;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.constant.Constant;
 import client.ediancha.com.divider.ItemDecoration;
-import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.entity.TeaSpace;
-import client.ediancha.com.myview.GlideCircleTransform;
 import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.util.Util;
-import retrofit2.http.Url;
 
 /**
  * Created by dengmingzhi on 16/10/12.

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import client.ediancha.com.R;
-import client.ediancha.com.fragment.TeaEventDescFragment;
 import client.ediancha.com.fragment.TeaSpaceDescFragment;
 
 public class TeaSpaceDescActivity extends AppCompatActivity {

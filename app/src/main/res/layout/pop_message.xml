@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/size25"
+    >
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color00acbb"
+        android:background="#333"
         android:gravity="center"
-        android:padding="@dimen/size10"
+        android:padding="@dimen/size15"
         android:text="提示"
         android:textColor="#fff" />
 
@@ -21,6 +22,7 @@
         android:layout_below="@id/tv_title"
         android:gravity="center"
         android:minHeight="@dimen/size80"
+        android:background="#fff"
         android:padding="@dimen/size10"
         android:text="提示内容"
         android:textColor="#999" />
@@ -44,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/color00acbb"
+            android:background="@color/color51b338"
             android:gravity="center"
             android:textColor="#fff" />
     </LinearLayout>

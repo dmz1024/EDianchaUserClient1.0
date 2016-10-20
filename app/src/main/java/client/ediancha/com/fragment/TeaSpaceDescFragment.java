@@ -24,22 +24,16 @@ import client.ediancha.com.activity.MoreEvaluateActivity;
 import client.ediancha.com.activity.MoreTeaPackageActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
-import client.ediancha.com.adapter.TeaEventDescEventAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescInfoAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescRecommendAdapter;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.constant.Constant;
-import client.ediancha.com.divider.ItemDecoration;
-import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.entity.TeaSpaceDesc;
 import client.ediancha.com.interfaces.ScrollViewListener;
-import client.ediancha.com.myview.Color2Text;
 import client.ediancha.com.myview.RatingBar;
 import client.ediancha.com.myview.ScrollChangedScrollView;
 import client.ediancha.com.myview.TitleRelativeLayout;
 import client.ediancha.com.util.Util;
-
-import static client.ediancha.com.R.id.view;
 
 /**
  * Created by dengmingzhi on 16/10/17.

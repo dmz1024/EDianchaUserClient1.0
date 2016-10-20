@@ -2,7 +2,6 @@ package client.ediancha.com.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -11,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
-import client.ediancha.com.adapter.TeaEventFilterAdapter;
 import client.ediancha.com.adapter.TeaEventFilterResultAdapter;
 import client.ediancha.com.base.ToolBarActivity;
 import client.ediancha.com.divider.ItemDecoration;

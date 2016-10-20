@@ -4,19 +4,14 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.TeaEventFilter;
-import client.ediancha.com.entity.TeaOrder;
 
 /**
  * Created by dengmingzhi on 16/10/12.

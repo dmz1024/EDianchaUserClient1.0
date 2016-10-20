@@ -1,6 +1,5 @@
 package client.ediancha.com.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +14,6 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.entity.MyCenterIcon;
-import client.ediancha.com.entity.TeaEvent;
-import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 16/10/11.

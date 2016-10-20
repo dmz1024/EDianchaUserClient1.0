@@ -1,15 +1,10 @@
 package client.ediancha.com.activity;
 
 import android.content.Intent;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,11 +13,13 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.api.RetrofitUtil;
 import client.ediancha.com.base.ToolBarActivity;
 import client.ediancha.com.entity.BaseEntity;
@@ -220,7 +217,7 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
         map.put("c", "users");
         map.put("a", "get_sms");
         map.put("mobile", et_tel_tel.getText().toString());
-        RetrofitUtil.getInstance().get("app.php", map, BaseEntity.class, new RetrofitUtil.OnRequestListener<BaseEntity>() {
+        MyRetrofitUtil.getInstance().get("app.php", map, BaseEntity.class, new MyRetrofitUtil.OnRequestListener<BaseEntity>() {
             @Override
             public void noNetwork() {
 
@@ -233,12 +230,11 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
 
             @Override
             public void haveData(BaseEntity baseEntity) {
-
                 if (baseEntity.result == 0) {
                     new SharedPreferenUtil(LoginActivity.this, "getLoginCode").setData("loginCode", 60);
                     Intent intent = new Intent(LoginActivity.this, CheckLoginActivity.class);
                     intent.putExtra("tel", et_tel_tel.getText().toString());
-                    startActivity(intent);
+                    startActivityForResult(intent, 101);
                 } else {
                     MyToast.showToast(baseEntity.msg);
                 }
@@ -251,7 +247,17 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
             public void onCompleted() {
 
             }
-        });
+
+            @Override
+            public void resultNo0(String s) {
+
+            }
+
+            @Override
+            public void start() {
+
+            }
+        }, "正在获取验证码...", LoginActivity.this);
     }
 
 
@@ -271,7 +277,7 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
         map.put("a", "mobile_login");
         map.put("phone", et_password_tel.getText().toString());
         map.put("password", et_password_password.getText().toString());
-        RetrofitUtil.getInstance().get("app.php", map, UserInfo.class, new RetrofitUtil.OnRequestListener<UserInfo>() {
+        MyRetrofitUtil.getInstance().get("app.php", map, UserInfo.class, new MyRetrofitUtil.OnRequestListener<UserInfo>() {
             @Override
             public void noNetwork() {
 
@@ -284,11 +290,12 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
 
             @Override
             public void haveData(UserInfo userInfo) {
-
                 if (userInfo.result == 0) {
                     MyToast.showToast("登录成功");
                     new SharedPreferenUtil(LoginActivity.this, "userInfo").
-                            setData(new String[]{"newuser", userInfo.newuser, "sign", userInfo.sign, "type", userInfo.type, "time", userInfo.time, "uid", userInfo.uid});
+                            setData(new String[]{"newuser", userInfo.data.newuser, "sign", userInfo.data.sign, "type", userInfo.data.type, "time", userInfo.data.time, "uid", userInfo.data.uid});
+                    Util.setUserInfo(LoginActivity.this);
+                    finish();
                 } else {
                     MyToast.showToast(userInfo.msg);
                 }
@@ -300,7 +307,18 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
             public void onCompleted() {
 
             }
-        });
+
+            @Override
+            public void resultNo0(String s) {
+                BaseEntity baseEntity = new Gson().fromJson(s, BaseEntity.class);
+                MyToast.showToast(baseEntity.msg);
+            }
+
+            @Override
+            public void start() {
+
+            }
+        }, "正在登录...", LoginActivity.this);
 
     }
 
@@ -372,4 +390,12 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==101){
+            finish();
+        }
+    }
 }

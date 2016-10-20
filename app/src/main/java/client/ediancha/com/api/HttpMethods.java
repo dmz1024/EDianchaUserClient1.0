@@ -1,22 +1,13 @@
 package client.ediancha.com.api;
 
-import com.google.gson.Gson;
-
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import client.ediancha.com.entity.Movie;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * Created by dengmingzhi on 16/10/10.

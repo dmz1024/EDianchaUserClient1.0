@@ -2,7 +2,6 @@ package client.ediancha.com.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -16,7 +15,6 @@ import client.ediancha.com.R;
 import client.ediancha.com.activity.TeaEventDescActivity;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.entity.LikeEvent;
 import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.myview.TextImage;
 

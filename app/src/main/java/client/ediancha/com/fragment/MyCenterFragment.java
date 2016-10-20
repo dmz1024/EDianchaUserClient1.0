@@ -15,7 +15,6 @@ import java.util.Map;
 import client.ediancha.com.R;
 import client.ediancha.com.activity.SetActivity;
 import client.ediancha.com.adapter.MyCenterIconAdapter;
-import client.ediancha.com.base.NetworkBaseFragment;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.MyCenterIcon;

@@ -20,10 +20,10 @@ import android.view.WindowManager;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Map;
 
 import client.ediancha.com.base.MyApplication;
-
-import static java.security.AccessController.getContext;
+import client.ediancha.com.constant.UserInfo;
 
 /**
  * Created by dengmingzhi on 16/7/12.
@@ -273,9 +273,21 @@ public class Util {
     }
 
 
-    public static void skip(Activity activity,Class clx) {
+    public static void skip(Activity activity, Class clx) {
         Intent intent = new Intent(activity, clx);
         activity.startActivity(intent);
+    }
+
+
+    public static void setUserInfo(Context ctx) {
+        Map<String, String> userInfo = new SharedPreferenUtil(ctx, "userInfo").getData(new String[]{"newuser", "sign", "type", "time", "uid"});
+        UserInfo.uid = userInfo.get("uid");
+        UserInfo.token = userInfo.get("sign");
+        UserInfo.newuser = userInfo.get("newuser");
+        UserInfo.type = userInfo.get("type");
+        UserInfo.time = userInfo.get("time");
+
+        Log.d("uid1", userInfo.get("uid")+"订单");
     }
 
 }

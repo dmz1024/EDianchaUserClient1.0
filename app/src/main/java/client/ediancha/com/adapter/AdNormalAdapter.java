@@ -11,8 +11,6 @@ import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 
 import java.util.List;
 
-import client.ediancha.com.R;
-
 /**
  * Created by dengmingzhi on 16/10/13.
  */

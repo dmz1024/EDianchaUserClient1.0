@@ -3,12 +3,9 @@ package client.ediancha.com.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,18 +18,22 @@ import client.ediancha.com.util.Util;
 public abstract class ToolBarActivity extends AppCompatActivity implements View.OnClickListener {
     private ToolBarHelper mToolBarHelper;
     public Toolbar toolbar;
-
+    public TextView tv_toolBar_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getRid());
+        tv_toolBar_title = ((TextView) toolbar.findViewById(R.id.tv_toolBar_title));
         initView();
         initData();
         onCreateCustomToolBar(toolbar);
         setSupportActionBar(toolbar);
-        ((TextView) toolbar.findViewById(R.id.tv_toolBar_title)).setText(getToolBarTitle() != null ? getToolBarTitle() : "");
+        tv_toolBar_title.setText(getToolBarTitle() != null ? getToolBarTitle() : "");
+    }
 
+    public void setTitle(String title) {
+        tv_toolBar_title.setText(title);
     }
 
     protected abstract String getToolBarTitle();

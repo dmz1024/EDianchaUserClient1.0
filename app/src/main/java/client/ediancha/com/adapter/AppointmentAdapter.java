@@ -14,9 +14,7 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
-import client.ediancha.com.entity.ApplyOrder;
 import client.ediancha.com.entity.Appointment;
-import client.ediancha.com.myview.TextImage;
 
 /**
  * Created by dengmingzhi on 16/10/12.

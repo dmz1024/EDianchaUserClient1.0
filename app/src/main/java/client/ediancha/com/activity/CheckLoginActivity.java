@@ -5,15 +5,19 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.api.RetrofitUtil;
 import client.ediancha.com.base.ToolBarActivity;
 import client.ediancha.com.entity.BaseEntity;
@@ -137,7 +141,7 @@ public class CheckLoginActivity extends ToolBarActivity {
         map.put("c", "users");
         map.put("a", "get_sms");
         map.put("mobile", getIntent().getStringExtra("tel"));
-        RetrofitUtil.getInstance().get("app.php", map, BaseEntity.class, new RetrofitUtil.OnRequestListener<BaseEntity>() {
+        MyRetrofitUtil.getInstance().get("app.php", map, BaseEntity.class, new MyRetrofitUtil.OnRequestListener<BaseEntity>() {
             @Override
             public void noNetwork() {
 
@@ -163,7 +167,17 @@ public class CheckLoginActivity extends ToolBarActivity {
             public void onCompleted() {
 
             }
-        });
+
+            @Override
+            public void resultNo0(String s) {
+
+            }
+
+            @Override
+            public void start() {
+
+            }
+        }, "正在获取验证码...", CheckLoginActivity.this);
     }
 
 
@@ -173,7 +187,7 @@ public class CheckLoginActivity extends ToolBarActivity {
         map.put("a", "sms_login");
         map.put("mobile", getIntent().getStringExtra("tel"));
         map.put("code", et_code.getText().toString());
-        RetrofitUtil.getInstance().get("app.php", map, UserInfo.class, new RetrofitUtil.OnRequestListener<UserInfo>() {
+        MyRetrofitUtil.getInstance().get("app.php", map, UserInfo.class, new MyRetrofitUtil.OnRequestListener<UserInfo>() {
             @Override
             public void noNetwork() {
 
@@ -189,7 +203,10 @@ public class CheckLoginActivity extends ToolBarActivity {
                 if (userInfo.result == 0) {
                     MyToast.showToast("登录成功");
                     new SharedPreferenUtil(CheckLoginActivity.this, "userInfo").
-                            setData(new String[]{"newuser", userInfo.newuser, "sign", userInfo.sign, "type", userInfo.type, "time", userInfo.time, "uid", userInfo.uid});
+                            setData(new String[]{"newuser", userInfo.data.newuser, "sign", userInfo.data.sign, "type", userInfo.data.type, "time", userInfo.data.time, "uid", userInfo.data.uid});
+                    Util.setUserInfo(CheckLoginActivity.this);
+                    setResult(101);
+                    finish();
                 } else {
                     MyToast.showToast(userInfo.msg);
                 }
@@ -203,8 +220,19 @@ public class CheckLoginActivity extends ToolBarActivity {
 
             }
 
+            @Override
+            public void resultNo0(String s) {
+                BaseEntity baseEntity = new Gson().fromJson(s, BaseEntity.class);
+                MyToast.showToast(baseEntity.msg);
+            }
 
-        });
+            @Override
+            public void start() {
+
+            }
+
+
+        }, "正在登录...", CheckLoginActivity.this);
     }
 
     @Override

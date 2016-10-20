@@ -4,18 +4,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.TextHintView;
 
@@ -26,16 +19,9 @@ import java.util.Map;
 import client.ediancha.com.R;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
-import client.ediancha.com.adapter.TeaSpaceDescInfoAdapter;
-import client.ediancha.com.adapter.TeaSpaceDescRecommendAdapter;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
-import client.ediancha.com.constant.Constant;
-import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.TeaDesc;
-import client.ediancha.com.entity.TeaEventDesc;
-import client.ediancha.com.entity.TeaSpaceDesc;
 import client.ediancha.com.interfaces.ScrollViewListener;
-import client.ediancha.com.myview.RatingBar;
 import client.ediancha.com.myview.ScrollChangedScrollView;
 import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.myview.TitleRelativeLayout;
@@ -101,33 +87,6 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
     }
 
 
-    /**
-     * 设置toolBar效果
-     */
-    private void initToolBar() {
-        toolbar.setTitle("");
-        scrollView.setScrollViewListener(new ScrollViewListener() {
-            int rollPagerView_height = -1;
-
-            @Override
-            public void onScrollChanged(ScrollView scrollView, int x, int y, int oldx, int oldy) {
-                if (rollPagerView_height == -1) {
-                    rollPagerView_height = rollPagerView.getHeight();
-                }
-
-                if (y >= rollPagerView_height) {
-                    toolbar.setAlpha(1f);
-                    tv_name.setAlpha(1f);
-                } else {
-                    toolbar.setAlpha(0f);
-                    tv_name.setAlpha(0f);
-
-                }
-            }
-        });
-
-    }
-
 
     /**
      * 填充轮播图
@@ -146,7 +105,6 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
 
     @Override
     protected void writeData(TeaDesc t) {
-        initToolBar();
         fillRollPageView();
         fillTabLayout();
 

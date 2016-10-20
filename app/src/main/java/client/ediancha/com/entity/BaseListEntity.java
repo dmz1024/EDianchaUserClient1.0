@@ -1,6 +1,5 @@
 package client.ediancha.com.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
