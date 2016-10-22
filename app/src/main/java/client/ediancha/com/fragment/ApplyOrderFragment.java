@@ -10,6 +10,7 @@ import java.util.Map;
 
 import client.ediancha.com.adapter.ApplyOrderAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
+import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.entity.ApplyOrder;
 
 /**
@@ -42,18 +43,17 @@ public class ApplyOrderFragment extends ListNetWorkBaseFragment<ApplyOrder.Data,
 
     @Override
     protected String getUrl() {
-        return "top250";
+        return "app.php";
     }
 
     @Override
     protected Map<String, String> getMap() {
+        map.put("c", "myorder");
+        map.put("a", "baoming_orders");
+        map.put("uid", UserInfo.uid);
+        map.put("token", UserInfo.token);
+        map.put("type", type);
         return map;
-    }
-
-    @Override
-    protected void initMap() {
-        map.put("start", (page * 10) + "");
-        map.put("count", 10 + "");
     }
 
     @Override
@@ -61,13 +61,12 @@ public class ApplyOrderFragment extends ListNetWorkBaseFragment<ApplyOrder.Data,
         return ApplyOrder.class;
     }
 
-    @Override
-    protected boolean isOnlyInitOne() {
-        return false;
-    }
 
     @Override
     protected boolean isCanFirstInitData() {
-        return TextUtils.equals(type, "0");
+        return TextUtils.equals(type, "3");
     }
+
+
+
 }

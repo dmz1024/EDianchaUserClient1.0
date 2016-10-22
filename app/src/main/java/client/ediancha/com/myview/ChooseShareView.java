@@ -22,6 +22,7 @@ import java.util.List;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
+import client.ediancha.com.base.PopBaseView;
 import client.ediancha.com.entity.ShareIcon;
 import client.ediancha.com.util.Util;
 
@@ -29,28 +30,22 @@ import client.ediancha.com.util.Util;
  * Created by dengmingzhi on 2016/10/18.
  */
 
-public class ChooseShareView implements PopupWindow.OnDismissListener {
-    private Context ctx;
+public class ChooseShareView extends PopBaseView {
     private List<ShareIcon> list;
-    private PopupWindow popupWindow;
-
     public ChooseShareView(Context ctx, List<ShareIcon> list) {
-        this.ctx = ctx;
+        super(ctx);
         this.list = list;
     }
 
-    public void creatPop() {
-        popupWindow = new PopupWindow((getView()), FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(ctx.getResources().getColor(R.color.colorfff)));
-        popupWindow.setOnDismissListener(this);
-        popupWindow.setAnimationStyle(getAnimation());
-        popupWindow.showAtLocation(((Activity) ctx).findViewById(android.R.id.content), Gravity.BOTTOM, 0, 0);
-    }
-
     protected int getAnimation() {
-        return R.style.popwin_anim_style;
+        return R.style.popwin_anim_up_and_down;
     }
 
+    @Override
+    protected int getGravity() {
+        return Gravity.BOTTOM;
+    }
+    @Override
     protected View getView() {
         final View view = View.inflate(ctx, R.layout.pop_share, null);
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_content);
@@ -59,16 +54,16 @@ public class ChooseShareView implements PopupWindow.OnDismissListener {
         tv_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                popupWindow.dismiss();
+                onDismiss();
             }
         });
 
-        GridLayoutManager manager = new GridLayoutManager(ctx, 5);
+        GridLayoutManager manager = new GridLayoutManager(ctx, list.size());
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(new MyAdapter(list));
 
 
-        GridLayoutManager manager1 = new GridLayoutManager(ctx, 5);
+        GridLayoutManager manager1 = new GridLayoutManager(ctx, list.size());
         final List<ShareIcon> list1 = new ArrayList<>();
         list1.addAll(list);
         final MyAdapter adapter1 = new MyAdapter(list1);
@@ -80,8 +75,8 @@ public class ChooseShareView implements PopupWindow.OnDismissListener {
             public void run() {
                 recyclerView.setVisibility(View.VISIBLE);
                 recyclerView1.setVisibility(View.VISIBLE);
-                ViewAnimator.animate(recyclerView).translationX(Util.getWidth(), 0).interpolator(new DecelerateInterpolator())
-                        .andAnimate(recyclerView1).translationX(-Util.getWidth(), 0).interpolator(new DecelerateInterpolator()).duration(350).start();
+                ViewAnimator.animate(recyclerView).translationX(Util.getWidth(), 0)
+                        .andAnimate(recyclerView1).translationX(-Util.getWidth(), 0).duration(350).start();
 
                 view.postDelayed(new Runnable() {
                     @Override
@@ -94,21 +89,12 @@ public class ChooseShareView implements PopupWindow.OnDismissListener {
             }
         }, 350);
 
-
-        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 0.3f).duration(500).start();
         return view;
     }
 
     protected void itemClick(int position) {
 
     }
-
-
-    @Override
-    public void onDismiss() {
-        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 1f).duration(600).start();
-    }
-
 
     class MyViewHolder extends BaseViewHolder {
         public ImageView iv_img;
@@ -122,7 +108,7 @@ public class ChooseShareView implements PopupWindow.OnDismissListener {
 
         @Override
         protected void onClick(int layoutPosition) {
-            popupWindow.dismiss();
+            onDismiss();
             itemClick(layoutPosition);
         }
     }

@@ -44,6 +44,7 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
 
     private RelativeLayout rl_root;
 
+    private int req;
 
     @Override
     protected String getToolBarTitle() {
@@ -295,6 +296,7 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
                     new SharedPreferenUtil(LoginActivity.this, "userInfo").
                             setData(new String[]{"newuser", userInfo.data.newuser, "sign", userInfo.data.sign, "type", userInfo.data.type, "time", userInfo.data.time, "uid", userInfo.data.uid});
                     Util.setUserInfo(LoginActivity.this);
+                    setResult(1,getIntent());
                     finish();
                 } else {
                     MyToast.showToast(userInfo.msg);
@@ -360,7 +362,6 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
     public void onFocusChange(View v, boolean hasFocus) {
         if (v == et_tel_tel) {
             if (hasFocus) {
-                Log.d("手机", "true");
                 et_tel_tel.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -369,12 +370,10 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
                 }, 250);
 
             } else {
-                Log.d("手机", "false");
                 ViewAnimator.animate(rl_root).translationY(-250, 0).duration(200).start();
             }
         } else if (v == et_password_tel || v == et_password_password) {
             if (hasFocus) {
-                Log.d("密码", "true");
                 et_password_tel.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -383,7 +382,6 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
                 }, 250);
 
             } else {
-                Log.d("密码", "false");
                 ViewAnimator.animate(rl_root).translationY(-250, 0).duration(200).start();
             }
         }
@@ -394,8 +392,7 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==101){
-            finish();
-        }
+        setResult(1,getIntent());
+        finish();
     }
 }

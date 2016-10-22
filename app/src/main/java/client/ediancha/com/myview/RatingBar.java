@@ -23,7 +23,7 @@ public class RatingBar extends FrameLayout{
     /**
      * 星星的个数
      */
-    private int INDEX = 5;
+    public int INDEX = 5;
 
     /**
      * 图片资源,RATING_DST背景，RATING_SRC前景

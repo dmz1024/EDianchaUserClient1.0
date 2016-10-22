@@ -9,18 +9,19 @@ import java.util.List;
 public class ApplyOrder extends BaseListEntity<ApplyOrder.Data> {
 
     public static class Data extends client.ediancha.com.entity.Data {
-        public String title;
-        public List<Casts> casts;
-        public Images images;
-    }
-
-    public static class Casts {
-        public String name;
         public String id;
-    }
-
-    public static class Images {
-        public String large;
+        public String store_id;
+        public String cid;
+        public String name;
+        public String Mobile;
+        public String addtime;
+        public String sttime;
+        public String endtime;
+        public String ch_name;
+        public String address;
+        public String store_name;
+        public String images;
+        public int status;
     }
 
 

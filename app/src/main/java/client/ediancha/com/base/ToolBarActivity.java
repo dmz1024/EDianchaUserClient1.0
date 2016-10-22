@@ -16,7 +16,6 @@ import client.ediancha.com.util.Util;
  * Created by dengmingzhi on 2016/10/18.
  */
 public abstract class ToolBarActivity extends AppCompatActivity implements View.OnClickListener {
-    private ToolBarHelper mToolBarHelper;
     public Toolbar toolbar;
     public TextView tv_toolBar_title;
 

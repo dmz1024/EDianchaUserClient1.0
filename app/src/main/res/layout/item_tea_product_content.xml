@@ -33,15 +33,25 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_type"
         android:layout_width="0dp"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp" />
+
+    <TextView
+        android:id="@+id/tv_old_price"
+        style="@style/TextSize15Color666"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_title"
+        android:layout_marginRight="@dimen/size20"
+        android:layout_marginTop="@dimen/size13"
+        android:text="￥786"
+        android:textSize="@dimen/sp13" />
 
     <TextView
         android:id="@+id/tv_price"
         style="@style/TextSize15Color333"
-        android:layout_alignParentRight="true"
         android:layout_below="@id/tv_title"
-        android:layout_marginRight="@dimen/size20"
+        android:layout_marginRight="@dimen/size10"
         android:layout_marginTop="@dimen/size10"
+        android:layout_toLeftOf="@id/tv_old_price"
         android:text="￥786"
         android:textColor="#cd6638"
         android:textSize="@dimen/sp17" />

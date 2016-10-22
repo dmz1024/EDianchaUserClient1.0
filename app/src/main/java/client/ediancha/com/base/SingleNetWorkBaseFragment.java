@@ -1,8 +1,16 @@
 package client.ediancha.com.base;
 
+import android.text.TextUtils;
+
+import com.google.gson.Gson;
+
+import client.ediancha.com.activity.LoginActivity;
+import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.api.RetrofitUtil;
 import client.ediancha.com.entity.BaseEntity;
+import client.ediancha.com.myview.PopMessageTips;
 import client.ediancha.com.util.MyToast;
+import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 16/10/11.
@@ -15,8 +23,8 @@ public abstract class SingleNetWorkBaseFragment<D extends BaseEntity> extends Ne
 
     @Override
     protected void getData() {
-        RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
-        RetrofitUtil.OnRequestListener<D> onRequestListener = new RetrofitUtil.OnRequestListener<D>() {
+        MyRetrofitUtil retrofitUtil = MyRetrofitUtil.getInstance();
+        MyRetrofitUtil.OnRequestListener<D> onRequestListener = new MyRetrofitUtil.OnRequestListener<D>() {
             @Override
             public void noNetwork() {
                 if (havaDataView != null) {
@@ -46,17 +54,23 @@ public abstract class SingleNetWorkBaseFragment<D extends BaseEntity> extends Ne
                 if (t.result == 0) {
                     result = true;
                     writeData(t);
-                } else {
-                    result = false;
-                    resultNo0(t);
                 }
-
-
             }
 
             @Override
             public void onCompleted() {
                 setStopRefresh();
+            }
+
+            @Override
+            public void resultNo0(String s) {
+                resultNot0(s);
+
+            }
+
+            @Override
+            public void start() {
+
             }
         };
 
@@ -69,7 +83,8 @@ public abstract class SingleNetWorkBaseFragment<D extends BaseEntity> extends Ne
 
     }
 
-    protected void resultNo0(D t) {
+    protected void resultNot0(String t) {
+        result = false;
 
     }
 }

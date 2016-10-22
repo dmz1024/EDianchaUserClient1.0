@@ -7,7 +7,7 @@
 
     <ImageView
         android:id="@+id/iv_img"
-        android:layout_width="@dimen/size80"
+        android:layout_width="@dimen/size110"
         android:layout_height="@dimen/size80"
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY" />
@@ -18,7 +18,7 @@
         android:layout_below="@id/iv_img"
         android:maxLines="1"
         android:ellipsize="end"
-        android:maxEms="4"
+        android:maxEms="8"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/size8"
         android:gravity="center" />

@@ -12,8 +12,8 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.activity.TeaEventDescActivity;
 import client.ediancha.com.base.BaseViewHolder;
+import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.myview.TextImage;
@@ -49,7 +49,7 @@ public class TeaEventDescEventAdapter extends SingleBaseAdapter<TeaEventDesc.Lis
 
     }
 
-    public  class TeaEventDescEventViewHolder extends BaseViewHolder {
+    public class TeaEventDescEventViewHolder extends BaseViewHolder {
         public ImageView iv_img;
         public TextView tv_title;
         public TextImage tv_name;
@@ -68,9 +68,10 @@ public class TeaEventDescEventAdapter extends SingleBaseAdapter<TeaEventDesc.Lis
 
         @Override
         protected void onClick(int layoutPosition) {
-            Intent intent = new Intent(ctx, TeaEventDescActivity.class);
+            Intent intent = new Intent(ctx, DescBaseActivity.class);
             intent.putExtra("title", list.get(layoutPosition).name);
             intent.putExtra("id", list.get(layoutPosition).pigcms_id);
+            intent.putExtra("type", 3);
             ctx.startActivity(intent);
 
         }

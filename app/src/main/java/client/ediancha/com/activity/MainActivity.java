@@ -21,6 +21,7 @@ import java.util.Map;
 import client.ediancha.com.R;
 import client.ediancha.com.base.ToolBarActivity;
 import client.ediancha.com.constant.UserInfo;
+import client.ediancha.com.entity.TeaProduct;
 import client.ediancha.com.entity.Test;
 import client.ediancha.com.fragment.TeaEventFragment;
 import client.ediancha.com.fragment.TeaProductFragment;
@@ -42,12 +43,6 @@ public class MainActivity extends ToolBarActivity {
 
     @Override
     protected String getToolBarTitle() {
-
-        Test test = new Gson().fromJson("{\"result\":\"0\",\"data\":[{\"r\":1,\"product_id\":\"104\",\"name\":\"\\u5609\\u53f6\\u6e90\\u67a3\\u9999\\u7816\",\"image\":\"http:\\/\\/www.ediancha.com\\/upload\\/images\\/000\\/000\\/068\\/201609\\/57ea7acc50788.png\",\"price\":\"400.00\",\"original_price\":\"400.00\",\"is_recommend\":\"1\",\"recommend_title\":\"\\u53d1\\u751f\\u7684\\u53d1\\u751f\\u7684\"},{\"name\":\"\\u4e91\\u5357\\u666e\\u6d31\",\"r\":2},{\"name\":\"\\u6b63\\u5c71\\u5c0f\\u79cd\",\"r\":2},{\"name\":\"\\u82f1\\u5fb7\\u7ea2\\u8336\",\"r\":2}],\"msg\":\"\"}", Test.class);
-        for (int i = 0; i < test.data.size(); i++) {
-            Log.d("name", test.data.get(i).name);
-        }
-
         return "E点茶";
     }
 
@@ -97,7 +92,10 @@ public class MainActivity extends ToolBarActivity {
 
         layout.setupWithViewPager(viewPager);
 
-       Util.setUserInfo(this);
+        Util.setUserInfo(this);
+
+        Log.d("账号信息", UserInfo.uid + "--" + UserInfo.token);
+
     }
 
     @Override

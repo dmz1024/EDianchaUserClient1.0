@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.activity.TeaEventDescActivity;
 import client.ediancha.com.base.BaseViewHolder;
+import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.myview.GlideCircleTransform;
@@ -55,7 +56,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
             Glide.with(ctx).load(data.logo).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_logo);
             mHolder.tv_title.setText(data.name);
             mHolder.tv_time.setText(data.sttime + "至" + data.endtime);
-            mHolder.tv_price.setText("￥" + data.price);
+            mHolder.tv_price.setText(TextUtils.equals("免费", data.price) ? "免费" : "￥" + data.price);
         } else {
             TeaEventTypeViewHolder mHolder = (TeaEventTypeViewHolder) holder;
             GridLayoutManager manager = new GridLayoutManager(ctx, 4);
@@ -106,9 +107,10 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
 
         @Override
         protected void onClick(int layoutPosition) {
-            Intent intent = new Intent(ctx, TeaEventDescActivity.class);
+            Intent intent = new Intent(ctx, DescBaseActivity.class);
             intent.putExtra("title", list.get(layoutPosition - 1).name);
             intent.putExtra("id", list.get(layoutPosition - 1).pigcms_id);
+            intent.putExtra("type", 3);
             ctx.startActivity(intent);
         }
     }

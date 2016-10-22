@@ -40,7 +40,7 @@
         android:drawablePadding="@dimen/size5"
         android:gravity="center"
         android:maxLines="1"
-        android:text="11/26  9:00-15:30"
+        android:text="16人"
         app:TextImage_drawable="@mipmap/icon_teahouse_num"
         app:TextImage_height="@dimen/size13"
         app:TextImage_seat="1"
@@ -56,12 +56,22 @@
         android:drawablePadding="@dimen/size5"
         android:gravity="center"
         android:maxLines="1"
-
+        android:maxEms="10"
+        android:ellipsize="end"
         android:text="1.1km"
         app:TextImage_drawable="@mipmap/icon_teahouse_pos"
         app:TextImage_height="@dimen/size17"
         app:TextImage_seat="1"
         app:TextImage_width="@dimen/size13" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        style="@style/TextSize14Color333"
+        android:layout_alignBottom="@id/tv_pos"
+        android:layout_marginBottom="@dimen/size2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size10" />
 
 
     <TextView
@@ -75,5 +85,6 @@
         android:paddingRight="@dimen/size15"
         android:paddingTop="@dimen/size10"
         android:text="推荐"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:visibility="gone" />
 </RelativeLayout>

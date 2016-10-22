@@ -1,12 +1,13 @@
 package client.ediancha.com.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.jude.rollviewpager.RollPagerView;
@@ -19,9 +20,11 @@ import java.util.Map;
 import client.ediancha.com.R;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
+import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.entity.TeaDesc;
 import client.ediancha.com.interfaces.ScrollViewListener;
+import client.ediancha.com.interfaces.ShareInfoInterface;
 import client.ediancha.com.myview.ScrollChangedScrollView;
 import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.myview.TitleRelativeLayout;
@@ -30,7 +33,7 @@ import client.ediancha.com.myview.TitleRelativeLayout;
  * Created by dengmingzhi on 16/10/17.
  */
 
-public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
+public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
     private RollPagerView rollPagerView;
     private Toolbar toolbar;
     private TextView tv_name;
@@ -42,11 +45,13 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
     private TextView tv_add_buy_car;
     private TextView tv_buy;
     private ViewPager vp_content;
-    private ScrollChangedScrollView scrollView;
 
-    @Override
-    protected String getUrl() {
-        return "top250";
+    public static TeaProductDescFragment getInstance(String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+        TeaProductDescFragment teaProductDescFragment = new TeaProductDescFragment();
+        teaProductDescFragment.setArguments(bundle);
+        return teaProductDescFragment;
     }
 
     @Override
@@ -55,13 +60,6 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
         map.put("count", "10");
         return map;
     }
-
-
-    @Override
-    protected ShowCurrentViewENUM getDefaultView() {
-        return ShowCurrentViewENUM.VIEW_IS_LOADING;
-    }
-
 
     @Override
     protected Class<TeaDesc> getTClass() {
@@ -75,6 +73,7 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
         tv_name = (TextView) view.findViewById(R.id.tv_name);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
+        scrollView.setScrollViewListener(scrollViewListener);
         tv_count_info = (TextView) view.findViewById(R.id.tv_count_info);
         trl_name = (TitleRelativeLayout) view.findViewById(R.id.trl_name);
         trl_tel = (TitleRelativeLayout) view.findViewById(R.id.trl_tel);
@@ -83,9 +82,9 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
         tv_add_buy_car = (TextView) view.findViewById(R.id.tv_add_buy_car);
         tv_buy = (TextView) view.findViewById(R.id.tv_buy);
         vp_content = (ViewPager) view.findViewById(R.id.vp_content);
+
         return view;
     }
-
 
 
     /**
@@ -134,19 +133,6 @@ public class TeaDescFragment extends SingleNetWorkBaseFragment<TeaDesc> {
         });
 
         tablayout.setupWithViewPager(vp_content);
-
-
     }
 
-
-    @Override
-    protected boolean getCanRefresh() {
-        return false;
-    }
-
-
-    @Override
-    public boolean isCanRefresh() {
-        return false;
-    }
 }

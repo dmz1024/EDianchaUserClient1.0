@@ -5,5 +5,8 @@ package client.ediancha.com.constant;
  */
 
 public interface Constant {
-    String IMAGE="http://img0.imgtn.bdimg.com/it/u=2304611246,3392701250&fm=21&gp=0.jpg";
+    String IMAGE = "http://img0.imgtn.bdimg.com/it/u=2304611246,3392701250&fm=21&gp=0.jpg";
+
+
+    int COLLECTION_REQ = 0x1;
 }

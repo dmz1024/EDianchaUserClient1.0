@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.fragment.LikeEventFragment;
+import client.ediancha.com.fragment.LikeFragment;
 
 /**
  * 茶品订单
@@ -28,9 +28,9 @@ public class LikeActivity extends AppCompatActivity {
         final String[] titles = {"活动", "茶馆", "茶品"};
 
         final List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new LikeEventFragment());
-        fragmentList.add(new LikeEventFragment());
-        fragmentList.add(new LikeEventFragment());
+        fragmentList.add(LikeFragment.getInstance("3"));
+        fragmentList.add(LikeFragment.getInstance("2"));
+        fragmentList.add(LikeFragment.getInstance("1"));
 
         viewPager.setOffscreenPageLimit(fragmentList.size());
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {

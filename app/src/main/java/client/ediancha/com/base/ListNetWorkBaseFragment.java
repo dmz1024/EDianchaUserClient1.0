@@ -2,6 +2,7 @@ package client.ediancha.com.base;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -12,9 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.api.RetrofitUtil;
 import client.ediancha.com.entity.BaseListEntity;
 import client.ediancha.com.entity.Data;
+import client.ediancha.com.interfaces.OnDataCountListener;
 import client.ediancha.com.util.MyToast;
 
 import static client.ediancha.com.base.NetworkBaseFragment.ShowCurrentViewENUM.VIEW_HAVE_DATA;
@@ -25,10 +28,10 @@ import static client.ediancha.com.base.NetworkBaseFragment.ShowCurrentViewENUM.V
  * Created by dengmingzhi on 16/6/14.
  */
 public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseListEntity<D>> extends NetworkBaseFragment<T> {
-
+    protected boolean isHavePage = true;
     protected int page = 1;
     protected int currentPage = page;
-    public RecyclerView.Adapter mAdapter;
+    public SingleBaseAdapter mAdapter;
     protected RequestType currentType = RequestType.LOAD_NEW;
     protected boolean isLoading;
     protected boolean isHaveData = true;
@@ -73,8 +76,8 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
     public void getData() {
         initMap();
 
-        RetrofitUtil retrofitUtil = RetrofitUtil.getInstance();
-        RetrofitUtil.OnRequestListener<T> onRequestListener = new RetrofitUtil.OnRequestListener<T>() {
+        MyRetrofitUtil retrofitUtil = MyRetrofitUtil.getInstance();
+        MyRetrofitUtil.OnRequestListener<T> onRequestListener = new MyRetrofitUtil.OnRequestListener<T>() {
             @Override
             public void noNetwork() {
                 page = currentPage;
@@ -110,7 +113,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
 
             @Override
             public void haveData(T t) {
-                if (t.page_info.page_index >= 0) {
+                if (t.result == 0) {
                     if (currentType == RequestType.LOAD_NEW || currentType == RequestType.LOAD_fILTER) {
                         totalList.clear();
                     } else {
@@ -118,9 +121,16 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                         isLoading = false;
                     }
 
-                    if (t.page_info.page_count == t.page_info.page_index) {
+                    if (isHavePage) {
+                        if (t.page_info != null) {
+                            if (t.page_info.page_count == t.page_info.page_index) {
+                                isHaveData = false;
+                            }
+                        }
+                    } else {
                         isHaveData = false;
                     }
+
 
                     totalList.addAll(t.data);
 
@@ -140,7 +150,6 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                         isLoading = false;
                     }
                     page = currentPage;
-                    resultNot0(t);
 
                 }
 
@@ -151,6 +160,21 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
             @Override
             public void onCompleted() {
                 setStopRefresh();
+            }
+
+            @Override
+            public void resultNo0(String s) {
+                resultNot0(s);
+                if (rl_load != null && rl_load.getVisibility() == View.VISIBLE) {
+                    rl_load.setVisibility(View.GONE);
+                    isLoading = false;
+                }
+                page = currentPage;
+            }
+
+            @Override
+            public void start() {
+
             }
         };
 
@@ -168,8 +192,8 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
         map.put("page", page + "");
     }
 
-    protected void resultNot0(T t) {
-        MyToast.showToast(t.msg);
+    protected void resultNot0(String s) {
+        Log.d("肯", s);
     }
 
 
@@ -181,7 +205,19 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
         rv_base = (RecyclerView) view.findViewById(R.id.rv_base);
         rl_load = (RelativeLayout) view.findViewById(R.id.rl_load);
 
-        rv_base.setAdapter(mAdapter = getAdapter(totalList));
+        rv_base.setAdapter(mAdapter = (SingleBaseAdapter) getAdapter(totalList));
+        mAdapter.setOnDataCountListener(new OnDataCountListener() {
+            @Override
+            public void noData() {
+                getCurrentView(ShowCurrentViewENUM.VIEW_NO_DATA);
+            }
+
+            @Override
+            public void dataCount(int count) {
+
+            }
+        });
+
         rv_base.setLayoutManager(layoutManager = getLayoutManager());
         RecyclerView.ItemDecoration itemDecoration;
         if ((itemDecoration = getDividerItemDecoration()) != null) {
@@ -193,11 +229,6 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
         rv_base.addOnScrollListener(new RecyclerView.OnScrollListener() {
             //用来标记是否正在向最后一个滑动
             boolean isSlidingToLast = false;
-
-            private static final int HIDE_THRESHOLD = 20;
-            private int scrolledDistance = 0;
-            private boolean controlsVisible = true;
-
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -230,7 +261,6 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                     }
 
 
-
                     //获取最后一个完全显示的ItemPosition
                     int lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition();
                     int totalItemCount = layoutManager.getItemCount();
@@ -242,7 +272,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                             currentPage = page;
                             page += 1;
                             currentType = RequestType.LOAD_MORE;
-                            layoutManager.scrollToPosition(totalList.size()-getJian());
+                            layoutManager.scrollToPosition(totalList.size() - getJian());
                             swipeRefreshLayout.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {

@@ -17,8 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <com.jude.rollviewpager.RollPagerView
                 android:id="@+id/roll_view_pager"
@@ -120,16 +119,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/touch_bg_fff"
+                android:visibility="gone"
                 app:TitleRelativeLayout_content="更多"
                 app:TitleRelativeLayout_show_view="2"
                 app:TitleRelativeLayout_title="店铺茶包" />
 
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/size12">
+                android:padding="@dimen/size12"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_package"
@@ -182,7 +182,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size15"
                 android:layout_marginTop="@dimen/size5"
-                android:background="#fbfbfb" />
+                android:background="#fbfbfb"
+                android:visibility="gone" />
 
             <client.ediancha.com.myview.TitleRelativeLayout
                 android:id="@+id/trl_tea_recommend"
@@ -212,7 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/touch_bg_fff"
-
+                android:visibility="gone"
                 app:TitleRelativeLayout_content_image_visi="false"
                 app:TitleRelativeLayout_show_view="2"
                 app:TitleRelativeLayout_title="商户信息" />
@@ -222,7 +223,8 @@
                 android:id="@+id/rv_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/size12" />
+                android:padding="@dimen/size12"
+                android:visibility="gone" />
 
             <View
                 android:layout_width="match_parent"
@@ -237,7 +239,7 @@
                 android:paddingLeft="@dimen/size12"
                 android:paddingRight="@dimen/size12"
                 android:paddingTop="@dimen/size12"
-                android:text="商户名称：邓如果茶楼\n\n营业时间：10:00-22:00\n\n" />
+                android:text="商户名称：邓如果茶楼\n\n营业时间：10:00-22:00" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -256,8 +258,7 @@
                     android:layout_toRightOf="@id/tv_introduce_name"
                     android:lineSpacingExtra="@dimen/size5"
                     android:paddingRight="@dimen/size12"
-                    android:paddingTop="@dimen/size12"
-                    android:text="茶（学名：Camellia sinensis (L.) O. Ktze.），灌木或小乔木，嫩枝无毛。叶革质，长圆形或椭圆形，先端钝或尖锐，基部楔形，上面发亮，下面无毛或初时有柔毛，边缘有锯齿，叶柄无毛。花白色，花柄有时稍长；萼片阔卵形至圆形，无毛，宿存；花瓣阔卵形，基部略连合，背面无毛，有时有短柔毛；子房密生白毛；花柱无毛。蒴果3球形或1-2球形，高1.1-1.5厘米，每球有种子1-2粒。花期10月至翌年2月。" />
+                    android:paddingTop="@dimen/size12"/>
             </RelativeLayout>
 
             <TextView
@@ -283,6 +284,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/touch_bg_fff"
+                android:visibility="gone"
                 app:TitleRelativeLayout_content_visi="false"
                 app:TitleRelativeLayout_show_view="2"
                 app:TitleRelativeLayout_title="人气最高排行榜：第12名"
@@ -322,13 +324,13 @@
             <Button
                 android:id="@+id/bt_more"
                 android:layout_width="@dimen/size100"
-                android:layout_gravity="center_horizontal"
                 android:layout_height="@dimen/size40"
-                android:paddingRight="@dimen/size15"
-                android:paddingLeft="@dimen/size15"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/size20"
                 android:layout_marginTop="@dimen/size15"
                 android:background="@drawable/rectangle_fbfbfb"
+                android:paddingLeft="@dimen/size15"
+                android:paddingRight="@dimen/size15"
                 android:text="更多评价"
                 android:textColor="#333"
                 android:textSize="@dimen/sp16" />

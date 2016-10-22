@@ -51,7 +51,7 @@ public class PopMessageTips implements PopupWindow.OnDismissListener {
         tv_title.setText(title);
         tv_content.setText(content);
         if (TextUtils.isEmpty(left)) {
-            tv_left.setVisibility(View.INVISIBLE);
+            tv_left.setVisibility(View.GONE);
         } else {
             tv_left.setText(left);
             tv_left.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,7 @@ public class PopMessageTips implements PopupWindow.OnDismissListener {
             });
         }
         if (TextUtils.isEmpty(right)) {
-            tv_right.setVisibility(View.INVISIBLE);
+            tv_right.setVisibility(View.GONE);
         } else {
             tv_right.setText(right);
             tv_right.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +72,7 @@ public class PopMessageTips implements PopupWindow.OnDismissListener {
                 }
             });
         }
-        popupWindow = new PopupWindow(view, Util.getWidth()-70, FrameLayout.LayoutParams.WRAP_CONTENT, true);
+        popupWindow = new PopupWindow(view, Util.getWidth() - 70, FrameLayout.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setBackgroundDrawable(new ColorDrawable());
         popupWindow.setAnimationStyle(R.style.pop_message);
         popupWindow.setOnDismissListener(this);
@@ -93,7 +93,7 @@ public class PopMessageTips implements PopupWindow.OnDismissListener {
 
     }
 
-    public void dismiss(){
+    public void dismiss() {
         popupWindow.dismiss();
     }
 

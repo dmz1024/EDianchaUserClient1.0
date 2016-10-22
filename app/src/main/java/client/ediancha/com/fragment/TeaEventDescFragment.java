@@ -19,22 +19,23 @@ import java.util.Map;
 
 import client.ediancha.com.R;
 import client.ediancha.com.activity.LoginActivity;
-import client.ediancha.com.activity.TeaEventDescActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 import client.ediancha.com.adapter.TeaEventDescEventAdapter;
 import client.ediancha.com.api.MyRetrofitUtil;
-import client.ediancha.com.api.RetrofitUtil;
+import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.interfaces.ScrollViewListener;
+import client.ediancha.com.interfaces.ShareInfoInterface;
 import client.ediancha.com.myview.Color2Text;
 import client.ediancha.com.myview.PopMessageTips;
 import client.ediancha.com.myview.PopTeaEventApply;
 import client.ediancha.com.myview.ScrollChangedScrollView;
 import client.ediancha.com.myview.TitleRelativeLayout;
+import client.ediancha.com.processor.TeaEventApplyUtil;
 import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.Util;
 
@@ -42,8 +43,7 @@ import client.ediancha.com.util.Util;
  * Created by dengmingzhi on 16/10/17.
  */
 
-public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc> {
-    private String id;
+public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
     private Color2Text tv_price;
     private RollPagerView rollPagerView;
     private TextView tv_name;
@@ -54,9 +54,6 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
     private TextView tv_event_desc;
     private TextView tv_apply;
     private RecyclerView rv_event;
-    private ScrollChangedScrollView scrollView;
-    private ScrollViewListener scrollViewListener;
-
 
     public static TeaEventDescFragment getInstance(String id) {
         Bundle bundle = new Bundle();
@@ -68,30 +65,12 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        id = getArguments().getString("id");
-    }
-
-    @Override
-    protected String getUrl() {
-        return "app.php";
-    }
-
-    @Override
     protected Map<String, String> getMap() {
         map.put("pigcms_id", id);
         map.put("c", "chahui");
         map.put("a", "show");
         return map;
     }
-
-
-    @Override
-    protected ShowCurrentViewENUM getDefaultView() {
-        return ShowCurrentViewENUM.VIEW_IS_LOADING;
-    }
-
 
     @Override
     protected Class<TeaEventDesc> getTClass() {
@@ -100,7 +79,6 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
 
     @Override
     protected View getHaveDataView() {
-
         View view = View.inflate(getContext(), R.layout.fragment_tea_event_desc, null);
         tv_price = (Color2Text) view.findViewById(R.id.tv_price);
         rollPagerView = (RollPagerView) view.findViewById(R.id.roll_view_pager);
@@ -133,73 +111,7 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
     public void onClick(View view) {
         super.onClick(view);
         if (view == tv_apply) {
-            new PopTeaEventApply(getContext()) {
-                @Override
-                protected void itemClick(String tel, String name) {
-
-                    if (TextUtils.isEmpty(UserInfo.uid)) {
-                        MyToast.showToast("请先登录");
-                        Util.skip(getActivity(), LoginActivity.class);
-                        return;
-                    }
-                    Map<String, String> map = new HashMap<>();
-                    map.put("uid", UserInfo.uid);
-                    map.put("token", UserInfo.token);
-                    map.put("name", name);
-                    map.put("mobile", tel);
-                    map.put("cid", id);
-                    map.put("c", "chahui");
-                    map.put("a", "baoming");
-
-                    MyRetrofitUtil.getInstance().post("app.php", map, BaseEntity.class, new MyRetrofitUtil.OnRequestListener<BaseEntity>() {
-                        @Override
-                        public void noNetwork() {
-
-                        }
-
-                        @Override
-                        public void serverErr() {
-
-                        }
-
-                        @Override
-                        public void haveData(BaseEntity baseEntity) {
-                            if (baseEntity.result == 0) {
-                                MyToast.showToast("报名成功");
-                                dismiss();
-                            } else {
-                                if (TextUtils.equals("token", baseEntity.msg)) {
-                                    new PopMessageTips("账号信息", "账号信息已过期,请重新登录!", "去登录", "再看看") {
-                                        @Override
-                                        protected void right() {
-                                            super.right();
-                                            Util.skip(getActivity(), LoginActivity.class);
-                                        }
-                                    }.showView(getActivity());
-                                } else {
-                                    MyToast.showToast(baseEntity.msg);
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCompleted() {
-
-                        }
-
-                        @Override
-                        public void resultNo0(String s) {
-
-                        }
-
-                        @Override
-                        public void start() {
-
-                        }
-                    }, "正在提交报名信息...", getContext());
-
-                }
-            }.creatPop();
+            TeaEventApplyUtil.getInstance().apply(getContext(), id);
         }
     }
 
@@ -209,8 +121,18 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
      * @param show
      */
     private void fillData(TeaEventDesc.Show show) {
+        shareInfo.content = show.content.replaceAll("&nbsp;", "\n");
+        shareInfo.logo = show.images;
+        shareInfo.url = show.url;
+        shareInfo.title = show.name;
+
         tv_name.setText(show.name);
-        tv_price.setTextNotChange(show.price);
+        if (TextUtils.equals(show.price, "免费")) {
+            tv_price.setChange("", show.price);
+        } else {
+            tv_price.setTextNotChange(show.price);
+        }
+
         trl_name.setTitle(show.storename);
         trl_address.setTitle(show.address);
         trl_num.setTitle("已报名人数：" + show.bm + " | 可报名总数：" + show.renshu);
@@ -249,18 +171,8 @@ public class TeaEventDescFragment extends SingleNetWorkBaseFragment<TeaEventDesc
 
 
     @Override
-    protected boolean getCanRefresh() {
-        return false;
+    public ShareUtil.ShareInfo getShareInfo() {
+        return shareInfo;
     }
 
-
-    @Override
-    public boolean isCanRefresh() {
-        return false;
-    }
-
-
-    public void setScrollViewListener(ScrollViewListener scrollViewListener) {
-        this.scrollViewListener = scrollViewListener;
-    }
 }

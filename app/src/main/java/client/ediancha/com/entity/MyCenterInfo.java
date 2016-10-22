@@ -5,6 +5,14 @@ package client.ediancha.com.entity;
  */
 
 public class MyCenterInfo extends BaseEntity {
-    public int count;
+    public Data data;
 
+    public static class Data {
+        public String avatar;
+        public int sex;
+        public String intro;
+        public String nickname;
+        public String phone;
+        public String point_balance;
+    }
 }

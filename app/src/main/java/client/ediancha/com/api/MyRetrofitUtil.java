@@ -2,6 +2,7 @@ package client.ediancha.com.api;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -32,7 +33,7 @@ public class MyRetrofitUtil {
     private Retrofit retrofit;
     private ApiService apiService;
     private static Gson gson;
-
+    private static Handler mHandle;
     //构造方法私有
     private MyRetrofitUtil() {
         //手动创建一个OkHttpClient并设置超时时间
@@ -45,6 +46,7 @@ public class MyRetrofitUtil {
                 .baseUrl(BASE_URL)
                 .build();
         apiService = retrofit.create(ApiService.class);
+        mHandle=new Handler();
     }
 
 
@@ -90,7 +92,6 @@ public class MyRetrofitUtil {
         }
 
 
-
         apiService.get(url, map).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -113,6 +114,7 @@ public class MyRetrofitUtil {
 
                     @Override
                     public void onNext(String s) {
+                        Log.d("类型", cla.getName());
                         Log.d("返回数据", s);
                         if (gson == null) {
                             gson = new Gson();
@@ -120,7 +122,7 @@ public class MyRetrofitUtil {
 
                         try {
                             onRequestListener.haveData(gson.fromJson(s, cla));
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             onRequestListener.resultNo0(s);
                         }
                     }
@@ -155,47 +157,56 @@ public class MyRetrofitUtil {
         pd.setCanceledOnTouchOutside(false);
         pd.setMessage(msg);
         pd.show();
+        final String finalUrl = url;
+        final Map<String, String> finalMap = map;
+        mHandle.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                apiService.get(finalUrl, finalMap).subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<String>() {
+                            @Override
+                            public void onCompleted() {
+                                onRequestListener.onCompleted();
+                                pd.cancel();
+                            }
 
-        apiService.get(url, map).subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
-                    @Override
-                    public void onCompleted() {
-                        onRequestListener.onCompleted();
-                        pd.cancel();
-                    }
+                            @Override
+                            public void onError(Throwable e) {
+                                if (!Util.isNetworkAvailable()) {
+                                    onRequestListener.noNetwork();
+                                } else {
+                                    onRequestListener.serverErr();
+                                }
+                                pd.cancel();
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        if (!Util.isNetworkAvailable()) {
-                            onRequestListener.noNetwork();
-                        } else {
-                            onRequestListener.serverErr();
-                        }
-                        pd.cancel();
-                    }
+                            @Override
+                            public void onNext(String s) {
+                                pd.cancel();
 
-                    @Override
-                    public void onNext(String s) {
-                        Log.d("返回数据", s);
-                        if (gson == null) {
-                            gson = new Gson();
-                        }
+                                Log.d("返回数据", s);
+                                if (gson == null) {
+                                    gson = new Gson();
+                                }
 
-                        try {
-                            onRequestListener.haveData(gson.fromJson(s, cla));
-                        }catch (Exception e){
-                            onRequestListener.resultNo0(s);
-                        }
-                    }
+                                try {
+                                    onRequestListener.haveData(gson.fromJson(s, cla));
+                                } catch (Exception e) {
+                                    onRequestListener.resultNo0(s);
+                                }
+                            }
 
-                    @Override
-                    public void onStart() {
-                        onRequestListener.start();
-                    }
+                            @Override
+                            public void onStart() {
+                                onRequestListener.start();
+                            }
 
-                });
+                        });
+
+            }
+        },200);
 
     }
 
@@ -227,50 +238,57 @@ public class MyRetrofitUtil {
         pd.setMessage(msg);
         pd.show();
 
-        apiService.post(url, map).subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<String>() {
-                    @Override
-                    public void onCompleted() {
-                        onRequestListener.onCompleted();
-                        pd.cancel();
-                    }
+        final String finalUrl = url;
+        final Map<String, String> finalMap = map;
+        mHandle.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                apiService.post(finalUrl, finalMap).subscribeOn(Schedulers.io())
+                        .unsubscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Subscriber<String>() {
+                            @Override
+                            public void onCompleted() {
+                                onRequestListener.onCompleted();
+                                pd.cancel();
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        if (!Util.isNetworkAvailable()) {
-                            onRequestListener.noNetwork();
-                        } else {
-                            onRequestListener.serverErr();
-                        }
-                        pd.cancel();
-                    }
+                            @Override
+                            public void onError(Throwable e) {
+                                if (!Util.isNetworkAvailable()) {
+                                    onRequestListener.noNetwork();
+                                } else {
+                                    onRequestListener.serverErr();
+                                }
+                                pd.cancel();
+                            }
 
-                    @Override
-                    public void onNext(String s) {
-                        Log.d("返回数据", s);
-                        if (gson == null) {
-                            gson = new Gson();
-                        }
+                            @Override
+                            public void onNext(String s) {
+                                Log.d("返回数据", s);
+                                pd.cancel();
+                                if (gson == null) {
+                                    gson = new Gson();
+                                }
 
-                        try {
-                            onRequestListener.haveData(gson.fromJson(s, cla));
-                        }catch (Exception e){
-                            onRequestListener.resultNo0(s);
-                        }
-                    }
+                                try {
+                                    onRequestListener.haveData(gson.fromJson(s, cla));
+                                } catch (Exception e) {
+                                    onRequestListener.resultNo0(s);
+                                }
+                            }
 
-                    @Override
-                    public void onStart() {
-                        onRequestListener.start();
-                    }
+                            @Override
+                            public void onStart() {
+                                onRequestListener.start();
+                            }
 
-                });
+                        });
+            }
+        },200);
+
+
     }
-
-
-
 
 
     public void post(String url, Map<String, String> map, final Class cla, final OnRequestListener onRequestListener) {
@@ -318,7 +336,7 @@ public class MyRetrofitUtil {
 
                         try {
                             onRequestListener.haveData(gson.fromJson(s, cla));
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             onRequestListener.resultNo0(s);
                         }
                     }

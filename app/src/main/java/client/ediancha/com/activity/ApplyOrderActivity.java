@@ -25,14 +25,12 @@ public class ApplyOrderActivity extends AppCompatActivity {
         TabLayout layout = (TabLayout) findViewById(R.id.tablayout);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        final String[] titles = {"待审核", "待参加", "待评价", "已完成", "已关闭"};
+        final String[] titles = {"已通过", "待审核", "未通过"};
 
         final List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(ApplyOrderFragment.getInstance("0"));
+        fragmentList.add(ApplyOrderFragment.getInstance("3"));
         fragmentList.add(ApplyOrderFragment.getInstance("1"));
         fragmentList.add(ApplyOrderFragment.getInstance("2"));
-        fragmentList.add(ApplyOrderFragment.getInstance("3"));
-        fragmentList.add(ApplyOrderFragment.getInstance("4"));
 
         viewPager.setOffscreenPageLimit(fragmentList.size());
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {

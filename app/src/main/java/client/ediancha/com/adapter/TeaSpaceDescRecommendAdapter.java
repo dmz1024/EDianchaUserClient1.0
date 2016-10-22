@@ -19,13 +19,13 @@ import client.ediancha.com.entity.TeaSpaceDesc;
  * Created by dengmingzhi on 16/10/12.
  */
 
-public class TeaSpaceDescRecommendAdapter extends SingleBaseAdapter<TeaSpaceDesc.Event> {
+public class TeaSpaceDescRecommendAdapter extends SingleBaseAdapter<TeaSpaceDesc.BaoXiang> {
 
-    public TeaSpaceDescRecommendAdapter(Context ctx, List<TeaSpaceDesc.Event> list) {
+    public TeaSpaceDescRecommendAdapter(Context ctx, List<TeaSpaceDesc.BaoXiang> list) {
         super(ctx, list);
     }
 
-    public TeaSpaceDescRecommendAdapter(List<TeaSpaceDesc.Event> list) {
+    public TeaSpaceDescRecommendAdapter(List<TeaSpaceDesc.BaoXiang> list) {
         super(list);
     }
 
@@ -37,9 +37,9 @@ public class TeaSpaceDescRecommendAdapter extends SingleBaseAdapter<TeaSpaceDesc
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaSpaceDescRecommendViewHolder mHolder = (TeaSpaceDescRecommendViewHolder) holder;
-        TeaSpaceDesc.Event data = list.get(position);
-        Glide.with(ctx).load(data.image).into(mHolder.iv_img);
-        mHolder.tv_title.setText(data.title);
+        TeaSpaceDesc.BaoXiang data = list.get(position);
+        Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+        mHolder.tv_title.setText(data.name);
 
     }
 

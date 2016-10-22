@@ -6,14 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.adapter.TeaSpaceAdapter;
+import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
 import client.ediancha.com.entity.TeaSpace;
+import client.ediancha.com.interfaces.ShareInfoInterface;
 
 /**
  * Created by dengmingzhi on 16/10/12.
  */
 
-public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, TeaSpace> {
+public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, TeaSpace> implements ShareInfoInterface {
 
     @Override
     protected RecyclerView.Adapter getAdapter(List<TeaSpace.Data> totalList) {
@@ -22,19 +24,16 @@ public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, Tea
 
     @Override
     protected String getUrl() {
-        return "top250";
+        return "app.php";
     }
 
     @Override
     protected Map<String, String> getMap() {
+        map.put("c", "chaguan");
+        map.put("a", "alist");
         return map;
     }
 
-    @Override
-    protected void initMap() {
-        map.put("start", (page * 10) + "");
-        map.put("count", 10 + "");
-    }
 
     @Override
     protected Class<TeaSpace> getTClass() {
@@ -44,5 +43,11 @@ public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, Tea
     @Override
     protected boolean isCanFirstInitData() {
         return false;
+    }
+
+
+    @Override
+    public ShareUtil.ShareInfo getShareInfo() {
+        return null;
     }
 }

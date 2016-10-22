@@ -18,35 +18,30 @@ import com.github.florent37.viewanimator.ViewAnimator;
 import java.util.List;
 
 import client.ediancha.com.R;
+import client.ediancha.com.base.PopBaseView;
 
 /**
  * Created by dengmingzhi on 2016/10/18.
  */
 
-public class ChooseStringView implements PopupWindow.OnDismissListener {
-    private Context ctx;
+public class ChooseStringView extends PopBaseView {
     private List<String> list;
-    private PopupWindow popupWindow;
 
     public ChooseStringView(Context ctx, List<String> list) {
-        this.ctx = ctx;
+        super(ctx);
         this.list = list;
     }
 
-    public void creatPop() {
-        popupWindow = new PopupWindow((getView()), FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setBackgroundDrawable(new ColorDrawable(ctx.getResources().getColor(R.color.colorfff)));
-        popupWindow.setOnDismissListener(this);
-        popupWindow.setAnimationStyle(getAnimation());
-        popupWindow.showAtLocation(((Activity) ctx).findViewById(android.R.id.content), Gravity.BOTTOM, 0, 0);
+
+    @Override
+    protected int getGravity() {
+        return Gravity.BOTTOM;
     }
 
-    protected int getAnimation() {
-        return R.style.popwin_anim_style;
-    }
-
+    @Override
     protected View getView() {
         ListView lv_content = new ListView(ctx);
+        lv_content.setBackgroundColor(ctx.getResources().getColor(R.color.colorfff));
         lv_content.setDivider(new ColorDrawable(ctx.getResources().getColor(R.color.colore1e1e1)));
         lv_content.setDividerHeight(1);
         lv_content.setAdapter(new BaseAdapter() {
@@ -82,27 +77,19 @@ public class ChooseStringView implements PopupWindow.OnDismissListener {
         lv_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onDismiss();
                 if (position != list.size()) {
                     itemClick(position);
                 }
-                popupWindow.dismiss();
+
 
             }
         });
-
-
-        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 0.3f).duration(500).start();
 
         return lv_content;
     }
 
     protected void itemClick(int position) {
 
-    }
-
-
-    @Override
-    public void onDismiss() {
-        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 1f).duration(600).start();
     }
 }

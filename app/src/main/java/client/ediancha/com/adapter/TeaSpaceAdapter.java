@@ -2,6 +2,7 @@ package client.ediancha.com.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import client.ediancha.com.R;
-import client.ediancha.com.activity.TeaSpaceDescActivity;
 import client.ediancha.com.base.BaseViewHolder;
+import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.TeaSpace;
@@ -32,9 +33,9 @@ import client.ediancha.com.util.Util;
  */
 
 public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
-    private static final int VIEW_SHOW_AD = 0;
+    private static final int VIEW_SHOW_AD = 2;
     private static final int VIEW_SHOW_CONTENT = 1;
-    private static final int VIEW_SHOW_TYPE = 2;
+    private static final int VIEW_SHOW_TYPE = 3;
 
     public TeaSpaceAdapter(Context ctx, List<TeaSpace.Data> list) {
         super(ctx, list);
@@ -59,33 +60,24 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
 
         if (holder instanceof TeaSpaceViewHolder) {
             TeaSpaceViewHolder mHolder = (TeaSpaceViewHolder) holder;
-            TeaSpace.Data data = list.get(position);
-            Glide.with(ctx).load(data.images.large).into(mHolder.iv_img);
-            mHolder.tv_title.setText(data.title);
+            TeaSpace.Data2 data = list.get(position).data2;
+            Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+            mHolder.tv_title.setText(data.name);
+            mHolder.tv_count.setText(data.attention_num + "人");
+            mHolder.tv_pos.setText(data.address);
+            mHolder.tv_price.setText("人均￥" + data.price + "/人");
+
         } else if (holder instanceof TeaSpaceAdViewHolder) {
             TeaSpaceAdViewHolder mHolder = (TeaSpaceAdViewHolder) holder;
-            //设置播放时间间隔
+            List<TeaSpace.Data1> datas = list.get(position).data1;
             mHolder.rv_ad.setPlayDelay(2500);
-            //设置透明度
             mHolder.rv_ad.setAnimationDurtion(500);
-            //设置适配器
             List<String> urls = new ArrayList<>();
-            urls.add("https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p480747492.jpg");
-            urls.add("https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p511118051.jpg");
-            urls.add("https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p1910813120.jpg");
-            urls.add("https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p510876377.jpg");
+            for (int i = 0; i < datas.size(); i++) {
+                urls.add(datas.get(i).pic);
+            }
             mHolder.rv_ad.setAdapter(new AdNormalAdapter(ctx, mHolder.rv_ad, urls));
-
-            //设置指示器（顺序依次）
-            //自定义指示器图片
-            //设置圆点指示器颜色
-            //设置文字指示器
-            //隐藏指示器
-            //mRollViewPager.setHintView(new IconHintView(this, R.drawable.point_focus, R.drawable.point_normal));
             mHolder.rv_ad.setHintView(new ColorPointHintView(ctx, ctx.getResources().getColor(R.color.color51b338), Color.WHITE));
-
-            //mRollViewPager.setHintView(new TextHintView(this));
-            //mRollViewPager.setHintView(null);
         } else {
 
             TeaSpaceTypeViewHolder mHolder = (TeaSpaceTypeViewHolder) holder;
@@ -112,20 +104,25 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        int r = list.get(position).r;
+        if (r == 2) {
+            return VIEW_SHOW_CONTENT;
+        } else if (r == 1) {
             return VIEW_SHOW_AD;
-        } else if (position == 5) {
+        } else if (r == 3) {
             return VIEW_SHOW_TYPE;
         }
+
         return VIEW_SHOW_CONTENT;
     }
 
-    public  class TeaSpaceViewHolder extends BaseViewHolder {
+    public class TeaSpaceViewHolder extends BaseViewHolder {
         public ImageView iv_img;
         public TextView tv_state;
         public TextView tv_title;
         public TextImage tv_count;
         public TextImage tv_pos;
+        public TextView tv_price;
 
         public TeaSpaceViewHolder(View itemView) {
             super(itemView);
@@ -134,11 +131,16 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_count = (TextImage) itemView.findViewById(R.id.tv_count);
             tv_pos = (TextImage) itemView.findViewById(R.id.tv_pos);
+            tv_price = (TextView) itemView.findViewById(R.id.tv_price);
         }
 
         @Override
         protected void onClick(int layoutPosition) {
-            Util.skip(((Activity) ctx), TeaSpaceDescActivity.class);
+            Intent intent = new Intent(ctx, DescBaseActivity.class);
+            intent.putExtra("title", list.get(layoutPosition).data2.name);
+            intent.putExtra("id", list.get(layoutPosition).data2.pigcms_id);
+            intent.putExtra("type", 2);
+            ctx.startActivity(intent);
         }
     }
 
