@@ -28,6 +28,7 @@ public class TeaEventDesc extends BaseEntity {
         public String storename;
         public String sttime;
         public String url;
+        public Share share;
     }
 
     public static class Lists {
@@ -40,6 +41,14 @@ public class TeaEventDesc extends BaseEntity {
         public String storename;
         public String sttime;
     }
+
+    public static class Share{
+        public String info;
+        public String logo;
+        public String name;
+        public String url;
+    }
+
 
 
 }

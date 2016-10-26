@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
+
     android:gravity="center"
     android:layout_marginRight="@dimen/size5"
     android:padding="@dimen/size6"
     android:text="全部"
-    android:textColor="#61c12c"
+    android:textColor="#333"
     android:textSize="@dimen/sp12">
 
 </TextView>

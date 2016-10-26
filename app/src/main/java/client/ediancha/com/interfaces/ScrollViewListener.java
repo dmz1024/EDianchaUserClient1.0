@@ -1,5 +1,6 @@
 package client.ediancha.com.interfaces;
 
+import android.webkit.WebView;
 import android.widget.ScrollView;
 
 /**
@@ -8,4 +9,5 @@ import android.widget.ScrollView;
 
 public interface ScrollViewListener {
     void onScrollChanged(ScrollView scrollView,int x, int y, int oldx, int oldy);
+
 }

@@ -21,6 +21,7 @@ import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.entity.TeaSpaceDesc;
 import client.ediancha.com.myview.GlideCircleTransform;
+import client.ediancha.com.myview.MyRatingBar;
 import client.ediancha.com.myview.RatingBar;
 import client.ediancha.com.myview.TextImage;
 
@@ -29,19 +30,9 @@ import client.ediancha.com.myview.TextImage;
  */
 
 public class EvaluateAdapter extends SingleBaseAdapter<TeaSpaceDesc.Comment> {
-    private boolean haveImage;
 
     public EvaluateAdapter(Context ctx, List<TeaSpaceDesc.Comment> list) {
         super(ctx, list);
-    }
-
-    public EvaluateAdapter(List<TeaSpaceDesc.Comment> list) {
-        super(list);
-    }
-
-    public EvaluateAdapter(Context context, List<TeaSpaceDesc.Comment> totalList, boolean haveImage) {
-        super(context, totalList);
-        this.haveImage = haveImage;
     }
 
     @Override
@@ -54,15 +45,14 @@ public class EvaluateAdapter extends SingleBaseAdapter<TeaSpaceDesc.Comment> {
         EvaluateViewHolder mHolder = (EvaluateViewHolder) holder;
         TeaSpaceDesc.Comment data = list.get(position);
         Glide.with(ctx).load(data.avatar).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_head);
-        if (haveImage) {
-            List<String> urls = new ArrayList<>();
-            for (int i = 0; i < data.attachment_list.size(); i++) {
-                urls.add(data.attachment_list.get(i).file);
-            }
-            GridLayoutManager manage = new GridLayoutManager(ctx, 4);
-            mHolder.rv_image.setLayoutManager(manage);
-            mHolder.rv_image.setAdapter(new ImageAdapter(ctx, urls));
+
+        List<String> urls = new ArrayList<>();
+        for (int i = 0; i < data.attachment_list.size(); i++) {
+            urls.add(data.attachment_list.get(i).file);
         }
+        GridLayoutManager manage = new GridLayoutManager(ctx, 4);
+        mHolder.rv_image.setLayoutManager(manage);
+        mHolder.rv_image.setAdapter(new ImageAdapter(ctx, urls));
 
         mHolder.tv_name.setText(data.nickname);
         mHolder.tv_time.setText(data.date);
@@ -80,7 +70,7 @@ public class EvaluateAdapter extends SingleBaseAdapter<TeaSpaceDesc.Comment> {
         public TextView tv_price;
         public TextView tv_content;
         public RecyclerView rv_image;
-        public RatingBar ratingbar;
+        public MyRatingBar ratingbar;
 
 
         public EvaluateViewHolder(View itemView) {
@@ -92,7 +82,7 @@ public class EvaluateAdapter extends SingleBaseAdapter<TeaSpaceDesc.Comment> {
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             tv_content = (TextView) itemView.findViewById(R.id.tv_content);
             rv_image = (RecyclerView) itemView.findViewById(R.id.rv_image);
-            ratingbar = (RatingBar) itemView.findViewById(R.id.ratingbar);
+            ratingbar = (MyRatingBar) itemView.findViewById(R.id.ratingbar);
         }
 
     }

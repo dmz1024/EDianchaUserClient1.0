@@ -3,6 +3,7 @@ package client.ediancha.com.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public abstract class ToolBarActivity extends BaseActivity  {
 
         ViewGroup rootView = (ViewGroup) findViewById(android.R.id.content);
         RelativeLayout baseLinearLayout = new RelativeLayout(this);
-        baseLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorf00));
+        baseLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorfff));
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         baseLinearLayout.setLayoutParams(params);
         View v = View.inflate(this, layoutResID, null);
@@ -98,6 +99,18 @@ public abstract class ToolBarActivity extends BaseActivity  {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            back();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
 
 
     protected void back() {

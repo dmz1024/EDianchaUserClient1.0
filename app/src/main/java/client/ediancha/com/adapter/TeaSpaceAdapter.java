@@ -17,7 +17,9 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
@@ -36,7 +38,7 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
     private static final int VIEW_SHOW_AD = 2;
     private static final int VIEW_SHOW_CONTENT = 1;
     private static final int VIEW_SHOW_TYPE = 3;
-
+    private Map<Integer, Boolean> map = new HashMap<>();
     public TeaSpaceAdapter(Context ctx, List<TeaSpace.Data> list) {
         super(ctx, list);
     }
@@ -79,6 +81,10 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             mHolder.rv_ad.setAdapter(new AdNormalAdapter(ctx, mHolder.rv_ad, urls));
             mHolder.rv_ad.setHintView(new ColorPointHintView(ctx, ctx.getResources().getColor(R.color.color51b338), Color.WHITE));
         } else {
+            if (!map.containsKey(position)) {
+                map.put(position, false);
+            }
+
 
             TeaSpaceTypeViewHolder mHolder = (TeaSpaceTypeViewHolder) holder;
             GridLayoutManager manager = new GridLayoutManager(ctx, 4);
@@ -95,7 +101,10 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, types);
             mHolder.rv_type.setLayoutManager(manager);
             mHolder.rv_type.setAdapter(mAdapter);
-            mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
+            if (!map.get(position)) {
+                map.put(position, true);
+                mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
+            }
         }
 
 

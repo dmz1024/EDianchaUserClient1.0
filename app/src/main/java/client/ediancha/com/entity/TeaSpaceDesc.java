@@ -15,6 +15,7 @@ public class TeaSpaceDesc extends BaseEntity {
         public List<Comment> comment;
         public List<OtherStore> list;
         public Show show;
+        public Share share;
     }
 
     public static class Event {
@@ -31,7 +32,7 @@ public class TeaSpaceDesc extends BaseEntity {
         public String renshu;
     }
 
-    public static class Comment {
+    public static class Comment extends client.ediancha.com.entity.Data {
         public String content;
         public String nickname;
         public String avatar;
@@ -68,6 +69,13 @@ public class TeaSpaceDesc extends BaseEntity {
         public String storename;
         public String url;
         public List<String> images;
+    }
+
+    public static class Share{
+        public String info;
+        public String logo;
+        public String name;
+        public String url;
     }
 
 

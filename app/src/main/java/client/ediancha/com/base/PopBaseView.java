@@ -29,6 +29,7 @@ public abstract class PopBaseView implements PopupWindow.OnDismissListener {
 
     private void creatPop() {
         popupWindow = new PopupWindow((getView()), Util.getWidth() - width(), height(), true);
+
         popupWindow.setBackgroundDrawable(new ColorDrawable());
         popupWindow.setOnDismissListener(this);
         popupWindow.setAnimationStyle(getAnimation());

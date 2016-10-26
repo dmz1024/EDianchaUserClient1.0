@@ -1,6 +1,8 @@
 package client.ediancha.com.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -11,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -25,12 +28,16 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.BuyTeaActivity;
+import client.ediancha.com.activity.MoreEvaluateActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.base.WebBaseFragment;
 import client.ediancha.com.entity.TeaSpaceDesc;
+import client.ediancha.com.interfaces.WebViewScrollListener;
 import client.ediancha.com.myview.Color2Text;
+import client.ediancha.com.myview.MyWebView;
 import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.entity.TeaDesc;
@@ -51,6 +58,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
     private TextView tv_count_info;
     private TitleRelativeLayout trl_name;
     private TitleRelativeLayout trl_tel;
+    private TitleRelativeLayout trl_comment;
     private TextImage tv_buy_car;
     private TextView tv_add_buy_car;
     private TextView tv_buy;
@@ -58,6 +66,9 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
     private WebBaseFragment webFragment;
     private TextView tv_desc;
     private FrameLayout webLayout;
+    private boolean isShow;
+
+    private TeaDesc data;
 
     public static TeaProductDescFragment getInstance(String id) {
         Bundle bundle = new Bundle();
@@ -87,10 +98,11 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         tv_name = (TextView) view.findViewById(R.id.tv_name);
         tv_price = (Color2Text) view.findViewById(R.id.tv_price);
         scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
-        scrollView.setScrollViewListener(scrollViewListener);
         tv_count_info = (TextView) view.findViewById(R.id.tv_count_info);
         trl_name = (TitleRelativeLayout) view.findViewById(R.id.trl_name);
+        trl_comment = (TitleRelativeLayout) view.findViewById(R.id.trl_comment);
         trl_tel = (TitleRelativeLayout) view.findViewById(R.id.trl_tel);
+        trl_tel.setOnClickListener(this);
         tv_buy_car = (TextImage) view.findViewById(R.id.tv_buy_car);
         tv_add_buy_car = (TextView) view.findViewById(R.id.tv_add_buy_car);
         tv_buy = (TextView) view.findViewById(R.id.tv_buy);
@@ -98,6 +110,8 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         webLayout = (FrameLayout) view.findViewById(R.id.fg_desc);
         webLayout.setOnClickListener(this);
         tv_desc.setOnClickListener(this);
+        tv_buy.setOnClickListener(this);
+
         return view;
     }
 
@@ -109,21 +123,32 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
             case R.id.tv_desc:
                 showDesc();
                 break;
-             case R.id.fg_desc:
-                hideDesc();
+            case R.id.trl_comment:
+                Intent intent = new Intent(getContext(), MoreEvaluateActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("type", "PRODUCT");
+                startActivity(intent);
+                break;
+            case R.id.trl_tel:
+                Util.tel(getContext(), data.data.phone1 + data.data.phone2);
+                break;
+            case R.id.tv_buy:
+                Util.skip(getActivity(), BuyTeaActivity.class);
                 break;
         }
     }
 
     public void hideDesc() {
-        scrollView.setVisibility(View.VISIBLE);
-        ViewAnimator.animate(scrollView).translationY(-Util.getHeight(), 0).duration(300).start();
+        ViewAnimator.animate(scrollView).translationY(-Util.getHeight(), 0).andAnimate(webLayout).translationY(0, Util.getHeight()).duration(400).start();
+        isShow = false;
     }
 
     private void showDesc() {
-        webFragment.setUserVisibleHint(true);
-        scrollView.setVisibility(View.GONE);
-        ViewAnimator.animate(webLayout).translationY(Util.getHeight(), 0).duration(300).start();
+        if (!webFragment.getUserVisibleHint()) {
+            webFragment.setUserVisibleHint(true);
+        }
+        ViewAnimator.animate(scrollView).translationY(0, -Util.getHeight()).andAnimate(webLayout).translationY(Util.getHeight(), 0).duration(400).start();
+        isShow = true;
     }
 
     /**
@@ -144,9 +169,15 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
 
     @Override
     protected void writeData(TeaDesc t) {
+        data = t;
         fillRollPageView(t.data.images);
         fillTabLayout("https://www.baidu.com");
         show(t.data);
+
+        shareInfo.title = t.data.share.name;
+        shareInfo.url = t.data.share.url;
+        shareInfo.logo = t.data.share.logo;
+        shareInfo.content = t.data.share.info;
 
     }
 
@@ -156,15 +187,44 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
      * @param data
      */
     private void show(TeaDesc.Data data) {
+
+
         tv_name.setText(data.name);
         tv_price.setTextNotChange(data.price);
         tv_count_info.setText("运费：￥" + data.postage + "       剩余：" + data.quantity + "件");
         trl_name.setTitle(data.store_name);
         trl_tel.setTitle(data.phone1 + "-" + data.phone2);
+        int coomentCount;
+        if (data.comment != null) {
+            coomentCount = data.comment.size();
+        } else {
+            coomentCount = 0;
+        }
+
+        if (coomentCount > 0) {
+            trl_comment.setTitle("商品评价(" + coomentCount + ")");
+            trl_comment.setOnClickListener(this);
+        } else {
+            trl_comment.setTitle("该商品暂无评价");
+            trl_comment.setContent("");
+        }
+
     }
 
     private void fillTabLayout(String url) {
         getChildFragmentManager().beginTransaction().replace(R.id.fg_desc, webFragment = WebBaseFragment.getInstance(url, true, false)).commit();
+//        webFragment.getWebView().setWebViewScrollListener(new WebViewScrollListener() {
+//            @Override
+//            public void onScrollChanged(MyWebView webView, int x, int y, int oldx, int oldy) {
+//                Log.d("gundong", x + "-" + y);
+//            }
+//        });
     }
+
+
+    public boolean getShow() {
+        return isShow;
+    }
+
 
 }

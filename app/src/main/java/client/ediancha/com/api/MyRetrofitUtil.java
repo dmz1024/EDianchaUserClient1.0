@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import client.ediancha.com.util.JLogUtils;
 import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.Util;
 import okhttp3.OkHttpClient;
@@ -34,6 +35,7 @@ public class MyRetrofitUtil {
     private ApiService apiService;
     private static Gson gson;
     private static Handler mHandle;
+
     //构造方法私有
     private MyRetrofitUtil() {
         //手动创建一个OkHttpClient并设置超时时间
@@ -46,7 +48,7 @@ public class MyRetrofitUtil {
                 .baseUrl(BASE_URL)
                 .build();
         apiService = retrofit.create(ApiService.class);
-        mHandle=new Handler();
+        mHandle = new Handler();
     }
 
 
@@ -63,19 +65,6 @@ public class MyRetrofitUtil {
         return retrofitUtil;
     }
 
-//    pd = new ProgressDialog(ctx);
-//    pd.setCancelable(false);
-//    pd.setCanceledOnTouchOutside(false);
-//    pd.setMessage(msg);
-//    pd.show();
-//    pd.getCurrentFocus().postDelayed(new Runnable() {
-//        @Override
-//        public void run() {
-//            get();
-//        }
-//    },300);
-
-
     public void get(String url, Map<String, String> map, final Class cla, final OnRequestListener onRequestListener) {
 
         if (!Util.isNetworkAvailable()) {
@@ -91,7 +80,20 @@ public class MyRetrofitUtil {
             map = new HashMap<>();
         }
 
+        StringBuffer sb = new StringBuffer(BASE_URL + url);
+        boolean is=false;
+        for (String key : map.keySet()) {
+            if(is){
+                sb.append("&");
+            }else {
+                is=true;
+                sb.append("?");
+            }
+            sb.append(key).append("=").append(map.get(key));
 
+        }
+
+        Log.d("访问接口", sb.toString());
         apiService.get(url, map).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -114,8 +116,7 @@ public class MyRetrofitUtil {
 
                     @Override
                     public void onNext(String s) {
-                        Log.d("类型", cla.getName());
-                        Log.d("返回数据", s);
+                        JLogUtils.Json(s);
                         if (gson == null) {
                             gson = new Gson();
                         }
@@ -147,10 +148,20 @@ public class MyRetrofitUtil {
             url = "";
         }
 
-        if (map == null) {
-            map = new HashMap<>();
+        StringBuffer sb = new StringBuffer(BASE_URL + url);
+        boolean is=false;
+        for (String key : map.keySet()) {
+            if(is){
+                sb.append("&");
+            }else {
+                is=true;
+                sb.append("?");
+            }
+            sb.append(key).append("=").append(map.get(key));
+
         }
 
+        Log.d("访问接口", sb.toString());
 
         final ProgressDialog pd = new ProgressDialog(ctx);
         pd.setCancelable(false);
@@ -186,7 +197,7 @@ public class MyRetrofitUtil {
                             public void onNext(String s) {
                                 pd.cancel();
 
-                                Log.d("返回数据", s);
+                                JLogUtils.Json(s);
                                 if (gson == null) {
                                     gson = new Gson();
                                 }
@@ -206,7 +217,7 @@ public class MyRetrofitUtil {
                         });
 
             }
-        },200);
+        }, 200);
 
     }
 
@@ -231,6 +242,20 @@ public class MyRetrofitUtil {
             map = new HashMap<>();
         }
 
+        StringBuffer sb = new StringBuffer(BASE_URL + url);
+        boolean is=false;
+        for (String key : map.keySet()) {
+            if(is){
+                sb.append("&");
+            }else {
+                is=true;
+                sb.append("?");
+            }
+            sb.append(key).append("=").append(map.get(key));
+
+        }
+
+        Log.d("访问接口", sb.toString());
 
         final ProgressDialog pd = new ProgressDialog(ctx);
         pd.setCancelable(false);
@@ -265,7 +290,7 @@ public class MyRetrofitUtil {
 
                             @Override
                             public void onNext(String s) {
-                                Log.d("返回数据", s);
+                                JLogUtils.Json(s);
                                 pd.cancel();
                                 if (gson == null) {
                                     gson = new Gson();
@@ -285,7 +310,7 @@ public class MyRetrofitUtil {
 
                         });
             }
-        },200);
+        }, 200);
 
 
     }
@@ -306,6 +331,20 @@ public class MyRetrofitUtil {
             map = new HashMap<>();
         }
 
+        StringBuffer sb = new StringBuffer(BASE_URL + url);
+        boolean is=false;
+        for (String key : map.keySet()) {
+            if(is){
+                sb.append("&");
+            }else {
+                is=true;
+                sb.append("?");
+            }
+            sb.append(key).append("=").append(map.get(key));
+
+        }
+
+        Log.d("访问接口", sb.toString());
 
         apiService.post(url, map).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -329,11 +368,10 @@ public class MyRetrofitUtil {
 
                     @Override
                     public void onNext(String s) {
-                        Log.d("返回数据", s);
+                        JLogUtils.Json(s);
                         if (gson == null) {
                             gson = new Gson();
                         }
-
                         try {
                             onRequestListener.haveData(gson.fromJson(s, cla));
                         } catch (Exception e) {

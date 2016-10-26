@@ -59,11 +59,15 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
 
     @Override
     public void onRefresh() {
-        page = 1;
-        currentPage = 1;
+        page = getPage();
+        currentPage = page;
         currentType = RequestType.LOAD_NEW;
         isHaveData = true;
         super.onRefresh();
+    }
+
+    protected int getPage() {
+        return 1;
     }
 
 

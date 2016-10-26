@@ -192,7 +192,6 @@ public class Util {
 
     public static int dp2Px(float dp) {
         final float scale = getApplication().getResources().getDisplayMetrics().density;
-        Log.d("转换", (int) (dp * scale + 0.5f) + "");
         return (int) (dp * scale + 0.5f);
     }
 
@@ -248,7 +247,7 @@ public class Util {
         int h = newOpts.outHeight;
         //现在主流手机比较多是800*480分辨率，所以高和宽我们设置为
         float hh = 80f;//这里设置高度为800f
-        float ww = 80f;//这里设置宽度为480f
+        float ww = 48f;//这里设置宽度为480f
         //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
         int be = 1;//be=1表示不缩放
         if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放
@@ -267,14 +266,13 @@ public class Util {
     public static Bitmap compressImage(Bitmap image) {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.PNG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        image.compress(Bitmap.CompressFormat.PNG, 10, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
         int options = 100;
         while (baos.toByteArray().length / 1024 > 33) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
             baos.reset();//重置baos即清空baos
             image.compress(Bitmap.CompressFormat.PNG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
-            options -= 5;//每次都减少10
+            options -= 5;//每次都减少5
         }
-
 
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
@@ -347,9 +345,9 @@ public class Util {
     }
 
 
-
     /**
      * 读取Assets目录下面指定文件并返回String数据
+     *
      * @param context
      * @param fileName
      * @return
@@ -362,19 +360,27 @@ public class Util {
             inputStream.read(buffer);
             String json = new String(buffer, "utf-8");
             stringBuilder = stringBuilder.append(json);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 inputStream.close();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         return stringBuilder.toString();
+    }
+
+
+    public static void tel(Context context, String tel) {
+        if (TextUtils.isEmpty(tel)) {
+            MyToast.showToast("号码不能为空");
+            return;
+        }
+        Uri uri = Uri.parse("tel:" + tel);
+        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+        context.startActivity(intent);
     }
 
 

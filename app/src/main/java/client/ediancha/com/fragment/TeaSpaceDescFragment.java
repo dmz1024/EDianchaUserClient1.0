@@ -2,7 +2,6 @@ package client.ediancha.com.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,14 +30,12 @@ import client.ediancha.com.activity.MoreTeaPackageActivity;
 import client.ediancha.com.activity.TeaSpaceOtherRecommendActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
+import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescInfoAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescRecommendAdapter;
-import client.ediancha.com.processor.ShareUtil;
-import client.ediancha.com.base.SingleNetWorkBaseFragment;
+import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.TeaSpaceDesc;
-import client.ediancha.com.interfaces.ScrollViewListener;
-import client.ediancha.com.interfaces.ShareInfoInterface;
 import client.ediancha.com.myview.RatingBar;
 import client.ediancha.com.myview.ScrollChangedScrollView;
 import client.ediancha.com.myview.TitleRelativeLayout;
@@ -143,6 +140,7 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         bt_more.setOnClickListener(this);
         trl_tea_package.setOnClickListener(this);
         trl_evaluate.setOnClickListener(this);
+        trl_tel.setOnClickListener(this);
         return view;
     }
 
@@ -167,6 +165,9 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
                 intent.putExtra("type", "STORE");
                 startActivityForResult(intent, Constant.SPACECOMMENT_REQ);
                 break;
+            case R.id.trl_tel:
+                Util.tel(getContext(), t.data.show.phone1 + t.data.show.phone2);
+                break;
         }
     }
 
@@ -176,20 +177,16 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
      * @param comment
      */
     private void fillEvaluate(List<TeaSpaceDesc.Comment> comment) {
-//        TeaEventDesc.Event event1 = new TeaEventDesc.Event();
-//        event1.image = Constant.IMAGE;
-//
-//        List<TeaEventDesc.Event> events = new ArrayList<>();
-//        events.add(event1);
-//        LinearLayoutManager manager = new LinearLayoutManager(getContext()) {
-//            @Override
-//            public boolean canScrollVertically() {
-//                return false;
-//            }
-//        };
-//        rv_evaluate.addItemDecoration(new ItemDecoration(getContext(), LinearLayout.VERTICAL, 2, "#ebebeb"));
-//        rv_evaluate.setLayoutManager(manager);
-//        rv_evaluate.setAdapter(new EvaluateAdapter(getContext(), events));
+
+        LinearLayoutManager manager = new LinearLayoutManager(getContext()) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        rv_evaluate.addItemDecoration(new ItemDecoration(getContext(), LinearLayout.VERTICAL, 2, "#ebebeb"));
+        rv_evaluate.setLayoutManager(manager);
+        rv_evaluate.setAdapter(new EvaluateAdapter(getContext(), comment));
     }
 
     /**
@@ -211,6 +208,10 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         fillRvInfo(t.data.show);
         Glide.with(getContext()).load(Constant.IMAGE).into(iv_package);
 
+        shareInfo.content = t.data.share.info;
+        shareInfo.logo = t.data.share.logo;
+        shareInfo.url = t.data.share.url;
+        shareInfo.title = t.data.share.name;
     }
 
     /**
@@ -219,10 +220,6 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
      * @param show
      */
     private void fillRvInfo(TeaSpaceDesc.Show show) {
-        shareInfo.content = show.content.replaceAll("&nbsp;", "\n");
-        shareInfo.logo = show.images.get(0);
-        shareInfo.url = show.url;
-        shareInfo.title = show.name;
 
 
         tv_name.setText(show.name);

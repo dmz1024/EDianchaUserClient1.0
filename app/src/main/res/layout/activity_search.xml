@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size55"
+        android:background="#333">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#999">
+
+                <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="@dimen/size15"
+                    android:layout_height="@dimen/size15"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/size7"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_search" />
+
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="@dimen/size250"
+                    android:layout_height="@dimen/size30"
+                    android:layout_marginLeft="@dimen/size2"
+                    android:layout_toRightOf="@id/iv_search"
+                    android:background="@null"
+                    android:hint="请输入搜索条件"
+                    android:textColor="#90ffffff"
+                    android:textColorHint="#70ffffff"
+                    android:textSize="@dimen/sp13" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_cancle"
+                style="@style/TextSize14Color999"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/size10"
+                android:text="取消"
+                android:textColor="#fff" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size25"
+        android:weightSum="3">
+
+        <client.ediancha.com.myview.TextImage
+            android:id="@+id/tv_event"
+            style="@style/TextSize13Color666"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/size10"
+            android:gravity="center"
+            android:text="茶·活动"
+            app:TextImage_drawable="@mipmap/icon_search_teaactivity_cur"
+            app:TextImage_height="@dimen/size50"
+            app:TextImage_seat="2"
+            app:TextImage_width="@dimen/size50" />
+
+        <client.ediancha.com.myview.TextImage
+            android:id="@+id/tv_space"
+            style="@style/TextSize13Color666"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/size10"
+            android:gravity="center"
+            android:text="茶·空间"
+            app:TextImage_drawable="@mipmap/icon_search_teahouse"
+            app:TextImage_height="@dimen/size50"
+            app:TextImage_seat="2"
+            app:TextImage_width="@dimen/size50" />
+
+        <client.ediancha.com.myview.TextImage
+            android:id="@+id/tv_tea"
+            style="@style/TextSize13Color666"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/size10"
+            android:gravity="center"
+            android:text="茶·产品"
+            app:TextImage_drawable="@mipmap/icon_search_teatype"
+            app:TextImage_height="@dimen/size50"
+            app:TextImage_seat="2"
+            app:TextImage_width="@dimen/size50" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size0.5"
+        android:layout_marginLeft="@dimen/size15"
+        android:layout_marginRight="@dimen/size15"
+        android:layout_marginTop="@dimen/size25"
+        android:background="#ebebeb" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content"
+        android:layout_marginTop="@dimen/size25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_ho"
+        android:layout_marginTop="@dimen/size25"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

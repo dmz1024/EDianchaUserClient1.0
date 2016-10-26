@@ -82,11 +82,14 @@ public abstract class ShareBaseActivity extends ToolBarActivity {
                     case 0:
                     case 1:
                         ShareUtil.ShareInfo wechatInfo = getShareInfo();
+                        wechatInfo.app_name="E点茶";
                         wechatInfo.type = position;
                         ShareUtil.getInstance().Wechat(new Handler(), ShareBaseActivity.this, wechatInfo);
                         break;
                     case 2:
-                        ShareUtil.getInstance().QQFriend(ShareBaseActivity.this, new ShareUtil.ShareInfo());
+                        ShareUtil.ShareInfo qqInfo = getShareInfo();
+                        qqInfo.app_name="E点茶";
+                        ShareUtil.getInstance().QQFriend(ShareBaseActivity.this, qqInfo);
                         break;
                     case 3:
                         ctrlC();

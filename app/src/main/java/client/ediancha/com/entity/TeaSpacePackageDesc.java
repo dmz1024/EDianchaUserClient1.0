@@ -15,6 +15,7 @@ public class TeaSpacePackageDesc extends BaseEntity {
         public List<Comment> comment;
         public List<OtherStore> list;
         public Show show;
+        public Share share;
     }
 
     public static class Event {
@@ -59,6 +60,13 @@ public class TeaSpacePackageDesc extends BaseEntity {
         public String storename;
         public String url;
         public List<String> images;
+    }
+
+    public static class Share{
+        public String info;
+        public String logo;
+        public String name;
+        public String url;
     }
 
 

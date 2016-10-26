@@ -6,13 +6,15 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import client.ediancha.com.myview.MyWebView;
+
 
 /**
  * Created by dengmingzhi on 16/7/12.
  */
 public class WebBaseFragment extends BaseFragment {
     private String url;
-    private WebView webview;
+    private MyWebView webview;
     private OnReturnTitleListener onReturnTitleListener;
     private boolean isFistInitData = true;
     private boolean isCanRefresh = true;
@@ -76,7 +78,7 @@ public class WebBaseFragment extends BaseFragment {
 
     @Override
     protected void initView(View view) {
-        webview = (WebView) view;
+        webview = (MyWebView) view;
         webview.getSettings().setJavaScriptEnabled(true);
         webview.setWebViewClient(new WebViewClient() {
             @Override
@@ -103,7 +105,7 @@ public class WebBaseFragment extends BaseFragment {
 
     @Override
     protected View getShowView() {
-        return new WebView(getContext());
+        return new MyWebView(getContext());
     }
 
     public interface OnReturnTitleListener {
@@ -115,7 +117,7 @@ public class WebBaseFragment extends BaseFragment {
     }
 
 
-    public WebView getWebView() {
+    public MyWebView getWebView() {
         return webview;
     }
 

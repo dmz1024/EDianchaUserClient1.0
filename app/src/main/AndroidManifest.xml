@@ -41,7 +41,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="client.ediancha.com.activity.MainActivity" android:launchMode="singleTask">
+        <activity
+            android:name="client.ediancha.com.activity.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,6 +76,8 @@
         <activity android:name="client.ediancha.com.activity.UserInfoActivity" />
         <activity android:name="client.ediancha.com.activity.AddressActivity" />
         <activity android:name="client.ediancha.com.activity.AddressManagerActivity" />
+        <activity android:name="client.ediancha.com.activity.BuyTeaActivity" />
+        <activity android:name="client.ediancha.com.activity.SearchActivity" />
 
 
         <!-- QQ相关操作 -->

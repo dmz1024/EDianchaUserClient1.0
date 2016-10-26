@@ -18,7 +18,9 @@ import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import client.ediancha.com.R;
 import client.ediancha.com.activity.TeaDescActivity;
@@ -40,6 +42,7 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
     private static final int VIEW_SHOW_CONTENT_1 = 1;
     private static final int VIEW_SHOW_CONTENT_4 = 4;
     private static final int VIEW_SHOW_TYPE = 2;
+    private Map<Integer, Boolean> map = new HashMap<>();
 
     public TeaProductAdapter(Context ctx, List<TeaProduct.Data> list) {
         super(ctx, list);
@@ -64,13 +67,14 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
 
+
         if (holder instanceof TeaProduct_1ViewHolder) {
             TeaProduct_1ViewHolder mHolder = (TeaProduct_1ViewHolder) holder;
             TeaProduct.Content data = list.get(position).data1;
             Glide.with(ctx).load(data.image).into(mHolder.iv_img);
             mHolder.tv_title.setText(data.name);
             mHolder.tv_old_price.setText(data.original_price);
-            mHolder.tv_price.setText(data.price);
+            mHolder.tv_price.setText("￥" + data.price);
 
         } else if (holder instanceof TeaProduct_4ViewHolder) {
             TeaProduct_4ViewHolder mHolder = (TeaProduct_4ViewHolder) holder;
@@ -78,7 +82,7 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             Glide.with(ctx).load(data.image).into(mHolder.iv_img);
             mHolder.tv_title.setText(data.name);
             mHolder.tv_old_price.setText(data.original_price);
-            mHolder.tv_price.setText(data.price);
+            mHolder.tv_price.setText("￥" + data.price);
             mHolder.tv_state.setVisibility(View.GONE);
         } else if (holder instanceof TeaProductAdViewHolder) {
             TeaProductAdViewHolder mHolder = (TeaProductAdViewHolder) holder;
@@ -96,6 +100,9 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             mHolder.rv_ad.setAdapter(new AdNormalAdapter(ctx, mHolder.rv_ad, urls));
             mHolder.rv_ad.setHintView(new ColorPointHintView(ctx, ctx.getResources().getColor(R.color.color51b338), Color.WHITE));
         } else {
+            if (!map.containsKey(position)) {
+                map.put(position, false);
+            }
 
             TeaProductTypeViewHolder mHolder = (TeaProductTypeViewHolder) holder;
             List<TeaProduct.Data2> data2 = list.get(position).data2;
@@ -107,7 +114,10 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, types);
             mHolder.rv_type.setLayoutManager(manager);
             mHolder.rv_type.setAdapter(mAdapter);
-            mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
+            if (!map.get(position)) {
+                map.put(position, true);
+                mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
+            }
         }
 
 
@@ -153,10 +163,9 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
 
         @Override
         protected void onClick(int layoutPosition) {
-            Intent intent = new Intent(ctx, DescBaseActivity.class);
+            Intent intent = new Intent(ctx, TeaDescActivity.class);
             intent.putExtra("title", list.get(layoutPosition).data1.name);
             intent.putExtra("id", list.get(layoutPosition).data1.product_id);
-            intent.putExtra("type", 1);
             ctx.startActivity(intent);
         }
     }
@@ -168,6 +177,7 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
         public TextView tv_price;
         public TextView tv_old_price;
         public RecyclerView rv_type;
+
         public TeaProduct_4ViewHolder(View itemView) {
             super(itemView);
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
@@ -180,10 +190,9 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
 
         @Override
         protected void onClick(int layoutPosition) {
-            Intent intent = new Intent(ctx, DescBaseActivity.class);
+            Intent intent = new Intent(ctx, TeaDescActivity.class);
             intent.putExtra("title", list.get(layoutPosition).data4.name);
             intent.putExtra("id", list.get(layoutPosition).data4.product_id);
-            intent.putExtra("type", 1);
             ctx.startActivity(intent);
         }
     }

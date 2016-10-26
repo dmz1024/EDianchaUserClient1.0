@@ -54,12 +54,13 @@
             android:textColor="#fff"
             android:textSize="@dimen/sp15" />
     </LinearLayout>
+
     <FrameLayout
         android:id="@+id/fg_desc"
-        android:layout_above="@id/ll_bottom"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_bottom"
+        android:layout_alignParentTop="true" />
 
     <client.ediancha.com.myview.ScrollChangedScrollView
         android:id="@+id/scrollView"
@@ -142,20 +143,28 @@
                 app:TitleRelativeLayout_title_image="@mipmap/icon_detail_tel"
                 app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
                 app:TitleRelativeLayout_title_w="@dimen/size14"
-                app:TitleRelativeLayout_view_visi="false" />
+                 />
 
-            <View
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_comment"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size15"
-                android:background="#fbfbfb" />
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_content="查看"
+                app:TitleRelativeLayout_title="商品评价"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/icon_detail_tel"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_view_visi="false" />
 
             <TextView
                 android:id="@+id/tv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size10"
                 android:gravity="center"
                 android:padding="@dimen/size10"
-                android:text="图文详情"
+                android:text="点击加载图文详情页"
                 android:textColor="#333" />
         </LinearLayout>
     </client.ediancha.com.myview.ScrollChangedScrollView>

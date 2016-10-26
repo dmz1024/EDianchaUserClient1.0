@@ -121,10 +121,10 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
      * @param show
      */
     private void fillData(TeaEventDesc.Show show) {
-        shareInfo.content = show.content.replaceAll("&nbsp;", "\n");
-        shareInfo.logo = show.images;
-        shareInfo.url = show.url;
-        shareInfo.title = show.name;
+        shareInfo.content = show.share.info;
+        shareInfo.logo = show.share.logo;
+        shareInfo.url = show.share.url;
+        shareInfo.title = show.share.name;
 
         tv_name.setText(show.name);
         if (TextUtils.equals(show.price, "免费")) {

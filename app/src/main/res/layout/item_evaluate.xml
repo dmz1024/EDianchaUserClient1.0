@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:padding="@dimen/size12">
+    android:paddingLeft="@dimen/size10"
+    android:paddingRight="@dimen/size10"
+    android:paddingTop="@dimen/size10">
 
     <ImageView
         android:id="@+id/iv_head"
-        android:layout_width="@dimen/size60"
-        android:layout_height="@dimen/size60"
+        android:layout_width="@dimen/size50"
+        android:layout_height="@dimen/size50"
         android:layout_marginTop="@dimen/size3"
         android:scaleType="fitXY" />
 
@@ -17,14 +19,12 @@
         android:id="@+id/tv_name"
         style="@style/TextSize15Color333"
         android:layout_marginLeft="@dimen/size6"
-        android:layout_toRightOf="@id/iv_head"
-        android:text="邓如果" />
+        android:layout_toRightOf="@id/iv_head" />
 
     <TextView
         android:id="@+id/tv_time"
         style="@style/TextSize13Color666"
-        android:layout_alignParentRight="true"
-        android:text="2016-08-07 15:30" />
+        android:layout_alignParentRight="true" />
 
     <LinearLayout
         android:id="@+id/ll_ratingbar"
@@ -45,7 +45,8 @@
             android:layout_height="15dp"
             android:layout_marginLeft="@dimen/size6"
             app:clickable="false"
-            app:space="0.1"
+            app:space="3"
+            app:MyRatingBar_starImageSize="@dimen/size18"
             app:starNumber="5"
             app:step="0.5" />
 
@@ -57,11 +58,11 @@
 
         <TextView
             android:id="@+id/tv_price"
-            android:visibility="gone"
             style="@style/TextSize14Color333"
             android:layout_marginLeft="@dimen/size18"
             android:text="100元/人"
-            android:textColor="#cd673a" />
+            android:textColor="#cd673a"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -73,8 +74,7 @@
         android:layout_below="@id/ll_ratingbar"
         android:layout_marginTop="@dimen/size8"
         android:ellipsize="end"
-        android:maxLines="3"
-        android:text="茶馆很好茶馆很好很好很好茶馆很好很好很好茶馆很好很好很好茶馆很好很好很好茶馆很好很好很好茶馆很好很好很好茶馆很好很好很好很好很好" />
+        android:maxLines="3" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_image"
@@ -82,6 +82,4 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tv_name"
         android:layout_below="@id/tv_content" />
-
-
 </RelativeLayout>

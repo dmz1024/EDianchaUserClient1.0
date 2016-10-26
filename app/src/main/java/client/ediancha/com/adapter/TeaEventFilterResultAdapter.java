@@ -10,20 +10,21 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
+import client.ediancha.com.entity.TeaFilter;
 import client.ediancha.com.interfaces.OnTeaEventFilterResultChangeListener;
 
 /**
  * Created by dengmingzhi on 16/10/12.
  */
 
-public class TeaEventFilterResultAdapter extends SingleBaseAdapter<String> {
+public class TeaEventFilterResultAdapter extends SingleBaseAdapter<TeaFilter.Cat> {
     private OnTeaEventFilterResultChangeListener onTeaEventFilterResultChangeListener;
 
-    public TeaEventFilterResultAdapter(Context ctx, List<String> list) {
+    public TeaEventFilterResultAdapter(Context ctx, List<TeaFilter.Cat> list) {
         super(ctx, list);
     }
 
-    public TeaEventFilterResultAdapter(List<String> list) {
+    public TeaEventFilterResultAdapter(List<TeaFilter.Cat> list) {
         super(list);
     }
 
@@ -35,7 +36,8 @@ public class TeaEventFilterResultAdapter extends SingleBaseAdapter<String> {
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaEventFileterResultViewHolder mHolder = (TeaEventFileterResultViewHolder) holder;
-        mHolder.tv_name.setText(list.get(position));
+        TeaFilter.Cat cat = list.get(position);
+        mHolder.tv_name.setText(cat.name);
 
     }
 
@@ -55,8 +57,8 @@ public class TeaEventFilterResultAdapter extends SingleBaseAdapter<String> {
             list.remove(layoutPosition);
             notifyItemRemoved(layoutPosition);
             notifyItemRangeChanged(layoutPosition, list.size() - 1 - layoutPosition);
-            if(onTeaEventFilterResultChangeListener!=null){
-                onTeaEventFilterResultChangeListener.change(list.size(),layoutPosition);
+            if (onTeaEventFilterResultChangeListener != null) {
+                onTeaEventFilterResultChangeListener.change(list.size(), layoutPosition);
             }
         }
 

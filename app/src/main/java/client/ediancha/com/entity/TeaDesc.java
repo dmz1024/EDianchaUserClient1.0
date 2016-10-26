@@ -22,9 +22,18 @@ public class TeaDesc extends BaseEntity {
         public String quantity;
         public String store_id;
         public String store_name;
+        public Share share;
     }
 
     public static class Image {
         public String image;
     }
+
+    public static class Share{
+        public String info;
+        public String logo;
+        public String name;
+        public String url;
+    }
+
 }

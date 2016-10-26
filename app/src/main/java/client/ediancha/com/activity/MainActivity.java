@@ -7,7 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -110,6 +112,15 @@ public class MainActivity extends ToolBarActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.item_search) {
+            Util.skip(this, SearchActivity.class);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     public void onCreateCustomToolBar(Toolbar toolbar) {
@@ -122,5 +133,15 @@ public class MainActivity extends ToolBarActivity {
     @Override
     protected void back() {
         Util.skip(this, MyCenterActivity.class);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

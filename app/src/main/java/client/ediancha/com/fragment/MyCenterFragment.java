@@ -91,8 +91,9 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
         if (TextUtils.isEmpty(UserInfo.uid)) {
             isLogin = false;
             tv_name.setText("未登录");
+
         }
-        Glide.with(getActivity()).load(R.mipmap.ic_launcher).bitmapTransform(new GlideCircleTransform(getContext())).into(iv_head);
+        Glide.with(getActivity()).load(R.mipmap.icon_head).bitmapTransform(new GlideCircleTransform(getContext())).into(iv_head);
 
         View view_set = view.findViewById(R.id.view_set);
         view_set.setOnClickListener(this);
