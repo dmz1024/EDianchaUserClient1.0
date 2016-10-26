@@ -39,6 +39,8 @@
                     android:layout_toRightOf="@id/iv_search"
                     android:background="@null"
                     android:hint="请输入搜索条件"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"
                     android:textColor="#90ffffff"
                     android:textColorHint="#70ffffff"
                     android:textSize="@dimen/sp13" />

@@ -31,16 +31,14 @@ import client.ediancha.com.util.MyToast;
  */
 
 public class AddressAdapter extends SingleBaseAdapter<Address.Data> {
-    private String type;
     private int address_default;
+    private boolean isChoose;
 
-    public AddressAdapter(Context ctx, List<Address.Data> list) {
+    public AddressAdapter(Context ctx, List<Address.Data> list, boolean isChoose) {
         super(ctx, list);
+        this.isChoose = isChoose;
     }
 
-    public AddressAdapter(List<Address.Data> list) {
-        super(list);
-    }
 
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -105,7 +103,9 @@ public class AddressAdapter extends SingleBaseAdapter<Address.Data> {
                     }).deleteOrDefault("delete", list.get(layoutPosition).address_id, "删除地址");
                     break;
                 case R.id.tv_edit:
-                    onClick(layoutPosition);
+                    Intent intent = new Intent(ctx, AddressManagerActivity.class);
+                    intent.putExtra("data", list.get(layoutPosition));
+                    ((Activity) ctx).startActivityForResult(intent, Constant.ADDRESS_ADD);
                     break;
                 case R.id.tv_type:
                     if (list.get(layoutPosition).is_default != 1) {
@@ -129,9 +129,17 @@ public class AddressAdapter extends SingleBaseAdapter<Address.Data> {
 
         @Override
         protected void onClick(int layoutPosition) {
-            Intent intent = new Intent(ctx, AddressManagerActivity.class);
-            intent.putExtra("data", list.get(layoutPosition));
-            ((Activity) ctx).startActivityForResult(intent, Constant.ADDRESS_ADD);
+            if (isChoose) {
+                Intent intent = ((Activity) ctx).getIntent();
+                intent.putExtra("name", list.get(layoutPosition).name);
+                intent.putExtra("address", list.get(layoutPosition).address);
+                ((Activity) ctx).setResult(1, intent);
+                ((Activity) ctx).finish();
+            } else {
+                Intent intent = new Intent(ctx, AddressManagerActivity.class);
+                intent.putExtra("data", list.get(layoutPosition));
+                ((Activity) ctx).startActivityForResult(intent, Constant.ADDRESS_ADD);
+            }
         }
     }
 

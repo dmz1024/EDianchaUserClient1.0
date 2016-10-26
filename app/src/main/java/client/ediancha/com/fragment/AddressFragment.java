@@ -23,10 +23,28 @@ import client.ediancha.com.entity.TeaOrder;
 
 public class AddressFragment extends ListNetWorkBaseFragment<Address.Data, Address> {
 
+    private boolean isChoose;
+
+    public static AddressFragment getInstance(boolean isChoose) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isChoose", isChoose);
+        AddressFragment addressFragment = new AddressFragment();
+        addressFragment.setArguments(bundle);
+        return addressFragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            isChoose = bundle.getBoolean("isChoose");
+        }
+    }
 
     @Override
     protected RecyclerView.Adapter getAdapter(List<Address.Data> totalList) {
-        return new AddressAdapter(getContext(), totalList) {
+        return new AddressAdapter(getContext(), totalList,isChoose) {
             @Override
             protected void onRefresh() {
                 AddressFragment.this.onRefresh();

@@ -52,7 +52,7 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
 
     @Override
     protected int getPage() {
-        return isSearch? 1 : 0;
+        return isSearch ? 1 : 0;
     }
 
     @Override
@@ -64,7 +64,11 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
     protected Map<String, String> getMap() {
         map.put("c", "chanpin");
         if (page > 0) {
-            map.put("a", "goods_list");
+            if (isSearch) {
+                map.put("a", "search_product");
+            } else {
+                map.put("a", "goods_list");
+            }
         } else {
             map.put("a", "index");
         }

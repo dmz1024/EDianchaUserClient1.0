@@ -18,7 +18,7 @@ public class AddressActivity extends ToolBarActivity {
 
     @Override
     protected String getToolBarTitle() {
-        return "地址管理";
+        return getIntent().getBooleanExtra("chooseLink", false) ? "选择收货人" : "地址管理";
     }
 
     @Override
@@ -28,7 +28,7 @@ public class AddressActivity extends ToolBarActivity {
 
     @Override
     protected void initData() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, addressFragment = new AddressFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, addressFragment = AddressFragment.getInstance(getIntent().getBooleanExtra("chooseLink", false))).commit();
     }
 
     @Override

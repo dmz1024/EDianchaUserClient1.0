@@ -1,12 +1,23 @@
 package client.ediancha.com.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseActivity;
+import client.ediancha.com.entity.TeaFilter;
 import client.ediancha.com.myview.TextImage;
 
 /**
@@ -38,10 +49,44 @@ public class SearchActivity extends BaseActivity {
         tv_event = (TextImage) findViewById(R.id.tv_event);
         tv_space = (TextImage) findViewById(R.id.tv_space);
         tv_tea = (TextImage) findViewById(R.id.tv_tea);
+        et_search = (EditText) findViewById(R.id.et_search);
         tv_cancle.setOnClickListener(this);
         tv_event.setOnClickListener(this);
         tv_space.setOnClickListener(this);
         tv_tea.setOnClickListener(this);
+
+        et_search.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    search();
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
+    /**
+     * 搜索
+     */
+    private void search() {
+        String str = et_search.getText().toString();
+        if (TextUtils.isEmpty(str)) {
+            return;
+        }
+
+        List<TeaFilter.Cat> cats = new ArrayList<>();
+        TeaFilter.Cat cat = new TeaFilter.Cat();
+        cat.key = "keyword";
+        cat.name = str;
+        cat.value = str;
+        cats.add(cat);
+        String listJson = new Gson().toJson(cats);
+        Intent intent = new Intent(this, TeaEventFilterResultActivity.class);
+        intent.putExtra("data", listJson);
+        intent.putExtra("type", type);
+        startActivity(intent);
     }
 
     @Override
@@ -69,7 +114,7 @@ public class SearchActivity extends BaseActivity {
         tv_event.setDrawable(R.mipmap.icon_search_teaactivity);
         tv_space.setDrawable(R.mipmap.icon_search_teahouse);
         tv_tea.setDrawable(R.mipmap.icon_search_teatype);
-        switch (type){
+        switch (type) {
             case 0:
                 tv_event.setDrawable(R.mipmap.icon_search_teaactivity_cur);
                 break;
@@ -80,7 +125,6 @@ public class SearchActivity extends BaseActivity {
                 tv_tea.setDrawable(R.mipmap.icon_search_teatype_cur);
                 break;
         }
-
 
     }
 }

@@ -1,15 +1,20 @@
 package client.ediancha.com.fragment;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.AddressActivity;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
+import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.myview.ChooseStringView;
 
@@ -18,6 +23,9 @@ import client.ediancha.com.myview.ChooseStringView;
  */
 
 public class BuyTeaFragment extends SingleNetWorkBaseFragment<BaseEntity> {
+    private TextView tv_link_name;
+    private TextView tv_link_address;
+
     @Override
     protected void writeData(BaseEntity t) {
 
@@ -49,7 +57,11 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<BaseEntity> {
     protected View getHaveDataView() {
         View view = View.inflate(getContext(), R.layout.fragment_buy_tea, null);
         Button bt_pay = (Button) view.findViewById(R.id.bt_pay);
+        RelativeLayout rl_link = (RelativeLayout) view.findViewById(R.id.rl_link);
+        tv_link_name = (TextView) view.findViewById(R.id.tv_link_name);
+        tv_link_address = (TextView) view.findViewById(R.id.tv_link_address);
         bt_pay.setOnClickListener(this);
+        rl_link.setOnClickListener(this);
         return view;
     }
 
@@ -60,7 +72,19 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<BaseEntity> {
             case R.id.bt_pay:
                 pay();
                 break;
+            case R.id.rl_link:
+                chooseLink();
+                break;
         }
+    }
+
+    /**
+     * 选择联系人
+     */
+    private void chooseLink() {
+        Intent intent = new Intent(getContext(), AddressActivity.class);
+        intent.putExtra("chooseLink", true);
+        startActivityForResult(intent, Constant.ADDRESS_CHOOSW);
     }
 
     private void pay() {
@@ -84,5 +108,14 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<BaseEntity> {
     @Override
     protected boolean getCanRefresh() {
         return false;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.ADDRESS_CHOOSW && data != null) {
+            tv_link_name.setText(data.getStringExtra("name"));
+            tv_link_address.setText(data.getStringExtra("address"));
+        }
     }
 }
