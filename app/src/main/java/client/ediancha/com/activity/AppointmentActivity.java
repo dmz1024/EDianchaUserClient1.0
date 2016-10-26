@@ -25,10 +25,9 @@ public class AppointmentActivity extends AppCompatActivity {
         TabLayout layout = (TabLayout) findViewById(R.id.tablayout);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        final String[] titles = {"待确认", "待消费", "已消费", "待点评", "已关闭"};
+        final String[] titles = {"待审核", "待消费", "已完成", "已取消"};
 
         final List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(AppointmentFragment.getInstance("0"));
         fragmentList.add(AppointmentFragment.getInstance("1"));
         fragmentList.add(AppointmentFragment.getInstance("2"));
         fragmentList.add(AppointmentFragment.getInstance("3"));

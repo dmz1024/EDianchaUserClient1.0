@@ -27,11 +27,15 @@ public abstract class PopBaseView implements PopupWindow.OnDismissListener {
         ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 0.3f).duration(500).start();
     }
 
-    public void creatPop() {
-        popupWindow = new PopupWindow((getView()), Util.getWidth() - width(), FrameLayout.LayoutParams.WRAP_CONTENT, true);
+    private void creatPop() {
+        popupWindow = new PopupWindow((getView()), Util.getWidth() - width(), height(), true);
         popupWindow.setBackgroundDrawable(new ColorDrawable());
         popupWindow.setOnDismissListener(this);
         popupWindow.setAnimationStyle(getAnimation());
+    }
+
+    protected int height() {
+        return FrameLayout.LayoutParams.WRAP_CONTENT;
     }
 
     public void showAtLocation() {
@@ -39,7 +43,7 @@ public abstract class PopBaseView implements PopupWindow.OnDismissListener {
         popupWindow.showAtLocation(((Activity) ctx).findViewById(android.R.id.content), getGravity(), x(), y());
     }
 
-    protected void showAsDropDown(View v) {
+    public void showAsDropDown(View v) {
         creatPop();
         popupWindow.showAsDropDown(v, x(), y());
     }
@@ -81,6 +85,10 @@ public abstract class PopBaseView implements PopupWindow.OnDismissListener {
     @Override
     public void onDismiss() {
         ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 1f).duration(600).start();
+    }
+
+    public void dismiss() {
+        popupWindow.dismiss();
     }
 
 }

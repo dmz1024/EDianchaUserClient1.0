@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingBottom="@dimen/size10"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextSize15Color333"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size10"
+        android:text="帅气的小邓" />
+
+    <TextView
+        android:id="@+id/tv_tel"
+        style="@style/TextSize14Color333"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size10"
+        android:text="18326167257" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        style="@style/TextSize14Color333"
+        android:layout_below="@id/tv_name"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size10"
+        android:text="北京北京市产朝阳区亚运村街道北辰东路8号院-12北辰汇园酒店公寓M座1708房间" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size0.5"
+        android:layout_below="@id/tv_address"
+        android:layout_marginTop="@dimen/size10"
+        android:background="#e0e0e0" />
+
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_type"
+        style="@style/TextSize14Color333"
+        android:layout_below="@id/view"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size10"
+        android:drawablePadding="@dimen/size10"
+        android:text="设为默认"
+        tool:TextImage_drawable="@mipmap/icon_a_select"
+        tool:TextImage_height="@dimen/size13"
+        tool:TextImage_seat="1"
+        tool:TextImage_width="@dimen/size13" />
+
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_delete"
+        style="@style/TextSize14Color333"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/view"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size10"
+        android:drawablePadding="@dimen/size5"
+        android:gravity="center"
+        android:text="删除"
+        tool:TextImage_drawable="@mipmap/icon_delete"
+        tool:TextImage_height="@dimen/size18"
+        tool:TextImage_seat="1"
+        tool:TextImage_width="@dimen/size13" />
+
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_edit"
+        style="@style/TextSize14Color333"
+        android:layout_below="@id/view"
+        android:layout_marginRight="@dimen/size10"
+        android:layout_marginTop="@dimen/size10"
+        android:layout_toLeftOf="@id/tv_delete"
+        android:drawablePadding="@dimen/size5"
+        android:gravity="center"
+        android:text="编辑"
+        tool:TextImage_drawable="@mipmap/icon_edit"
+        tool:TextImage_height="@dimen/size18"
+        tool:TextImage_seat="1"
+        tool:TextImage_width="@dimen/size13" />
+
+</RelativeLayout>

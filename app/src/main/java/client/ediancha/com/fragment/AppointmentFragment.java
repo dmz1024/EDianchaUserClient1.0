@@ -10,6 +10,7 @@ import java.util.Map;
 
 import client.ediancha.com.adapter.AppointmentAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
+import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.entity.Appointment;
 
 /**
@@ -42,19 +43,18 @@ public class AppointmentFragment extends ListNetWorkBaseFragment<Appointment.Dat
 
     @Override
     protected String getUrl() {
-        return "top250";
+        return "app.php";
     }
 
     @Override
     protected Map<String, String> getMap() {
+        map.put("c","myorder");
+        map.put("a","yuyue_orders");
+        map.put("uid", UserInfo.uid);
+        map.put("token", UserInfo.token);
         return map;
     }
 
-    @Override
-    protected void initMap() {
-        map.put("start", (page * 10) + "");
-        map.put("count", 10 + "");
-    }
 
     @Override
     protected Class<Appointment> getTClass() {
@@ -68,6 +68,6 @@ public class AppointmentFragment extends ListNetWorkBaseFragment<Appointment.Dat
 
     @Override
     protected boolean isCanFirstInitData() {
-        return TextUtils.equals(type, "0");
+        return TextUtils.equals(type, "1");
     }
 }

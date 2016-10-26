@@ -77,8 +77,9 @@ public class ChooseStringView extends PopBaseView {
         lv_content.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onDismiss();
+                dismiss();
                 if (position != list.size()) {
+
                     itemClick(position);
                 }
 

@@ -1,5 +1,6 @@
 package client.ediancha.com.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,13 +19,16 @@ import com.bumptech.glide.Glide;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.TextHintView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.AddCommentActivity;
 import client.ediancha.com.activity.MoreEvaluateActivity;
 import client.ediancha.com.activity.MoreTeaPackageActivity;
+import client.ediancha.com.activity.TeaSpaceOtherRecommendActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.adapter.TeaSpaceDescInfoAdapter;
@@ -74,10 +79,12 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
     private Button bt_more;
     private Toolbar toolbar;
     private TextView tv_title;
+    private TeaSpaceDesc t;
 
     public static TeaSpaceDescFragment getInstance(String id) {
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
+        Log.d("id", id);
         TeaSpaceDescFragment teaSpaceDescFragment = new TeaSpaceDescFragment();
         teaSpaceDescFragment.setArguments(bundle);
         return teaSpaceDescFragment;
@@ -109,6 +116,7 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         tv_price = (TextView) view.findViewById(R.id.tv_price);
         trl_address = (TitleRelativeLayout) view.findViewById(R.id.trl_address);
         trl_tea_recommend = (TitleRelativeLayout) view.findViewById(R.id.trl_tea_recommend);
+        trl_tea_recommend.setOnClickListener(this);
         trl_evaluate = (TitleRelativeLayout) view.findViewById(R.id.trl_evaluate);
         trl_tea_info = (TitleRelativeLayout) view.findViewById(R.id.trl_tea_info);
         trl_other = (TitleRelativeLayout) view.findViewById(R.id.trl_other);
@@ -134,6 +142,7 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         scrollView.setScrollViewListener(scrollViewListener);
         bt_more.setOnClickListener(this);
         trl_tea_package.setOnClickListener(this);
+        trl_evaluate.setOnClickListener(this);
         return view;
     }
 
@@ -146,6 +155,17 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
                 break;
             case R.id.trl_tea_package:
                 Util.skip(getActivity(), MoreTeaPackageActivity.class);
+                break;
+            case R.id.trl_tea_recommend:
+                Intent intent1 = new Intent(getContext(), TeaSpaceOtherRecommendActivity.class);
+                intent1.putExtra("bx", (Serializable) t.data.bx);
+                startActivity(intent1);
+                break;
+            case R.id.trl_evaluate:
+                Intent intent = new Intent(getContext(), AddCommentActivity.class);
+                intent.putExtra("id", id);
+                intent.putExtra("type", "STORE");
+                startActivityForResult(intent, Constant.SPACECOMMENT_REQ);
                 break;
         }
     }
@@ -184,8 +204,7 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
 
     @Override
     protected void writeData(TeaSpaceDesc t) {
-
-
+        this.t = t;
         fillRollPageView(t.data.show.images);
         fillEvaluate(t.data.comment);
         fillRecommend(t.data.bx);
@@ -223,8 +242,8 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         trl_tel.setTitle(show.phone1 + "-" + show.phone2);
         tv_info.setText("商户名称：" + show.storename + "\n\n营业时间：" + show.business_hours);
 
-        tv_introduce_content.setText(show.shortdesc == null ? "暂未添加介绍,可联系客服询问" : show.shortdesc);
-        tv_event_content.setText("活动介绍：" + show.content == null ? "暂未添加介绍,可联系客服询问" : show.content);
+        tv_introduce_content.setText(TextUtils.isEmpty(show.shortdesc) ? "暂未添加介绍,可联系客服询问" : show.content);
+        tv_event_content.setText("茶馆文化：" + (TextUtils.isEmpty(show.shortdesc) ? "暂未添加介绍,可联系客服询问" : show.shortdesc));
         trl_evaluate.setTitle("用户评价(" + show.commentcount + ")");
 
 

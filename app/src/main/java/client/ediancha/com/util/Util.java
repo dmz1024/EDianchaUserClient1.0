@@ -19,6 +19,8 @@ import android.view.WindowManager;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -149,7 +151,7 @@ public class Util {
         boolean isResult = false;
         exit:
         for (int i = 0; i < count; i++) {
-            Log.d("内容",content.substring(i, i + 1)+"--"+c);
+            Log.d("内容", content.substring(i, i + 1) + "--" + c);
             if (TextUtils.equals(content.substring(i, i + 1), c)) {
                 isResult = true;
                 break exit;
@@ -164,7 +166,7 @@ public class Util {
         boolean isResult = false;
         exit:
         for (int i = 0; i < count; i++) {
-            Log.d("内容",content.substring(i, i + 1)+"--"+c);
+            Log.d("内容", content.substring(i, i + 1) + "--" + c);
             if (TextUtils.equals(content.substring(i, i + 1), c)) {
                 isResult = true;
                 break exit;
@@ -306,7 +308,6 @@ public class Util {
         UserInfo.newuser = userInfo.get("newuser");
         UserInfo.type = userInfo.get("type");
         UserInfo.time = userInfo.get("time");
-
         Log.d("uid1", userInfo.get("uid") + "订单");
     }
 
@@ -332,19 +333,49 @@ public class Util {
     public static String byteArrayToHex(byte[] byteArray) {
 
         // 首先初始化一个字符数组，用来存放每个16进制字符
-        char[] hexDigits = {'0','1','2','3','4','5','6','7','8','9', 'A','B','C','D','E','F' };
+        char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         // new一个字符数组，这个就是用来组成结果字符串的（解释一下：一个byte是八位二进制，也就是2位十六进制字符（2的8次方等于16的2次方））
-        char[] resultCharArray =new char[byteArray.length * 2];
+        char[] resultCharArray = new char[byteArray.length * 2];
         // 遍历字节数组，通过位运算（位运算效率高），转换成字符放到字符数组中去
         int index = 0;
         for (byte b : byteArray) {
-            resultCharArray[index++] = hexDigits[b>>> 4 & 0xf];
-            resultCharArray[index++] = hexDigits[b& 0xf];
+            resultCharArray[index++] = hexDigits[b >>> 4 & 0xf];
+            resultCharArray[index++] = hexDigits[b & 0xf];
         }
         // 字符数组组合成字符串返回
         return new String(resultCharArray);
     }
 
+
+
+    /**
+     * 读取Assets目录下面指定文件并返回String数据
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public static String getJsonDataFromAssets(Context context, String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+        InputStream inputStream = context.getClass().getClassLoader().getResourceAsStream("assets/" + fileName);
+        try {
+            byte[] buffer = new byte[inputStream.available()];
+            inputStream.read(buffer);
+            String json = new String(buffer, "utf-8");
+            stringBuilder = stringBuilder.append(json);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                inputStream.close();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return stringBuilder.toString();
+    }
 
 
 }

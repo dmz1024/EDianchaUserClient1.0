@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee">
+
+
+
+
+
+    <Button
+        android:id="@+id/bt_save"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size50"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/touch_bg_51b338"
+        android:text="保   存"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp17" />
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextSize15Color333"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginTop="@dimen/size11"
+            android:text="收货人" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size18"
+            android:layout_alignBottom="@id/tv_name"
+            android:layout_marginLeft="@dimen/size15"
+            android:layout_toRightOf="@id/tv_name"
+            android:background="@null"
+            android:textColor="#333"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:id="@+id/view_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size0.5"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="@dimen/size12"
+            android:background="#eee" />
+
+        <TextView
+            android:id="@+id/tv_tel"
+            style="@style/TextSize15Color333"
+            android:layout_below="@id/view_name"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginTop="@dimen/size11"
+            android:text="联系电话" />
+
+        <EditText
+            android:id="@+id/et_tel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size18"
+            android:layout_alignBottom="@id/tv_tel"
+            android:layout_marginLeft="@dimen/size15"
+            android:layout_toRightOf="@id/tv_tel"
+            android:background="@null"
+            android:textColor="#333"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:id="@+id/view_tel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size0.5"
+            android:layout_below="@id/tv_tel"
+            android:layout_marginTop="@dimen/size12"
+            android:background="#eee" />
+
+        <client.ediancha.com.myview.TitleRelativeLayout
+            android:id="@+id/ct_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_tel"
+            android:layout_marginLeft="-2dp"
+            tools:TitleRelativeLayout_content_style="@style/TextSize14Color999"
+            tools:TitleRelativeLayout_title="所在地区"
+            tools:TitleRelativeLayout_title_style="@style/TextSize15Color333" />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size70"
+            android:layout_below="@id/ct_area"
+            android:layout_marginBottom="@dimen/size5"
+            android:background="@null"
+            android:gravity="left"
+            android:hint="请输入详细地址,方便后续物流配送!"
+            android:padding="@dimen/size10"
+            android:paddingRight="@dimen/size10"
+            android:textColor="#999"
+            android:textSize="@dimen/sp13" />
+    </RelativeLayout>
+    <client.ediancha.com.myview.TextImage
+        android:id="@+id/tv_set"
+        style="@style/TextSize15Color333"
+        android:layout_width="match_parent"
+        android:layout_below="@id/rl_top"
+        android:layout_marginTop="@dimen/size12"
+        android:background="#fff"
+        android:paddingBottom="@dimen/size10"
+        android:paddingLeft="@dimen/size10"
+        android:paddingRight="@dimen/size10"
+        android:paddingTop="@dimen/size10"
+        android:text="设为默认地址"
+        android:visibility="gone"
+        tools:TextImage_drawable="@mipmap/icon_a_select"
+        tools:TextImage_height="@dimen/size15"
+        tools:TextImage_seat="3"
+        tools:TextImage_width="@dimen/size15" />
+
+    <TextView
+        android:id="@+id/tv_delete"
+        style="@style/TextSize15Color333"
+        android:layout_width="match_parent"
+        android:layout_below="@id/tv_set"
+        android:layout_marginTop="@dimen/size12"
+        android:background="#fff"
+        android:visibility="gone"
+        android:paddingBottom="@dimen/size11"
+        android:paddingLeft="@dimen/size10"
+        android:paddingTop="@dimen/size11"
+        android:text="删除地址"
+        android:textColor="#51b338" />
+</RelativeLayout>

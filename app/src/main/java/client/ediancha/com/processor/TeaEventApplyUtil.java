@@ -59,7 +59,7 @@ public class TeaEventApplyUtil {
                     public void haveData(BaseEntity baseEntity) {
                         if (baseEntity.result == 0) {
                             MyToast.showToast("报名成功");
-                            onDismiss();
+                            dismiss();
                         } else {
                             if (baseEntity.msg.contains("token")) {
                                 new PopMessageTips("账号信息", "账号信息已过期,请重新登录!", "去登录", "再看看") {

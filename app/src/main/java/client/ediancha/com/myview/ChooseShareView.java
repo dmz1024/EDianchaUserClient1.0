@@ -37,6 +37,7 @@ public class ChooseShareView extends PopBaseView {
         this.list = list;
     }
 
+    @Override
     protected int getAnimation() {
         return R.style.popwin_anim_up_and_down;
     }
@@ -54,7 +55,7 @@ public class ChooseShareView extends PopBaseView {
         tv_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDismiss();
+                dismiss();
             }
         });
 
@@ -108,7 +109,7 @@ public class ChooseShareView extends PopBaseView {
 
         @Override
         protected void onClick(int layoutPosition) {
-            onDismiss();
+            dismiss();
             itemClick(layoutPosition);
         }
     }

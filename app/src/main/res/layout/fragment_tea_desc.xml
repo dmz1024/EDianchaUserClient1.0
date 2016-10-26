@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_tea_event_desc"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/ll_bottom"
@@ -55,6 +54,12 @@
             android:textColor="#fff"
             android:textSize="@dimen/sp15" />
     </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fg_desc"
+        android:layout_above="@id/ll_bottom"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <client.ediancha.com.myview.ScrollChangedScrollView
         android:id="@+id/scrollView"
@@ -144,43 +149,14 @@
                 android:layout_height="@dimen/size15"
                 android:background="#fbfbfb" />
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tablayout"
+            <TextView
+                android:id="@+id/tv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="#333"
-                app:tabIndicatorHeight="2dp"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="#333"
-                app:tabTextColor="#333" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size1"
-                android:background="#ebebeb" />
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vp_content"
-                android:layout_width="match_parent"
-                android:layout_height="500dp" />
+                android:gravity="center"
+                android:padding="@dimen/size10"
+                android:text="图文详情"
+                android:textColor="#333" />
         </LinearLayout>
     </client.ediancha.com.myview.ScrollChangedScrollView>
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:alpha="0"
-        android:background="#333" />
-
-    <TextView
-        android:id="@+id/tv_title"
-        style="@style/TextSize15Color333"
-        android:layout_centerHorizontal="true"
-        android:height="?attr/actionBarSize"
-        android:alpha="0"
-        android:gravity="center"
-        android:text="邓如果"
-        android:textColor="#fff" />
 </RelativeLayout>

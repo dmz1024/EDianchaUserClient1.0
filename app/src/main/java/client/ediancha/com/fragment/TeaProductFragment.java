@@ -15,7 +15,7 @@ import client.ediancha.com.interfaces.ShareInfoInterface;
  * Created by dengmingzhi on 16/10/12.
  */
 
-public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data, TeaProduct> implements ShareInfoInterface {
+public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data, TeaProduct> {
 
 
     @Override
@@ -63,7 +63,7 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
     }
 
     @Override
-    public ShareUtil.ShareInfo getShareInfo() {
-        return null;
+    protected boolean isCanFirstInitData() {
+        return false;
     }
 }

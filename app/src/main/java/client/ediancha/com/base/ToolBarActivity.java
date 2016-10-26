@@ -9,18 +9,22 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import client.ediancha.com.R;
 import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 2016/10/18.
  */
-public abstract class ToolBarActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class ToolBarActivity extends BaseActivity  {
     public Toolbar toolbar;
     public TextView tv_toolBar_title;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getRid());
         tv_toolBar_title = ((TextView) toolbar.findViewById(R.id.tv_toolBar_title));

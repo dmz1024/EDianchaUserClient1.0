@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#333"
+        android:padding="@dimen/size10">
+
+        <TextView
+            android:id="@+id/tv_cancle"
+            style="@style/TextSize14Color666"
+            android:layout_centerVertical="true"
+            android:text="取消"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextSize15Color666"
+            android:layout_centerInParent="true"
+            android:text="选择地区"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/tv_ok"
+            style="@style/TextSize14Color666"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="确定"
+            android:textColor="#fff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fbfbfb"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <client.ediancha.com.myview.PickerView
+                android:id="@+id/pv_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fff" />
+
+            <client.ediancha.com.myview.PickerView
+                android:id="@+id/pv_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size5"
+                android:layout_weight="1"
+                android:background="#fff" />
+
+            <client.ediancha.com.myview.PickerView
+                android:id="@+id/pv_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/size5"
+                android:layout_weight="1"
+                android:background="#fff" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size27"
+            android:layout_centerVertical="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#eee" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:layout_alignParentBottom="true"
+                android:background="#eee" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
+

@@ -41,7 +41,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="client.ediancha.com.activity.MainActivity">
+        <activity android:name="client.ediancha.com.activity.MainActivity" android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,9 +55,7 @@
         <activity android:name="client.ediancha.com.activity.ApplyOrderActivity" />
         <activity android:name="client.ediancha.com.activity.AppointmentActivity" />
         <activity android:name="client.ediancha.com.activity.TeaEventFilterActivity" />
-        <activity android:name="client.ediancha.com.activity.TestActivity" />
-        <activity android:name="client.ediancha.com.activity.TeaEventDescActivity" />
-        <activity android:name="client.ediancha.com.activity.TeaSpaceDescActivity">
+        <activity android:name="client.ediancha.com.activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,6 +69,11 @@
         <activity android:name="client.ediancha.com.activity.CheckLoginActivity" />
         <activity android:name="client.ediancha.com.activity.TeaEventFilterResultActivity" />
         <activity android:name="client.ediancha.com.base.DescBaseActivity" />
+        <activity android:name="client.ediancha.com.activity.AddCommentActivity" />
+        <activity android:name="client.ediancha.com.activity.TeaSpaceOtherRecommendActivity" />
+        <activity android:name="client.ediancha.com.activity.UserInfoActivity" />
+        <activity android:name="client.ediancha.com.activity.AddressActivity" />
+        <activity android:name="client.ediancha.com.activity.AddressManagerActivity" />
 
 
         <!-- QQ相关操作 -->

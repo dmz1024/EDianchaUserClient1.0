@@ -35,10 +35,27 @@
 
     <declare-styleable name="RatingBarView">
 
-        <attr name="starImageSize" format="dimension"/>
-        <attr name="starCount" format="integer"/>
-        <attr name="starEmpty" format="reference"/>
-        <attr name="starFill" format="reference"/>
+        <attr name="starImageSize" format="dimension" />
+        <attr name="starCount" format="integer" />
+        <attr name="starEmpty" format="reference" />
+        <attr name="starFill" format="reference" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="MyRatingBar">
+
+        <attr name="MyRatingBar_starImageSize" format="dimension" />
+        <!-- 每两个星星见距离 -->
+        <attr name="MyRatingBar_space" format="float" />
+        <attr name="MyRatingBar_starCount" format="integer" />
+        <attr name="MyRatingBar_starCurrent" format="float" />
+        <!-- 分辨率,比如设置为0.2最小可以显示0.2颗星星 -->
+        <attr name="MyRatingBar_step" format="float" />
+        <attr name="MyRatingBar_starEmpty" format="reference" />
+        <!-- boolean值 -->
+        <attr name="MyRatingBar_clickable" format="boolean" />
+        <attr name="MyRatingBar_starFill" format="reference" />
 
     </declare-styleable>
 

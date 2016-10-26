@@ -9,4 +9,8 @@ public interface Constant {
 
 
     int COLLECTION_REQ = 0x1;
+    int SPACECOMMENT_REQ = 0x2;
+    int USERINFO_REQ = 0x3;
+    int MY_CENTER_INFO = 0x4;
+    int ADDRESS_ADD = 0x5;
 }

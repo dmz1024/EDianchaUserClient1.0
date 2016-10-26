@@ -25,10 +25,9 @@ public class TeaOrderActivity extends AppCompatActivity {
         TabLayout layout = (TabLayout) findViewById(R.id.tablayout);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        final String[] titles = {"全部", "待付款", "待发货", "待收货", "已完成"};
+        final String[] titles = {"待付款", "待发货", "待收货", "已完成"};
 
         final List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(TeaOrderFragment.getInstance(""));
         fragmentList.add(TeaOrderFragment.getInstance("1"));
         fragmentList.add(TeaOrderFragment.getInstance("2"));
         fragmentList.add(TeaOrderFragment.getInstance("3"));

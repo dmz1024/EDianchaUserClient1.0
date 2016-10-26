@@ -10,6 +10,7 @@ import java.util.Map;
 
 import client.ediancha.com.adapter.TeaOrderAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
+import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.entity.TeaOrder;
 
 /**
@@ -42,22 +43,18 @@ public class TeaOrderFragment extends ListNetWorkBaseFragment<TeaOrder.Data, Tea
 
     @Override
     protected String getUrl() {
-        return "top250";
+        return "app.php";
     }
 
     @Override
     protected Map<String, String> getMap() {
-//        map.put("start", "1");
-//        map.put("date", "2016-10-11");
+        map.put("a", "goods_orders");
+        map.put("c", "myorder");
+        map.put("uid", UserInfo.uid);
+        map.put("token", UserInfo.token);
         return map;
     }
 
-    @Override
-    protected void initMap() {
-        map.put("start", (page * 10) + "");
-        map.put("count", 10 + "");
-//        map.put("date", "2016-10-11");
-    }
 
     @Override
     protected Class<TeaOrder> getTClass() {
@@ -71,6 +68,6 @@ public class TeaOrderFragment extends ListNetWorkBaseFragment<TeaOrder.Data, Tea
 
     @Override
     protected boolean isCanFirstInitData() {
-        return TextUtils.isEmpty(type);
+        return TextUtils.equals(type, "1");
     }
 }

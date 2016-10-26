@@ -76,6 +76,6 @@ public class PopTeaEventApply extends PopBaseView {
     }
 
     protected void itemClick(String tel, String name) {
-        onDismiss();
+        dismiss();
     }
 }

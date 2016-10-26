@@ -39,12 +39,11 @@
             style="@style/TextSize14Color666"
             android:text="评分" />
 
-        <client.ediancha.com.myview.RatingBar
+        <client.ediancha.com.myview.MyRatingBar
             android:id="@+id/ratingbar"
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:layout_marginLeft="@dimen/size6"
-            android:layout_marginTop="@dimen/size1"
             app:clickable="false"
             app:space="0.1"
             app:starNumber="5"
@@ -58,6 +57,7 @@
 
         <TextView
             android:id="@+id/tv_price"
+            android:visibility="gone"
             style="@style/TextSize14Color333"
             android:layout_marginLeft="@dimen/size18"
             android:text="100元/人"
@@ -68,7 +68,6 @@
 
     <TextView
         android:id="@+id/tv_content"
-
         style="@style/TextSize13Color333"
         android:layout_alignLeft="@id/tv_name"
         android:layout_below="@id/ll_ratingbar"
@@ -82,8 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tv_name"
-        android:layout_below="@id/tv_content"
-        />
+        android:layout_below="@id/tv_content" />
 
 
 </RelativeLayout>

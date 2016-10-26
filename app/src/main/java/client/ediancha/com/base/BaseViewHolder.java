@@ -32,8 +32,12 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
             onClick(getLayoutPosition());
         }else {
             itemOnclick(getLayoutPosition());
+            itemOnclick(view.getId(),getLayoutPosition());
         }
 
+    }
+
+    protected void itemOnclick(int id, int layoutPosition) {
     }
 
     protected void itemOnclick(int layoutPosition) {

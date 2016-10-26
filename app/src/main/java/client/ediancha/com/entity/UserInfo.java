@@ -14,6 +14,13 @@ public class UserInfo extends BaseEntity {
         public String time;
         public String type;
         public String uid;
+        public String nickname;
+        public String phone;
+        public String avatar;
+        public String point_balance;
+        public int sex;
+        public String ad;
+        public String intro;
     }
 
 

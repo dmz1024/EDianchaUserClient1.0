@@ -1,15 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_test"
+    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="client.ediancha.com.activity.TestActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/size45" />
 
-</RelativeLayout>
+    <client.ediancha.com.myview.MyRatingBar
+        android:id="@+id/aa"
+        android:layout_marginLeft="@dimen/size100"
+        android:layout_width="wrap_content"
+        app:MyRatingBar_clickable="true"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:text="222"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <client.ediancha.com.myview.PickerView
+        android:id="@+id/pick_view"
+        android:layout_marginLeft="@dimen/size100"
+        android:layout_width="80dp"
+        android:layout_height="160dp" />
+</LinearLayout>

@@ -1,5 +1,6 @@
 package client.ediancha.com.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class TeaSpaceDesc extends BaseEntity {
     }
 
 
-    public static class BaoXiang {
+    public static class BaoXiang implements Serializable {
         public String cz_id;
         public String images;
         public String name;
@@ -31,7 +32,16 @@ public class TeaSpaceDesc extends BaseEntity {
     }
 
     public static class Comment {
+        public String content;
+        public String nickname;
+        public String avatar;
+        public String date;
+        public int score;
+        public List<Attachment> attachment_list;
 
+        public static class Attachment {
+            public String file;
+        }
     }
 
     public static class OtherStore {
