@@ -40,6 +40,8 @@ public class TeaEventDesc extends BaseEntity {
         public String pigcms_id;
         public String storename;
         public String sttime;
+        public String zlat;
+        public String zlong;
     }
 
     public static class Share{

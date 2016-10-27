@@ -23,17 +23,38 @@ public class TeaDesc extends BaseEntity {
         public String store_id;
         public String store_name;
         public Share share;
+        public List<SkuList> sku_list;
+        public List<Property> property;
     }
 
     public static class Image {
         public String image;
     }
 
-    public static class Share{
+    public static class Share {
         public String info;
         public String logo;
         public String name;
         public String url;
+    }
+
+
+    public static class SkuList {
+        public double price;
+        public String properties;
+        public int quantity;
+    }
+
+    public static class Value {
+        public String image;
+        public String value;
+        public String vid;
+    }
+
+    public static class Property {
+        public String name;
+        public String pid;
+        public List<Value> values;
     }
 
 }

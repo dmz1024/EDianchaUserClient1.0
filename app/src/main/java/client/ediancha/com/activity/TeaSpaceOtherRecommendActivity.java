@@ -39,6 +39,6 @@ public class TeaSpaceOtherRecommendActivity extends ToolBarActivity {
 
     @Override
     protected int getRid() {
-        return R.layout.activity_teaspace_other_recommend;
+        return R.layout.activity_recycleview;
     }
 }

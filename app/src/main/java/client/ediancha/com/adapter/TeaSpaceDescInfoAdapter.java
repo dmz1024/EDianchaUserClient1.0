@@ -14,6 +14,7 @@ import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.TeaSpaceDesc;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -38,7 +39,7 @@ public class TeaSpaceDescInfoAdapter extends SingleBaseAdapter<TeaSpaceDesc.Even
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaSpaceDescInfoViewHolder mHolder = (TeaSpaceDescInfoViewHolder) holder;
         TeaSpaceDesc.Event data = list.get(position);
-        Glide.with(ctx).load(data.image).into(mHolder.iv_img);
+        GlideUtil.GlideErrAndOc(ctx, data.image, mHolder.iv_img);
         mHolder.tv_title.setText(data.title);
 
     }

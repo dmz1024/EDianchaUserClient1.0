@@ -15,6 +15,7 @@ import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.Appointment;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -39,7 +40,7 @@ public class AppointmentAdapter extends SingleBaseAdapter<Appointment.Data> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         AppointmentViewHolder mHolder = (AppointmentViewHolder) holder;
         Appointment.Data data = list.get(position);
-        Glide.with(ctx).load(data.images.large).into(mHolder.iv_img);
+        GlideUtil.GlideErrAndOc(ctx, data.images.large, mHolder.iv_img);
         mHolder.tv_name.setText(data.title);
     }
 

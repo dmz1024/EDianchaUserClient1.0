@@ -8,22 +8,31 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.ShareBaseActivity;
 import client.ediancha.com.constant.Constant;
+import client.ediancha.com.fragment.TeaPackageDescFragment;
 import client.ediancha.com.fragment.TeaProductDescFragment;
 import client.ediancha.com.processor.CollectionUtil;
 import client.ediancha.com.processor.ShareUtil;
 
 public class TeaDescActivity extends ShareBaseActivity {
     private TeaProductDescFragment teaProductDescFragment;
+    private TeaPackageDescFragment teaPackageDescFragment;
     private CollectionUtil collectionUtil;
+    private int type;
 
     @Override
     protected ShareUtil.ShareInfo getShareInfo() {
-        return teaProductDescFragment.getShareInfo();
+        if(type==1){
+            return teaProductDescFragment.getShareInfo();
+        }
+        return teaPackageDescFragment.getShareInfo();
     }
 
     @Override
     protected boolean isCanClick() {
-        return teaProductDescFragment.getResult();
+        if(type==1){
+            return teaProductDescFragment.getResult();
+        }
+        return teaPackageDescFragment.getResult();
     }
 
     @Override
@@ -33,7 +42,13 @@ public class TeaDescActivity extends ShareBaseActivity {
 
     @Override
     protected void initView() {
-        teaProductDescFragment = TeaProductDescFragment.getInstance("54");
+        type = getIntent().getIntExtra("type", 1);
+        if(type==1){
+            teaProductDescFragment = TeaProductDescFragment.getInstance(getIntent().getStringExtra("id"));
+        }else {
+            teaPackageDescFragment = TeaPackageDescFragment.getInstance(getIntent().getStringExtra("id"));
+        }
+
 
     }
 
@@ -46,7 +61,7 @@ public class TeaDescActivity extends ShareBaseActivity {
     protected void handleItem(int position) {
         switch (position) {
             case 0:
-                collectionUtil.collection(this, getIntent().getStringExtra("id"), "1");
+                collectionUtil.collection(this, getIntent().getStringExtra("id"), type + "");
                 break;
         }
     }
@@ -54,8 +69,13 @@ public class TeaDescActivity extends ShareBaseActivity {
     @Override
     protected void initData() {
         collectionUtil = CollectionUtil.getInstance();
-        collectionUtil.isCollection(getIntent().getStringExtra("id"), "1");
-        getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, teaProductDescFragment).commit();
+        collectionUtil.isCollection(getIntent().getStringExtra("id"), type + "");
+        if(type==1){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, teaProductDescFragment).commit();
+        }else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, teaPackageDescFragment).commit();
+        }
+
     }
 
     @Override
@@ -70,17 +90,26 @@ public class TeaDescActivity extends ShareBaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.COLLECTION_REQ) {
-            collectionUtil.isCollection(getIntent().getStringExtra("id"), "1");
+            collectionUtil.isCollection(getIntent().getStringExtra("id"), type + "");
         }
     }
 
 
     @Override
     protected void back() {
-        if (teaProductDescFragment.getShow()) {
-            teaProductDescFragment.hideDesc();
-        } else {
-            super.back();
+        if(type==1){
+            if (teaProductDescFragment.getShow()) {
+                teaProductDescFragment.hideDesc();
+            } else {
+                super.back();
+            }
+        }else {
+            if (teaPackageDescFragment.getShow()) {
+                teaPackageDescFragment.hideDesc();
+            } else {
+                super.back();
+            }
         }
+
     }
 }

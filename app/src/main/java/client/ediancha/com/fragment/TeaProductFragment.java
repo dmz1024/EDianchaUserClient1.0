@@ -1,8 +1,10 @@
 package client.ediancha.com.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.List;
@@ -41,9 +43,10 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
         return teaProductFragment;
     }
 
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         Bundle bundle = getArguments();
         if (bundle != null) {
             isSearch = bundle.getBoolean("isSearch", false);
@@ -64,7 +67,7 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
     protected Map<String, String> getMap() {
         map.put("c", "chanpin");
         if (page > 0) {
-            if (isSearch) {
+            if (isSearch || filterMap.size() > 0) {
                 map.put("a", "search_product");
             } else {
                 map.put("a", "goods_list");
@@ -89,7 +92,7 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
             filterMap.put(catList.get(i).key, catList.get(i).value);
         }
 
-        onRefresh();
+        getData();
     }
 
     @Override

@@ -90,7 +90,7 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<BaseEntity> {
     private void pay() {
         List<String> list = new ArrayList<>();
         list.add("微信支付");
-        list.add("微信他人支付");
+        list.add("微信让他人支付");
         list.add("支付宝支付");
         new ChooseStringView(getContext(), list) {
             @Override

@@ -78,6 +78,9 @@
         <activity android:name="client.ediancha.com.activity.AddressManagerActivity" />
         <activity android:name="client.ediancha.com.activity.BuyTeaActivity" />
         <activity android:name="client.ediancha.com.activity.SearchActivity" />
+        <activity android:name="client.ediancha.com.activity.BuyCarActivity" />
+        <activity android:name="client.ediancha.com.activity.OtherStoreActivity" />
+        <activity android:name="client.ediancha.com.activity.PackageOrderActivity" />
 
 
         <!-- QQ相关操作 -->

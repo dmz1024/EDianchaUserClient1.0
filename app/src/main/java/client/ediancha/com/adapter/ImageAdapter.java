@@ -12,6 +12,8 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
+import client.ediancha.com.myview.BannerImageVIew;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -35,11 +37,10 @@ public class ImageAdapter extends SingleBaseAdapter<String> {
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         EvaluateViewHolder mHolder = (EvaluateViewHolder) holder;
-        Glide.with(ctx).load(list.get(position)).into(mHolder.iv_img);
-
+        GlideUtil.GlideErrAndOc(ctx, list.get(position), mHolder.iv_img);
     }
 
-    public static class EvaluateViewHolder extends BaseViewHolder {
+    public  class EvaluateViewHolder extends BaseViewHolder {
         public ImageView iv_img;
 
         public EvaluateViewHolder(View itemView) {
@@ -47,5 +48,9 @@ public class ImageAdapter extends SingleBaseAdapter<String> {
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
         }
 
+        @Override
+        protected void onClick(int layoutPosition) {
+            new BannerImageVIew(ctx,list,layoutPosition).showAtLocation();
+        }
     }
 }

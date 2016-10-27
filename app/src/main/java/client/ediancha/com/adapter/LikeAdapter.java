@@ -12,14 +12,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
 import java.util.List;
+
 import client.ediancha.com.R;
+import client.ediancha.com.activity.TeaDescActivity;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.Like;
 import client.ediancha.com.interfaces.OnResultListener;
 import client.ediancha.com.processor.CollectionUtil;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -50,7 +54,7 @@ public class LikeAdapter extends SingleBaseAdapter<Like.Data> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         LikeEventViewHolder mHolder = (LikeEventViewHolder) holder;
         Like.Data data = list.get(position);
-        Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+        GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
         mHolder.tv_title.setText(data.name);
     }
 
@@ -86,7 +90,12 @@ public class LikeAdapter extends SingleBaseAdapter<Like.Data> {
 
         @Override
         protected void onClick(int layoutPosition) {
-            Intent intent = new Intent(ctx, DescBaseActivity.class);
+            Intent intent;
+            if (TextUtils.equals("4", type) || TextUtils.equals("1", type)) {
+                intent = new Intent(ctx, TeaDescActivity.class);
+            } else {
+                intent = new Intent(ctx, DescBaseActivity.class);
+            }
             intent.putExtra("title", list.get(layoutPosition).name);
             intent.putExtra("id", list.get(layoutPosition).dataid);
             intent.putExtra("type", Integer.parseInt(type));

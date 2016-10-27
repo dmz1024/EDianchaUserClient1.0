@@ -15,6 +15,7 @@ import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.TeaOrder;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -39,7 +40,7 @@ public class TeaOrderShopAdapter extends SingleBaseAdapter<TeaOrder.Casts> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaOrderShopViewHolder mHolder = (TeaOrderShopViewHolder) holder;
         TeaOrder.Casts cast = list.get(position);
-        Glide.with(ctx).load(Constant.IMAGE).into(mHolder.iv_img);
+        GlideUtil.GlideErrAndOc(ctx, Constant.IMAGE, mHolder.iv_img);
         mHolder.tv_name.setText(cast.name);
         mHolder.tv_count.setText("X" + cast.id);
         mHolder.tv_now_price.setText("￥" + cast.id);

@@ -25,12 +25,13 @@ public class LikeActivity extends AppCompatActivity {
         TabLayout layout = (TabLayout) findViewById(R.id.tablayout);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        final String[] titles = {"活动", "茶馆", "茶品"};
+        final String[] titles = {"活动", "茶馆", "茶品","包厢"};
 
         final List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(LikeFragment.getInstance("3"));
         fragmentList.add(LikeFragment.getInstance("2"));
         fragmentList.add(LikeFragment.getInstance("1"));
+        fragmentList.add(LikeFragment.getInstance("4"));
 
         viewPager.setOffscreenPageLimit(fragmentList.size());
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {

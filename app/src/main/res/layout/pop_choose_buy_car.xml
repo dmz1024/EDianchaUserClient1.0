@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size10"
+        android:background="#00000000" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view"
+        android:background="#fbfbfb">
+
+        <RelativeLayout
+            android:id="@+id/rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fbfbfb"
+            android:paddingLeft="@dimen/size132"
+            android:paddingTop="@dimen/size10">
+
+            <TextView
+                android:id="@+id/tv_price"
+                style="@style/TextSize15Color333"
+                android:textColor="#51b338"
+                android:textSize="@dimen/sp18" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                style="@style/TextSize14Color333"
+                android:layout_below="@id/tv_price"
+                android:layout_marginTop="@dimen/size8" />
+
+            <TextView
+                android:id="@+id/tv_choose"
+                style="@style/TextSize14Color333"
+                android:layout_below="@id/tv_count"
+                android:layout_marginTop="@dimen/size8"
+                android:ellipsize="end"
+                android:maxLines="1" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/bt_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/touch_bg_51b338"
+            android:text="确定"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp17" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bt_ok"
+            android:layout_marginTop="@dimen/size125" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fg_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size12"
+        android:background="#fff"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="@dimen/size105"
+            android:layout_height="@dimen/size105"
+            android:scaleType="fitXY" />
+    </FrameLayout>
+
+
+</RelativeLayout>

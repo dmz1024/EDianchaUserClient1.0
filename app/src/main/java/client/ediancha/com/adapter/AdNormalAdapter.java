@@ -11,12 +11,15 @@ import com.jude.rollviewpager.adapter.LoopPagerAdapter;
 
 import java.util.List;
 
+import client.ediancha.com.myview.BannerImageVIew;
+import client.ediancha.com.util.GlideUtil;
+
 /**
  * Created by dengmingzhi on 16/10/13.
  */
 
 public class AdNormalAdapter extends LoopPagerAdapter {
-//    private int[] imgs = {
+    //    private int[] imgs = {
 //            R.mipmap.center_address,
 //            R.mipmap.center_apply,
 //            R.mipmap.center_appointment_order,
@@ -24,11 +27,19 @@ public class AdNormalAdapter extends LoopPagerAdapter {
 //    };
     private List<String> urls;
     private Context ctx;
+    private boolean isBig;
 
     public AdNormalAdapter(Context ctx, RollPagerView viewPager, List<String> urls) {
         super(viewPager);
         this.urls = urls;
         this.ctx = ctx;
+    }
+
+    public AdNormalAdapter(Context ctx, RollPagerView viewPager, List<String> urls, boolean isBig) {
+        super(viewPager);
+        this.urls = urls;
+        this.ctx = ctx;
+        this.isBig = isBig;
     }
 
 
@@ -37,10 +48,19 @@ public class AdNormalAdapter extends LoopPagerAdapter {
     }
 
     @Override
-    public View getView(ViewGroup container, int position) {
+    public View getView(ViewGroup container, final int position) {
         ImageView view = new ImageView(container.getContext());
+        if (isBig) {
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new BannerImageVIew(ctx, urls, position).showAtLocation();
+                }
+            });
+        }
+
         view.setScaleType(ImageView.ScaleType.FIT_XY);
-        Glide.with(ctx).load(urls.get(position)).into(view);
+        GlideUtil.GlideErrAndOc(ctx, urls.get(position), view);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         return view;
     }
@@ -49,4 +69,5 @@ public class AdNormalAdapter extends LoopPagerAdapter {
     public int getRealCount() {
         return urls.size();
     }
+
 }

@@ -50,4 +50,6 @@ dependencies {
     compile files('libs/open_sdk_r5756.jar')
     //https://github.com/crazyandcoder/citypicker
     compile 'liji.library.dev:citypickerview:0.4.0'
+    //https://github.com/saiwu-bigkoo/Android-PickerView
+    compile 'com.bigkoo:pickerview:2.1.1'
 }

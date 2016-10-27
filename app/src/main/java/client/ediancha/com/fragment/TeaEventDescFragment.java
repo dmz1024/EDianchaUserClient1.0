@@ -101,6 +101,7 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
 
     @Override
     protected void writeData(TeaEventDesc t) {
+        super.writeData(t);
         fillRollPager(t.data.show.images);
         fillEvent(t.data.list);
         fillData(t.data.show);

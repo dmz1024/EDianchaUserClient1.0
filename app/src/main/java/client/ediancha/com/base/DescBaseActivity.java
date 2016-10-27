@@ -12,6 +12,7 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.fragment.TeaDescBaseFragment;
 import client.ediancha.com.fragment.TeaSpacePackageDescFragment;
+import client.ediancha.com.interfaces.OnDataHaveListener;
 import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.fragment.TeaEventDescFragment;
@@ -25,30 +26,36 @@ import client.ediancha.com.util.Util;
  * Created by dengmingzhi on 2016/10/21.
  */
 
-public class DescBaseActivity extends ShareBaseActivity implements ScrollViewListener {
+public class DescBaseActivity extends ShareBaseActivity implements ScrollViewListener, OnDataHaveListener {
     private int type;
     private TeaEventDescFragment teaEventDescFragment;
     private TeaSpaceDescFragment teaSpaceDescFragment;
-    private TeaProductDescFragment teaProductDescFragment;
-    private TeaSpacePackageDescFragment teaSpacePackageDescFragment;
+    //    private TeaProductDescFragment teaProductDescFragment;
+//    private TeaSpacePackageDescFragment teaSpacePackageDescFragment;
     private CollectionUtil collectionUtil;
+
+
+    @Override
+    protected String getToolBarTitle() {
+        return getIntent().getStringExtra("title");
+    }
 
     @Override
     protected ShareUtil.ShareInfo getShareInfo() {
         ShareUtil.ShareInfo shareInfo = null;
         switch (type) {
-            case 1:
-                shareInfo = teaProductDescFragment.getShareInfo();
-                break;
+//            case 1:
+//                shareInfo = teaProductDescFragment.getShareInfo();
+//                break;
             case 2:
                 shareInfo = teaSpaceDescFragment.getShareInfo();
                 break;
             case 3:
                 shareInfo = teaEventDescFragment.getShareInfo();
                 break;
-            case 4:
-                shareInfo = teaSpacePackageDescFragment.getShareInfo();
-                break;
+//            case 4:
+//                shareInfo = teaSpacePackageDescFragment.getShareInfo();
+//                break;
         }
         return shareInfo;
     }
@@ -56,14 +63,14 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     @Override
     protected boolean isCanClick() {
         switch (type) {
-            case 1:
-                return teaProductDescFragment.getResult();
+//            case 1:
+//                return teaProductDescFragment.getResult();
             case 2:
                 return teaSpaceDescFragment.getResult();
             case 3:
                 return teaEventDescFragment.getResult();
-            case 4:
-                return teaSpacePackageDescFragment.getResult();
+//            case 4:
+//                return teaSpacePackageDescFragment.getResult();
         }
         return super.isCanClick();
     }
@@ -82,22 +89,24 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     protected void initView() {
         type = getIntent().getIntExtra("type", 1);
         switch (type) {
-            case 1:
-                teaProductDescFragment = TeaProductDescFragment.getInstance(getIntent().getStringExtra("id"));
-                teaProductDescFragment.setScrollViewListener(this);
-                break;
+//            case 1:
+//                teaProductDescFragment = TeaProductDescFragment.getInstance(getIntent().getStringExtra("id"));
+//                teaProductDescFragment.setScrollViewListener(this);
+//                break;
             case 2:
                 teaSpaceDescFragment = TeaSpaceDescFragment.getInstance(getIntent().getStringExtra("id"));
                 teaSpaceDescFragment.setScrollViewListener(this);
+                teaSpaceDescFragment.setOnDataHaveListener(this);
                 break;
             case 3:
                 teaEventDescFragment = TeaEventDescFragment.getInstance(getIntent().getStringExtra("id"));
                 teaEventDescFragment.setScrollViewListener(this);
+                teaEventDescFragment.setOnDataHaveListener(this);
                 break;
-            case 4:
-                teaSpacePackageDescFragment = TeaSpacePackageDescFragment.getInstance(getIntent().getStringExtra("id"));
-                teaSpacePackageDescFragment.setScrollViewListener(this);
-                break;
+//            case 4:
+//                teaSpacePackageDescFragment = TeaSpacePackageDescFragment.getInstance(getIntent().getStringExtra("id"));
+//                teaSpacePackageDescFragment.setScrollViewListener(this);
+//                break;
         }
 
     }
@@ -119,18 +128,18 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
 
         TeaDescBaseFragment baseFragment = null;
         switch (type) {
-            case 1:
-                baseFragment = teaProductDescFragment;
-                break;
+//            case 1:
+//                baseFragment = teaProductDescFragment;
+//                break;
             case 2:
                 baseFragment = teaSpaceDescFragment;
                 break;
             case 3:
                 baseFragment = teaEventDescFragment;
                 break;
-            case 4:
-                baseFragment = teaSpacePackageDescFragment;
-                break;
+//            case 4:
+//                baseFragment = teaSpacePackageDescFragment;
+//                break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, baseFragment).commit();
     }
@@ -192,7 +201,7 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     @Override
     public void onCreateCustomToolBar(Toolbar toolbar) {
         super.onCreateCustomToolBar(toolbar);
-        toolbar.setBackgroundColor(Color.parseColor("#00333333"));
+        toolbar.setBackgroundColor(Color.parseColor("#333333"));
     }
 
 
@@ -202,5 +211,11 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
         if (requestCode == Constant.COLLECTION_REQ) {
             collectionUtil.isCollection(getIntent().getStringExtra("id"), type + "");
         }
+    }
+
+    @Override
+    public void dataHave() {
+        toolbar.setBackgroundColor(Color.parseColor("#00333333"));
+        setTitle("");
     }
 }

@@ -28,6 +28,7 @@ import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.TeaSpace;
 import client.ediancha.com.myview.TextImage;
+import client.ediancha.com.util.GlideUtil;
 import client.ediancha.com.util.Util;
 
 /**
@@ -63,7 +64,7 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
         if (holder instanceof TeaSpaceViewHolder) {
             TeaSpaceViewHolder mHolder = (TeaSpaceViewHolder) holder;
             TeaSpace.Data2 data = list.get(position).data2;
-            Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+            GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
             mHolder.tv_title.setText(data.name);
             mHolder.tv_count.setText(data.attention_num + "人");
             mHolder.tv_pos.setText(data.address);

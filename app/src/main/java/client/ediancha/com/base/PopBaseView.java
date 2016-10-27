@@ -85,7 +85,7 @@ public abstract class PopBaseView implements PopupWindow.OnDismissListener {
 
     @Override
     public void onDismiss() {
-        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(1f, 1f).duration(600).start();
+        ViewAnimator.animate(((Activity) ctx).findViewById(android.R.id.content)).alpha(0.3f, 1f).duration(600).start();
     }
 
     public void dismiss() {

@@ -28,7 +28,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class MyRetrofitUtil {
-    public static final String BASE_URL = "http://t.mobaoxiu.com/";
+    public static final String BASE_URL = "http://www.ediancha.com/";
     private static MyRetrofitUtil retrofitUtil;
     private static final int DEFAULT_TIMEOUT = 5;
     private Retrofit retrofit;

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_tea_event_desc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size45"
+        android:layout_weight="4"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/touch_bg_51b338"
+        android:gravity="center"
+        android:text="立即预定"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp15" />
+
+    <FrameLayout
+        android:id="@+id/fg_desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_order"
+        android:layout_alignParentTop="true" />
+
+    <client.ediancha.com.myview.ScrollChangedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_order"
+        android:layout_alignParentTop="true"
+        android:background="#fff">
+
+        <LinearLayout
+            android:id="@+id/ll_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <com.jude.rollviewpager.RollPagerView
+                android:id="@+id/roll_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size250"
+                android:background="#fff"
+                app:rollviewpager_hint_gravity="left"
+                app:rollviewpager_hint_paddingLeft="@dimen/size10" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextSize15Color333"
+                android:layout_below="@id/roll_view_pager"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size12"
+                android:text="步雨厅" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                style="@style/TextSize14Color333"
+                android:layout_marginLeft="@dimen/size12"
+                android:layout_marginTop="@dimen/size15"
+                android:background="#fff"
+                android:text="90元/小时"
+                android:textColor="#cd673a" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                style="@style/TextSize14Color666"
+                android:layout_gravity="end"
+                android:layout_marginRight="@dimen/size12"
+                android:layout_marginTop="-18dp"
+                android:text="容纳人数：14人" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size0.5"
+                android:layout_marginTop="@dimen/size15"
+                android:background="#e1e1e1" />
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/size10"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_preference_title"
+                    android:text="惠"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/sp12"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="@dimen/size2"
+                    android:paddingBottom="@dimen/size3"
+                    android:paddingTop="@dimen/size3"
+                    android:paddingRight="@dimen/size2"
+                    android:layout_marginLeft="@dimen/size12"
+                    android:background="#51b338"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <client.ediancha.com.myview.TextImage
+                    android:layout_marginLeft="@dimen/size10"
+                    android:layout_toRightOf="@id/tv_preference_title"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_preference_content"
+                    style="@style/TextSize12Color999"
+                    android:text="优惠政策：提前预定享受8折优惠" />
+            </RelativeLayout>
+
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_name"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title="艺草堂文化基地"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/activity_detail_name"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14" />
+
+            <client.ediancha.com.myview.TitleRelativeLayout
+                android:id="@+id/trl_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/touch_bg_fff"
+                app:TitleRelativeLayout_title="18326167257"
+                app:TitleRelativeLayout_show_view="2"
+                app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_title_image="@mipmap/icon_detail_tel"
+                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
+                app:TitleRelativeLayout_title_w="@dimen/size14" />
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size10"
+                android:gravity="center"
+                android:padding="@dimen/size10"
+                android:text="点击加载图文详情页"
+                android:textColor="#333" />
+        </LinearLayout>
+    </client.ediancha.com.myview.ScrollChangedScrollView>
+</RelativeLayout>

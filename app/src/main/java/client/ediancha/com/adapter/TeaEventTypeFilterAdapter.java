@@ -14,6 +14,7 @@ import java.util.List;
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/11.
@@ -44,9 +45,10 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<String> {
 //        R.mipmap.center_tea_order
         if (isHaveMore && !isNowMore) {
             if (position < 7) {
-                Glide.with(ctx).load(R.mipmap.center_tea_order).into(mHolder.iv_icon);
+                GlideUtil.GlideErrAndOc(ctx, R.mipmap.center_address, mHolder.iv_icon);
                 mHolder.tv_title.setText(type);
             } else {
+
                 Glide.with(ctx).load(R.mipmap.center_address).into(mHolder.iv_icon);
                 mHolder.tv_title.setText("更多");
             }

@@ -86,7 +86,7 @@ public class ChooseShareView extends PopBaseView {
                         adapter1.notifyDataSetChanged();
                         recyclerView1.setVisibility(View.GONE);
                     }
-                }, 310);
+                }, 350);
             }
         }, 350);
 

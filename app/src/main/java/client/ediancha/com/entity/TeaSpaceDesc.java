@@ -45,14 +45,6 @@ public class TeaSpaceDesc extends BaseEntity {
         }
     }
 
-    public static class OtherStore {
-        public String address;
-        public String images;
-        public String name;
-        public String pigcms_id;
-        public String price;
-    }
-
 
     public static class Show {
         public String address;
@@ -69,6 +61,8 @@ public class TeaSpaceDesc extends BaseEntity {
         public String storename;
         public String url;
         public List<String> images;
+        public String zlat;
+        public String zlong;
     }
 
     public static class Share{

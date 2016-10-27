@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/tv_page"
+        style="@style/TextSize15Color333"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/size10"
+        android:layout_marginLeft="@dimen/size10"
+        android:text="1/4"
+        android:textColor="#fff" />
+</FrameLayout>

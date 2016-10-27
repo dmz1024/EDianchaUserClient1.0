@@ -17,6 +17,7 @@ import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.TeaEventDesc;
 import client.ediancha.com.myview.TextImage;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -41,7 +42,7 @@ public class TeaEventDescEventAdapter extends SingleBaseAdapter<TeaEventDesc.Lis
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaEventDescEventViewHolder mHolder = (TeaEventDescEventViewHolder) holder;
         TeaEventDesc.Lists data = list.get(position);
-        Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+        GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
         mHolder.tv_title.setText(data.name);
         mHolder.tv_content.setText(data.desc);
         mHolder.tv_name.setText(data.storename);

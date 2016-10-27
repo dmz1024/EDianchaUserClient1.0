@@ -31,6 +31,7 @@ import client.ediancha.com.constant.Constant;
 import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.TeaProduct;
 import client.ediancha.com.myview.GlideCircleTransform;
+import client.ediancha.com.util.GlideUtil;
 import client.ediancha.com.util.Util;
 
 /**
@@ -71,17 +72,17 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
         if (holder instanceof TeaProduct_1ViewHolder) {
             TeaProduct_1ViewHolder mHolder = (TeaProduct_1ViewHolder) holder;
             TeaProduct.Content data = list.get(position).data1;
-            Glide.with(ctx).load(data.image).into(mHolder.iv_img);
+            GlideUtil.GlideErrAndOc(ctx, data.image, mHolder.iv_img);
             mHolder.tv_title.setText(data.name);
-            mHolder.tv_old_price.setText(data.original_price);
+            mHolder.tv_old_price.setText("￥" +data.original_price);
             mHolder.tv_price.setText("￥" + data.price);
 
         } else if (holder instanceof TeaProduct_4ViewHolder) {
             TeaProduct_4ViewHolder mHolder = (TeaProduct_4ViewHolder) holder;
             TeaProduct.Content data = list.get(position).data4;
-            Glide.with(ctx).load(data.image).into(mHolder.iv_img);
+            GlideUtil.GlideErrAndOc(ctx, data.image, mHolder.iv_img);
             mHolder.tv_title.setText(data.name);
-            mHolder.tv_old_price.setText(data.original_price);
+            mHolder.tv_old_price.setText("￥" +data.original_price);
             mHolder.tv_price.setText("￥" + data.price);
             mHolder.tv_state.setVisibility(View.GONE);
         } else if (holder instanceof TeaProductAdViewHolder) {

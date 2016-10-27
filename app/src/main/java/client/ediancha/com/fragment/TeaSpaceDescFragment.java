@@ -27,6 +27,7 @@ import client.ediancha.com.R;
 import client.ediancha.com.activity.AddCommentActivity;
 import client.ediancha.com.activity.MoreEvaluateActivity;
 import client.ediancha.com.activity.MoreTeaPackageActivity;
+import client.ediancha.com.activity.OtherStoreActivity;
 import client.ediancha.com.activity.TeaSpaceOtherRecommendActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
@@ -137,10 +138,11 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
         scrollView.setScrollViewListener(scrollViewListener);
-        bt_more.setOnClickListener(this);
+
         trl_tea_package.setOnClickListener(this);
         trl_evaluate.setOnClickListener(this);
         trl_tel.setOnClickListener(this);
+
         return view;
     }
 
@@ -149,7 +151,10 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.bt_more:
-                Util.skip(getActivity(), MoreEvaluateActivity.class);
+                Intent intent2 = new Intent(getContext(), MoreEvaluateActivity.class);
+                intent2.putExtra("id", id);
+                intent2.putExtra("type", "STORE");
+                startActivity(intent2);
                 break;
             case R.id.trl_tea_package:
                 Util.skip(getActivity(), MoreTeaPackageActivity.class);
@@ -168,6 +173,11 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
             case R.id.trl_tel:
                 Util.tel(getContext(), t.data.show.phone1 + t.data.show.phone2);
                 break;
+            case R.id.trl_other:
+                Intent intent4 = new Intent(getContext(), OtherStoreActivity.class);
+                intent4.putExtra("store", (Serializable) t.data.list);
+                startActivity(intent4);
+                break;
         }
     }
 
@@ -177,6 +187,12 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
      * @param comment
      */
     private void fillEvaluate(List<TeaSpaceDesc.Comment> comment) {
+
+        if (comment != null && comment.size() > 0) {
+            bt_more.setOnClickListener(this);
+        } else {
+            bt_more.setText("暂无评价");
+        }
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext()) {
             @Override
@@ -195,18 +211,25 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
     private void fillRollPageView(List<String> images) {
         rollPagerView.setPlayDelay(images.size() > 1 ? 2500 : 0);
         rollPagerView.setAnimationDurtion(500);
-        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, images));
+        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, images,true));
         rollPagerView.setHintView(new TextHintView(getContext()));
     }
 
     @Override
     protected void writeData(TeaSpaceDesc t) {
+        super.writeData(t);
         this.t = t;
         fillRollPageView(t.data.show.images);
         fillEvaluate(t.data.comment);
         fillRecommend(t.data.bx);
         fillRvInfo(t.data.show);
         Glide.with(getContext()).load(Constant.IMAGE).into(iv_package);
+
+        if (t.data.list != null) {
+            trl_other.setOnClickListener(this);
+        } else {
+            trl_other.setContent("暂无线下门店");
+        }
 
         shareInfo.content = t.data.share.info;
         shareInfo.logo = t.data.share.logo;

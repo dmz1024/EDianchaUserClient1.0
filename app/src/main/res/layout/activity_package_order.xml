@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextSize15Color333"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginTop="@dimen/size11"
+            android:text="姓       名" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size18"
+            android:layout_alignBottom="@id/tv_name"
+            android:layout_marginLeft="@dimen/size15"
+            android:layout_toRightOf="@id/tv_name"
+            android:background="@null"
+            android:hint="请输入姓名"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="#333"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:id="@+id/view_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size0.5"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="@dimen/size12"
+            android:background="#eee" />
+
+        <TextView
+            android:id="@+id/tv_tel"
+            style="@style/TextSize15Color333"
+            android:layout_below="@id/view_name"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginTop="@dimen/size11"
+            android:text="手  机  号" />
+
+        <EditText
+            android:id="@+id/et_tel"
+            android:hint="请输入手机号"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size18"
+            android:layout_alignBottom="@id/tv_tel"
+            android:layout_marginLeft="@dimen/size15"
+            android:layout_toRightOf="@id/tv_tel"
+            android:background="@null"
+            android:inputType="number"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="#333"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:id="@+id/view_tel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size0.5"
+            android:layout_below="@id/tv_tel"
+            android:layout_marginTop="@dimen/size12"
+            android:background="#eee" />
+
+        <TextView
+            android:id="@+id/tv_renshu"
+            style="@style/TextSize15Color333"
+            android:layout_below="@id/view_tel"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginTop="@dimen/size11"
+            android:text="人        数" />
+
+        <EditText
+            android:id="@+id/et_reshu"
+            android:hint="请输入预约人数"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size18"
+            android:layout_alignBottom="@id/tv_renshu"
+            android:layout_marginLeft="@dimen/size15"
+            android:layout_toRightOf="@id/tv_name"
+            android:background="@null"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:textColor="#333"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:id="@+id/view_renshu"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size0.5"
+            android:layout_below="@id/tv_renshu"
+            android:layout_marginTop="@dimen/size12"
+            android:background="#eee" />
+    </RelativeLayout>
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_come_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/touch_bg_fff"
+        android:layout_below="@id/rl_top"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="@dimen/size4"
+        app:TitleRelativeLayout_content="只接收7天内预约"
+        app:TitleRelativeLayout_content_style="@style/TextSize14Color999"
+        app:TitleRelativeLayout_title="到店时间"
+        app:TitleRelativeLayout_title_style="@style/TextSize15Color333" />
+
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trl_come_time"
+        android:layout_marginLeft="-2dp"
+        android:background="@drawable/touch_bg_fff"
+        android:layout_marginTop="@dimen/size4"
+        app:TitleRelativeLayout_content_style="@style/TextSize14Color999"
+        app:TitleRelativeLayout_title="使用时长"
+        app:TitleRelativeLayout_title_style="@style/TextSize15Color333" />
+    <client.ediancha.com.myview.TitleRelativeLayout
+        android:id="@+id/trl_food"
+        app:TitleRelativeLayout_content="不点餐"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trl_time"
+        android:layout_marginLeft="-2dp"
+        android:background="@drawable/touch_bg_fff"
+        android:layout_marginTop="@dimen/size4"
+        app:TitleRelativeLayout_content_style="@style/TextSize14Color999"
+        app:TitleRelativeLayout_title="是否点餐"
+        app:TitleRelativeLayout_title_style="@style/TextSize15Color333" />
+
+    <Button
+        android:id="@+id/bt_summit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/size200"
+        android:background="@drawable/touch_bg_51b338"
+        android:text="提交预约"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp17" />
+</RelativeLayout>

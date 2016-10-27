@@ -11,12 +11,14 @@
         android:layout_centerInParent="true"
         android:background="@drawable/selector_rectangle_999_fff"
         android:text="去看看别的"
+        android:visibility="gone"
         android:textColor="#999" />
 
     <ImageView
         android:id="@+id/iv_err"
         android:layout_width="@dimen/size120"
         android:layout_height="@dimen/size115"
+        android:layout_centerInParent="true"
         android:layout_above="@id/bt_empty"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/size15"

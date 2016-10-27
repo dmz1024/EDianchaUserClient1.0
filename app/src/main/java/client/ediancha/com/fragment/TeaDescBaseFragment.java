@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.entity.BaseEntity;
+import client.ediancha.com.interfaces.OnDataHaveListener;
 import client.ediancha.com.interfaces.ScrollViewListener;
 import client.ediancha.com.interfaces.ShareInfoInterface;
 import client.ediancha.com.myview.ScrollChangedScrollView;
@@ -37,6 +38,12 @@ public abstract class TeaDescBaseFragment<D extends BaseEntity> extends SingleNe
         return "app.php";
     }
 
+    @Override
+    protected void writeData(D t) {
+        if(onDataHaveListener!=null){
+            onDataHaveListener.dataHave();
+        }
+    }
 
     @Override
     protected boolean getCanRefresh() {
@@ -52,6 +59,11 @@ public abstract class TeaDescBaseFragment<D extends BaseEntity> extends SingleNe
 
     public void setScrollViewListener(ScrollViewListener scrollViewListener) {
         this.scrollViewListener = scrollViewListener;
+    }
+
+    private OnDataHaveListener onDataHaveListener;
+    public void setOnDataHaveListener(OnDataHaveListener onDataHaveListener) {
+        this.onDataHaveListener = onDataHaveListener;
     }
 
     public boolean getResult() {

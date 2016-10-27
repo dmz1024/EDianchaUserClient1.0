@@ -25,6 +25,7 @@ import client.ediancha.com.entity.ApplyOrder;
 import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.myview.PopMessageTips;
 import client.ediancha.com.myview.TextImage;
+import client.ediancha.com.util.GlideUtil;
 import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.Util;
 
@@ -51,7 +52,7 @@ public class ApplyOrderAdapter extends SingleBaseAdapter<ApplyOrder.Data> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         ApplyOrderViewHolder mHolder = (ApplyOrderViewHolder) holder;
         ApplyOrder.Data data = list.get(position);
-        Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+        GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
         mHolder.tv_time.setText("活动时间：" + data.sttime + "--" + data.endtime);
         switch (data.status) {
             case 1:

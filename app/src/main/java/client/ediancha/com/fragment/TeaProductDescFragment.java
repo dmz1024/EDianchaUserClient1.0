@@ -36,6 +36,7 @@ import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.base.WebBaseFragment;
 import client.ediancha.com.entity.TeaSpaceDesc;
 import client.ediancha.com.interfaces.WebViewScrollListener;
+import client.ediancha.com.myview.ChooseBuyCarView;
 import client.ediancha.com.myview.Color2Text;
 import client.ediancha.com.myview.MyWebView;
 import client.ediancha.com.processor.ShareUtil;
@@ -111,6 +112,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         webLayout.setOnClickListener(this);
         tv_desc.setOnClickListener(this);
         tv_buy.setOnClickListener(this);
+        tv_add_buy_car.setOnClickListener(this);
 
         return view;
     }
@@ -135,6 +137,9 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
             case R.id.tv_buy:
                 Util.skip(getActivity(), BuyTeaActivity.class);
                 break;
+            case R.id.tv_add_buy_car:
+                new ChooseBuyCarView(getContext(),data.data.property,data.data.sku_list).showAtLocation();
+                break;
         }
     }
 
@@ -147,6 +152,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         if (!webFragment.getUserVisibleHint()) {
             webFragment.setUserVisibleHint(true);
         }
+
         ViewAnimator.animate(scrollView).translationY(0, -Util.getHeight()).andAnimate(webLayout).translationY(Util.getHeight(), 0).duration(400).start();
         isShow = true;
     }
@@ -163,7 +169,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         for (int i = 0; i < images.size(); i++) {
             urls.add(images.get(i).image);
         }
-        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, urls));
+        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, urls, true));
         rollPagerView.setHintView(new TextHintView(getContext()));
     }
 

@@ -24,6 +24,7 @@ import client.ediancha.com.myview.GlideCircleTransform;
 import client.ediancha.com.myview.MyRatingBar;
 import client.ediancha.com.myview.RatingBar;
 import client.ediancha.com.myview.TextImage;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -45,6 +46,7 @@ public class EvaluateAdapter extends SingleBaseAdapter<TeaSpaceDesc.Comment> {
         EvaluateViewHolder mHolder = (EvaluateViewHolder) holder;
         TeaSpaceDesc.Comment data = list.get(position);
         Glide.with(ctx).load(data.avatar).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_head);
+
 
         List<String> urls = new ArrayList<>();
         for (int i = 0; i < data.attachment_list.size(); i++) {

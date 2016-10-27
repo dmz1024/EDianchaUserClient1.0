@@ -56,7 +56,7 @@ public class TitleRelativeLayout extends RelativeLayout {
         boolean content_visi = typedArray.getBoolean(R.styleable.TitleRelativeLayout_TitleRelativeLayout_content_visi, true);
         String title = typedArray.getString(R.styleable.TitleRelativeLayout_TitleRelativeLayout_title);
         String content = typedArray.getString(R.styleable.TitleRelativeLayout_TitleRelativeLayout_content);
-        boolean content_image_visi=typedArray.getBoolean(R.styleable.TitleRelativeLayout_TitleRelativeLayout_content_image_visi, true);
+        boolean content_image_visi = typedArray.getBoolean(R.styleable.TitleRelativeLayout_TitleRelativeLayout_content_image_visi, true);
         typedArray.recycle();
         tv_title1.setTextAppearance(getContext(), title_style);
         tv_content1.setTextAppearance(getContext(), content_style);
@@ -73,7 +73,7 @@ public class TitleRelativeLayout extends RelativeLayout {
         }
 
 
-        if(!content_image_visi){
+        if (!content_image_visi) {
             tv_content1.drawable(false);
         }
 
@@ -118,5 +118,9 @@ public class TitleRelativeLayout extends RelativeLayout {
             view_11.setVisibility(INVISIBLE);
             view_22.setVisibility(INVISIBLE);
         }
+    }
+
+    public TextImage getTv_content() {
+        return tv_content1;
     }
 }

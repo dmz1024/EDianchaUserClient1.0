@@ -38,7 +38,7 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
 
     @Override
     protected String getToolBarTitle() {
-        return "评论";
+        return "评价";
     }
 
     @Override

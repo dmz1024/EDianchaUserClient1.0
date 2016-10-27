@@ -5,7 +5,7 @@
     android:id="@+id/activity_tea_event_desc"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="client.ediancha.com.activity.TeaEventDescActivity">
+    >
 
     <client.ediancha.com.myview.ScrollChangedScrollView
         android:id="@+id/scrollView"
@@ -33,7 +33,7 @@
                 android:layout_below="@id/roll_view_pager"
                 android:layout_marginLeft="@dimen/size12"
                 android:layout_marginTop="@dimen/size12"
-                android:text="邓如果茶楼'" />
+                 />
 
 
             <LinearLayout
@@ -61,20 +61,19 @@
                     android:id="@+id/tv_ratingbar"
                     style="@style/TextSize14Color666"
                     android:layout_marginLeft="@dimen/size8"
-                    android:text="4.9分" />
+                    />
 
                 <TextView
                     android:id="@+id/tv_ping_num"
                     style="@style/TextSize14Color666"
                     android:layout_marginLeft="@dimen/size8"
-                    android:text="100条" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_price"
                     style="@style/TextSize14Color333"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="100元/人"
                     android:textColor="#cd673a" />
 
             </LinearLayout>
@@ -90,7 +89,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/touch_bg_fff"
                 app:TitleRelativeLayout_show_view="2"
-                app:TitleRelativeLayout_title="北京市朝阳区汇园公寓N座1206"
                 app:TitleRelativeLayout_title_h="@dimen/size14"
                 app:TitleRelativeLayout_title_image="@mipmap/activity_detail_pos"
                 app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
@@ -145,7 +143,7 @@
                     android:layout_toRightOf="@id/iv_package"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="茶包名称" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_package_content"
@@ -156,7 +154,7 @@
                     android:layout_marginTop="@dimen/size6"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="这家店这家店这家店这家店" />
+                    />
 
 
                 <TextView
@@ -165,7 +163,6 @@
                     android:layout_alignLeft="@id/tv_package_name"
                     android:layout_below="@id/tv_package_content"
                     android:layout_marginTop="@dimen/size8"
-                    android:text="￥100"
                     android:textColor="#cd673a" />
 
                 <TextView
@@ -174,7 +171,7 @@
                     android:layout_alignBottom="@id/tv_package_price"
                     android:layout_marginLeft="@dimen/size15"
                     android:layout_toRightOf="@id/tv_package_price"
-                    android:text="￥200" />
+                     />
 
             </RelativeLayout>
 
@@ -198,9 +195,8 @@
                 android:id="@+id/rv_recommend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/size12"
-                android:paddingLeft="@dimen/size12"
-                android:paddingTop="@dimen/size12" />
+                android:paddingBottom="@dimen/size8"
+                android:paddingTop="@dimen/size8" />
 
             <View
                 android:layout_width="match_parent"
@@ -238,8 +234,7 @@
                 style="@style/TextSize13Color666"
                 android:paddingLeft="@dimen/size12"
                 android:paddingRight="@dimen/size12"
-                android:paddingTop="@dimen/size12"
-                android:text="商户名称：邓如果茶楼\n\n营业时间：10:00-22:00" />
+                android:paddingTop="@dimen/size12"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -269,7 +264,7 @@
                 android:paddingLeft="@dimen/size12"
                 android:paddingRight="@dimen/size12"
                 android:paddingTop="@dimen/size12"
-                android:text="活动介绍：卡座双人套餐优惠享卡座卡座双人套餐优惠享卡座" />
+                 />
 
             <View
                 android:layout_width="match_parent"

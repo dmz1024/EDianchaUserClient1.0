@@ -152,10 +152,7 @@
                 android:background="@drawable/touch_bg_fff"
                 app:TitleRelativeLayout_content="查看"
                 app:TitleRelativeLayout_title="商品评价"
-                app:TitleRelativeLayout_title_h="@dimen/size14"
-                app:TitleRelativeLayout_title_image="@mipmap/icon_detail_tel"
-                app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
-                app:TitleRelativeLayout_view_visi="false" />
+                />
 
             <TextView
                 android:id="@+id/tv_desc"

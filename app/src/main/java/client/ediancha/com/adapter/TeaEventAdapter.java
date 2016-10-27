@@ -22,6 +22,7 @@ import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.myview.GlideCircleTransform;
 import client.ediancha.com.myview.TextImage;
+import client.ediancha.com.util.GlideUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -52,7 +53,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
         if (holder instanceof TeaEventViewHolder) {
             TeaEventViewHolder mHolder = (TeaEventViewHolder) holder;
             TeaEvent.Data data = list.get(position - 1);
-            Glide.with(ctx).load(data.images).into(mHolder.iv_img);
+            GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
             Glide.with(ctx).load(data.logo).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_logo);
             mHolder.tv_title.setText(data.name);
             mHolder.tv_time.setText(data.sttime + "至" + data.endtime);

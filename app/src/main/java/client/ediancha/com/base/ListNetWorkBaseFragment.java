@@ -79,7 +79,6 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
     @Override
     public void getData() {
         initMap();
-
         MyRetrofitUtil retrofitUtil = MyRetrofitUtil.getInstance();
         MyRetrofitUtil.OnRequestListener<T> onRequestListener = new MyRetrofitUtil.OnRequestListener<T>() {
             @Override
@@ -197,7 +196,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
     }
 
     protected void resultNot0(String s) {
-        Log.d("肯", s);
+
     }
 
 
