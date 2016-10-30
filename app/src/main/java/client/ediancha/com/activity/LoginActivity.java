@@ -48,7 +48,7 @@ public class LoginActivity extends ToolBarActivity implements View.OnFocusChange
 
     @Override
     protected String getToolBarTitle() {
-        return null;
+        return "登录";
     }
 
     @Override

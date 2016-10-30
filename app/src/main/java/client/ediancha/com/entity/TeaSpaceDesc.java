@@ -61,8 +61,8 @@ public class TeaSpaceDesc extends BaseEntity {
         public String storename;
         public String url;
         public List<String> images;
-        public String zlat;
-        public String zlong;
+        public double zlat;
+        public double zlong;
     }
 
     public static class Share{

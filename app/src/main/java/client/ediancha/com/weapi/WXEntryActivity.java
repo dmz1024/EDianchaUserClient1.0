@@ -35,9 +35,6 @@ public class WXEntryActivity extends Activity {
 //            sendBroadcast(wechat_intent);
             MyToast.showToast("成功");
             Log.d("微信", "成功");
-            if(true){
-                return;
-            }
         } else {
             MyToast.showToast(resp.code + "");
             Log.d("微信", resp.code + "");

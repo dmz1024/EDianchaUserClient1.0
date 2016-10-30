@@ -20,15 +20,6 @@
             android:scaleType="fitXY"
             android:src="@mipmap/center_bg" />
 
-        <View
-            android:id="@+id/view_set"
-            android:layout_width="@dimen/size20"
-            android:layout_height="@dimen/size20"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/size10"
-            android:layout_marginTop="@dimen/size10"
-            android:background="@mipmap/center_sz" />
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,8 +31,7 @@
                 android:layout_height="@dimen/size60"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitXY"
-
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/icon_head" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -50,7 +40,6 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/size5"
                 android:gravity="center"
-                android:text="茶语"
                 android:textColor="#fff" />
         </RelativeLayout>
     </RelativeLayout>

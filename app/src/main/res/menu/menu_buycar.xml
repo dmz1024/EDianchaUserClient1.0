@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="client.ediancha.com.activity.MainActivity">
+    <item
+        android:id="@+id/item_edit"
+        android:orderInCategory="100"
+        android:title="编辑"
+        app:showAsAction="always" />
+</menu>

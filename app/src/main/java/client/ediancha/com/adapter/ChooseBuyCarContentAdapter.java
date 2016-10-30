@@ -24,13 +24,10 @@ public class ChooseBuyCarContentAdapter extends SingleBaseAdapter<TeaDesc.Value>
     private int currentPosition = 0;
     private int fatherPosition;
 
-    public ChooseBuyCarContentAdapter(Context ctx, List<TeaDesc.Value> list) {
-        super(ctx, list);
-    }
-
     public ChooseBuyCarContentAdapter(int position, Context ctx, List<TeaDesc.Value> list) {
         super(ctx, list);
         this.fatherPosition = position;
+
     }
 
     @Override
@@ -64,7 +61,7 @@ public class ChooseBuyCarContentAdapter extends SingleBaseAdapter<TeaDesc.Value>
         @Override
         protected void onClick(final int layoutPosition) {
             if (layoutPosition == currentPosition) {
-                currentPosition = -1;
+                return;
             } else {
                 currentPosition = layoutPosition;
             }

@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -104,15 +106,11 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             if (!map.containsKey(position)) {
                 map.put(position, false);
             }
-
             TeaProductTypeViewHolder mHolder = (TeaProductTypeViewHolder) holder;
-            List<TeaProduct.Data2> data2 = list.get(position).data2;
-            List<String> types = new ArrayList<>();
-            for (int i = 0; i < data2.size(); i++) {
-                types.add(data2.get(i).name);
-            }
+            TeaProduct.Data2 data2 = list.get(position).data2;
+
             GridLayoutManager manager = new GridLayoutManager(ctx, 4);
-            TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, types);
+            TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, data2.data,data2.name,data2.key);
             mHolder.rv_type.setLayoutManager(manager);
             mHolder.rv_type.setAdapter(mAdapter);
             if (!map.get(position)) {
@@ -149,7 +147,6 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
         public TextView tv_title;
         public TextView tv_price;
         public TextView tv_old_price;
-        public RecyclerView rv_type;
 
 
         public TeaProduct_1ViewHolder(View itemView) {
@@ -159,7 +156,9 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
-            rv_type = (RecyclerView) itemView.findViewById(R.id.rv_type);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
+            layoutParams.height= (int) (Util.getWidth()/1.75);
+            iv_img.setLayoutParams(layoutParams);
         }
 
         @Override
@@ -177,7 +176,6 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
         public TextView tv_title;
         public TextView tv_price;
         public TextView tv_old_price;
-        public RecyclerView rv_type;
 
         public TeaProduct_4ViewHolder(View itemView) {
             super(itemView);
@@ -186,7 +184,9 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
-            rv_type = (RecyclerView) itemView.findViewById(R.id.rv_type);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
+            layoutParams.height= (int) (Util.getWidth()/1.75);
+            iv_img.setLayoutParams(layoutParams);
         }
 
         @Override
@@ -220,6 +220,9 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
         public TeaProductAdViewHolder(View itemView) {
             super(itemView);
             rv_ad = (RollPagerView) itemView.findViewById(R.id.roll_view_pager);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)rv_ad.getLayoutParams();
+            layoutParams.height= (int) (Util.getWidth()/1.75);
+            rv_ad.setLayoutParams(layoutParams);
         }
 
         @Override

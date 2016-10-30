@@ -8,8 +8,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -82,30 +84,30 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             mHolder.rv_ad.setAdapter(new AdNormalAdapter(ctx, mHolder.rv_ad, urls));
             mHolder.rv_ad.setHintView(new ColorPointHintView(ctx, ctx.getResources().getColor(R.color.color51b338), Color.WHITE));
         } else {
-            if (!map.containsKey(position)) {
-                map.put(position, false);
-            }
-
-
-            TeaSpaceTypeViewHolder mHolder = (TeaSpaceTypeViewHolder) holder;
-            GridLayoutManager manager = new GridLayoutManager(ctx, 4);
-            List<String> types = new ArrayList<>();
-            types.add("棋牌室");
-            types.add("WIFI");
-            types.add("停车位");
-            types.add("投影");
-            types.add("棋牌室");
-            types.add("WIFI");
-            types.add("停车位");
-            types.add("投影");
-
-            TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, types);
-            mHolder.rv_type.setLayoutManager(manager);
-            mHolder.rv_type.setAdapter(mAdapter);
-            if (!map.get(position)) {
-                map.put(position, true);
-                mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
-            }
+//            if (!map.containsKey(position)) {
+//                map.put(position, false);
+//            }
+//
+//
+//            TeaSpaceTypeViewHolder mHolder = (TeaSpaceTypeViewHolder) holder;
+//            GridLayoutManager manager = new GridLayoutManager(ctx, 4);
+//            List<String> types = new ArrayList<>();
+//            types.add("棋牌室");
+//            types.add("WIFI");
+//            types.add("停车位");
+//            types.add("投影");
+//            types.add("棋牌室");
+//            types.add("WIFI");
+//            types.add("停车位");
+//            types.add("投影");
+//
+//            TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, types);
+//            mHolder.rv_type.setLayoutManager(manager);
+//            mHolder.rv_type.setAdapter(mAdapter);
+//            if (!map.get(position)) {
+//                map.put(position, true);
+//                mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
+//            }
         }
 
 
@@ -142,6 +144,9 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             tv_count = (TextImage) itemView.findViewById(R.id.tv_count);
             tv_pos = (TextImage) itemView.findViewById(R.id.tv_pos);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
+            layoutParams.height= (int) (Util.getWidth()/1.75);
+            iv_img.setLayoutParams(layoutParams);
         }
 
         @Override
@@ -176,6 +181,9 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
         public TeaSpaceAdViewHolder(View itemView) {
             super(itemView);
             rv_ad = (RollPagerView) itemView.findViewById(R.id.roll_view_pager);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)rv_ad.getLayoutParams();
+            layoutParams.height= (int) (Util.getWidth()/1.75);
+            rv_ad.setLayoutParams(layoutParams);
         }
 
         @Override

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +24,7 @@ import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.myview.GlideCircleTransform;
 import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.util.GlideUtil;
+import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -52,20 +54,18 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         if (holder instanceof TeaEventViewHolder) {
             TeaEventViewHolder mHolder = (TeaEventViewHolder) holder;
-            TeaEvent.Data data = list.get(position - 1);
+            TeaEvent.Data2 data = list.get(position).data2;
             GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
             Glide.with(ctx).load(data.logo).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_logo);
             mHolder.tv_title.setText(data.name);
+            mHolder.tv_content.setText(data.desc);
             mHolder.tv_time.setText(data.sttime + "至" + data.endtime);
             mHolder.tv_price.setText(TextUtils.equals("免费", data.price) ? "免费" : "￥" + data.price);
         } else {
             TeaEventTypeViewHolder mHolder = (TeaEventTypeViewHolder) holder;
             GridLayoutManager manager = new GridLayoutManager(ctx, 4);
-            List<String> types = new ArrayList<>();
-            for (int i = 0; i < 13; i++) {
-                types.add("友谊茶会");
-            }
-            TeaEventTypeFilterAdapter mAdapter = new TeaEventTypeFilterAdapter(ctx, types);
+
+            TeaEventTypeFilterAdapter mAdapter = new TeaEventTypeFilterAdapter(ctx, list.get(position).data1);
             mHolder.rv_type.setLayoutManager(manager);
             mHolder.rv_type.setAdapter(mAdapter);
         }
@@ -75,12 +75,13 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
 
     @Override
     public int getItemCount() {
-        return list.size() + 1;
+        return list.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0) {
+        int r = list.get(position).r;
+        if (r == 1) {
             return VIEW_SHOW_TYPE_FILTER;
         }
         return VIEW_SHOW_CONTENT;
@@ -104,13 +105,16 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
             tv_content = (TextView) itemView.findViewById(R.id.tv_content);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             tv_time = (TextImage) itemView.findViewById(R.id.tv_time);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) iv_img.getLayoutParams();
+            layoutParams.height = (int) (Util.getWidth() / 1.75);
+            iv_img.setLayoutParams(layoutParams);
         }
 
         @Override
         protected void onClick(int layoutPosition) {
             Intent intent = new Intent(ctx, DescBaseActivity.class);
-            intent.putExtra("title", list.get(layoutPosition - 1).name);
-            intent.putExtra("id", list.get(layoutPosition - 1).pigcms_id);
+            intent.putExtra("title", list.get(layoutPosition).data2.name);
+            intent.putExtra("id", list.get(layoutPosition).data2.pigcms_id);
             intent.putExtra("type", 3);
             ctx.startActivity(intent);
         }

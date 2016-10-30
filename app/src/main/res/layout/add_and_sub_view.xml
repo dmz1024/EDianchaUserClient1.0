@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_jian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:src="@mipmap/goods_sub_btn" />
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size8"
+        android:layout_toRightOf="@id/iv_jian"
+        android:gravity="center"
+        android:text="0"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:textColor="#999"
+        android:textSize="@dimen/sp17"
+        />
+
+    <ImageView
+        android:id="@+id/iv_jia"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/tv_count"
+        android:layout_marginLeft="@dimen/size8"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/goods_add_btn" />
+
+    <ImageView
+        android:id="@+id/iv_jian_move"
+        android:visibility="invisible"
+        android:layout_toRightOf="@id/tv_count"
+        android:layout_marginLeft="@dimen/size8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/goods_sub_btn" />
+
+</RelativeLayout>

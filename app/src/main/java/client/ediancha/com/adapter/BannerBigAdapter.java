@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 import client.ediancha.com.myview.PinchImageView;
+import client.ediancha.com.util.GlideUtil;
+
 /**
  * Created by dengmingzhi on 2016/10/27.
  */
@@ -31,7 +33,8 @@ public class BannerBigAdapter extends PagerAdapter {
             PinchImageView view = new PinchImageView(ctx);
             view.setScaleType(ImageView.ScaleType.FIT_XY);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            Glide.with(ctx).load(list.get(i)).into(view);
+//            Glide.with(ctx).load(list.get(i)).into(view);
+            GlideUtil.GlideErrAndOc(ctx,list.get(i),view);
             views.add(view);
         }
     }

@@ -98,7 +98,10 @@ public class TeaFilterFragment extends ListNetWorkBaseFragment<TeaFilter.Data, T
     }
 
     public void clearFilter() {
-        mAdapter.notifyDataSetChanged();
-        fillterMap.clear();
+        if(mAdapter!=null && fillterMap!=null){
+            mAdapter.notifyDataSetChanged();
+            fillterMap.clear();
+        }
+
     }
 }

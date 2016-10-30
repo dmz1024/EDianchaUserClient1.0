@@ -3,8 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="client.ediancha.com.activity.MyCenterActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/item_set"
+        android:orderInCategory="101"
+        android:title="设置"
+        android:icon="@mipmap/center_sz"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item_email"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="消息"
+        android:icon="@mipmap/email"
+        app:showAsAction="always" />
+
 </menu>

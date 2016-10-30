@@ -42,6 +42,7 @@ public class TeaDesc extends BaseEntity {
     public static class SkuList {
         public double price;
         public String properties;
+        public String sku_id;
         public int quantity;
     }
 

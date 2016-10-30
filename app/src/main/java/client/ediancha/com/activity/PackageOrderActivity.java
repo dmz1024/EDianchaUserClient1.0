@@ -290,7 +290,7 @@ public class PackageOrderActivity extends ToolBarActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && pvTime != null) {
             if (pvTime.isShowing()) {
                 pvTime.dismiss();
                 return true;

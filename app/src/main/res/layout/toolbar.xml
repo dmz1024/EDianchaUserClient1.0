@@ -7,6 +7,7 @@
     android:background="#333"
     app:navigationIcon="@mipmap/icon_back"
     app:title=""
+    app:theme="@style/ToolbarTheme"
     app:titleTextColor="#fff">
 
     <TextView

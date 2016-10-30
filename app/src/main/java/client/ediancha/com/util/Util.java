@@ -26,8 +26,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
+import client.ediancha.com.activity.MainActivity;
 import client.ediancha.com.base.MyApplication;
 import client.ediancha.com.constant.UserInfo;
+import client.ediancha.com.myview.PopMessageTips;
+import client.ediancha.com.processor.PopUpdateApk;
 
 /**
  * Created by dengmingzhi on 16/7/12.
@@ -381,6 +384,61 @@ public class Util {
         Uri uri = Uri.parse("tel:" + tel);
         Intent intent = new Intent(Intent.ACTION_DIAL, uri);
         context.startActivity(intent);
+    }
+
+
+    public static void navigation(Context ctx, double latitude, double longitude, int zoom,
+                            String addr) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("geo:").append(latitude).append(",").append(latitude)
+                .append("?").append("z=").append(zoom).append("?").append("q=")
+                .append(addr);
+        Uri mUri = Uri.parse(sb.toString());
+        Intent mIntent = new Intent(Intent.ACTION_VIEW, mUri);
+        ctx.startActivity(mIntent);
+    }
+
+
+    public static void checkUpdate(final Context ctx){
+        PopUpdateApk popUpdateApk = new PopUpdateApk(ctx);
+        popUpdateApk.setOnUpdateApkListener(new PopUpdateApk.OnUpdateApkListener() {
+            @Override
+            public void cancle(final int code) {
+
+                new PopMessageTips("提示","下次不再提示该版本更新?","不再提示","再想想"){
+                    @Override
+                    protected void right() {
+                        super.right();
+                        new SharedPreferenUtil(ctx).setData(new String[]{"code", code + ""});
+                    }
+                };
+            }
+
+            @Override
+            public void updateOk() {
+
+            }
+
+            @Override
+            public void currentIsNew() {
+
+            }
+
+            @Override
+            public void finish() {
+
+            }
+
+            @Override
+            public boolean needUpdate(int code) {
+                String hl_code = new SharedPreferenUtil(ctx).getString("code");
+                if (TextUtils.equals(code + "", hl_code)) {
+                    return false;
+                }
+                return true;
+            }
+        });
+        popUpdateApk.CheckUpdate();
     }
 
 

@@ -13,6 +13,7 @@ public class TeaEventDesc extends BaseEntity {
     public static class Data {
         public Show show;
         public List<Lists> list;
+        public Share share;
     }
 
 
@@ -28,7 +29,9 @@ public class TeaEventDesc extends BaseEntity {
         public String storename;
         public String sttime;
         public String url;
-        public Share share;
+        public double zlat;
+        public double zlong;
+
     }
 
     public static class Lists {
@@ -40,8 +43,7 @@ public class TeaEventDesc extends BaseEntity {
         public String pigcms_id;
         public String storename;
         public String sttime;
-        public String zlat;
-        public String zlong;
+
     }
 
     public static class Share{

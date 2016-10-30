@@ -31,6 +31,7 @@ public class TeaSpace extends BaseListEntity<TeaSpace.Data> {
         public String pigcms_id;
         public String price;
         public String store_id;
+        public String juli;
 
     }
 

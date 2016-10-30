@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -95,6 +96,11 @@ public class TeaPackageDescFragment extends TeaDescBaseFragment<PackageDesc> {
         tv_order.setOnClickListener(this);
         tv_preference_title.setOnClickListener(this);
         tv_preference_content.setOnClickListener(this);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rollPagerView.getLayoutParams();
+        layoutParams.height = Util.getWidth();
+        rollPagerView.setLayoutParams(layoutParams);
+
         return view;
     }
 
@@ -148,7 +154,7 @@ public class TeaPackageDescFragment extends TeaDescBaseFragment<PackageDesc> {
     protected void writeData(PackageDesc t) {
         data = t;
         fillRollPageView(t.data.images);
-        fillTabLayout("https://www.baidu.com");
+        fillTabLayout(t.data.conten);
         show(t.data);
         shareInfo.title = t.data.share.name;
         shareInfo.url = t.data.share.url;

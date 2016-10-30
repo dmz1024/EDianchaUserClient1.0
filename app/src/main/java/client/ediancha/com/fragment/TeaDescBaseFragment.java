@@ -75,4 +75,5 @@ public abstract class TeaDescBaseFragment<D extends BaseEntity> extends SingleNe
     public ShareUtil.ShareInfo getShareInfo() {
         return shareInfo;
     }
+
 }

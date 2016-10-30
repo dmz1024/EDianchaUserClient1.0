@@ -12,7 +12,7 @@ public class TeaProduct extends BaseListEntity<TeaProduct.Data> {
         public int r;
         public Content data1;
         public Content data4;
-        public List<Data2> data2;
+        public Data2 data2;
         public List<Data3> data3;
     }
 
@@ -29,7 +29,11 @@ public class TeaProduct extends BaseListEntity<TeaProduct.Data> {
 
     public static class Data2 {
         public String name;
+        public List<TeaFilter.Cat> data;
+        public String key;
+
     }
+
 
     public static class Data3 {
         public String bg_color;

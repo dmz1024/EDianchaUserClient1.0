@@ -123,4 +123,19 @@ public class TitleRelativeLayout extends RelativeLayout {
     public TextImage getTv_content() {
         return tv_content1;
     }
+
+    public void setContentOnClick(final OnContentListener onClick) {
+        tv_content1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClick.content();
+            }
+        });
+    }
+
+
+    public interface OnContentListener{
+        void content();
+    }
+
 }

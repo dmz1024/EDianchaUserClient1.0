@@ -1,7 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff">
 
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
+        <client.ediancha.com.myview.Color2Text
+            android:id="@+id/tv_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="总计："
+            android:textSize="@dimen/sp20"
+            app:Color2Text_color="#cd673a"
+            app:Color2Text_content="..."
+            app:Color2Text_size="@dimen/sp17" />
+
+        <Button
+            android:id="@+id/bt_pay"
+            android:layout_width="0dp"
+            android:alpha="0.5"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:background="@drawable/touch_bg_51b338"
+            android:text="结算"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size0.5"
+        android:layout_above="@id/ll_bottom"
+        android:layout_marginBottom="-1dp"
+        android:background="#e1e1e1" />
+
+    <FrameLayout
+        android:id="@+id/fg_base"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/view"
+        android:background="#fff" />
 </RelativeLayout>

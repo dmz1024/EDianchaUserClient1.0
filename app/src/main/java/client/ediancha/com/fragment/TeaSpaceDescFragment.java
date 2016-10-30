@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -139,9 +140,14 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
         scrollView.setScrollViewListener(scrollViewListener);
 
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rollPagerView.getLayoutParams();
+        layoutParams.height = Util.getWidth();
+        rollPagerView.setLayoutParams(layoutParams);
+
         trl_tea_package.setOnClickListener(this);
         trl_evaluate.setOnClickListener(this);
         trl_tel.setOnClickListener(this);
+        trl_address.setOnClickListener(this);
 
         return view;
     }
@@ -158,6 +164,9 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
                 break;
             case R.id.trl_tea_package:
                 Util.skip(getActivity(), MoreTeaPackageActivity.class);
+                break;
+            case R.id.trl_address:
+                Util.navigation(getContext(),t.data.show.zlat,t.data.show.zlong,18,t.data.show.address);
                 break;
             case R.id.trl_tea_recommend:
                 Intent intent1 = new Intent(getContext(), TeaSpaceOtherRecommendActivity.class);
@@ -211,7 +220,7 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
     private void fillRollPageView(List<String> images) {
         rollPagerView.setPlayDelay(images.size() > 1 ? 2500 : 0);
         rollPagerView.setAnimationDurtion(500);
-        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, images,true));
+        rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, images, true));
         rollPagerView.setHintView(new TextHintView(getContext()));
     }
 

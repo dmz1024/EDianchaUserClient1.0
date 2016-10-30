@@ -78,7 +78,7 @@ public class SearchActivity extends BaseActivity {
 
         List<TeaFilter.Cat> cats = new ArrayList<>();
         TeaFilter.Cat cat = new TeaFilter.Cat();
-        cat.key = "keyword";
+        cat.key = type != 0 ? "keyword" : "tag";
         cat.name = str;
         cat.value = str;
         cats.add(cat);

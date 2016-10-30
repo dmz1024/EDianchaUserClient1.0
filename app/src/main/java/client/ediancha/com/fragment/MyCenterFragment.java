@@ -95,8 +95,6 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
         }
         Glide.with(getActivity()).load(R.mipmap.icon_head).bitmapTransform(new GlideCircleTransform(getContext())).into(iv_head);
 
-        View view_set = view.findViewById(R.id.view_set);
-        view_set.setOnClickListener(this);
         return view;
     }
 
@@ -105,9 +103,6 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
-            case R.id.view_set:
-                Util.skip(getActivity(), SetActivity.class);
-                break;
             case R.id.iv_head:
                 if (!result && (!isLogin || TextUtils.equals("账号过期", tv_name.getText()))) {
                     startActivityForResult(new Intent(getContext(), LoginActivity.class), Constant.MY_CENTER_INFO);
@@ -124,7 +119,7 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
         MyCenterIcon m2 = new MyCenterIcon("预约订单", 0, R.mipmap.center_appointment_order, "client.ediancha.com.activity.AppointmentActivity");
         MyCenterIcon m3 = new MyCenterIcon("报名", 0, R.mipmap.center_apply, "client.ediancha.com.activity.ApplyOrderActivity");
         MyCenterIcon m4 = new MyCenterIcon("喜欢", 0, R.mipmap.center_like, "client.ediancha.com.activity.LikeActivity");
-        MyCenterIcon m5 = new MyCenterIcon("购物车", 0, R.mipmap.center_buy_car, "client.ediancha.com.activity.MainActivity");
+        MyCenterIcon m5 = new MyCenterIcon("购物车", 0, R.mipmap.center_buy_car, "client.ediancha.com.activity.BuyCarActivity");
         MyCenterIcon m6 = new MyCenterIcon("收货地址", 0, R.mipmap.center_address, "client.ediancha.com.activity.AddressActivity");
         list.add(m1);
         list.add(m2);
@@ -161,7 +156,7 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constant.MY_CENTER_INFO && data!=null) {
+        if (requestCode == Constant.MY_CENTER_INFO && data != null) {
             getData();
         }
     }

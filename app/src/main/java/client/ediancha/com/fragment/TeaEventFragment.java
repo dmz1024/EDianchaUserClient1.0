@@ -59,6 +59,7 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
     protected Map<String, String> getMap() {
         map.put("c", "chahui");
         map.put("a", "index");
+        map.put("type", "1");
         map.putAll(filterMap);
         return map;
     }

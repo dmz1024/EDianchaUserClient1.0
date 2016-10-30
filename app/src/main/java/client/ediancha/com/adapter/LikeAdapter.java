@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +26,7 @@ import client.ediancha.com.entity.Like;
 import client.ediancha.com.interfaces.OnResultListener;
 import client.ediancha.com.processor.CollectionUtil;
 import client.ediancha.com.util.GlideUtil;
+import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -70,6 +73,9 @@ public class LikeAdapter extends SingleBaseAdapter<Like.Data> {
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
             iv_like = (ImageView) itemView.findViewById(R.id.iv_like);
             iv_like.setOnClickListener(this);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
+            layoutParams.height= (int) (Util.getWidth()/1.75);
+            iv_img.setLayoutParams(layoutParams);
         }
 
         @Override

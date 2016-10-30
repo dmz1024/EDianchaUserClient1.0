@@ -5,7 +5,7 @@
     android:id="@+id/activity_tea_event_desc"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="client.ediancha.com.activity.TeaEventDescActivity">
+    >
 
     <TextView
         android:id="@+id/tv_apply"
@@ -17,7 +17,12 @@
         android:text="我要参加"
         android:textColor="#fff"
         android:textSize="@dimen/sp15" />
-
+    <FrameLayout
+        android:id="@+id/fg_desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/tv_apply"
+        android:layout_alignParentTop="true" />
     <client.ediancha.com.myview.ScrollChangedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -133,29 +138,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="@dimen/size15"
-                android:text="- 活动详情 -"
+                android:padding="@dimen/size12"
+                android:text="- 活动详情,点击查看 -"
                 android:textColor="#333"
                 android:textSize="@dimen/sp15" />
-
-            <View
-                android:id="@+id/view_3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size0.5"
-
-                android:layout_marginTop="@dimen/size5"
-                android:background="#e1e1e1" />
-
-            <TextView
-                android:id="@+id/tv_event_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:lineSpacingExtra="@dimen/size3"
-                android:padding="@dimen/size15"
-                android:text="活动是由共同目的联合起来并完成一定社会职能的动作的总和。活动由目的、动机和动作构成，具有完整的结构系统。苏联心理学家从20年代起就对活动进行了一系列研究。其中Α.Н.列昂节夫的活动理论对苏联心理学的发展影响很大，成为现代苏联心理学的重要理论基石。"
-                android:textColor="#666"
-                android:textSize="@dimen/sp13" />
 
             <View
                 android:id="@+id/view_4"
@@ -170,7 +156,7 @@
                 android:layout_height="wrap_content"
 
                 android:gravity="center"
-                android:padding="@dimen/size15"
+                android:padding="@dimen/size12"
                 android:text="- 活动相关 -"
                 android:textColor="#333"
                 android:textSize="@dimen/sp15" />

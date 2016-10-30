@@ -92,7 +92,7 @@ public abstract class ShareBaseActivity extends ToolBarActivity {
                         ShareUtil.getInstance().QQFriend(ShareBaseActivity.this, qqInfo);
                         break;
                     case 3:
-                        ctrlC();
+                        ctrlC(getShareInfo().url);
                         break;
                 }
             }
@@ -105,10 +105,10 @@ public abstract class ShareBaseActivity extends ToolBarActivity {
     /**
      * 复制
      */
-    private void ctrlC() {
+    private void ctrlC(String string) {
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        cm.setText("复制的网址");
-        MyToast.showToast("网址已复制至粘贴板");
+        cm.setText(string);
+        MyToast.showToast("链接已复制至粘贴板");
     }
 
     private void more() {

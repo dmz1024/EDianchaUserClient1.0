@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ScrollView;
 
 import java.util.ArrayList;
@@ -30,8 +31,6 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     private int type;
     private TeaEventDescFragment teaEventDescFragment;
     private TeaSpaceDescFragment teaSpaceDescFragment;
-    //    private TeaProductDescFragment teaProductDescFragment;
-//    private TeaSpacePackageDescFragment teaSpacePackageDescFragment;
     private CollectionUtil collectionUtil;
 
 
@@ -44,18 +43,12 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     protected ShareUtil.ShareInfo getShareInfo() {
         ShareUtil.ShareInfo shareInfo = null;
         switch (type) {
-//            case 1:
-//                shareInfo = teaProductDescFragment.getShareInfo();
-//                break;
             case 2:
                 shareInfo = teaSpaceDescFragment.getShareInfo();
                 break;
             case 3:
                 shareInfo = teaEventDescFragment.getShareInfo();
                 break;
-//            case 4:
-//                shareInfo = teaSpacePackageDescFragment.getShareInfo();
-//                break;
         }
         return shareInfo;
     }
@@ -63,14 +56,10 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     @Override
     protected boolean isCanClick() {
         switch (type) {
-//            case 1:
-//                return teaProductDescFragment.getResult();
             case 2:
                 return teaSpaceDescFragment.getResult();
             case 3:
                 return teaEventDescFragment.getResult();
-//            case 4:
-//                return teaSpacePackageDescFragment.getResult();
         }
         return super.isCanClick();
     }
@@ -89,24 +78,28 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     protected void initView() {
         type = getIntent().getIntExtra("type", 1);
         switch (type) {
-//            case 1:
-//                teaProductDescFragment = TeaProductDescFragment.getInstance(getIntent().getStringExtra("id"));
-//                teaProductDescFragment.setScrollViewListener(this);
-//                break;
             case 2:
                 teaSpaceDescFragment = TeaSpaceDescFragment.getInstance(getIntent().getStringExtra("id"));
                 teaSpaceDescFragment.setScrollViewListener(this);
                 teaSpaceDescFragment.setOnDataHaveListener(this);
+
                 break;
             case 3:
                 teaEventDescFragment = TeaEventDescFragment.getInstance(getIntent().getStringExtra("id"));
                 teaEventDescFragment.setScrollViewListener(this);
                 teaEventDescFragment.setOnDataHaveListener(this);
+                teaEventDescFragment.setOnShowDescListener(new TeaEventDescFragment.OnShowDescListener() {
+                    @Override
+                    public void show() {
+                        toolbar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void hide() {
+                        toolbar.setVisibility(View.VISIBLE);
+                    }
+                });
                 break;
-//            case 4:
-//                teaSpacePackageDescFragment = TeaSpacePackageDescFragment.getInstance(getIntent().getStringExtra("id"));
-//                teaSpacePackageDescFragment.setScrollViewListener(this);
-//                break;
         }
 
     }
@@ -128,18 +121,12 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
 
         TeaDescBaseFragment baseFragment = null;
         switch (type) {
-//            case 1:
-//                baseFragment = teaProductDescFragment;
-//                break;
             case 2:
                 baseFragment = teaSpaceDescFragment;
                 break;
             case 3:
                 baseFragment = teaEventDescFragment;
                 break;
-//            case 4:
-//                baseFragment = teaSpacePackageDescFragment;
-//                break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, baseFragment).commit();
     }
@@ -152,7 +139,6 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     }
 
     private int currentColor = 0;
-
     @Override
     public void onScrollChanged(ScrollView scrollView, int x, int y, int oldx, int oldy) {
         String color;
@@ -192,7 +178,6 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
             color = "#333333";
             setTitle(getIntent().getStringExtra("title"));
         }
-
         toolbar.setBackgroundColor(Color.parseColor(color));
 
     }
@@ -217,5 +202,19 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     public void dataHave() {
         toolbar.setBackgroundColor(Color.parseColor("#00333333"));
         setTitle("");
+    }
+
+    @Override
+    protected void back() {
+        if(type==3){
+            if (teaEventDescFragment.getShow()) {
+                teaEventDescFragment.hideDesc();
+            } else {
+                super.back();
+            }
+        }else {
+            super.back();
+        }
+
     }
 }

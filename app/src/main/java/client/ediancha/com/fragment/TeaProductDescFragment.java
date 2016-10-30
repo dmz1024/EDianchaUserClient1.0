@@ -13,10 +13,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -28,17 +30,20 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.BuyCarActivity;
 import client.ediancha.com.activity.BuyTeaActivity;
 import client.ediancha.com.activity.MoreEvaluateActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.base.WebBaseFragment;
+import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.entity.TeaSpaceDesc;
 import client.ediancha.com.interfaces.WebViewScrollListener;
 import client.ediancha.com.myview.ChooseBuyCarView;
 import client.ediancha.com.myview.Color2Text;
 import client.ediancha.com.myview.MyWebView;
+import client.ediancha.com.processor.BuyCarUtil;
 import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.entity.TeaDesc;
@@ -47,6 +52,7 @@ import client.ediancha.com.interfaces.ShareInfoInterface;
 import client.ediancha.com.myview.ScrollChangedScrollView;
 import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.myview.TitleRelativeLayout;
+import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.Util;
 
 /**
@@ -113,7 +119,11 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         tv_desc.setOnClickListener(this);
         tv_buy.setOnClickListener(this);
         tv_add_buy_car.setOnClickListener(this);
+        tv_buy_car.setOnClickListener(this);
 
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)rollPagerView.getLayoutParams();
+        layoutParams.height=Util.getWidth();
+        rollPagerView.setLayoutParams(layoutParams);
         return view;
     }
 
@@ -124,6 +134,14 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         switch (view.getId()) {
             case R.id.tv_desc:
                 showDesc();
+                break;
+            case R.id.tv_buy_car:
+                if(TextUtils.isEmpty(UserInfo.uid)){
+                    MyToast.showToast("请先登录");
+                    return;
+                }else {
+                    Util.skip(getActivity(), BuyCarActivity.class);
+                }
                 break;
             case R.id.trl_comment:
                 Intent intent = new Intent(getContext(), MoreEvaluateActivity.class);
@@ -138,7 +156,12 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
                 Util.skip(getActivity(), BuyTeaActivity.class);
                 break;
             case R.id.tv_add_buy_car:
-                new ChooseBuyCarView(getContext(),data.data.property,data.data.sku_list).showAtLocation();
+                new ChooseBuyCarView(getContext(),data.data.property,data.data.sku_list){
+                    @Override
+                    protected void chooseOk(int count, String sku_id) {
+                        BuyCarUtil.getInstance().setContext(getContext()).addBuyCar(count,sku_id,id);
+                    }
+                }.showAtLocation();
                 break;
         }
     }
@@ -177,7 +200,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
     protected void writeData(TeaDesc t) {
         data = t;
         fillRollPageView(t.data.images);
-        fillTabLayout("https://www.baidu.com");
+        fillTabLayout(t.data.content);
         show(t.data);
 
         shareInfo.title = t.data.share.name;
@@ -193,8 +216,6 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
      * @param data
      */
     private void show(TeaDesc.Data data) {
-
-
         tv_name.setText(data.name);
         tv_price.setTextNotChange(data.price);
         tv_count_info.setText("运费：￥" + data.postage + "       剩余：" + data.quantity + "件");
@@ -219,12 +240,6 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
 
     private void fillTabLayout(String url) {
         getChildFragmentManager().beginTransaction().replace(R.id.fg_desc, webFragment = WebBaseFragment.getInstance(url, true, false)).commit();
-//        webFragment.getWebView().setWebViewScrollListener(new WebViewScrollListener() {
-//            @Override
-//            public void onScrollChanged(MyWebView webView, int x, int y, int oldx, int oldy) {
-//                Log.d("gundong", x + "-" + y);
-//            }
-//        });
     }
 
 

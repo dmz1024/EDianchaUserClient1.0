@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="@dimen/size5">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view_choose"
+            android:layout_width="@dimen/size17"
+            android:layout_height="@dimen/size17"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/icon_shopcart_check" />
+
+        <client.ediancha.com.myview.TitleRelativeLayout
+            android:id="@+id/trl_store_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size35"
+            android:layout_marginLeft="-5dp"
+            android:layout_toRightOf="@id/view_choose"
+            app:TitleRelativeLayout_content="编辑"
+            app:TitleRelativeLayout_content_image_visi="false"
+            app:TitleRelativeLayout_content_style="@style/TextSize13Color666"
+            app:TitleRelativeLayout_title="艺草堂"
+            app:TitleRelativeLayout_title_h="@dimen/size17"
+            app:TitleRelativeLayout_title_image="@mipmap/icon_shopcart_shore"
+            app:TitleRelativeLayout_title_style="@style/TextSize13Color666"
+            app:TitleRelativeLayout_title_w="@dimen/size17">
+        </client.ediancha.com.myview.TitleRelativeLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
