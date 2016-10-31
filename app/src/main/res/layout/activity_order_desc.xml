@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size10"
-            android:background="#fff"
+            android:background="#ffffff"
             android:paddingBottom="@dimen/size10"
             android:paddingTop="@dimen/size10">
 
@@ -22,7 +22,6 @@
                 style="@style/TextSize13Color333"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="@dimen/size10"
-                android:text="待付款"
                 android:textColor="#cd6638" />
 
             <View
@@ -81,7 +80,6 @@
                 android:layout_marginLeft="@dimen/size10"
                 android:layout_marginRight="@dimen/size10"
                 android:layout_marginTop="@dimen/size10"
-                android:text="￥0.01"
                 android:textColor="#cd6638" />
 
         </RelativeLayout>
@@ -95,7 +93,6 @@
             android:background="#ffffff"
             android:lineSpacingExtra="@dimen/size5"
             android:padding="@dimen/size10"
-            android:text="邓如果，18326167257\n北京市 北京市 朝阳区\n北辰东路8号"
             android:textSize="@dimen/sp17" />
 
         <RelativeLayout
@@ -109,7 +106,7 @@
                 android:id="@+id/tv_price_info"
                 style="@style/TextSize15Color333"
                 android:layout_centerHorizontal="true"
-                android:text="￥200.00+￥15.00(运费)" />
+                 />
 
             <TextView
                 android:id="@+id/tv_total_price"
@@ -117,7 +114,6 @@
                 android:layout_below="@id/tv_price_info"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/size10"
-                android:text="共计：￥215.00"
                 android:textColor="#cd673a" />
         </RelativeLayout>
     </LinearLayout>
