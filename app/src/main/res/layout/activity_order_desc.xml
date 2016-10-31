@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size15"
-            android:background="#fff"
+            android:background="#ffffff"
             android:lineSpacingExtra="@dimen/size5"
             android:padding="@dimen/size10"
             android:text="邓如果，18326167257\n北京市 北京市 朝阳区\n北辰东路8号"
