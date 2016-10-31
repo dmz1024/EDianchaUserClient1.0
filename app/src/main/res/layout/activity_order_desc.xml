@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#fbfbfb"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size10"
+            android:background="#fff"
+            android:paddingBottom="@dimen/size10"
+            android:paddingTop="@dimen/size10">
+
+            <TextView
+                android:id="@+id/tv_state"
+                style="@style/TextSize13Color333"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/size10"
+                android:text="待付款"
+                android:textColor="#cd6638" />
+
+            <View
+                android:id="@+id/view_1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:layout_below="@id/tv_state"
+                android:layout_marginTop="@dimen/size10"
+                android:background="#fbfbfb" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_shop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_1"
+                android:layout_marginLeft="@dimen/size10"
+                android:layout_marginRight="@dimen/size10"
+                android:layout_marginTop="@dimen/size10" />
+
+            <View
+                android:id="@+id/view_2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:layout_below="@id/rv_shop"
+                android:layout_marginTop="@dimen/size10"
+                android:background="#fbfbfb" />
+
+            <TextView
+                android:id="@+id/tv_liuyan"
+                style="@style/TextSize14Color666"
+                android:layout_below="@id/view_2"
+                android:layout_marginLeft="@dimen/size10"
+                android:layout_marginTop="@dimen/size10"
+                android:text="买家留言：无" />
+
+            <View
+                android:id="@+id/view_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:layout_below="@id/tv_liuyan"
+                android:layout_marginTop="@dimen/size10"
+                android:background="#fbfbfb" />
+
+            <TextView
+                style="@style/TextSize15Color333"
+                android:layout_below="@id/view_3"
+                android:layout_marginLeft="@dimen/size10"
+                android:layout_marginTop="@dimen/size10"
+                android:text="总价" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                style="@style/TextSize14Color333"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/view_3"
+                android:layout_marginLeft="@dimen/size10"
+                android:layout_marginRight="@dimen/size10"
+                android:layout_marginTop="@dimen/size10"
+                android:text="￥0.01"
+                android:textColor="#cd6638" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_link_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size15"
+            android:background="#fff"
+            android:lineSpacingExtra="@dimen/size5"
+            android:padding="@dimen/size10"
+            android:text="邓如果，18326167257\n北京市 北京市 朝阳区\n北辰东路8号"
+            android:textSize="@dimen/sp17" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size15"
+            android:background="#fff"
+            android:padding="@dimen/size10">
+
+            <TextView
+                android:id="@+id/tv_price_info"
+                style="@style/TextSize15Color333"
+                android:layout_centerHorizontal="true"
+                android:text="￥200.00+￥15.00(运费)" />
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                style="@style/TextSize15Color333"
+                android:layout_below="@id/tv_price_info"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/size10"
+                android:text="共计：￥215.00"
+                android:textColor="#cd673a" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

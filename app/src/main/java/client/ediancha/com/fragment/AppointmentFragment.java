@@ -48,10 +48,11 @@ public class AppointmentFragment extends ListNetWorkBaseFragment<Appointment.Dat
 
     @Override
     protected Map<String, String> getMap() {
-        map.put("c","myorder");
-        map.put("a","yuyue_orders");
+        map.put("c", "myorder");
+        map.put("a", "yuyue_orders");
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
+        map.put("type", type + "");
         return map;
     }
 

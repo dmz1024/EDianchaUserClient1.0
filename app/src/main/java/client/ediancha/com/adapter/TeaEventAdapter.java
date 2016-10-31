@@ -64,7 +64,6 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
         } else {
             TeaEventTypeViewHolder mHolder = (TeaEventTypeViewHolder) holder;
             GridLayoutManager manager = new GridLayoutManager(ctx, 4);
-
             TeaEventTypeFilterAdapter mAdapter = new TeaEventTypeFilterAdapter(ctx, list.get(position).data1);
             mHolder.rv_type.setLayoutManager(manager);
             mHolder.rv_type.setAdapter(mAdapter);

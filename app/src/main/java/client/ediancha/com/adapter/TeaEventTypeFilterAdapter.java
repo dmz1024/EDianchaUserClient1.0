@@ -54,7 +54,7 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Data1>
                 GlideUtil.GlideErrAndOc(ctx, data.cat_pic, mHolder.iv_icon);
                 mHolder.tv_title.setText(data.cat_name);
             } else {
-                Glide.with(ctx).load(R.mipmap.center_address).into(mHolder.iv_icon);
+                Glide.with(ctx).load(R.mipmap.icon_more).into(mHolder.iv_icon);
                 mHolder.tv_title.setText("更多");
             }
         } else {
@@ -89,7 +89,7 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Data1>
 
         @Override
         protected void onClick(int layoutPosition) {
-            if (isHaveMore && !isNowMore && layoutPosition==7) {
+            if (isHaveMore && !isNowMore && layoutPosition == 7) {
                 isNowMore = true;
                 isHaveMore = false;
                 isCanMore = false;
@@ -97,7 +97,7 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Data1>
             } else {
                 List<TeaFilter.Cat> cats = new ArrayList<>();
                 TeaFilter.Cat cat = new TeaFilter.Cat();
-                cat.key ="cat_id";
+                cat.key = "cat_id";
                 cat.name = list.get(layoutPosition).cat_name;
                 cat.value = list.get(layoutPosition).cat_id;
                 cats.add(cat);

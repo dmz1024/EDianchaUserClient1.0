@@ -51,7 +51,7 @@ public class AddressAdapter extends SingleBaseAdapter<Address.Data> {
         Address.Data data = list.get(position);
         mHolder.tv_name.setText(data.name);
         mHolder.tv_tel.setText(data.tel);
-        mHolder.tv_address.setText(data.address);
+        mHolder.tv_address.setText(data.province_txt + data.city_txt + data.area_txt + data.address);
         if (data.is_default == 1) {
             address_default = position;
             mHolder.tv_type.setDrawable(R.mipmap.icon_a_selected);
@@ -131,8 +131,7 @@ public class AddressAdapter extends SingleBaseAdapter<Address.Data> {
         protected void onClick(int layoutPosition) {
             if (isChoose) {
                 Intent intent = ((Activity) ctx).getIntent();
-                intent.putExtra("name", list.get(layoutPosition).name);
-                intent.putExtra("address", list.get(layoutPosition).address);
+                intent.putExtra("address", list.get(layoutPosition));
                 ((Activity) ctx).setResult(1, intent);
                 ((Activity) ctx).finish();
             } else {

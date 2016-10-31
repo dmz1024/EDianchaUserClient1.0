@@ -9,19 +9,27 @@ import java.util.List;
 public class Appointment extends BaseListEntity<Appointment.Data> {
 
     public static class Data extends client.ediancha.com.entity.Data {
-        public String title;
-        public List<Casts> casts;
-        public Images images;
-    }
-
-    public static class Casts {
+        public String bz;
+        public String dateline;
+        public String dd_time;
+        public String food;
+        public String images;
         public String name;
-        public String id;
+        public String num;
+        public String order_id;
+        public String orderid;
+        public String phone;
+        public String sc;
+        public String status;
+        public String store_name;
+        public String store_uid;
+        public String tableid;
+        public String tablename;
+        public int type;
+        public String use_time;
+
     }
 
-    public static class Images {
-        public String large;
-    }
 
 
 }

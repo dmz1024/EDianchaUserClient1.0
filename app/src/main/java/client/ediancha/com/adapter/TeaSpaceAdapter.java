@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -42,6 +43,7 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
     private static final int VIEW_SHOW_CONTENT = 1;
     private static final int VIEW_SHOW_TYPE = 3;
     private Map<Integer, Boolean> map = new HashMap<>();
+
     public TeaSpaceAdapter(Context ctx, List<TeaSpace.Data> list) {
         super(ctx, list);
     }
@@ -69,7 +71,12 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
             mHolder.tv_title.setText(data.name);
             mHolder.tv_count.setText(data.attention_num + "人");
-            mHolder.tv_pos.setText(data.address);
+            if (TextUtils.isEmpty(data.juli)) {
+                mHolder.tv_pos.setText(data.address);
+            } else {
+                mHolder.tv_pos.setText(data.juli + "km");
+            }
+
             mHolder.tv_price.setText("人均￥" + data.price + "/人");
 
         } else if (holder instanceof TeaSpaceAdViewHolder) {
@@ -144,8 +151,8 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             tv_count = (TextImage) itemView.findViewById(R.id.tv_count);
             tv_pos = (TextImage) itemView.findViewById(R.id.tv_pos);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
-            layoutParams.height= (int) (Util.getWidth()/1.75);
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) iv_img.getLayoutParams();
+            layoutParams.height = (int) (Util.getWidth() / 1.75);
             iv_img.setLayoutParams(layoutParams);
         }
 
@@ -181,8 +188,8 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
         public TeaSpaceAdViewHolder(View itemView) {
             super(itemView);
             rv_ad = (RollPagerView) itemView.findViewById(R.id.roll_view_pager);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)rv_ad.getLayoutParams();
-            layoutParams.height= (int) (Util.getWidth()/1.75);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) rv_ad.getLayoutParams();
+            layoutParams.height = (int) (Util.getWidth() / 1.75);
             rv_ad.setLayoutParams(layoutParams);
         }
 

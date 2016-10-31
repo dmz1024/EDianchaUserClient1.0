@@ -36,9 +36,11 @@ import client.ediancha.com.util.Util;
 
 public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
     private boolean isDelete = false;
+    private Map<Integer, Integer> map;
 
-    public BuyCarShopAdapter(Context ctx, List<BuyCar.Shop> list) {
+    public BuyCarShopAdapter(Context ctx, List<BuyCar.Shop> list, Map<Integer, Integer> map) {
         super(ctx, list);
+        this.map = map;
     }
 
     public BuyCarShopAdapter(List<BuyCar.Shop> list) {
@@ -60,6 +62,7 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
         mHolder.tv_delete.setVisibility(isDelete ? View.VISIBLE : View.GONE);
         mHolder.tv_count.setText("数量：" + data.pro_num);
         mHolder.tv_price.setText("￥" + data.price);
+        mHolder.view_choose.setBackgroundResource(map.containsKey(position) ? R.mipmap.icon_shopcart_checked : R.mipmap.icon_shopcart_check);
         mHolder.add_sub.setCount(1, data.quantity).setCount(data.pro_num).setOnAddAndSubListener(new AddAndSub.OnAddAndSubListener() {
             @Override
             public void add() {
@@ -67,7 +70,9 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
                     @Override
                     public void resultOk() {
                         list.get(position).pro_num = mHolder.add_sub.getCurrent();
-                        dataChange();
+                        if (map.containsKey(position)) {
+                            changeMap();
+                        }
                     }
 
                     @Override
@@ -84,7 +89,9 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
                     @Override
                     public void resultOk() {
                         list.get(position).pro_num = mHolder.add_sub.getCurrent();
-                        dataChange();
+                        if (map.containsKey(position)) {
+                            changeMap();
+                        }
                     }
 
                     @Override
@@ -110,6 +117,7 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
         public TextView tv_old_price;
         public TextView tv_delete;
         public AddAndSub add_sub;
+        public View view_choose;
 
         public ApplyOrderViewHolder(View itemView) {
             super(itemView);
@@ -120,7 +128,9 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
             tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
             tv_delete = (TextView) itemView.findViewById(R.id.tv_delete);
             add_sub = (AddAndSub) itemView.findViewById(R.id.add_sub);
+            view_choose = itemView.findViewById(R.id.view_choose);
             tv_delete.setOnClickListener(this);
+            view_choose.setOnClickListener(this);
         }
 
         @Override
@@ -129,8 +139,25 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
                 case R.id.tv_delete:
                     delete(layoutPosition);
                     break;
+                case R.id.view_choose:
+                    choose(layoutPosition);
+                    break;
             }
         }
+    }
+
+    private void choose(int layoutPosition) {
+        if (map.containsKey(layoutPosition)) {
+            map.remove(layoutPosition);
+        } else {
+            map.put(layoutPosition, layoutPosition);
+        }
+        changeMap();
+        notifyDataSetChanged();
+    }
+
+    protected void changeMap() {
+
     }
 
 
@@ -138,8 +165,16 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
         BuyCarUtil.getInstance().setContext(ctx).setOnResultListener(new OnResultListener() {
             @Override
             public void resultOk() {
+                boolean isChange = false;
+                if (map.containsKey(layoutPosition)) {
+                    map.remove(layoutPosition);
+                    isChange = true;
+
+                }
                 remove(layoutPosition);
-                dataChange();
+                if (isChange) {
+                    changeMap();
+                }
             }
 
             @Override
@@ -154,8 +189,5 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
         notifyDataSetChanged();
     }
 
-
-    protected void dataChange() {
-    }
 
 }

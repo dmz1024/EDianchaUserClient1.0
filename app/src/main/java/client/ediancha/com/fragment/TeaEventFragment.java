@@ -4,17 +4,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import client.ediancha.com.activity.MainActivity;
 import client.ediancha.com.adapter.TeaEventAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
 import client.ediancha.com.entity.TeaEvent;
 import client.ediancha.com.entity.TeaFilter;
 import client.ediancha.com.interfaces.OnTeaEventMapListener;
+import client.ediancha.com.util.SharedPreferenUtil;
 
 /**
  * Created by dengmingzhi on 16/10/12.
@@ -61,6 +64,7 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
         map.put("a", "index");
         map.put("type", "1");
         map.putAll(filterMap);
+        map.putAll(new SharedPreferenUtil(getContext(), "location").getData(new String[]{"lat", "long"}));
         return map;
     }
 

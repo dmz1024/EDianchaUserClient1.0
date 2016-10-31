@@ -21,13 +21,13 @@ import client.ediancha.com.util.GlideUtil;
  * Created by dengmingzhi on 16/10/12.
  */
 
-public class TeaOrderShopAdapter extends SingleBaseAdapter<TeaOrder.Casts> {
+public class TeaOrderShopAdapter extends SingleBaseAdapter<TeaOrder.OrderProduct> {
 
-    public TeaOrderShopAdapter(Context ctx, List<TeaOrder.Casts> list) {
+    public TeaOrderShopAdapter(Context ctx, List<TeaOrder.OrderProduct> list) {
         super(ctx, list);
     }
 
-    public TeaOrderShopAdapter(List<TeaOrder.Casts> list) {
+    public TeaOrderShopAdapter(List<TeaOrder.OrderProduct> list) {
         super(list);
     }
 
@@ -39,11 +39,11 @@ public class TeaOrderShopAdapter extends SingleBaseAdapter<TeaOrder.Casts> {
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaOrderShopViewHolder mHolder = (TeaOrderShopViewHolder) holder;
-        TeaOrder.Casts cast = list.get(position);
-        GlideUtil.GlideErrAndOc(ctx, Constant.IMAGE, mHolder.iv_img);
-        mHolder.tv_name.setText(cast.name);
-        mHolder.tv_count.setText("X" + cast.id);
-        mHolder.tv_now_price.setText("￥" + cast.id);
+        TeaOrder.OrderProduct product = list.get(position);
+        GlideUtil.GlideErrAndOc(ctx, product.image, mHolder.iv_img);
+        mHolder.tv_name.setText(product.name);
+        mHolder.tv_now_price.setText("￥" + product.pro_price);
+        mHolder.tv_count.setText("数量x" + product.pro_num);
     }
 
     public static class TeaOrderShopViewHolder extends BaseViewHolder {

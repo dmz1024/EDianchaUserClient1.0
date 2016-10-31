@@ -52,6 +52,7 @@ public class TeaOrderFragment extends ListNetWorkBaseFragment<TeaOrder.Data, Tea
         map.put("c", "myorder");
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
+        map.put("type", type + "");
         return map;
     }
 

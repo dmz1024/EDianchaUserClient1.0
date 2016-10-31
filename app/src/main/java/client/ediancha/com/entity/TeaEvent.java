@@ -24,6 +24,7 @@ public class TeaEvent extends BaseListEntity<TeaEvent.Data> {
         public String pigcms_id;
         public String price;
         public String sttime;
+        public String juli;
     }
 
     public static class Data1 {

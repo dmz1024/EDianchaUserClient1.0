@@ -1,5 +1,6 @@
 package client.ediancha.com.activity;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -165,14 +166,35 @@ public class AddressManagerActivity extends ToolBarActivity {
      * 编辑添加地址
      */
     private void save() {
+        String name = et_name.getText().toString();
+        if(TextUtils.isEmpty(name)){
+            MyToast.showToast("请输入收货人姓名");
+            return;
+        }
+        String tel = et_tel.getText().toString();
+        if(tel.length()!=11){
+            MyToast.showToast("请输入正确的手机号");
+            return;
+        }
+        if(TextUtils.isEmpty(province)){
+            MyToast.showToast("请输入所在地区");
+            return;
+        }
+
+        String address = et_address.getText().toString();
+        if(TextUtils.isEmpty(address)){
+            MyToast.showToast("请输入详细地址");
+            return;
+        }
+
         Map<String, String> map = new HashMap<>();
-        map.put("name", et_name.getText().toString());
-        map.put("tel", et_tel.getText().toString());
+        map.put("name", name);
+        map.put("tel", tel);
         map.put("province", province);
         map.put("city", city);
         map.put("area", area);
         map.put("default", isDefault + "");
-        map.put("address", et_address.getText().toString());
+        map.put("address", address);
         if (data != null) {
             map.put("address_id", data.address_id);
         }

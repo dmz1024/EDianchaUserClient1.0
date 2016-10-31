@@ -40,8 +40,8 @@ public class AppointmentAdapter extends SingleBaseAdapter<Appointment.Data> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         AppointmentViewHolder mHolder = (AppointmentViewHolder) holder;
         Appointment.Data data = list.get(position);
-        GlideUtil.GlideErrAndOc(ctx, data.images.large, mHolder.iv_img);
-        mHolder.tv_name.setText(data.title);
+        GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
+        mHolder.tv_name.setText(data.name);
     }
 
     public static class AppointmentViewHolder extends BaseViewHolder {

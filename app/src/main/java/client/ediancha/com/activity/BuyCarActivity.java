@@ -1,5 +1,6 @@
 package client.ediancha.com.activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,13 +9,9 @@ import android.widget.Button;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.ToolBarActivity;
-import client.ediancha.com.entity.BuyCar;
 import client.ediancha.com.fragment.BuyCarFragment;
 import client.ediancha.com.myview.Color2Text;
 import client.ediancha.com.processor.BuyCarUtil;
-import client.ediancha.com.processor.PayUtil;
-import client.ediancha.com.util.MyToast;
-import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 2016/10/27.
@@ -52,8 +49,11 @@ public class BuyCarActivity extends ToolBarActivity {
             @Override
             public void payId(String id) {
                 Log.d("id", id);
-                buyCarFragment.clear();
-                PayUtil.getInstance().setContext(BuyCarActivity.this).getWechatPayId(id);
+                Intent intent = new Intent(BuyCarActivity.this, BuyTeaActivity.class);
+                intent.putExtra("id", "YDC" + id);
+                startActivity(intent);
+                finish();
+
             }
         }).pay(buyCarFragment.getPayId());
     }

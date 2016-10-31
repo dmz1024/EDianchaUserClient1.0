@@ -55,6 +55,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@mipmap/icon_go" />
+
+
             </RelativeLayout>
 
 
@@ -70,29 +72,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/tv_peisong"
-                    style="@style/TextSize14Color333"
-                    android:layout_below="@id/rv_buy"
-                    android:layout_marginTop="@dimen/size15"
-                    android:text="配送方式" />
-
-                <client.ediancha.com.myview.TextImage
-                    android:id="@+id/tv_tv_peisong_type"
-                    style="@style/TextSize14Color666"
-                    android:layout_below="@id/rv_buy"
-                    android:layout_marginLeft="@dimen/size25"
-                    android:layout_marginTop="@dimen/size15"
-                    android:layout_toRightOf="@id/tv_peisong"
-                    android:text="快递配送：" />
-
                 <View
                     android:id="@+id/view_2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size1"
-                    android:layout_below="@id/tv_peisong"
-                    android:layout_marginLeft="@dimen/size10"
-                    android:layout_marginRight="@dimen/size10"
+                    android:layout_below="@id/rv_buy"
                     android:layout_marginTop="@dimen/size15"
                     android:background="#fbfbfb" />
 
@@ -118,9 +102,9 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="@dimen/size15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size15"
                 android:background="#fff"
                 android:padding="@dimen/size10">
 

@@ -273,9 +273,9 @@ public class BuyCarUtil {
 
             @Override
             public void haveData(PayOrderNo baseEntity) {
-                if (baseEntity.err_code == 0) {
+                if (baseEntity.result == 0) {
                     if (onPayListener != null) {
-                        onPayListener.payId(baseEntity.err_msg);
+                        onPayListener.payId(baseEntity.data.order_no);
                     }
                 } else {
                     MyToast.showToast(baseEntity.msg);
@@ -300,6 +300,7 @@ public class BuyCarUtil {
                         }
                     }.showView(ctx);
                 }
+
             }
 
             @Override

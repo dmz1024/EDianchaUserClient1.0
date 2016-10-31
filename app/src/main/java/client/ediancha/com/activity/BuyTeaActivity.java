@@ -21,7 +21,7 @@ public class BuyTeaActivity extends ToolBarActivity {
 
     @Override
     protected void initData() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fg_base,new BuyTeaFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fg_base,BuyTeaFragment.getInstance(getIntent().getStringExtra("id"))).commit();
     }
 
     @Override

@@ -78,7 +78,6 @@ public class ApplyOrderAdapter extends SingleBaseAdapter<ApplyOrder.Data> {
         public TextView tv_info;
         public TextView tv_price;
         public Button bt_right;
-        public TextImage tv_remaining_time;
 
 
         public ApplyOrderViewHolder(View itemView) {
@@ -90,7 +89,6 @@ public class ApplyOrderAdapter extends SingleBaseAdapter<ApplyOrder.Data> {
             tv_info = (TextView) itemView.findViewById(R.id.tv_info);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             bt_right = (Button) itemView.findViewById(R.id.bt_right);
-            tv_remaining_time = (TextImage) itemView.findViewById(R.id.tv_remaining_time);
             bt_right.setOnClickListener(this);
         }
 

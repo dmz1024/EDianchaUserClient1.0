@@ -5,6 +5,8 @@ package client.ediancha.com.entity;
  */
 
 public class PayOrderNo extends BaseEntity {
-    public int err_code;
-    public String err_msg;
+    public Data data;
+    public static class Data{
+        public String order_no;
+    }
 }

@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,29 +22,28 @@ import static client.ediancha.com.base.NetworkBaseFragment.ShowCurrentViewENUM.V
  */
 
 public class BuyCarFragment extends ListNetWorkBaseFragment<BuyCar.Shop, BuyCar> {
+    private Map<Integer, Integer> chooseMap = new HashMap<>();
+
     @Override
     protected RecyclerView.Adapter getAdapter(List<BuyCar.Shop> totalList) {
         if (onHavePrice != null) {
-            onHavePrice.price(getPrice());
+            onHavePrice.price(0);
         }
-        return new BuyCarShopAdapter(getContext(), totalList) {
+        return new BuyCarShopAdapter(getContext(), totalList, chooseMap) {
             @Override
-            protected void dataChange() {
+            protected void changeMap() {
+                double price = 0;
+                for (Integer key : chooseMap.keySet()) {
+                    BuyCar.Shop shop = list.get(key);
+                    price = price + (shop.pro_num * shop.price);
+                }
                 if (onHavePrice != null) {
-                    onHavePrice.price(getPrice());
+                    onHavePrice.price(price);
                 }
             }
         };
     }
 
-    private double getPrice() {
-        double price = 0;
-        for (int i = 0; i < totalList.size(); i++) {
-            BuyCar.Shop shop = totalList.get(i);
-            price = price + (shop.pro_num * shop.price);
-        }
-        return price;
-    }
 
     @Override
     protected String getUrl() {
@@ -98,15 +98,15 @@ public class BuyCarFragment extends ListNetWorkBaseFragment<BuyCar.Shop, BuyCar>
 
     public String getPayId() {
         StringBuffer sb = new StringBuffer();
-        int count = totalList.size();
-        for (int i = 0; i < count; i++) {
-            BuyCar.Shop shop = totalList.get(i);
+        int count = 0;
+        for (Integer key : chooseMap.keySet()) {
+            BuyCar.Shop shop = totalList.get(key);
             sb.append(shop.pigcms_id);
-            if (i + 1 != count) {
+            count += 1;
+            if (count != chooseMap.size()) {
                 sb.append(",");
             }
         }
-
         return sb.toString();
     }
 }
