@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fbfbfb"
+    android:padding="@dimen/size5">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:padding="@dimen/size2">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size200"
+            android:scaleType="fitXY" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_below="@id/iv_img"
+            android:layout_marginTop="@dimen/size5"
+            android:layout_marginLeft="@dimen/size3"
+            android:layout_marginRight="@dimen/size3"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="的空间的房间"
+            style="@style/TextSize15Color333" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:text="￥100"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="@dimen/size5"
+            android:layout_marginLeft="@dimen/size3"
+            android:textColor="#cd673a"
+            style="@style/TextSize13Color333" />
+        <TextView
+            android:id="@+id/tv_recommend"
+            android:text="推荐"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp14"
+            android:background="#f00"
+            android:padding="@dimen/size5"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</FrameLayout>

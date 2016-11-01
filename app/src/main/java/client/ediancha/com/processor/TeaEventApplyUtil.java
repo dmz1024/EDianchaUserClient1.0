@@ -70,7 +70,12 @@ public class TeaEventApplyUtil {
                                     }
                                 }.showView(ctx);
                             } else {
-                                MyToast.showToast(baseEntity.msg);
+                                if (baseEntity.msg.contains("已报名")) {
+                                    MyToast.showToast("您已预约过该活动");
+                                }else {
+                                    MyToast.showToast(baseEntity.msg);
+                                }
+                                dismiss();
                             }
                         }
                     }

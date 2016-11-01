@@ -6,22 +6,13 @@ import java.util.List;
  * Created by dengmingzhi on 2016/10/31.
  */
 public class OrderInfo extends BaseEntity {
-    public List<Data> data;
+    public Data data;
     public static class Data {
-        public int r;
-        public Data1 data1;
+        public List<TeaOrder.OrderProduct> data1;
         public Data2 data2;
         public Data3 data3;
     }
 
-    public static class Data1 {
-        public String image;
-        public String name;
-        public String product_id;
-        public int is_present;
-        public int pro_num;
-        public double pro_price;
-    }
 
     public static class Data2 {
         public String add_time;
@@ -36,6 +27,7 @@ public class OrderInfo extends BaseEntity {
         public String province_txt;
         public String tel;
         public String zipcode;
+        public String msg;
     }
 
     public static class Data3 {

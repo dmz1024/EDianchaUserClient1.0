@@ -1,5 +1,6 @@
 package client.ediancha.com.base;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -7,18 +8,25 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.LoginActivity;
 import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.api.RetrofitUtil;
+import client.ediancha.com.constant.Constant;
+import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.entity.BaseListEntity;
 import client.ediancha.com.entity.Data;
 import client.ediancha.com.interfaces.OnDataCountListener;
+import client.ediancha.com.myview.PopMessageTips;
 import client.ediancha.com.util.MyToast;
+import client.ediancha.com.util.Util;
 
 import static client.ediancha.com.base.NetworkBaseFragment.ShowCurrentViewENUM.VIEW_HAVE_DATA;
 import static client.ediancha.com.base.NetworkBaseFragment.ShowCurrentViewENUM.VIEW_NO_DATA;
@@ -151,8 +159,20 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                     if (rl_load != null && rl_load.getVisibility() == View.VISIBLE) {
                         rl_load.setVisibility(View.GONE);
                         isLoading = false;
+                    } else if (totalList.size() == 0) {
+                        getCurrentView(VIEW_SERVER_ERR);
                     }
                     page = currentPage;
+
+                    if (t.msg.contains("token")) {
+                        new PopMessageTips("账号信息", "账号信息已过期,请重新登录!", "去登录", "") {
+                            @Override
+                            protected void right() {
+                                super.right();
+                                startActivityForResult(new Intent(getContext(), LoginActivity.class), Constant.LIST_DATA);
+                            }
+                        }.showView(getActivity());
+                    }
 
                 }
 
@@ -196,9 +216,26 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
     }
 
     protected void resultNot0(String s) {
-
+        BaseEntity baseEntity = new Gson().fromJson(s, BaseEntity.class);
+        if (baseEntity.msg.contains("token")) {
+            new PopMessageTips("账号信息", "账号信息已过期,请重新登录!", "去登录", "") {
+                @Override
+                protected void right() {
+                    super.right();
+                    startActivityForResult(new Intent(getContext(), LoginActivity.class), Constant.MY_CENTER_INFO);
+                }
+            }.showView(getActivity());
+        }
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.LIST_DATA && data != null) {
+            onRefresh();
+        }
+    }
 
     @Override
     protected View getHaveDataView() {

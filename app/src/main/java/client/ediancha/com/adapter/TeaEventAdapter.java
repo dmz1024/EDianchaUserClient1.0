@@ -72,10 +72,6 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
 
     }
 
-    @Override
-    public int getItemCount() {
-        return list.size();
-    }
 
     @Override
     public int getItemViewType(int position) {

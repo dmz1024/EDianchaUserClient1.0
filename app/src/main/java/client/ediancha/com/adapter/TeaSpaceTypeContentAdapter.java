@@ -65,9 +65,9 @@ public class TeaSpaceTypeContentAdapter extends SingleBaseAdapter<TeaFilter.Cat>
         protected void onClick(int layoutPosition) {
             List<TeaFilter.Cat> cats = new ArrayList<>();
             TeaFilter.Cat cat = new TeaFilter.Cat();
-            cat.key = list.get(layoutPosition).key;
+            cat.key = key;
             cat.name = list.get(layoutPosition).name;
-            cat.value = list.get(layoutPosition).value;
+            cat.value = list.get(layoutPosition).name;
             cats.add(cat);
             String listJson = new Gson().toJson(cats);
             Intent intent = new Intent(ctx, TeaEventFilterResultActivity.class);

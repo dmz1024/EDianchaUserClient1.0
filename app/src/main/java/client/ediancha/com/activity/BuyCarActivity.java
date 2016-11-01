@@ -48,7 +48,6 @@ public class BuyCarActivity extends ToolBarActivity {
         BuyCarUtil.getInstance().setContext(this).setOnPayListener(new BuyCarUtil.OnPayListener() {
             @Override
             public void payId(String id) {
-                Log.d("id", id);
                 Intent intent = new Intent(BuyCarActivity.this, BuyTeaActivity.class);
                 intent.putExtra("id", "YDC" + id);
                 startActivity(intent);

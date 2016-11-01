@@ -2,9 +2,11 @@ package client.ediancha.com.processor;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alipay.sdk.app.AuthTask;
 import com.alipay.sdk.app.PayTask;
@@ -14,6 +16,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import java.util.Map;
 
+import client.ediancha.com.activity.BuyTeaActivity;
 import client.ediancha.com.entity.WechatInfo;
 import client.ediancha.com.util.MyToast;
 
@@ -54,7 +57,7 @@ public class PayUtil {
         wxapi.sendReq(req);
     }
 
-    public void aliPay(final String data){
+    public void aliPay(final String data) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -70,7 +73,6 @@ public class PayUtil {
         }).start();
 
 
-
     }
 
 
@@ -79,28 +81,25 @@ public class PayUtil {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1: {
-                    PayResult payResult = new PayResult((String) msg.obj);
-                    /**
-                     * 同步返回的结果必须放置到服务端进行验证（验证的规则请看https://doc.open.alipay.com/doc2/
-                     * detail.htm?spm=0.0.0.0.xdvAU6&treeId=59&articleId=103665&
-                     * docType=1) 建议商户依赖异步通知
-                     */
-                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
                     String resultStatus = payResult.getResultStatus();
-                    // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
+                    Intent intent = new Intent(ctx, BuyTeaActivity.class);
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        MyToast.showToast("支付成功");
+                        intent.putExtra("pay_result", 0);
                     } else {
-                        // 判断resultStatus 为非"9000"则代表可能支付失败
-                        // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                         if (TextUtils.equals(resultStatus, "8000")) {
-                            MyToast.showToast("支付结果确认中");
+                            MyToast.showToast("系统处理中");
+                        } else if (TextUtils.equals(resultStatus, "6001")) {
+                            MyToast.showToast("用户取消");
+                        } else if (TextUtils.equals(resultStatus, "6002")) {
+                            MyToast.showToast("网络错误");
                         } else {
-                            // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
                             MyToast.showToast("支付失败");
                         }
+                        intent.putExtra("pay_result", 1);
 
                     }
+                    ctx.startActivity(intent);
                     break;
                 }
             }

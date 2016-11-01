@@ -1,5 +1,6 @@
 package client.ediancha.com.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ import client.ediancha.com.activity.LoginActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 import client.ediancha.com.adapter.TeaEventDescEventAdapter;
 import client.ediancha.com.api.MyRetrofitUtil;
+import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.WebBaseFragment;
 import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
@@ -105,6 +107,7 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
         tv_apply.setOnClickListener(this);
         tv_event_desc_title.setOnClickListener(this);
         trl_address.setOnClickListener(this);
+        trl_name.setOnClickListener(this);
 
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rollPagerView.getLayoutParams();
         layoutParams.height = Util.getWidth();
@@ -152,6 +155,11 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
 
     private boolean isShow;
 
+//    Intent intent = new Intent(ctx, DescBaseActivity.class);
+//    intent.putExtra("title", list.get(layoutPosition).data2.name);
+//    intent.putExtra("id", list.get(layoutPosition).data2.pigcms_id);
+//    intent.putExtra("type", 2);
+//    ctx.startActivity(intent);
 
     @Override
     public void onClick(View view) {
@@ -165,6 +173,13 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
                 break;
             case R.id.tv_event_desc_title:
                 showDesc();
+                break;
+            case R.id.trl_name:
+                Intent intent = new Intent(getContext(), DescBaseActivity.class);
+                intent.putExtra("title",t.data.show.storename);
+                intent.putExtra("id", t.data.show.physical_id);
+                intent.putExtra("type", 2);
+                startActivity(intent);
                 break;
         }
     }

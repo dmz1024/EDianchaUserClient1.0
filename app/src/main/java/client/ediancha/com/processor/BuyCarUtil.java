@@ -2,14 +2,20 @@ package client.ediancha.com.processor;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import client.ediancha.com.activity.BuyCarActivity;
+import client.ediancha.com.activity.BuyTeaActivity;
 import client.ediancha.com.activity.LoginActivity;
 import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.entity.BaseEntity;
+import client.ediancha.com.entity.Buy;
 import client.ediancha.com.entity.PayOrderNo;
 import client.ediancha.com.interfaces.OnResultListener;
 import client.ediancha.com.myview.PopMessageTips;
@@ -246,12 +252,17 @@ public class BuyCarUtil {
         return this;
     }
 
-    public interface OnPayListener{
+    public interface OnPayListener {
         void payId(String id);
     }
 
 
-    public void pay(String cart_id){
+    /**
+     * 生成订单
+     *
+     * @param cart_id
+     */
+    public void pay(String cart_id) {
         Map<String, String> map = new HashMap<>();
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
@@ -310,4 +321,78 @@ public class BuyCarUtil {
         }, "生成订单中...", ctx);
     }
 
+
+    /**
+     * 直接购买
+     *
+     * @param count      商品数量
+     * @param sku_id     商品属性ID 有属性的商品为必填
+     * @param product_id 商品ID
+     */
+    public void buy(int count, String sku_id, String product_id) {
+        Map<String, String> map = new HashMap<>();
+        map.put("uid", UserInfo.uid);
+        map.put("token", UserInfo.token);
+        map.put("product_id", product_id);
+        map.put("quantity", count + "");
+        map.put("sku_id", sku_id);
+        map.put("send_other", "0");
+        map.put("is_add_cart", "0");
+        map.put("c", "myorder");
+        map.put("a", "add");
+        map.put("type", "0");
+        map.put("bak", "");
+        map.put("custom", "");
+
+        MyRetrofitUtil.getInstance().post("app.php", map, Buy.class, new MyRetrofitUtil.OnRequestListener<Buy>() {
+
+            @Override
+            public void noNetwork() {
+
+            }
+
+            @Override
+            public void serverErr() {
+
+            }
+
+            @Override
+            public void haveData(Buy buy) {
+                if (buy.result == 0) {
+                    Intent intent = new Intent(ctx, BuyTeaActivity.class);
+                    intent.putExtra("id", "YDC" + buy.data.order_no);
+                    ctx.startActivity(intent);
+                } else {
+                    MyToast.showToast(buy.msg);
+                }
+
+            }
+
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void resultNo0(String s) {
+                if (s.contains("token")) {
+                    new PopMessageTips("账号信息", "账号信息已过期,请重新登录!", "去登录", "") {
+                        @Override
+                        protected void right() {
+                            super.right();
+                            Util.skip(((Activity) ctx), LoginActivity.class);
+                        }
+                    }.showView(ctx);
+                } else {
+                    BaseEntity baseEntity = new Gson().fromJson(s, BaseEntity.class);
+                    MyToast.showToast(baseEntity.msg);
+                }
+            }
+
+            @Override
+            public void start() {
+
+            }
+        }, "正在生成订单...", ctx);
+    }
 }

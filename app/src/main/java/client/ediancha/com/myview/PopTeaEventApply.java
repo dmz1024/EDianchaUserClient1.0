@@ -24,13 +24,9 @@ public class PopTeaEventApply extends PopBaseView {
 
     @Override
     protected int getAnimation() {
-        return  R.style.pop_message;
+        return  R.style.popwin_anim_up_and_down;
     }
 
-    @Override
-    protected int width() {
-        return 70;
-    }
 
     @Override
     protected View getView() {
@@ -45,7 +41,7 @@ public class PopTeaEventApply extends PopBaseView {
                     bt_apply.setAlpha(1f);
                     bt_apply.setEnabled(true);
                 } else {
-                    bt_apply.setAlpha(0.2f);
+                    bt_apply.setAlpha(0.4f);
                     bt_apply.setEnabled(false);
                 }
             }
@@ -58,7 +54,7 @@ public class PopTeaEventApply extends PopBaseView {
                     bt_apply.setAlpha(1f);
                     bt_apply.setEnabled(true);
                 } else {
-                    bt_apply.setAlpha(0.2f);
+                    bt_apply.setAlpha(0.4f);
                     bt_apply.setEnabled(false);
                 }
             }

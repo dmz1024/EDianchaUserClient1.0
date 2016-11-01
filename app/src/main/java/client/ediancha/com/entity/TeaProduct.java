@@ -19,7 +19,7 @@ public class TeaProduct extends BaseListEntity<TeaProduct.Data> {
 
     public static class Content {
         public String image;
-        public String is_recommend;
+        public int is_recommend;
         public String name;
         public String original_price;
         public String price;

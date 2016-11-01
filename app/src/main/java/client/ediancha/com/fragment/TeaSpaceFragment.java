@@ -40,7 +40,10 @@ public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, Tea
         map.put("c", "chaguan");
         map.put("a", "alist");
         map.putAll(filterMap);
-        map.putAll(new SharedPreferenUtil(getContext(), "location").getData(new String[]{"lat", "long"}));
+        if(filterMap.size()==0){
+            map.putAll(new SharedPreferenUtil(getContext(), "location").getData(new String[]{"lat", "long"}));
+        }
+
         return map;
     }
 

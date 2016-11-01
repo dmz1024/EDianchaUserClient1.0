@@ -151,6 +151,6 @@ public class ChooseBuyCarView extends PopBaseView {
 
     @Override
     protected int height() {
-        return (Util.getHeight() / 3) * 2;
+        return Util.getHeight() / 2;
     }
 }

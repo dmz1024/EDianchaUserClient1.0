@@ -14,4 +14,5 @@ public interface Constant {
     int MY_CENTER_INFO = 0x4;
     int ADDRESS_ADD = 0x5;
     int ADDRESS_CHOOSW = 0x6;
+    int LIST_DATA = 0x7;
 }

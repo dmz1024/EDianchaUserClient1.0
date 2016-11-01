@@ -2,6 +2,8 @@ package client.ediancha.com.processor;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +38,7 @@ public class PayInfoUtil {
      *
      * @param order_no 订单id
      */
-    public void getWechatPayId(String order_no) {
+    public void getWechatPayId(String order_no, String comment) {
         Map<String, String> map = new HashMap<>();
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
@@ -44,6 +46,7 @@ public class PayInfoUtil {
         map.put("a", "pay");
         map.put("order_no", order_no);
         map.put("type", "weixin");
+        map.put("comment", comment);
 
         MyRetrofitUtil.getInstance().post("app.php", map, WechatInfo.class, new MyRetrofitUtil.OnRequestListener<WechatInfo>() {
             @Override
@@ -60,7 +63,14 @@ public class PayInfoUtil {
             @Override
             public void haveData(WechatInfo wechatInfo) {
                 if (wechatInfo.result == 0) {
+                    if (onPayInfoListener != null) {
+                        onPayInfoListener.ok();
+                    }
                     PayUtil.getInstance().setContext(ctx).weChatPay(wechatInfo.data);
+                } else {
+                    if (onPayInfoListener != null) {
+                        onPayInfoListener.faile();
+                    }
                 }
             }
 
@@ -71,7 +81,11 @@ public class PayInfoUtil {
 
             @Override
             public void resultNo0(String s) {
-
+                BaseEntity baseEntity = new Gson().fromJson(s, BaseEntity.class);
+                MyToast.showToast(baseEntity.msg);
+                if (onPayInfoListener != null) {
+                    onPayInfoListener.faile();
+                }
             }
 
             @Override
@@ -86,7 +100,7 @@ public class PayInfoUtil {
      *
      * @param order_no 订单id
      */
-    public void getAliPayId(String order_no) {
+    public void getAliPayId(String order_no, String comment) {
         Map<String, String> map = new HashMap<>();
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
@@ -94,7 +108,7 @@ public class PayInfoUtil {
         map.put("a", "pay");
         map.put("order_no", order_no);
         map.put("type", "alipay");
-
+        map.put("comment", comment);
         MyRetrofitUtil.getInstance().post("app.php", map, AliPayInfo.class, new MyRetrofitUtil.OnRequestListener<AliPayInfo>() {
             @Override
             public void noNetwork() {
@@ -109,9 +123,15 @@ public class PayInfoUtil {
             @Override
             public void haveData(AliPayInfo aliPayInfo) {
                 if (aliPayInfo.result == 0) {
+                    if (onPayInfoListener != null) {
+                        onPayInfoListener.ok();
+                    }
                     PayUtil.getInstance().setContext(ctx).aliPay(aliPayInfo.data);
                 } else {
                     MyToast.showToast(aliPayInfo.msg);
+                    if (onPayInfoListener != null) {
+                        onPayInfoListener.faile();
+                    }
                 }
             }
 
@@ -122,7 +142,11 @@ public class PayInfoUtil {
 
             @Override
             public void resultNo0(String s) {
-
+                BaseEntity baseEntity = new Gson().fromJson(s, BaseEntity.class);
+                MyToast.showToast(baseEntity.msg);
+                if (onPayInfoListener != null) {
+                    onPayInfoListener.faile();
+                }
             }
 
             @Override
@@ -134,6 +158,17 @@ public class PayInfoUtil {
 
 
     public interface OnPayInfoListener {
-        void payInfo();
+        void ok();
+
+        void faile();
     }
+
+    private OnPayInfoListener onPayInfoListener;
+
+    public PayInfoUtil setOnPayInfoListener(OnPayInfoListener onPayInfoListener) {
+        this.onPayInfoListener = onPayInfoListener;
+        return this;
+    }
+
+
 }

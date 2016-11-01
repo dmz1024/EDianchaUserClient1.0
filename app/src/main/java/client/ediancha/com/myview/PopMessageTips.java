@@ -44,12 +44,10 @@ public class PopMessageTips implements PopupWindow.OnDismissListener {
         show();
         this.ctx = ctx;
         View view = View.inflate(Util.getApplication(), R.layout.pop_message, null);
-        TextView tv_title = (TextView) view.findViewById(R.id.tv_title);
-        TextView tv_content = (TextView) view.findViewById(R.id.tv_content);
+        Color2Text tv_content = (Color2Text) view.findViewById(R.id.tv_content);
         TextView tv_left = (TextView) view.findViewById(R.id.tv_left);
         TextView tv_right = (TextView) view.findViewById(R.id.tv_right);
-        tv_title.setText(title);
-        tv_content.setText(content);
+        tv_content.setChange(title, "\n" + content);
         if (TextUtils.isEmpty(left)) {
             tv_left.setVisibility(View.GONE);
         } else {

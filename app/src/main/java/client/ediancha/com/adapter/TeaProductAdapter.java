@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -58,9 +59,9 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_SHOW_CONTENT_4) {
-            return new TeaProduct_4ViewHolder(View.inflate(ctx, R.layout.item_tea_product_content, null));
+            return new TeaProduct_4ViewHolder(View.inflate(ctx, R.layout.item_store_info_content, null));
         } else if (viewType == VIEW_SHOW_CONTENT_1) {
-            return new TeaProduct_1ViewHolder(View.inflate(ctx, R.layout.item_tea_product_content, null));
+            return new TeaProduct_1ViewHolder(View.inflate(ctx, R.layout.item_store_info_content, null));
         } else if (viewType == VIEW_SHOW_AD) {
             return new TeaProductAdViewHolder(View.inflate(ctx, R.layout.item_ad, null));
         }
@@ -75,18 +76,23 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             TeaProduct_1ViewHolder mHolder = (TeaProduct_1ViewHolder) holder;
             TeaProduct.Content data = list.get(position).data1;
             GlideUtil.GlideErrAndOc(ctx, data.image, mHolder.iv_img);
-            mHolder.tv_title.setText(data.name);
-            mHolder.tv_old_price.setText("￥" +data.original_price);
+//            mHolder.tv_title.setText(data.name);
+//            mHolder.tv_old_price.setText("￥" +data.original_price);
             mHolder.tv_price.setText("￥" + data.price);
+            mHolder.tv_name.setText(data.name);
+            mHolder.tv_recommend.setVisibility(data.is_recommend==0?View.GONE:View.VISIBLE);
 
         } else if (holder instanceof TeaProduct_4ViewHolder) {
             TeaProduct_4ViewHolder mHolder = (TeaProduct_4ViewHolder) holder;
             TeaProduct.Content data = list.get(position).data4;
             GlideUtil.GlideErrAndOc(ctx, data.image, mHolder.iv_img);
-            mHolder.tv_title.setText(data.name);
-            mHolder.tv_old_price.setText("￥" +data.original_price);
+//            mHolder.tv_title.setText(data.name);
+//            mHolder.tv_old_price.setText("￥" +data.original_price);
+//            mHolder.tv_price.setText("￥" + data.price);
+//            mHolder.tv_state.setVisibility(View.GONE);
+            mHolder.tv_recommend.setVisibility(data.is_recommend==0?View.GONE:View.VISIBLE);
             mHolder.tv_price.setText("￥" + data.price);
-            mHolder.tv_state.setVisibility(View.GONE);
+            mHolder.tv_name.setText(data.name);
         } else if (holder instanceof TeaProductAdViewHolder) {
             TeaProductAdViewHolder mHolder = (TeaProductAdViewHolder) holder;
             List<TeaProduct.Data3> data3 = list.get(position).data3;
@@ -109,24 +115,20 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
             TeaProductTypeViewHolder mHolder = (TeaProductTypeViewHolder) holder;
             TeaProduct.Data2 data2 = list.get(position).data2;
 
-            GridLayoutManager manager = new GridLayoutManager(ctx, 4);
-            TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, data2.data,data2.name,data2.key);
+            LinearLayoutManager manager = new LinearLayoutManager(ctx);
+            manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, data2.data, data2.name, data2.key);
             mHolder.rv_type.setLayoutManager(manager);
             mHolder.rv_type.setAdapter(mAdapter);
             if (!map.get(position)) {
                 map.put(position, true);
-                mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
+                mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 10, "#fbfbfb"));
             }
         }
 
 
     }
 
-    @Override
-    public int getItemCount() {
-        Log.d("size", list.size() + "");
-        return super.getItemCount();
-    }
 
     @Override
     public int getItemViewType(int position) {
@@ -143,22 +145,26 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
 
     public class TeaProduct_1ViewHolder extends BaseViewHolder {
         public ImageView iv_img;
-        public TextView tv_state;
-        public TextView tv_title;
+        //        public TextView tv_state;
+//        public TextView tv_title;
         public TextView tv_price;
-        public TextView tv_old_price;
+        public TextView tv_name;
+//        public TextView tv_old_price;
 
+        public TextView tv_recommend;
 
         public TeaProduct_1ViewHolder(View itemView) {
             super(itemView);
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
-            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
-            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
+//            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+//            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
-            tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
-            layoutParams.height= (int) (Util.getWidth()/1.75);
-            iv_img.setLayoutParams(layoutParams);
+            tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            tv_recommend = (TextView) itemView.findViewById(R.id.tv_recommend);
+//            tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
+//            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
+//            layoutParams.height= (int) (Util.getWidth()/1.75);
+//            iv_img.setLayoutParams(layoutParams);
         }
 
         @Override
@@ -171,22 +177,41 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
     }
 
     public class TeaProduct_4ViewHolder extends BaseViewHolder {
+//        public ImageView iv_img;
+//        public TextView tv_state;
+//        public TextView tv_title;
+//        public TextView tv_price;
+//        public TextView tv_old_price;
+
         public ImageView iv_img;
-        public TextView tv_state;
-        public TextView tv_title;
+        //        public TextView tv_state;
+//        public TextView tv_title;
         public TextView tv_price;
-        public TextView tv_old_price;
+        public TextView tv_name;
+        //        public TextView tv_old_price;
+        public TextView tv_recommend;
 
         public TeaProduct_4ViewHolder(View itemView) {
             super(itemView);
+//            iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
+//            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+//            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
+//            tv_price = (TextView) itemView.findViewById(R.id.tv_price);
+//            tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
+//            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
+//            layoutParams.height= (int) (Util.getWidth()/1.75);
+//            iv_img.setLayoutParams(layoutParams);
+
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
-            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
-            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
+//            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+//            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
-            tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
-            layoutParams.height= (int) (Util.getWidth()/1.75);
-            iv_img.setLayoutParams(layoutParams);
+            tv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            tv_recommend = (TextView) itemView.findViewById(R.id.tv_recommend);
+//            tv_old_price = (TextView) itemView.findViewById(R.id.tv_old_price);
+//            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)iv_img.getLayoutParams();
+//            layoutParams.height= (int) (Util.getWidth()/1.75);
+//            iv_img.setLayoutParams(layoutParams);
         }
 
         @Override
@@ -220,8 +245,8 @@ public class TeaProductAdapter extends SingleBaseAdapter<TeaProduct.Data> {
         public TeaProductAdViewHolder(View itemView) {
             super(itemView);
             rv_ad = (RollPagerView) itemView.findViewById(R.id.roll_view_pager);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams)rv_ad.getLayoutParams();
-            layoutParams.height= (int) (Util.getWidth()/1.75);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) rv_ad.getLayoutParams();
+            layoutParams.height = (int) (Util.getWidth() / 1.75);
             rv_ad.setLayoutParams(layoutParams);
         }
 

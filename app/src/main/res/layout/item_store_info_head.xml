@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/size10"
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size180"
+        android:scaleType="fitXY"
+        android:src="@mipmap/icon_store_info_bg" />
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/iv_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-35dp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextSize15Color333"
+        android:layout_below="@id/iv_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/size10"
+        android:text="邓如果" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/TextSize13Color666"
+        android:layout_below="@id/tv_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/size10"
+        android:maxLines="4"
+        android:ellipsize="end"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginRight="@dimen/size10"
+        android:text="该店铺暂无介绍" />
+
+</RelativeLayout>

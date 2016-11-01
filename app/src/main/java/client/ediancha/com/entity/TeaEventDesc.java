@@ -29,6 +29,7 @@ public class TeaEventDesc extends BaseEntity {
         public String storename;
         public String sttime;
         public String url;
+        public String physical_id;
         public double zlat;
         public double zlong;
 

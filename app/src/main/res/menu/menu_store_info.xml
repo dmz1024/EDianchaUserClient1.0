@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="client.ediancha.com.activity.MainActivity">
+
+    <item
+        android:id="@+id/item_share"
+        android:icon="@mipmap/detail_share"
+        android:orderInCategory="110"
+        android:title="分享"
+        app:showAsAction="always" />
+</menu>

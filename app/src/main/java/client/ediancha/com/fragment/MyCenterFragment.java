@@ -84,7 +84,12 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.addItemDecoration(new ItemDecoration(getContext(), LinearLayout.HORIZONTAL, 1, "#e1e1e1"));
-        MyCenterIconAdapter adapter = new MyCenterIconAdapter(getContext(), getMyCenterIconData());
+        MyCenterIconAdapter adapter = new MyCenterIconAdapter(getContext(), getMyCenterIconData()){
+            @Override
+            protected void login() {
+                startActivityForResult(new Intent(getContext(), LoginActivity.class), Constant.MY_CENTER_INFO);
+            }
+        };
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         iv_head.setOnClickListener(this);

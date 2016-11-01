@@ -33,6 +33,7 @@ import client.ediancha.com.R;
 import client.ediancha.com.activity.BuyCarActivity;
 import client.ediancha.com.activity.BuyTeaActivity;
 import client.ediancha.com.activity.MoreEvaluateActivity;
+import client.ediancha.com.activity.OfficialStoreInfoActivity;
 import client.ediancha.com.adapter.AdNormalAdapter;
 //import client.ediancha.com.adapter.EvaluateAdapter;
 import client.ediancha.com.adapter.EvaluateAdapter;
@@ -120,9 +121,10 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         tv_buy.setOnClickListener(this);
         tv_add_buy_car.setOnClickListener(this);
         tv_buy_car.setOnClickListener(this);
+        trl_name.setOnClickListener(this);
 
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)rollPagerView.getLayoutParams();
-        layoutParams.height=Util.getWidth();
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rollPagerView.getLayoutParams();
+        layoutParams.height = Util.getWidth();
         rollPagerView.setLayoutParams(layoutParams);
         return view;
     }
@@ -135,11 +137,17 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
             case R.id.tv_desc:
                 showDesc();
                 break;
+            case R.id.trl_name:
+                Intent intent5 = new Intent(getContext(), OfficialStoreInfoActivity.class);
+                intent5.putExtra("title", data.data.store_name);
+                intent5.putExtra("id", data.data.store_id);
+                startActivity(intent5);
+                break;
             case R.id.tv_buy_car:
-                if(TextUtils.isEmpty(UserInfo.uid)){
+                if (TextUtils.isEmpty(UserInfo.uid)) {
                     MyToast.showToast("请先登录");
                     return;
-                }else {
+                } else {
                     Util.skip(getActivity(), BuyCarActivity.class);
                 }
                 break;
@@ -153,17 +161,30 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
                 Util.tel(getContext(), data.data.phone1 + data.data.phone2);
                 break;
             case R.id.tv_buy:
-                Util.skip(getActivity(), BuyTeaActivity.class);
+                buy();
                 break;
             case R.id.tv_add_buy_car:
-                new ChooseBuyCarView(getContext(),data.data.property,data.data.sku_list){
+                new ChooseBuyCarView(getContext(), data.data.property, data.data.sku_list) {
                     @Override
                     protected void chooseOk(int count, String sku_id) {
-                        BuyCarUtil.getInstance().setContext(getContext()).addBuyCar(count,sku_id,id);
+                        BuyCarUtil.getInstance().setContext(getContext()).addBuyCar(count, sku_id, id);
                     }
                 }.showAtLocation();
                 break;
         }
+    }
+
+
+    /**
+     * 直接购买
+     */
+    private void buy() {
+        new ChooseBuyCarView(getContext(), data.data.property, data.data.sku_list) {
+            @Override
+            protected void chooseOk(int count, String sku_id) {
+                BuyCarUtil.getInstance().setContext(getContext()).buy(count, sku_id, id);
+            }
+        }.showAtLocation();
     }
 
     public void hideDesc() {

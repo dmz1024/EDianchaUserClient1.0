@@ -3,6 +3,7 @@ package client.ediancha.com.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -106,5 +107,23 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
                 layoutManager.scrollToPosition(position);
             }
         }
+    }
+
+
+    @Override
+    protected RecyclerView.LayoutManager getLayoutManager() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int r=totalList.get(position).r;
+                if(r==1 ||r==4){
+                    return 1;
+                }
+                return 2;
+            }
+        });
+
+        return gridLayoutManager;
     }
 }

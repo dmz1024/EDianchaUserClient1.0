@@ -3,6 +3,9 @@ package client.ediancha.com.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +19,7 @@ import java.util.Map;
 
 import client.ediancha.com.R;
 import client.ediancha.com.activity.AddressActivity;
+import client.ediancha.com.adapter.TeaOrderShopAdapter;
 import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.constant.Constant;
@@ -23,8 +27,11 @@ import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.entity.Address;
 import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.entity.OrderInfo;
+import client.ediancha.com.entity.Postage;
+import client.ediancha.com.entity.TeaOrder;
 import client.ediancha.com.myview.ChooseStringView;
 import client.ediancha.com.processor.PayInfoUtil;
+import client.ediancha.com.util.MyToast;
 
 /**
  * Created by dengmingzhi on 2016/10/26.
@@ -38,6 +45,9 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
     private EditText et_liuyan;
     private TextView tv_price;
     private TextView tv_total_price;
+    private TextView tv_link_add;
+    private RecyclerView rv_buy;
+    private Button bt_pay;
 
     public static BuyTeaFragment getInstance(String order_no) {
         Bundle bundle = new Bundle();
@@ -56,9 +66,23 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
     @Override
     protected void writeData(OrderInfo orderInfo) {
         this.orderInfo = orderInfo;
-        fillLink(orderInfo.data.get(1).data2);
-        fillMoney(orderInfo.data.get(2).data3);
+        fillLink(orderInfo.data.data2);
+        fillMoney(orderInfo.data.data3);
+        fillShop(orderInfo.data.data1);
 
+    }
+
+
+    private void fillShop(List<TeaOrder.OrderProduct> data1) {
+        LinearLayoutManager manager = new LinearLayoutManager(getContext()) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        TeaOrderShopAdapter adapter = new TeaOrderShopAdapter(getContext(), data1);
+        rv_buy.setLayoutManager(manager);
+        rv_buy.setAdapter(adapter);
     }
 
     /**
@@ -77,8 +101,12 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
      * @param data2
      */
     private void fillLink(OrderInfo.Data2 data2) {
-        tv_link_name.setText("收货人：" + data2.name + "  " + data2.tel);
-        tv_link_address.setText("地址：" + data2.province_txt + data2.city_txt + data2.area_txt + data2.address);
+        if (TextUtils.equals(data2.msg, "none")) {
+            tv_link_add.setVisibility(View.VISIBLE);
+        } else {
+            tv_link_name.setText("收货人：" + data2.name + "  " + data2.tel);
+            tv_link_address.setText("地址：" + data2.province_txt + data2.city_txt + data2.area_txt + data2.address);
+        }
     }
 
     @Override
@@ -101,21 +129,24 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
         return OrderInfo.class;
     }
 
-    @Override
-    protected ShowCurrentViewENUM getDefaultView() {
-        return ShowCurrentViewENUM.VIEW_HAVE_DATA;
-    }
+//    @Override
+//    protected ShowCurrentViewENUM getDefaultView() {
+//        return ShowCurrentViewENUM.VIEW_IS_LOADING;
+//    }
 
     @Override
     protected View getHaveDataView() {
         View view = View.inflate(getContext(), R.layout.fragment_buy_tea, null);
-        Button bt_pay = (Button) view.findViewById(R.id.bt_pay);
-        EditText et_liuyan = (EditText) view.findViewById(R.id.et_liuyan);
+
+        bt_pay = (Button) view.findViewById(R.id.bt_pay);
+        et_liuyan = (EditText) view.findViewById(R.id.et_liuyan);
         RelativeLayout rl_link = (RelativeLayout) view.findViewById(R.id.rl_link);
         tv_link_name = (TextView) view.findViewById(R.id.tv_link_name);
         tv_link_address = (TextView) view.findViewById(R.id.tv_link_address);
         tv_price = (TextView) view.findViewById(R.id.tv_price);
         tv_total_price = (TextView) view.findViewById(R.id.tv_total_price);
+        tv_link_add = (TextView) view.findViewById(R.id.tv_link_add);
+        rv_buy = (RecyclerView) view.findViewById(R.id.rv_buy);
         bt_pay.setOnClickListener(this);
         rl_link.setOnClickListener(this);
         return view;
@@ -131,6 +162,7 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
             case R.id.rl_link:
                 chooseLink();
                 break;
+
         }
     }
 
@@ -150,13 +182,45 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
         new ChooseStringView(getContext(), list) {
             @Override
             protected void itemClick(int position) {
+                bt_pay.setText("正在请求支付信息...");
                 if (position == 0) {
-                    PayInfoUtil.getInstance().setContext(getContext()).getWechatPayId(order_no);
-                }else if(position==1){
-                    PayInfoUtil.getInstance().setContext(getContext()).getAliPayId(order_no);
+                    PayInfoUtil.getInstance().setContext(getContext()).setOnPayInfoListener(new PayInfoUtil.OnPayInfoListener() {
+                        @Override
+                        public void ok() {
+                            bt_pay.setText("正在调用支付端...");
+                        }
+
+                        @Override
+                        public void faile() {
+                            setBtpayEnable(true);
+                        }
+                    }).getWechatPayId(order_no, et_liuyan.getText().toString());
+
+                } else if (position == 1) {
+                    PayInfoUtil.getInstance().setContext(getContext()).setOnPayInfoListener(new PayInfoUtil.OnPayInfoListener() {
+                        @Override
+                        public void ok() {
+                            bt_pay.setText("正在调用支付端...");
+                        }
+
+                        @Override
+                        public void faile() {
+                            setBtpayEnable(true);
+                        }
+                    }).getAliPayId(order_no, et_liuyan.getText().toString());
                 }
+                setBtpayEnable(false);
             }
         }.showAtLocation();
+    }
+
+    public void setBtpayEnable(boolean enable) {
+        if (bt_pay != null) {
+            bt_pay.setEnabled(enable);
+            if (enable) {
+                bt_pay.setText("去支付");
+            }
+        }
     }
 
     @Override
@@ -175,20 +239,21 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.ADDRESS_CHOOSW && data != null) {
+            tv_link_add.setVisibility(View.GONE);
             address = (Address.Data) data.getSerializableExtra("address");
-            orderInfo.data.get(1).data2.address_id = address.address_id;
-            orderInfo.data.get(1).data2.address = address.address;
-            orderInfo.data.get(1).data2.name = address.name;
-            orderInfo.data.get(1).data2.tel = address.tel;
-            orderInfo.data.get(1).data2.province = address.province;
-            orderInfo.data.get(1).data2.city = address.city;
-            orderInfo.data.get(1).data2.area = address.area;
-            orderInfo.data.get(1).data2.add_time = address.add_time;
-            orderInfo.data.get(1).data2.province_txt = address.province_txt;
-            orderInfo.data.get(1).data2.city_txt = address.city_txt;
-            orderInfo.data.get(1).data2.area_txt = address.area_txt;
-            fillLink(orderInfo.data.get(1).data2);
-            getPostage(orderInfo.data.get(1).data2.address_id);
+            orderInfo.data.data2.address_id = address.address_id;
+            orderInfo.data.data2.address = address.address;
+            orderInfo.data.data2.name = address.name;
+            orderInfo.data.data2.tel = address.tel;
+            orderInfo.data.data2.province = address.province;
+            orderInfo.data.data2.city = address.city;
+            orderInfo.data.data2.area = address.area;
+            orderInfo.data.data2.add_time = address.add_time;
+            orderInfo.data.data2.province_txt = address.province_txt;
+            orderInfo.data.data2.city_txt = address.city_txt;
+            orderInfo.data.data2.area_txt = address.area_txt;
+            fillLink(orderInfo.data.data2);
+            getPostage(orderInfo.data.data2.address_id);
         }
     }
 
@@ -207,7 +272,7 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
         map.put("c", "myorder");
         map.put("a", "postage");
 
-        MyRetrofitUtil.getInstance().post("app.php", map, BaseEntity.class, new MyRetrofitUtil.OnRequestListener<BaseEntity>() {
+        MyRetrofitUtil.getInstance().post("app.php", map, Postage.class, new MyRetrofitUtil.OnRequestListener<Postage>() {
             @Override
             public void noNetwork() {
 
@@ -219,8 +284,12 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
             }
 
             @Override
-            public void haveData(BaseEntity baseEntity) {
-
+            public void haveData(Postage pastage) {
+                if (pastage.result == 0) {
+                    fillMoney(pastage.data3);
+                } else {
+                    MyToast.showToast("邮费获取失败");
+                }
             }
 
             @Override
@@ -237,6 +306,6 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
             public void start() {
 
             }
-        }, "正在获取对应邮费...", getContext());
+        }, "正在获取邮费...", getContext());
     }
 }

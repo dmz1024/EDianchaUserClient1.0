@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -18,25 +17,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.ToolBarActivity;
 import client.ediancha.com.constant.UserInfo;
-import client.ediancha.com.entity.TeaProduct;
-import client.ediancha.com.entity.Test;
 import client.ediancha.com.fragment.TeaEventFragment;
 import client.ediancha.com.fragment.TeaProductFragment;
 import client.ediancha.com.fragment.TeaSpaceFragment;
 import client.ediancha.com.myview.PopMessageTips;
 import client.ediancha.com.processor.MapManager;
-import client.ediancha.com.processor.PopUpdateApk;
 import client.ediancha.com.util.SharedPreferenUtil;
 import client.ediancha.com.util.Util;
 import cn.jpush.android.api.JPushInterface;
@@ -132,7 +124,7 @@ public class MainActivity extends ToolBarActivity {
         mapManager = new MapManager(this) {
             @Override
             protected void returnLocation(String latitude, String longitude) {
-                Log.d("位置", latitude + "--" + longitude);
+                new SharedPreferenUtil(MainActivity.this, "location").setData(new String[]{"lat", latitude, "long", longitude});
                 if (TextUtils.isEmpty(latitude) || TextUtils.isEmpty(longitude)) {
                     if (!new SharedPreferenUtil(MainActivity.this, "location").getData("tip")) {
                         new PopMessageTips("定位提示", "为了更精准的为您推送周边茶会、茶馆,建议您同意定位请求!\n设置成功后可退出重新进入", "去设置", "不在提示") {

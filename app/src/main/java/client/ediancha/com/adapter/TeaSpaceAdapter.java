@@ -42,7 +42,6 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
     private static final int VIEW_SHOW_AD = 2;
     private static final int VIEW_SHOW_CONTENT = 1;
     private static final int VIEW_SHOW_TYPE = 3;
-    private Map<Integer, Boolean> map = new HashMap<>();
 
     public TeaSpaceAdapter(Context ctx, List<TeaSpace.Data> list) {
         super(ctx, list);
@@ -70,11 +69,10 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             TeaSpace.Data2 data = list.get(position).data2;
             GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
             mHolder.tv_title.setText(data.name);
-            mHolder.tv_count.setText(data.attention_num + "人");
             if (TextUtils.isEmpty(data.juli)) {
-                mHolder.tv_pos.setText(data.address);
+                mHolder.tv_pos.setText("地址：" + data.address);
             } else {
-                mHolder.tv_pos.setText(data.juli + "km");
+                mHolder.tv_pos.setText("距离：" + data.juli + "km");
             }
 
             mHolder.tv_price.setText("人均￥" + data.price + "/人");
@@ -137,19 +135,15 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
 
     public class TeaSpaceViewHolder extends BaseViewHolder {
         public ImageView iv_img;
-        public TextView tv_state;
         public TextView tv_title;
-        public TextImage tv_count;
-        public TextImage tv_pos;
+        public TextView tv_pos;
         public TextView tv_price;
 
         public TeaSpaceViewHolder(View itemView) {
             super(itemView);
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
-            tv_state = (TextView) itemView.findViewById(R.id.tv_state);
-            tv_count = (TextImage) itemView.findViewById(R.id.tv_count);
-            tv_pos = (TextImage) itemView.findViewById(R.id.tv_pos);
+            tv_pos = (TextView) itemView.findViewById(R.id.tv_pos);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) iv_img.getLayoutParams();
             layoutParams.height = (int) (Util.getWidth() / 1.75);

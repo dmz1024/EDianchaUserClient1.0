@@ -109,4 +109,9 @@ public class BuyCarFragment extends ListNetWorkBaseFragment<BuyCar.Shop, BuyCar>
         }
         return sb.toString();
     }
+
+    @Override
+    protected boolean getLoadMore() {
+        return false;
+    }
 }

@@ -16,7 +16,7 @@ public class SharedPreferenUtil {
 
     public SharedPreferenUtil(Context ctx, String title) {
         this.ctx = ctx;
-        sp = ctx.getSharedPreferences(title, Context.MODE_PRIVATE);
+        sp =this.ctx.getSharedPreferences(title, Context.MODE_PRIVATE);
         editor = sp.edit();
 
     }

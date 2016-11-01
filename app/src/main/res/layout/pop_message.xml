@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/size25"
-    >
+    android:layout_margin="@dimen/size45">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#333"
-        android:gravity="center"
-        android:padding="@dimen/size15"
-        android:text="提示"
-        android:textColor="#fff" />
-
-    <TextView
+    <client.ediancha.com.myview.Color2Text
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
-        android:gravity="center"
-        android:minHeight="@dimen/size80"
+        android:layout_centerHorizontal="true"
         android:background="#fff"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/size5"
+        android:minHeight="@dimen/size70"
         android:padding="@dimen/size10"
-        android:text="提示内容"
-        android:textColor="#999" />
+        android:text="提示"
+        android:textColor="#333"
+        app:Color2Text_color="#666"
+        app:Color2Text_content="\neeee"
+        app:Color2Text_size="@dimen/sp15" />
 
     <LinearLayout
         android:layout_width="match_parent"

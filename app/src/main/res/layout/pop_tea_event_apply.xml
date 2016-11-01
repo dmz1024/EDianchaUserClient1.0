@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#fff"
-    >
+    android:layout_height="match_parent"
+    android:background="#fff">
 
     <TextView
         android:id="@+id/tv_title"
@@ -21,7 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title"
         android:orientation="vertical"
-        android:padding="@dimen/size10">
+        android:layout_marginTop="@dimen/size10"
+        >
 
         <TextView
             style="@style/TextSize12Color999"
@@ -31,11 +31,11 @@
 
         <EditText
             android:id="@+id/et_tel"
-            android:inputType="phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size5"
             android:hint="请输入报名人手机号"
+            android:inputType="phone"
 
             android:textColor="#666"
             android:textColorHint="#999"
@@ -61,13 +61,12 @@
 
     <Button
         android:id="@+id/bt_apply"
-        android:alpha="0.2"
-        android:enabled="false"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size40"
-        android:layout_below="@id/ll_content"
-        android:layout_margin="@dimen/size10"
-        android:background="#999"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.4"
+        android:background="@drawable/touch_bg_51b338"
+        android:enabled="false"
         android:text="确定"
         android:textColor="#fff" />
 

@@ -2,6 +2,7 @@ package client.ediancha.com.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -44,7 +45,8 @@ public class ChooseBuyCarAdapter extends SingleBaseAdapter<TeaDesc.Property> {
     }
 
     private void creatContent(RecyclerView rv_content, List<TeaDesc.Value> Value, int position) {
-        GridLayoutManager manager = new GridLayoutManager(ctx, 4);
+        LinearLayoutManager manager = new LinearLayoutManager(ctx);
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 //        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 //            @Override
 //            public int getSpanSize(int position) {
