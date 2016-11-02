@@ -15,9 +15,15 @@
         android:background="@drawable/rectangle_e1e1e1_fff">
 
         <TextView
+            android:id="@+id/tv_sn"
+            style="@style/TextSize15Color333"
+            android:padding="@dimen/size10"
+            android:text="dddd" />
+
+        <TextView
             android:id="@+id/tv_state"
             style="@style/TextSize13Color333"
-            android:layout_width="match_parent"
+            android:layout_alignParentRight="true"
             android:padding="@dimen/size10"
             android:text="待付款"
             android:textColor="#cd6638" />
@@ -28,8 +34,7 @@
             android:layout_below="@id/tv_state"
             android:layout_margin="@dimen/size1"
             android:background="#fff"
-            android:paddingBottom="@dimen/size10"
-           >
+            android:paddingBottom="@dimen/size10">
 
             <View
                 android:id="@+id/view_1"
@@ -40,30 +45,28 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_shop"
-                android:layout_marginLeft="@dimen/size10"
-                android:layout_marginRight="@dimen/size10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/view_1"
+                android:layout_marginLeft="@dimen/size10"
+                android:layout_marginRight="@dimen/size10"
                 android:layout_marginTop="@dimen/size5" />
 
             <View
                 android:id="@+id/view_content"
-                android:layout_alignBottom="@id/rv_shop"
-                android:layout_alignTop="@id/rv_shop"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                ></View>
 
+                android:layout_alignBottom="@id/rv_shop"
+                android:layout_alignTop="@id/rv_shop"></View>
 
 
             <client.ediancha.com.myview.Color2Text
                 android:id="@+id/tv_total_price"
-                android:layout_marginLeft="@dimen/size10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rv_shop"
+                android:layout_marginLeft="@dimen/size10"
                 android:layout_marginTop="@dimen/size18"
                 android:text="合计: "
                 android:textColor="#999"

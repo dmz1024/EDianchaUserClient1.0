@@ -23,10 +23,9 @@
 
     <View
         android:id="@+id/view_delete"
-        android:layout_width="@dimen/size10"
-        android:visibility="gone"
-        android:layout_height="@dimen/size10"
+        android:layout_width="@dimen/size15"
+        android:layout_height="@dimen/size15"
         android:layout_toRightOf="@id/tv_name"
-        android:background="@mipmap/icon_sort_close" />
+        android:background="@mipmap/icon_close_orange" />
 
 </RelativeLayout>

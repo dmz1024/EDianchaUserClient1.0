@@ -20,7 +20,7 @@ public class Appointment extends BaseListEntity<Appointment.Data> {
         public String orderid;
         public String phone;
         public String sc;
-        public String status;
+        public int status;
         public String store_name;
         public String store_uid;
         public String tableid;

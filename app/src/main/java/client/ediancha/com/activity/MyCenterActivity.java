@@ -9,10 +9,12 @@ import android.view.MenuItem;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.ToolBarActivity;
+import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.fragment.MyCenterFragment;
 import client.ediancha.com.util.Util;
 
 public class MyCenterActivity extends ToolBarActivity {
+    private MyCenterFragment myCenterFragment;
 
     @Override
     protected String getToolBarTitle() {
@@ -26,7 +28,7 @@ public class MyCenterActivity extends ToolBarActivity {
 
     @Override
     protected void initData() {
-        getSupportFragmentManager().beginTransaction().add(R.id.fg_base, new MyCenterFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fg_base, myCenterFragment = new MyCenterFragment()).commit();
     }
 
     @Override
@@ -37,7 +39,7 @@ public class MyCenterActivity extends ToolBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.item_email:
                 Util.skip(this, MessageActivity.class);
                 return true;
@@ -62,5 +64,14 @@ public class MyCenterActivity extends ToolBarActivity {
     public void onCreateCustomToolBar(Toolbar toolbar) {
         super.onCreateCustomToolBar(toolbar);
         toolbar.setBackgroundColor(Color.parseColor("#00333333"));
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (myCenterFragment != null && UserInfo.change) {
+            myCenterFragment.onRefresh();
+        }
     }
 }

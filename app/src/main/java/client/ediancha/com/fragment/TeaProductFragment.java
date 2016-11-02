@@ -110,20 +110,20 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
     }
 
 
-    @Override
-    protected RecyclerView.LayoutManager getLayoutManager() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                int r=totalList.get(position).r;
-                if(r==1 ||r==4){
-                    return 1;
-                }
-                return 2;
-            }
-        });
-
-        return gridLayoutManager;
-    }
+//    @Override
+//    protected RecyclerView.LayoutManager getLayoutManager() {
+//        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+//        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//            @Override
+//            public int getSpanSize(int position) {
+//                int r=totalList.get(position).r;
+//                if(r==1 ||r==4){
+//                    return 1;
+//                }
+//                return 2;
+//            }
+//        });
+//
+//        return gridLayoutManager;
+//    }
 }

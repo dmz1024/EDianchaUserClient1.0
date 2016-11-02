@@ -9,11 +9,28 @@
         android:layout_height="@dimen/size10"
         android:background="#00000000" />
 
+    <FrameLayout
+        android:id="@+id/fg_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size12"
+        android:background="#fff"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="@dimen/size105"
+            android:layout_height="@dimen/size105"
+            android:scaleType="fitXY" />
+    </FrameLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/view"
-        android:background="#fbfbfb">
+        android:background="#fbfbfb"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:id="@+id/rl_content"
@@ -89,21 +106,6 @@
              />
 
     </RelativeLayout>
-
-    <FrameLayout
-        android:id="@+id/fg_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/size12"
-        android:background="#fff"
-        android:padding="2dp">
-
-        <ImageView
-            android:id="@+id/iv_img"
-            android:layout_width="@dimen/size105"
-            android:layout_height="@dimen/size105"
-            android:scaleType="fitXY" />
-    </FrameLayout>
 
 
 </RelativeLayout>

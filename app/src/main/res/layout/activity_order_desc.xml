@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fbfbfb">
@@ -91,9 +92,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size15"
             android:background="#ffffff"
+            android:textColor="#333"
             android:lineSpacingExtra="@dimen/size5"
             android:padding="@dimen/size10"
-            android:textSize="@dimen/sp17" />
+            android:textSize="@dimen/sp15" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -115,5 +117,16 @@
                 android:layout_marginTop="@dimen/size10"
                 android:textColor="#cd673a" />
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_marginTop="@dimen/size15"
+            android:background="#fff"
+            android:padding="@dimen/size10"
+            android:textSize="@dimen/sp15"
+            android:textColor="#333"
+            android:lineSpacingExtra="@dimen/size5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </ScrollView>

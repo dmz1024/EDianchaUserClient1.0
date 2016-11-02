@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:padding="@dimen/size10">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextSize15Color333"
+        android:text="dddddd" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/TextSize13Color666"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:layout_marginTop="@dimen/size10"
+        android:text="dddddd" />
+
+</LinearLayout>

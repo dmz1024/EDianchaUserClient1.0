@@ -53,7 +53,7 @@ public class TeaEventFilterResultActivity extends ToolBarActivity implements OnT
         }.getType());
         switch (type) {
             case 0:
-                teaEventFragment =TeaEventFragment.getInstance(true);
+                teaEventFragment = TeaEventFragment.getInstance(true);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fg_filter, teaEventFragment).commit();
                 teaEventFragment.setFilterMap(list);
                 break;
@@ -97,15 +97,17 @@ public class TeaEventFilterResultActivity extends ToolBarActivity implements OnT
         if (totalSize == 0) {
             rv_filter.setVisibility(View.GONE);
         }
-
         switch (type) {
             case 0:
+                teaEventFragment.setIsP(true);
                 teaEventFragment.setFilterMap(list);
                 break;
             case 1:
+                teaSpaceFragment.setIsP(true);
                 teaSpaceFragment.setFilterMap(list);
                 break;
             case 2:
+                teaProductFragment.setIsP(true);
                 teaProductFragment.setFilterMap(list);
                 break;
         }

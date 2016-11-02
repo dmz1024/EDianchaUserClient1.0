@@ -2,28 +2,36 @@ package client.ediancha.com.fragment;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
 import client.ediancha.com.activity.LoginActivity;
 import client.ediancha.com.activity.MainActivity;
+import client.ediancha.com.activity.SetPasswordActivity;
 import client.ediancha.com.api.MyRetrofitUtil;
+import client.ediancha.com.api.UpImageUtil;
 import client.ediancha.com.base.BaseFragment;
 import client.ediancha.com.base.NetworkBaseFragment;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.entity.UserInfo;
+import client.ediancha.com.myview.ChooseStringView;
 import client.ediancha.com.myview.GlideCircleTransform;
 import client.ediancha.com.myview.ListViewAlert;
+import client.ediancha.com.myview.PopEdit;
 import client.ediancha.com.myview.TitleRelativeLayout;
+import client.ediancha.com.processor.PhotoUtil;
 import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.SharedPreferenUtil;
 import client.ediancha.com.util.Util;
@@ -96,6 +104,8 @@ public class UserInfoFragment extends SingleNetWorkBaseFragment<UserInfo> {
         return view;
     }
 
+    private PhotoUtil photoUtil;
+    private ArrayList<String> heads = new ArrayList<>();
 
     @Override
     public void onClick(View view) {
@@ -110,29 +120,67 @@ public class UserInfoFragment extends SingleNetWorkBaseFragment<UserInfo> {
                 exit();
                 break;
             case R.id.trl_head:
-                map.put("avatar", Constant.IMAGE);
-                changeInfo(map);
+                heads.clear();
+                if (photoUtil == null) {
+                    photoUtil = PhotoUtil.getInstance().setMaxCount(1).setActivity(getActivity());
+                }
+                photoUtil.setResultUrl(heads);
+                photoUtil.showPhoto();
                 break;
             case R.id.trl_nick_name:
-                map.put("nickname", "邓如果");
-                changeInfo(map);
+                new PopEdit(getContext(), false, trl_nick_name.getContent()) {
+                    @Override
+                    protected void content(String content) {
+                        map.put("nickname", content);
+                        changeInfo(map);
+                    }
+                }.showAtLocation();
                 break;
             case R.id.trl_sex:
-                new ListViewAlert(getContext(), "性别") {
+                List<String> sexs = new ArrayList<>();
+                sexs.add("男");
+                sexs.add("女");
+                new ChooseStringView(getContext(), sexs) {
                     @Override
-                    public void select(int position) {
+                    protected void itemClick(int position) {
                         map.put("sex", (position + 1) + "");
                         changeInfo(map);
                     }
-                }.SingleSelection(new String[]{"男", "女"});
+                }.showAtLocation();
                 break;
             case R.id.trl_content:
-                map.put("intro", "小李丑的不能看");
-                changeInfo(map);
+                new PopEdit(getContext(), false, trl_content.getContent()) {
+                    @Override
+                    protected void content(String content) {
+                        map.put("intro", content);
+                        changeInfo(map);
+                    }
+                }.showAtLocation();
                 break;
             case R.id.trl_set_password:
-
+                Util.skip(getActivity(), SetPasswordActivity.class);
                 break;
+        }
+    }
+
+
+    public void changeHead(int requestCode, int resultCode, Intent data) {
+        if (photoUtil != null) {
+            photoUtil.onActivityResult(requestCode, resultCode, data);
+            UpImageUtil.getInstance().setContext(getContext()).setOnUpLoadListener(new UpImageUtil.OnUpLoadListener() {
+                @Override
+                public void urls(List<String> urls) {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("avatar", urls.get(0));
+                    changeInfo(map);
+                }
+
+                @Override
+                public void faile() {
+
+                }
+            }).upImage(heads);
+
         }
     }
 
@@ -152,7 +200,7 @@ public class UserInfoFragment extends SingleNetWorkBaseFragment<UserInfo> {
         new SharedPreferenUtil(getContext(), "userInfo").
                 setData(new String[]{"newuser", "", "sign", "", "type", "", "time", "", "uid", ""});
         Util.setUserInfo(getContext());
-
+        client.ediancha.com.constant.UserInfo.change = true;
         startActivity(new Intent(getContext(), MainActivity.class));
     }
 
@@ -178,6 +226,7 @@ public class UserInfoFragment extends SingleNetWorkBaseFragment<UserInfo> {
             @Override
             public void haveData(BaseEntity baseEntity) {
                 if (baseEntity.result == 0) {
+                    client.ediancha.com.constant.UserInfo.change = true;
                     getData();
                 } else {
                     MyToast.showToast(baseEntity.msg);

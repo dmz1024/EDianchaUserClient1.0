@@ -139,9 +139,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/size12"
-                android:text="- 活动详情,点击查看 -"
+                android:text="- 活动详情 -"
                 android:textColor="#333"
                 android:textSize="@dimen/sp15" />
+
+            <client.ediancha.com.myview.MyWebView
+                android:id="@+id/webView"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></client.ediancha.com.myview.MyWebView>
 
             <View
                 android:id="@+id/view_4"

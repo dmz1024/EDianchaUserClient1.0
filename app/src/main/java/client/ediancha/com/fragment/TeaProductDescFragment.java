@@ -17,6 +17,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -75,7 +77,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
     private TextView tv_desc;
     private FrameLayout webLayout;
     private boolean isShow;
-
+    private MyWebView webView;
     private TeaDesc data;
 
     public static TeaProductDescFragment getInstance(String id) {
@@ -109,6 +111,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         tv_count_info = (TextView) view.findViewById(R.id.tv_count_info);
         trl_name = (TitleRelativeLayout) view.findViewById(R.id.trl_name);
         trl_comment = (TitleRelativeLayout) view.findViewById(R.id.trl_comment);
+        webView = (MyWebView) view.findViewById(R.id.webView);
         trl_tel = (TitleRelativeLayout) view.findViewById(R.id.trl_tel);
         trl_tel.setOnClickListener(this);
         tv_buy_car = (TextImage) view.findViewById(R.id.tv_buy_car);
@@ -135,7 +138,7 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.tv_desc:
-                showDesc();
+//                showDesc();
                 break;
             case R.id.trl_name:
                 Intent intent5 = new Intent(getContext(), OfficialStoreInfoActivity.class);
@@ -237,6 +240,23 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
      * @param data
      */
     private void show(TeaDesc.Data data) {
+        webView.loadUrl(data.content);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+            }
+        });
+
+
+
+
         tv_name.setText(data.name);
         tv_price.setTextNotChange(data.price);
         tv_count_info.setText("运费：￥" + data.postage + "       剩余：" + data.quantity + "件");

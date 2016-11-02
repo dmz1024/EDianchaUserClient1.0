@@ -15,4 +15,6 @@ public interface Constant {
     int ADDRESS_ADD = 0x5;
     int ADDRESS_CHOOSW = 0x6;
     int LIST_DATA = 0x7;
+    int TEA_ORDER_SPACECOMMENT = 0x8;
+    int TEA_ORDER_PAY = 0x9;
 }

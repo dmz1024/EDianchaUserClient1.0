@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ import client.ediancha.com.adapter.TeaEventDescEventAdapter;
 import client.ediancha.com.api.MyRetrofitUtil;
 import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.WebBaseFragment;
+import client.ediancha.com.myview.MyWebView;
 import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.constant.UserInfo;
@@ -62,7 +65,7 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
     private TextView tv_event_desc_title;
     private FrameLayout webLayout;
     private TeaEventDesc t;
-
+    private MyWebView webView;
     public static TeaEventDescFragment getInstance(String id) {
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
@@ -89,6 +92,7 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
     protected View getHaveDataView() {
         View view = View.inflate(getContext(), R.layout.fragment_tea_event_desc, null);
         tv_price = (Color2Text) view.findViewById(R.id.tv_price);
+        webView = (MyWebView) view.findViewById(R.id.webView);
         tv_event_desc_title = (TextView) view.findViewById(R.id.tv_event_desc_title);
         rollPagerView = (RollPagerView) view.findViewById(R.id.roll_view_pager);
         tv_name = (TextView) view.findViewById(R.id.tv_name);
@@ -191,6 +195,19 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
      */
     private void fillData(TeaEventDesc.Show show) {
 
+        webView.loadUrl(t.data.show.content);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+            }
+        });
 
         tv_name.setText(show.name);
         if (TextUtils.equals(show.price, "免费")) {

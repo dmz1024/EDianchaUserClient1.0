@@ -44,7 +44,11 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
     protected boolean isLoading;
     protected boolean isHaveData = true;
     protected RecyclerView.LayoutManager layoutManager;
+    private boolean isP;
 
+    public void setIsP(boolean isP) {
+        this.isP = isP;
+    }
 
     public List<D> totalList = new ArrayList<>();
     protected Map<String, String> map = new HashMap<>();
@@ -203,9 +207,19 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
 
 
         if (getMethod() == RequestMenthod.POST) {
-            retrofitUtil.get(getUrl(), getMap(), getTClass(), onRequestListener);
+            if (isP) {
+                retrofitUtil.get(getUrl(), getMap(), getTClass(), onRequestListener, "", getContext());
+            } else {
+                retrofitUtil.get(getUrl(), getMap(), getTClass(), onRequestListener);
+            }
+
         } else {
-            retrofitUtil.post(getUrl(), getMap(), getTClass(), onRequestListener);
+            if (isP) {
+                retrofitUtil.post(getUrl(), getMap(), getTClass(), onRequestListener, "", getContext());
+            } else {
+                retrofitUtil.post(getUrl(), getMap(), getTClass(), onRequestListener);
+            }
+
         }
     }
 

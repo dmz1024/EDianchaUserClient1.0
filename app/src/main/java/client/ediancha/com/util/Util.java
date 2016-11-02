@@ -309,7 +309,6 @@ public class Util {
         UserInfo.newuser = userInfo.get("newuser");
         UserInfo.type = userInfo.get("type");
         UserInfo.time = userInfo.get("time");
-        Log.d("uid1", userInfo.get("uid") + "订单");
     }
 
 
@@ -388,7 +387,7 @@ public class Util {
 
 
     public static void navigation(Context ctx, double latitude, double longitude, int zoom,
-                            String addr) {
+                                  String addr) {
         StringBuffer sb = new StringBuffer();
         sb.append("geo:").append(latitude).append(",").append(latitude)
                 .append("?").append("z=").append(zoom).append("?").append("q=")
@@ -399,13 +398,13 @@ public class Util {
     }
 
 
-    public static void checkUpdate(final Context ctx){
+    public static void checkUpdate(final Context ctx) {
         PopUpdateApk popUpdateApk = new PopUpdateApk(ctx);
         popUpdateApk.setOnUpdateApkListener(new PopUpdateApk.OnUpdateApkListener() {
             @Override
             public void cancle(final int code) {
 
-                new PopMessageTips("提示","下次不再提示该版本更新?","不再提示","再想想"){
+                new PopMessageTips("提示", "下次不再提示该版本更新?", "不再提示", "再想想") {
                     @Override
                     protected void right() {
                         super.right();

@@ -166,7 +166,7 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
                 Util.skip(getActivity(), MoreTeaPackageActivity.class);
                 break;
             case R.id.trl_address:
-                Util.navigation(getContext(),t.data.show.zlat,t.data.show.zlong,18,t.data.show.address);
+                Util.navigation(getContext(), t.data.show.zlat, t.data.show.zlong, 18, t.data.show.address);
                 break;
             case R.id.trl_tea_recommend:
                 Intent intent1 = new Intent(getContext(), TeaSpaceOtherRecommendActivity.class);

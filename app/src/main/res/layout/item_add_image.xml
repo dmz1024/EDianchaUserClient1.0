@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:paddingBottom="@dimen/size7"
+    android:paddingRight="@dimen/size7"
+    android:paddingTop="@dimen/size7">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size75"
+        android:scaleType="fitXY" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_gravity="right"
+        android:layout_width="@dimen/size25"
+        android:layout_height="@dimen/size25"
+        android:src="@mipmap/icon_close_orange" />
+</FrameLayout>

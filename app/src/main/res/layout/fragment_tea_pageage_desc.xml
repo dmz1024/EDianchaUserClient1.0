@@ -140,8 +140,14 @@
                 android:layout_marginTop="@dimen/size10"
                 android:gravity="center"
                 android:padding="@dimen/size10"
-                android:text="点击加载图文详情页"
+                android:text="图文详情"
                 android:textColor="#333" />
+
+            <client.ediancha.com.myview.MyWebView
+                android:id="@+id/webView"
+                android:layout_marginTop="@dimen/size10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></client.ediancha.com.myview.MyWebView>
         </LinearLayout>
     </client.ediancha.com.myview.ScrollChangedScrollView>
 </RelativeLayout>

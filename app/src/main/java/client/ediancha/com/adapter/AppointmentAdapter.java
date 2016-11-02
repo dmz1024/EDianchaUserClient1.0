@@ -7,14 +7,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.entity.Appointment;
+import client.ediancha.com.interfaces.OnResultListener;
+import client.ediancha.com.processor.OrderUtil;
 import client.ediancha.com.util.GlideUtil;
 
 /**
@@ -42,9 +42,30 @@ public class AppointmentAdapter extends SingleBaseAdapter<Appointment.Data> {
         Appointment.Data data = list.get(position);
         GlideUtil.GlideErrAndOc(ctx, data.images, mHolder.iv_img);
         mHolder.tv_name.setText(data.name);
+        mHolder.tv_info.setText("预约信息：" + data.tablename + " | " + data.dd_time + " | " + data.sc + "小时 | " + data.num + "人");
+        mHolder.tv_sn.setText("订单号：" + data.orderid);
+        mHolder.tv_state.setText(getStatus(data.status, mHolder.bt_right));
+        mHolder.tv_time.setText("下单时间：" + data.dateline);
     }
 
-    public static class AppointmentViewHolder extends BaseViewHolder {
+    private String getStatus(int status, Button bt) {
+        bt.setVisibility(View.GONE);
+        switch (status) {
+            case 1:
+                bt.setVisibility(View.VISIBLE);
+                return "待审核";
+            case 2:
+                bt.setVisibility(View.VISIBLE);
+                return "待消费";
+            case 3:
+                return "已完成";
+            case 4:
+                return "已取消";
+        }
+        return "";
+    }
+
+    public class AppointmentViewHolder extends BaseViewHolder {
         public ImageView iv_img;
         public TextView tv_name;
         public TextView tv_time;
@@ -64,7 +85,23 @@ public class AppointmentAdapter extends SingleBaseAdapter<Appointment.Data> {
             tv_tips = (TextView) itemView.findViewById(R.id.tv_tips);
             tv_sn = (TextView) itemView.findViewById(R.id.tv_sn);
             bt_right = (Button) itemView.findViewById(R.id.bt_right);
+            bt_right.setOnClickListener(this);
         }
 
+
+        @Override
+        protected void itemOnclick(int id, final int layoutPosition) {
+            OrderUtil.getInstance().setContext(ctx).setOnResultListener(new OnResultListener() {
+                @Override
+                public void resultOk() {
+                    remove(layoutPosition);
+                }
+
+                @Override
+                public void resultFaile() {
+
+                }
+            }).cancle(list.get(layoutPosition).order_id, "2");
+        }
     }
 }

@@ -22,6 +22,7 @@ public class PackageDesc extends BaseEntity {
         public String sale;
         public String store_name;
         public Share share;
+        public String content;
     }
 
     public static class Share{

@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.ToolBarActivity;
+import client.ediancha.com.fragment.SystemMessageFragment;
 import client.ediancha.com.util.SharedPreferenUtil;
 import client.ediancha.com.util.Util;
 
@@ -24,7 +25,7 @@ public class MessageActivity extends ToolBarActivity {
 
     @Override
     protected void initData() {
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fg_base, new SystemMessageFragment()).commit();
     }
 
     @Override

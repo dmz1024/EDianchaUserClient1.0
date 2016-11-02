@@ -41,7 +41,8 @@ public class BuyTeaActivity extends ToolBarActivity {
         if (intent != null) {
             int result = intent.getIntExtra("pay_result", -1);
             if (result == 0) {
-                MyToast.showToast("支付成功！可去个人中心-茶品订单查看", 6000);
+                MyToast.showToast("支付成功！可去个人中心-茶品订单查看", 4000);
+                setResult(2,getIntent());
                 finish();
             } else {
                 if (buyTeaFragment != null) {

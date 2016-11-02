@@ -25,13 +25,14 @@ public class TeaOrderActivity extends AppCompatActivity {
         TabLayout layout = (TabLayout) findViewById(R.id.tablayout);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        final String[] titles = {"待付款", "待发货", "待收货", "已完成"};
+        final String[] titles = {"待付款", "待发货", "待收货", "已完成","已取消"};
 
         final List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(TeaOrderFragment.getInstance("1"));
         fragmentList.add(TeaOrderFragment.getInstance("2"));
         fragmentList.add(TeaOrderFragment.getInstance("3"));
         fragmentList.add(TeaOrderFragment.getInstance("4"));
+        fragmentList.add(TeaOrderFragment.getInstance("5"));
 
         viewPager.setOffscreenPageLimit(fragmentList.size());
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {

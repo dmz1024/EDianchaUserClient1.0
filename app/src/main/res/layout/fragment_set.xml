@@ -14,13 +14,14 @@
         android:layout_marginTop="@dimen/size15"
         android:background="@drawable/touch_bg_fff"
         tool:TitleRelativeLayout_title="账号管理"
-        tool:TitleRelativeLayout_view_visi="false" />
+         />
 
     <client.ediancha.com.myview.TitleRelativeLayout
         android:id="@+id/trl_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size15"
+        android:visibility="gone"
         android:background="@drawable/touch_bg_fff"
         tool:TitleRelativeLayout_title="意见反馈" />
 

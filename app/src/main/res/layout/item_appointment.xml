@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/tv_time"
             style="@style/TextSize14Color666"
-            android:text="活动时间: 07/28  14:00" />
+            android:text="下单时间: 07/28  14:00" />
 
         <TextView
             android:id="@+id/tv_state"
@@ -53,13 +53,6 @@
             android:layout_toRightOf="@id/iv_img"
             android:text="主题名称" />
 
-        <TextView
-            android:id="@+id/tv_tips"
-            style="@style/TextSize14Color666"
-            android:layout_alignBottom="@id/tv_name"
-            android:layout_alignParentRight="true"
-            android:text="审核未通过"
-            android:textColor="#cd6638" />
 
         <TextView
             android:id="@+id/tv_info"
@@ -68,7 +61,6 @@
             android:layout_marginLeft="@dimen/size10"
             android:layout_marginTop="@dimen/size7"
             android:layout_toRightOf="@id/iv_img"
-            android:text="预约信息：大厅 | 2016-07-20- 10:00 | 2小时 | 4小时"
             android:textColor="#999" />
 
 

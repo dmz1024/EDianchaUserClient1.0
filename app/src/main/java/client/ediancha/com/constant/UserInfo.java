@@ -10,4 +10,5 @@ public class UserInfo {
     public static String newuser;
     public static String type;
     public static String time;
+    public static boolean change;
 }

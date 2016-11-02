@@ -84,7 +84,7 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
 
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.addItemDecoration(new ItemDecoration(getContext(), LinearLayout.HORIZONTAL, 1, "#e1e1e1"));
-        MyCenterIconAdapter adapter = new MyCenterIconAdapter(getContext(), getMyCenterIconData()){
+        MyCenterIconAdapter adapter = new MyCenterIconAdapter(getContext(), getMyCenterIconData()) {
             @Override
             protected void login() {
                 startActivityForResult(new Intent(getContext(), LoginActivity.class), Constant.MY_CENTER_INFO);
@@ -137,6 +137,7 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
 
     @Override
     protected void writeData(MyCenterInfo t) {
+        UserInfo.change = false;
         tv_name.setText(t.data.nickname);
         Glide.with(getActivity()).load(t.data.avatar).bitmapTransform(new GlideCircleTransform(getContext())).into(iv_head);
 

@@ -111,15 +111,23 @@
         android:layout_marginTop="@dimen/size25"
         android:background="#ebebeb" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_content"
-        android:layout_marginTop="@dimen/size25"
+    <ListView
+        android:id="@+id/lv_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:divider="#ebebeb"
+        android:layout_marginRight="@dimen/size15"
+        android:layout_marginLeft="@dimen/size15"
+        android:dividerHeight="@dimen/size0.5"></ListView>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_ho"
-        android:layout_marginTop="@dimen/size25"
+    <TextView
+        android:id="@+id/tv_clear"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/size10"
+        android:text="清空历史记录"
+        android:textColor="#70ff0000"
+        android:textSize="@dimen/sp13" />
 </LinearLayout>

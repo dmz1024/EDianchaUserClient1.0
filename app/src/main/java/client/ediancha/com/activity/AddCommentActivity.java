@@ -2,18 +2,24 @@ package client.ediancha.com.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.adapter.ChooseImageAdapter;
 import client.ediancha.com.api.MyRetrofitUtil;
+import client.ediancha.com.api.UpImageUtil;
 import client.ediancha.com.base.ToolBarActivity;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.constant.UserInfo;
@@ -21,6 +27,7 @@ import client.ediancha.com.entity.BaseEntity;
 import client.ediancha.com.interfaces.SingleTextWatcher;
 import client.ediancha.com.myview.MyRatingBar;
 import client.ediancha.com.myview.PopMessageTips;
+import client.ediancha.com.processor.PhotoUtil;
 import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.Util;
 
@@ -35,6 +42,7 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
     private TextView tv_core;
     private RecyclerView rv_image;
     private EditText et_price;
+    private ArrayList<String> resultUrl;
 
     @Override
     protected String getToolBarTitle() {
@@ -76,6 +84,38 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
                 }
             }
         });
+
+        initImage();
+    }
+
+    private PhotoUtil phptoUtil;
+    private ChooseImageAdapter mAdapter;
+
+    private void initImage() {
+        resultUrl = new ArrayList<>();
+        GridLayoutManager manager = new GridLayoutManager(this, 4);
+
+        mAdapter = new ChooseImageAdapter(this, resultUrl, 4) {
+            @Override
+            protected void chooseImage() {
+                if (phptoUtil == null) {
+                    phptoUtil = PhotoUtil.getInstance().setActivity(AddCommentActivity.this).setMaxCount(4);
+                }
+                phptoUtil.setResultUrl(resultUrl);
+                phptoUtil.showPhoto();
+            }
+        };
+        rv_image.setLayoutManager(manager);
+        rv_image.setAdapter(mAdapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (phptoUtil != null) {
+            phptoUtil.onActivityResult(requestCode, resultCode, data);
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -88,6 +128,8 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
         return R.layout.activity_add_comment;
     }
 
+    private String images;
+
     @Override
     public void onClick(View v) {
         if (TextUtils.isEmpty(UserInfo.uid)) {
@@ -95,14 +137,42 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
             Util.skip(this, LoginActivity.class);
             return;
         }
+        if (resultUrl != null && resultUrl.size() >= 0) {
+            UpImageUtil.getInstance().setContext(this).setOnUpLoadListener(new UpImageUtil.OnUpLoadListener() {
+                @Override
+                public void urls(List<String> urls) {
+                    StringBuffer str = new StringBuffer();
+                    for (int i = 0; i < urls.size(); i++) {
+                        str.append(urls.get(i));
+                        if (i != urls.size() - 1) {
+                            str.append(",");
+                        }
+                    }
 
+                    images = str.toString();
+                    add();
+                }
+
+                @Override
+                public void faile() {
+
+                }
+            }).upImage(resultUrl);
+        } else {
+            add();
+        }
+
+
+    }
+
+    private void add() {
         Map<String, String> map = new HashMap<>();
         map.put("c", "appcomment");
         map.put("a", "add");
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
         map.put("score", ratingbar.getCurrentCore() + "");
-        map.put("images", Constant.IMAGE);
+        map.put("images", images);
         map.put("data_id", getIntent().getStringExtra("id"));
         map.put("type", getIntent().getStringExtra("type"));
         map.put("content", et_content.getText().toString());
@@ -124,6 +194,7 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
             public void haveData(BaseEntity baseEntity) {
                 if (baseEntity.result == 0) {
                     MyToast.showToast("评论成功,该条评论将进入审核区，审核成功即可展示!");
+                    setResult(3, getIntent());
                     finish();
                 } else {
                     if (baseEntity.msg.contains("token")) {

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,7 @@ import client.ediancha.com.fragment.TeaProductFragment;
 import client.ediancha.com.fragment.TeaSpaceFragment;
 import client.ediancha.com.myview.PopMessageTips;
 import client.ediancha.com.processor.MapManager;
+import client.ediancha.com.processor.PhotoUtil;
 import client.ediancha.com.util.SharedPreferenUtil;
 import client.ediancha.com.util.Util;
 import cn.jpush.android.api.JPushInterface;
@@ -61,6 +63,8 @@ public class MainActivity extends ToolBarActivity {
         viewPager = (ViewPager) findViewById(R.id.viewPager);
     }
 
+    PhotoUtil photoUtil;
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -70,6 +74,12 @@ public class MainActivity extends ToolBarActivity {
                 startActivity(intent);
                 break;
         }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -115,6 +125,7 @@ public class MainActivity extends ToolBarActivity {
 
         layout.setupWithViewPager(viewPager);
         Util.setUserInfo(this);
+        UserInfo.change = false;
         Log.d("账号信息", UserInfo.uid + "--" + UserInfo.token);
         initMap();
 

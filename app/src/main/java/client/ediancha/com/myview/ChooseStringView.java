@@ -79,11 +79,8 @@ public class ChooseStringView extends PopBaseView {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dismiss();
                 if (position != list.size()) {
-
                     itemClick(position);
                 }
-
-
             }
         });
 

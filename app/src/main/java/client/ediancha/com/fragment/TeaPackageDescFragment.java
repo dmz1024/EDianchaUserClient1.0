@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import client.ediancha.com.base.WebBaseFragment;
 import client.ediancha.com.entity.PackageDesc;
 import client.ediancha.com.entity.TeaDesc;
 import client.ediancha.com.myview.Color2Text;
+import client.ediancha.com.myview.MyWebView;
 import client.ediancha.com.myview.ScrollChangedScrollView;
 import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.myview.TitleRelativeLayout;
@@ -52,7 +55,7 @@ public class TeaPackageDescFragment extends TeaDescBaseFragment<PackageDesc> {
     private boolean isShow;
     private PackageDesc data;
 
-
+    private MyWebView webView;
     public static TeaPackageDescFragment getInstance(String id) {
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
@@ -83,6 +86,7 @@ public class TeaPackageDescFragment extends TeaDescBaseFragment<PackageDesc> {
         scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
         tv_count = (TextView) view.findViewById(R.id.tv_count);
         trl_name = (TitleRelativeLayout) view.findViewById(R.id.trl_name);
+        webView = (MyWebView) view.findViewById(R.id.webView);
         trl_tel = (TitleRelativeLayout) view.findViewById(R.id.trl_tel);
         trl_tel.setOnClickListener(this);
         trl_name.setOnClickListener(this);
@@ -110,7 +114,7 @@ public class TeaPackageDescFragment extends TeaDescBaseFragment<PackageDesc> {
         super.onClick(view);
         switch (view.getId()) {
             case R.id.tv_desc:
-                showDesc();
+//                showDesc();
                 break;
             case R.id.trl_tel:
                 Util.tel(getContext(), data.data.phone1 + data.data.phone2);
@@ -153,6 +157,21 @@ public class TeaPackageDescFragment extends TeaDescBaseFragment<PackageDesc> {
     @Override
     protected void writeData(PackageDesc t) {
         data = t;
+
+        webView.loadUrl(t.data.content);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+            }
+        });
+
         fillRollPageView(t.data.images);
         fillTabLayout(t.data.conten);
         show(t.data);

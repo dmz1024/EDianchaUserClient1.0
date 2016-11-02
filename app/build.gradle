@@ -38,6 +38,12 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+    allprojects{
+        repositories{
+            maven { url "https://jitpack.io" }
+        }
+    }
 }
 
 dependencies {
@@ -76,4 +82,7 @@ dependencies {
     compile 'cn.jiguang:jpush:2.1.8'
     compile files('libs/AMap_Location_V2.5.0_20160526.jar')
     compile files('libs/alipaySdk-20161009.jar')
+    //https://github.com/bingoogolapple/BGAPhotoPicker-Android
+    compile 'cn.bingoogolapple:bga-adapter:1.1.0@aar'
+    compile 'cn.bingoogolapple:bga-photopicker:1.1.4@aar'
 }

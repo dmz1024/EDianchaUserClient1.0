@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="@dimen/size100"
+            android:layout_height="@dimen/size100"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/size60"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/TextSize14Color333"
+            android:layout_below="@id/iv_img"
+            android:layout_marginTop="@dimen/size40"
+            android:autoLink="web"
+            android:lineSpacingExtra="@dimen/size6"
+            android:padding="@dimen/size10"
+            android:text="E点茶（www.ediancha.com）是易点茶（北京）科技有限公司自主研发的一款专门针对茶馆行业的移动营销系统。该系统包含茶馆的全方位展示—品牌、人文、外景、内饰；在线交易—茶叶微商城，线上交易付款更便捷；用户管理（CRM）—预约用户、卖茶客户、茶会会员统一管理，建立全方位的客户管理系统；发布茶会—以茶会友，茶艺培训，用户在线报名更加方便快捷；BOSS实时查看等众多实用功能组成，协助您的茶馆迅速切换到O2O模式，为您的“互联网+”战略实施保驾护航！"></TextView>
+
+        <TextView
+            style="@style/TextSize12Color999"
+            android:layout_marginTop="@dimen/size40"
+            android:layout_below="@id/tv_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/size30"
+            android:text="© 易点茶（北京）科技有限公司" />
+
+    </RelativeLayout>
+</ScrollView>
