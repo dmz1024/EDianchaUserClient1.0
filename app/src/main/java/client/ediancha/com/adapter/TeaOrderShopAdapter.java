@@ -22,9 +22,15 @@ import client.ediancha.com.util.GlideUtil;
  */
 
 public class TeaOrderShopAdapter extends SingleBaseAdapter<TeaOrder.OrderProduct> {
+    private boolean isCanChoose;
 
     public TeaOrderShopAdapter(Context ctx, List<TeaOrder.OrderProduct> list) {
         super(ctx, list);
+    }
+
+    public TeaOrderShopAdapter(Context ctx, List<TeaOrder.OrderProduct> list, boolean isCanChoose) {
+        super(ctx, list);
+        this.isCanChoose = isCanChoose;
     }
 
     public TeaOrderShopAdapter(List<TeaOrder.OrderProduct> list) {
@@ -46,7 +52,7 @@ public class TeaOrderShopAdapter extends SingleBaseAdapter<TeaOrder.OrderProduct
         mHolder.tv_count.setText("数量x" + product.pro_num);
     }
 
-    public static class TeaOrderShopViewHolder extends BaseViewHolder {
+    public class TeaOrderShopViewHolder extends BaseViewHolder {
         public ImageView iv_img;
         public TextView tv_name;
         public TextView tv_now_price;
@@ -62,7 +68,16 @@ public class TeaOrderShopAdapter extends SingleBaseAdapter<TeaOrder.OrderProduct
 
         @Override
         protected boolean isCanOnclick() {
-            return false;
+            return isCanChoose;
         }
+
+        @Override
+        protected void onClick(int layoutPosition) {
+            choose(layoutPosition);
+        }
+    }
+
+    protected void choose(int layoutPosition) {
+
     }
 }

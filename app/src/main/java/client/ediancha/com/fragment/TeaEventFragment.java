@@ -26,7 +26,6 @@ import client.ediancha.com.util.SharedPreferenUtil;
 public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, TeaEvent> {
     private boolean isScrollEnabled = true;
     private Map<String, String> filterMap = new HashMap<>();
-
     @Override
     protected RecyclerView.Adapter getAdapter(List<TeaEvent.Data> totalList) {
         return new TeaEventAdapter(getContext(), totalList);
@@ -64,17 +63,15 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
         map.put("a", "index");
         map.put("type", "1");
         map.putAll(filterMap);
-        if (filterMap.size() == 0) {
+        if (filterMap.size() == 0 && !isSearch) {
             map.putAll(new SharedPreferenUtil(getContext(), "location").getData(new String[]{"lat", "long"}));
+        }
+        if (isP || filterMap.size() > 0) {
+            map.put("search", "1");
         }
 
         return map;
     }
-
-    protected int getJian() {
-        return 0;
-    }
-
 
     @Override
     protected Class<TeaEvent> getTClass() {
@@ -83,7 +80,7 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
 
 
     @Override
-    protected RecyclerView.LayoutManager getLayoutManager() {
+    protected LinearLayoutManager getLayoutManager() {
         return new LinearLayoutManager(getContext());
     }
 

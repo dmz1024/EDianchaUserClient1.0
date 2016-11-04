@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -202,9 +203,16 @@ public class CheckLoginActivity extends ToolBarActivity {
             public void haveData(UserInfo userInfo) {
                 if (userInfo.result == 0) {
                     MyToast.showToast("登录成功");
+                    codeTime=0;
                     new SharedPreferenUtil(CheckLoginActivity.this, "userInfo").
                             setData(new String[]{"newuser", userInfo.data.newuser, "sign", userInfo.data.sign, "type", userInfo.data.type, "time", userInfo.data.time, "uid", userInfo.data.uid});
                     Util.setUserInfo(CheckLoginActivity.this);
+                    if(TextUtils.equals("1",userInfo.data.newuser)){
+                        startActivity(new Intent(CheckLoginActivity.this,FirstSetPasswordActivity.class));
+                    }
+
+
+
                     setResult(101);
                     finish();
                 } else {

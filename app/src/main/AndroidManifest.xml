@@ -63,7 +63,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name="client.ediancha.com.activity.MainActivity"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask" />
         <activity android:name="client.ediancha.com.activity.MyCenterActivity" />
         <activity android:name="client.ediancha.com.activity.SetActivity" />
         <activity android:name="client.ediancha.com.activity.TeaOrderActivity" />
@@ -71,11 +71,13 @@
         <activity android:name="client.ediancha.com.activity.ApplyOrderActivity" />
         <activity android:name="client.ediancha.com.activity.AppointmentActivity" />
         <activity android:name="client.ediancha.com.activity.TeaEventFilterActivity" />
-        <activity android:name="client.ediancha.com.activity.TestActivity"/>
+        <activity android:name="client.ediancha.com.activity.TestActivity" />
         <activity android:name="client.ediancha.com.activity.TeaDescActivity" />
         <activity android:name="client.ediancha.com.activity.MoreEvaluateActivity" />
         <activity android:name="client.ediancha.com.activity.MoreTeaPackageActivity" />
+        <activity android:name="client.ediancha.com.activity.AllListActivity" />
         <activity android:name="client.ediancha.com.activity.LoginActivity" />
+        <activity android:name="client.ediancha.com.activity.WebViewActivity" />
         <activity android:name="client.ediancha.com.activity.CheckLoginActivity" />
         <activity android:name="client.ediancha.com.activity.TeaEventFilterResultActivity" />
         <activity android:name="client.ediancha.com.base.DescBaseActivity" />
@@ -83,8 +85,11 @@
         <activity android:name="client.ediancha.com.activity.TeaSpaceOtherRecommendActivity" />
         <activity android:name="client.ediancha.com.activity.UserInfoActivity" />
         <activity android:name="client.ediancha.com.activity.AddressActivity" />
+        <activity android:name="client.ediancha.com.activity.BackShopActivity" />
         <activity android:name="client.ediancha.com.activity.AddressManagerActivity" />
-        <activity android:name="client.ediancha.com.activity.BuyTeaActivity" android:launchMode="singleTask"/>
+        <activity
+            android:name="client.ediancha.com.activity.BuyTeaActivity"
+            android:launchMode="singleTask" />
         <activity android:name="client.ediancha.com.activity.SearchActivity" />
         <activity android:name="client.ediancha.com.activity.BuyCarActivity" />
         <activity android:name="client.ediancha.com.activity.OtherStoreActivity" />
@@ -93,9 +98,12 @@
         <activity android:name="client.ediancha.com.activity.MessageActivity" />
         <activity android:name="client.ediancha.com.activity.AboutUsActivity" />
         <activity android:name="client.ediancha.com.activity.OrderDescActivity" />
+        <activity android:name="client.ediancha.com.activity.FirstSetPasswordActivity" />
         <activity android:name="client.ediancha.com.activity.SetPasswordActivity" />
         <activity android:name="client.ediancha.com.activity.OfficialStoreInfoActivity" />
-        <activity android:name="client.ediancha.com.activity.WelcomeActivity" android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name="client.ediancha.com.activity.WelcomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -148,6 +156,7 @@
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+
                 <category android:name="client.ediancha.com" />
             </intent-filter>
         </receiver>

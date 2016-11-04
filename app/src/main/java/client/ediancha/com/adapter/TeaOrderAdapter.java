@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,6 +24,7 @@ import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.TeaOrder;
 import client.ediancha.com.interfaces.OnResultListener;
 import client.ediancha.com.myview.Color2Text;
+import client.ediancha.com.myview.TextImage;
 import client.ediancha.com.processor.OrderUtil;
 
 /**
@@ -43,8 +45,6 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
     }
 
     /**
-     * 1、待付款 2、待发货 3、待收货 4、已完成
-     *
      * @param holder
      * @param position
      */
@@ -53,17 +53,18 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         TeaOrder.Data data = list.get(position);
         TeaOrderViewHolder mHolder = (TeaOrderViewHolder) holder;
-        mHolder.tv_state.setText(getStatu(data.status, mHolder.bt_left, mHolder.bt_right, data.is_comment == 0));
+        mHolder.tv_state.setText(getStatu(data.status, mHolder.bt_left, mHolder.bt_right, data.is_comment == 0, data.is_return == 0));
         mHolder.tv_total_price.setTextNotChange("￥" + data.total);
         if (map.containsKey(position)) {
             map.put(position, false);
         } else {
             map.put(position, true);
         }
-
+        mHolder.tv_store_name.setText(data.store_name);
         mHolder.tv_sn.setText("订单编号：" + data.order_no);
         creatShopView(mHolder.rv_shop, data.order_product_list, map.get(position));
     }
+
 
     private void creatShopView(RecyclerView rv_shop, List<TeaOrder.OrderProduct> casts, boolean show) {
         LinearLayoutManager manager = new LinearLayoutManager(ctx);
@@ -76,7 +77,7 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
         rv_shop.setAdapter(adapter);
     }
 
-    private String getStatu(int status, Button left, Button right, boolean pingjia) {
+    private String getStatu(int status, Button left, Button right, boolean pingjia, boolean back) {
         left.setVisibility(View.GONE);
         right.setVisibility(View.GONE);
         switch (status) {
@@ -99,7 +100,17 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
                 if (pingjia) {
                     right.setVisibility(View.VISIBLE);
                     right.setText("评价");
+                    if (back) {
+                        left.setVisibility(View.VISIBLE);
+                        left.setText("退货");
+                    }
+                } else {
+                    if (back) {
+                        right.setVisibility(View.VISIBLE);
+                        right.setText("退货");
+                    }
                 }
+
                 return "已完成";
             case 5:
                 return "已取消";
@@ -116,6 +127,7 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
         public TextView tv_state;
         public View view_content;
         public TextView tv_sn;
+        public TextImage tv_store_name;
 
         public TeaOrderViewHolder(View itemView) {
             super(itemView);
@@ -127,6 +139,7 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
             tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_sn = (TextView) itemView.findViewById(R.id.tv_sn);
             view_content = itemView.findViewById(R.id.view_content);
+            tv_store_name = (TextImage) itemView.findViewById(R.id.tv_store_name);
             view_content.setOnClickListener(this);
             bt_left.setOnClickListener(this);
             bt_right.setOnClickListener(this);
@@ -166,7 +179,25 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
             case 3:
                 receive(layoutPosition);
                 break;
+            case 4:
+            case 7:
+                if (list.get(layoutPosition).is_comment == 0) {
+                    pingjia(layoutPosition);
+                } else {
+                    Log.d("退货","true");
+                    back(layoutPosition);
+                }
+                break;
         }
+    }
+
+    /**
+     * 退货
+     *
+     * @param layoutPosition
+     */
+    protected void back(int layoutPosition) {
+
     }
 
     /**
@@ -208,14 +239,16 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
                     }
                 }).cancle(list.get(layoutPosition).order_id, "1");
                 break;
-            case 4:
-            case 7:
-                pingjia(layoutPosition);
-                break;
+
             case 3:
                 Intent intent = new Intent(ctx, ShowLogisticsActivity.class);
                 intent.putExtra("id", list.get(layoutPosition).order_no);
                 ctx.startActivity(intent);
+                break;
+            case 4:
+            case 7:
+                Log.d("退货","true");
+                back(layoutPosition);
                 break;
         }
     }

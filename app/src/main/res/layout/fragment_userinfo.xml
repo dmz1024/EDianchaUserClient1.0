@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/touch_bg_fff"
-        tool:TitleRelativeLayout_content="邓如果"
+        tool:TitleRelativeLayout_content=""
         tool:TitleRelativeLayout_title="昵称" />
 
     <client.ediancha.com.myview.TitleRelativeLayout
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/touch_bg_fff"
-        tool:TitleRelativeLayout_content="18326167257"
+        tool:TitleRelativeLayout_content=""
         tool:TitleRelativeLayout_content_image_visi="false"
         tool:TitleRelativeLayout_title="手机号" />
 
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/touch_bg_fff"
-        tool:TitleRelativeLayout_content="男"
+        tool:TitleRelativeLayout_content=""
         tool:TitleRelativeLayout_title="性别" />
 
     <client.ediancha.com.myview.TitleRelativeLayout

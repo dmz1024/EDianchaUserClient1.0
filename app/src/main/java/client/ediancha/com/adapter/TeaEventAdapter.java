@@ -64,6 +64,13 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
         } else {
             TeaEventTypeViewHolder mHolder = (TeaEventTypeViewHolder) holder;
             GridLayoutManager manager = new GridLayoutManager(ctx, 4);
+
+            if (list.get(position).data1.size() > 8 && !TextUtils.equals("收起", list.get(position).data1.get(list.get(position).data1.size() - 1).cat_name)) {
+                TeaEvent.Data1 data1 = new TeaEvent.Data1();
+                data1.cat_name = "收起";
+                list.get(position).data1.add(data1);
+            }
+
             TeaEventTypeFilterAdapter mAdapter = new TeaEventTypeFilterAdapter(ctx, list.get(position).data1);
             mHolder.rv_type.setLayoutManager(manager);
             mHolder.rv_type.setAdapter(mAdapter);

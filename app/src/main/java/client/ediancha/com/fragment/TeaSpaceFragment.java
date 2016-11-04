@@ -24,10 +24,29 @@ import client.ediancha.com.util.SharedPreferenUtil;
 
 public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, TeaSpace> {
     private Map<String, String> filterMap = new HashMap<>();
+    private boolean isFirstInitData;
 
     @Override
     protected RecyclerView.Adapter getAdapter(List<TeaSpace.Data> totalList) {
         return new TeaSpaceAdapter(getContext(), totalList);
+    }
+
+    public static TeaSpaceFragment getInstance(boolean isFirstInitData) {
+        TeaSpaceFragment teaSpaceFragment = new TeaSpaceFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isFirstInitData", isFirstInitData);
+        teaSpaceFragment.setArguments(bundle);
+        return teaSpaceFragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle=getArguments();
+        if(bundle!=null){
+            isFirstInitData=bundle.getBoolean("isFirstInitData");
+        }
+
     }
 
     @Override
@@ -40,8 +59,12 @@ public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, Tea
         map.put("c", "chaguan");
         map.put("a", "alist");
         map.putAll(filterMap);
-        if(filterMap.size()==0){
+        if (filterMap.size() == 0) {
             map.putAll(new SharedPreferenUtil(getContext(), "location").getData(new String[]{"lat", "long"}));
+        }
+
+        if (isP || filterMap.size() > 0) {
+            map.put("search", "1");
         }
 
         return map;
@@ -64,7 +87,7 @@ public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, Tea
 
     @Override
     protected boolean isCanFirstInitData() {
-        return false;
+        return isFirstInitData;
     }
 
 
@@ -75,4 +98,6 @@ public class TeaSpaceFragment extends ListNetWorkBaseFragment<TeaSpace.Data, Tea
             }
         }
     }
+
+
 }

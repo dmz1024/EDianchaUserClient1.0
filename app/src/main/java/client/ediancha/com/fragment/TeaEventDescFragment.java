@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -59,13 +60,12 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
     private TitleRelativeLayout trl_time;
     private TitleRelativeLayout trl_address;
     private TitleRelativeLayout trl_num;
-    private TextView tv_apply;
-    private WebBaseFragment webFragment;
+    private Button bt_apply;
     private RecyclerView rv_event;
-    private TextView tv_event_desc_title;
-    private FrameLayout webLayout;
     private TeaEventDesc t;
     private MyWebView webView;
+    private Color2Text tv_price_apply;
+
     public static TeaEventDescFragment getInstance(String id) {
         Bundle bundle = new Bundle();
         bundle.putString("id", id);
@@ -93,28 +93,26 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
         View view = View.inflate(getContext(), R.layout.fragment_tea_event_desc, null);
         tv_price = (Color2Text) view.findViewById(R.id.tv_price);
         webView = (MyWebView) view.findViewById(R.id.webView);
-        tv_event_desc_title = (TextView) view.findViewById(R.id.tv_event_desc_title);
         rollPagerView = (RollPagerView) view.findViewById(R.id.roll_view_pager);
         tv_name = (TextView) view.findViewById(R.id.tv_name);
+        tv_price_apply = (Color2Text) view.findViewById(R.id.tv_price_apply);
         trl_name = (TitleRelativeLayout) view.findViewById(R.id.trl_name);
         trl_time = (TitleRelativeLayout) view.findViewById(R.id.trl_time);
         trl_address = (TitleRelativeLayout) view.findViewById(R.id.trl_address);
-        webLayout = (FrameLayout) view.findViewById(R.id.fg_desc);
         trl_num = (TitleRelativeLayout) view.findViewById(R.id.trl_num);
-        tv_apply = (TextView) view.findViewById(R.id.tv_apply);
+        bt_apply = (Button) view.findViewById(R.id.bt_apply);
         rv_event = (RecyclerView) view.findViewById(R.id.rv_event);
         rollPagerView.setPlayDelay(0);
         rollPagerView.setAnimationDurtion(500);
         rollPagerView.setHintView(new TextHintView(getContext()));
         scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
         scrollView.setScrollViewListener(scrollViewListener);
-        tv_apply.setOnClickListener(this);
-        tv_event_desc_title.setOnClickListener(this);
+        bt_apply.setOnClickListener(this);
         trl_address.setOnClickListener(this);
         trl_name.setOnClickListener(this);
 
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rollPagerView.getLayoutParams();
-        layoutParams.height = Util.getWidth();
+        layoutParams.height = (int) (Util.getWidth() / 1.75);
         rollPagerView.setLayoutParams(layoutParams);
         return view;
     }
@@ -126,7 +124,6 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
         fillRollPager(t.data.show.images);
         fillEvent(t.data.list);
         fillData(t.data.show);
-        fillWeb(t.data.show.content);
         share(t.data.share);
     }
 
@@ -138,33 +135,6 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
     }
 
 
-    public void hideDesc() {
-        ViewAnimator.animate(scrollView).translationY(-Util.getHeight(), 0).andAnimate(webLayout).translationY(0, Util.getHeight()).duration(400).start();
-        isShow = false;
-        if(onShowDescListener!=null){
-            onShowDescListener.hide();
-        }
-    }
-
-    private void showDesc() {
-        if (!webFragment.getUserVisibleHint()) {
-            webFragment.setUserVisibleHint(true);
-        }
-        ViewAnimator.animate(scrollView).translationY(0, -Util.getHeight()).andAnimate(webLayout).translationY(Util.getHeight(), 0).duration(400).start();
-        isShow = true;
-        if(onShowDescListener!=null){
-            onShowDescListener.show();
-        }
-    }
-
-    private boolean isShow;
-
-//    Intent intent = new Intent(ctx, DescBaseActivity.class);
-//    intent.putExtra("title", list.get(layoutPosition).data2.name);
-//    intent.putExtra("id", list.get(layoutPosition).data2.pigcms_id);
-//    intent.putExtra("type", 2);
-//    ctx.startActivity(intent);
-
     @Override
     public void onClick(View view) {
         super.onClick(view);
@@ -172,15 +142,12 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
             case R.id.trl_address:
                 Util.navigation(getContext(), t.data.show.zlat, t.data.show.zlong, 18, t.data.show.address);
                 break;
-            case R.id.tv_apply:
+            case R.id.bt_apply:
                 TeaEventApplyUtil.getInstance().apply(getContext(), id);
-                break;
-            case R.id.tv_event_desc_title:
-                showDesc();
                 break;
             case R.id.trl_name:
                 Intent intent = new Intent(getContext(), DescBaseActivity.class);
-                intent.putExtra("title",t.data.show.storename);
+                intent.putExtra("title", t.data.show.storename);
                 intent.putExtra("id", t.data.show.physical_id);
                 intent.putExtra("type", 2);
                 startActivity(intent);
@@ -212,8 +179,11 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
         tv_name.setText(show.name);
         if (TextUtils.equals(show.price, "免费")) {
             tv_price.setChange("", show.price);
+            tv_price_apply.setChange(show.price, "");
+
         } else {
             tv_price.setTextNotChange(show.price);
+            tv_price_apply.setContentNotChange("￥" + show.price);
         }
 
         trl_name.setTitle(show.storename);
@@ -223,20 +193,6 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
 
     }
 
-    public boolean getShow() {
-        return isShow;
-    }
-
-    public void setOnShowDescListener(OnShowDescListener onShowDescListener) {
-        this.onShowDescListener = onShowDescListener;
-    }
-
-    private OnShowDescListener onShowDescListener;
-
-    public interface OnShowDescListener {
-        void show();
-        void hide();
-    }
 
     /**
      * 相关活动
@@ -266,16 +222,6 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
         List<String> urls = new ArrayList<>();
         urls.add(images);
         rollPagerView.setAdapter(new AdNormalAdapter(getContext(), rollPagerView, urls, true));
-    }
-
-    private void fillWeb(String url) {
-        getChildFragmentManager().beginTransaction().replace(R.id.fg_desc, webFragment = WebBaseFragment.getInstance(url, true, false)).commit();
-//        webFragment.getWebView().setWebViewScrollListener(new WebViewScrollListener() {
-//            @Override
-//            public void onScrollChanged(MyWebView webView, int x, int y, int oldx, int oldy) {
-//                Log.d("gundong", x + "-" + y);
-//            }
-//        });
     }
 
 

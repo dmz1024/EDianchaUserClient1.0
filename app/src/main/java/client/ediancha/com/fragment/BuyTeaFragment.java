@@ -176,6 +176,10 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
     }
 
     private void pay() {
+        if (tv_link_add.getVisibility() == View.VISIBLE) {
+            MyToast.showToast("请先添加收货人");
+            return;
+        }
         List<String> list = new ArrayList<>();
         list.add("微信支付");
         list.add("支付宝支付");
@@ -241,6 +245,10 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
         if (requestCode == Constant.ADDRESS_CHOOSW && data != null) {
             tv_link_add.setVisibility(View.GONE);
             address = (Address.Data) data.getSerializableExtra("address");
+            if (TextUtils.equals(orderInfo.data.data2.msg, "none")) {
+                OrderInfo.Data2 data2 = new OrderInfo.Data2();
+                orderInfo.data.data2 = data2;
+            }
             orderInfo.data.data2.address_id = address.address_id;
             orderInfo.data.data2.address = address.address;
             orderInfo.data.data2.name = address.name;

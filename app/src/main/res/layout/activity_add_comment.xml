@@ -28,7 +28,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size30"
+            android:layout_marginTop="@dimen/size10"
             android:padding="@dimen/size10">
 
             <TextView
@@ -66,7 +66,7 @@
         <EditText
             android:id="@+id/et_content"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size200"
+            android:layout_height="@dimen/size140"
             android:background="@null"
             android:gravity="left"
             android:hint="请输入评论内容"
@@ -84,16 +84,18 @@
             android:id="@+id/rv_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size15"
+            android:layout_marginTop="@dimen/size5"
             android:padding="@dimen/size5" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/size1"
-            android:layout_marginTop="@dimen/size15"
+            android:layout_marginTop="@dimen/size5"
             android:background="#fbfbfb" />
 
         <RelativeLayout
+            android:id="@+id/rl_price"
+            android:layout_marginTop="@dimen/size5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -118,11 +120,6 @@
                 android:textColorHint="#666"
                 android:textSize="@dimen/sp13" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size1"
-                android:layout_marginTop="@dimen/size15"
-                android:background="#fbfbfb" />
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

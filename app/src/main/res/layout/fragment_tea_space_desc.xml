@@ -245,7 +245,7 @@
                     style="@style/TextSize13Color666"
                     android:paddingLeft="@dimen/size12"
                     android:paddingTop="@dimen/size12"
-                    android:text="茶馆介绍：" />
+                    android:text="茶馆简介：" />
 
                 <TextView
                     android:id="@+id/tv_introduce_content"
@@ -261,6 +261,7 @@
                 style="@style/TextSize13Color666"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:paddingLeft="@dimen/size12"
                 android:paddingRight="@dimen/size12"
                 android:paddingTop="@dimen/size12"

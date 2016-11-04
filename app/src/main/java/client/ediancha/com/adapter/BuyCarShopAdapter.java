@@ -35,16 +35,12 @@ import client.ediancha.com.util.Util;
  */
 
 public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
-    private boolean isDelete = false;
-    private Map<Integer, Integer> map;
+    private boolean isDelete;
 
-    public BuyCarShopAdapter(Context ctx, List<BuyCar.Shop> list, Map<Integer, Integer> map) {
+    public BuyCarShopAdapter(Context ctx, List<BuyCar.Shop> list, boolean isDelete) {
         super(ctx, list);
-        this.map = map;
-    }
+        this.isDelete = isDelete;
 
-    public BuyCarShopAdapter(List<BuyCar.Shop> list) {
-        super(list);
     }
 
     @Override
@@ -62,7 +58,7 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
         mHolder.tv_delete.setVisibility(isDelete ? View.VISIBLE : View.GONE);
         mHolder.tv_count.setText("数量：" + data.pro_num);
         mHolder.tv_price.setText("￥" + data.price);
-        mHolder.view_choose.setBackgroundResource(map.containsKey(position) ? R.mipmap.icon_shopcart_checked : R.mipmap.icon_shopcart_check);
+        mHolder.view_choose.setBackgroundResource(data.isChoose ? R.mipmap.icon_shopcart_checked : R.mipmap.icon_shopcart_check);
         mHolder.add_sub.setCount(1, data.quantity).setCount(data.pro_num).setOnAddAndSubListener(new AddAndSub.OnAddAndSubListener() {
             @Override
             public void add() {
@@ -70,9 +66,7 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
                     @Override
                     public void resultOk() {
                         list.get(position).pro_num = mHolder.add_sub.getCurrent();
-                        if (map.containsKey(position)) {
-                            changeMap();
-                        }
+                        change();
                     }
 
                     @Override
@@ -89,9 +83,7 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
                     @Override
                     public void resultOk() {
                         list.get(position).pro_num = mHolder.add_sub.getCurrent();
-                        if (map.containsKey(position)) {
-                            changeMap();
-                        }
+                        change();
                     }
 
                     @Override
@@ -147,16 +139,12 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
     }
 
     private void choose(int layoutPosition) {
-        if (map.containsKey(layoutPosition)) {
-            map.remove(layoutPosition);
-        } else {
-            map.put(layoutPosition, layoutPosition);
-        }
-        changeMap();
-        notifyDataSetChanged();
+        list.get(layoutPosition).isChoose = !list.get(layoutPosition).isChoose;
+        select();
     }
 
-    protected void changeMap() {
+
+    protected void select() {
 
     }
 
@@ -165,16 +153,8 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
         BuyCarUtil.getInstance().setContext(ctx).setOnResultListener(new OnResultListener() {
             @Override
             public void resultOk() {
-                boolean isChange = false;
-                if (map.containsKey(layoutPosition)) {
-                    map.remove(layoutPosition);
-                    isChange = true;
-
-                }
                 remove(layoutPosition);
-                if (isChange) {
-                    changeMap();
-                }
+                delete();
             }
 
             @Override
@@ -184,10 +164,11 @@ public class BuyCarShopAdapter extends SingleBaseAdapter<BuyCar.Shop> {
         }).deleteBuyCar(list.get(layoutPosition).pigcms_id);
     }
 
-    public void setDelete(boolean isDelete) {
-        this.isDelete = isDelete;
-        notifyDataSetChanged();
+
+    protected void delete() {
+
     }
 
+    protected void change(){}
 
 }

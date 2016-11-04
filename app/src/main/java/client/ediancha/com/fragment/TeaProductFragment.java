@@ -26,10 +26,29 @@ import client.ediancha.com.interfaces.ShareInfoInterface;
 public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data, TeaProduct> {
 
     private Map<String, String> filterMap = new HashMap<>();
+    private boolean isFirstInitData;
 
     @Override
     protected RecyclerView.Adapter getAdapter(List<TeaProduct.Data> totalList) {
         return new TeaProductAdapter(getContext(), totalList);
+    }
+
+    public static TeaSpaceFragment getIsFirstInitData(boolean isFirstInitData) {
+        TeaSpaceFragment teaSpaceFragment = new TeaSpaceFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isFirstInitData", isFirstInitData);
+        teaSpaceFragment.setArguments(bundle);
+        return teaSpaceFragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            isFirstInitData = bundle.getBoolean("isFirstInitData");
+        }
+
     }
 
 
@@ -70,6 +89,7 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
         if (page > 0) {
             if (isSearch || filterMap.size() > 0) {
                 map.put("a", "search_product");
+
             } else {
                 map.put("a", "goods_list");
             }
@@ -83,7 +103,7 @@ public class TeaProductFragment extends ListNetWorkBaseFragment<TeaProduct.Data,
 
     @Override
     protected boolean isCanFirstInitData() {
-        return false;
+        return isFirstInitData;
     }
 
     public void setFilterMap(List<TeaFilter.Cat> catList) {

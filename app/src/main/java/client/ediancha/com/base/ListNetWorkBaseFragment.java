@@ -43,8 +43,8 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
     protected RequestType currentType = RequestType.LOAD_NEW;
     protected boolean isLoading;
     protected boolean isHaveData = true;
-    protected RecyclerView.LayoutManager layoutManager;
-    private boolean isP;
+    protected LinearLayoutManager layoutManager;
+    protected boolean isP;
 
     public void setIsP(boolean isP) {
         this.isP = isP;
@@ -207,14 +207,14 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
 
 
         if (getMethod() == RequestMenthod.POST) {
-            if (isP) {
+            if (isP || isLoading) {
                 retrofitUtil.get(getUrl(), getMap(), getTClass(), onRequestListener, "", getContext());
             } else {
                 retrofitUtil.get(getUrl(), getMap(), getTClass(), onRequestListener);
             }
 
         } else {
-            if (isP) {
+            if (isP || isLoading) {
                 retrofitUtil.post(getUrl(), getMap(), getTClass(), onRequestListener, "", getContext());
             } else {
                 retrofitUtil.post(getUrl(), getMap(), getTClass(), onRequestListener);
@@ -278,7 +278,6 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
             rv_base.addItemDecoration(itemDecoration);
         }
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
         rv_base.addOnScrollListener(new RecyclerView.OnScrollListener() {
             //用来标记是否正在向最后一个滑动
@@ -294,13 +293,13 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                     else
                         d.isDown();
                 }
+
             }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
 
                 if (getCanRefresh()) {
                     isCanRefresh = layoutManager.findFirstCompletelyVisibleItemPosition() == 0;
@@ -332,7 +331,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
                                 public void run() {
                                     initData();
                                 }
-                            }, 150);
+                            }, 10);
 
                         }
                     }
@@ -380,7 +379,7 @@ public abstract class ListNetWorkBaseFragment<D extends Data, T extends BaseList
      *
      * @return
      */
-    protected RecyclerView.LayoutManager getLayoutManager() {
+    protected LinearLayoutManager getLayoutManager() {
         return new LinearLayoutManager(getContext());
     }
 

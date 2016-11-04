@@ -21,9 +21,17 @@
             app:tabGravity="fill"
             app:tabIndicatorColor="#333"
             app:tabIndicatorHeight="2dp"
+            android:layout_marginRight="@dimen/size15"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="#333"
             app:tabTextColor="#999" />
+
+        <View
+            android:background="#999"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/size10"
+            android:layout_width="@dimen/size1"
+            android:layout_height="23dp"/>
 
         <TextView
             android:id="@+id/tv_filter"

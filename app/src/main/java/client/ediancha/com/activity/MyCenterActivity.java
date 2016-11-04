@@ -1,16 +1,20 @@
 package client.ediancha.com.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import client.ediancha.com.R;
 import client.ediancha.com.base.ToolBarActivity;
+import client.ediancha.com.constant.Constant;
 import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.fragment.MyCenterFragment;
+import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.Util;
 
 public class MyCenterActivity extends ToolBarActivity {
@@ -41,7 +45,13 @@ public class MyCenterActivity extends ToolBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_email:
-                Util.skip(this, MessageActivity.class);
+                if (TextUtils.isEmpty(UserInfo.uid)) {
+                    MyToast.showToast("请先登录");
+                    startActivityForResult(new Intent(this, LoginActivity.class), Constant.MY_CENTER_INFO);
+                } else {
+                    Util.skip(this, MessageActivity.class);
+                }
+
                 return true;
             case R.id.item_set:
                 Util.skip(this, SetActivity.class);

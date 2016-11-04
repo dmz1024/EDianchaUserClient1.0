@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BuyCar extends BaseListEntity<BuyCar.Shop> {
 
-    public static class Shop extends client.ediancha.com.entity.Data{
+    public static class Shop extends client.ediancha.com.entity.Data {
         public double after_subscribe_discount;
         public double after_subscribe_price;
         public double drp_level_1_price;
@@ -30,6 +30,8 @@ public class BuyCar extends BaseListEntity<BuyCar.Shop> {
         public String sku_num;
         public int status;
         public String store_id;
+        public boolean isChoose = false;
+        public boolean isDelete = false;
     }
 
 

@@ -47,12 +47,6 @@ public class ChooseBuyCarAdapter extends SingleBaseAdapter<TeaDesc.Property> {
     private void creatContent(RecyclerView rv_content, List<TeaDesc.Value> Value, int position) {
         LinearLayoutManager manager = new LinearLayoutManager(ctx);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                return 3;
-//            }
-//        });
 
         ChooseBuyCarContentAdapter adapter = new ChooseBuyCarContentAdapter(position, ctx, Value) {
             @Override

@@ -57,9 +57,8 @@ public class ChooseBuyCarView extends PopBaseView {
     private void choose(int fatherPosition, int childPosition) {
         chooseMap.put(fatherPosition, childPosition);
 
-        if (fatherPosition == 0) {
-            GlideUtil.GlideErrAndOc(ctx, property.get(0).values.get(childPosition).image, iv_img);
-        }
+        GlideUtil.GlideErrAndOc(ctx, property.get(fatherPosition).values.get(childPosition).image, iv_img);
+//
 
         if (chooseMap.size() == count) {
             StringBuffer sb = new StringBuffer("已选择:");

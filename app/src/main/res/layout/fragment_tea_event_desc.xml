@@ -4,30 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_tea_event_desc"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_apply"
+    <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size45"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#3a9409"
-        android:gravity="center"
-        android:text="我要参加"
-        android:textColor="#fff"
-        android:textSize="@dimen/sp15" />
-    <FrameLayout
-        android:id="@+id/fg_desc"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <client.ediancha.com.myview.Color2Text
+            android:id="@+id/tv_price_apply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="￥150"
+            android:textColor="#cd673a"
+            android:textSize="@dimen/sp15"
+            app:Color2Text_color="#666"
+            app:Color2Text_content="(线下支付)"
+            app:Color2Text_size="@dimen/sp15" />
+
+        <Button
+            android:id="@+id/bt_apply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="1"
+            android:background="@drawable/touch_bg_51b338"
+            android:text="参加"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/tv_apply"
-        android:layout_alignParentTop="true" />
+        android:layout_height="@dimen/size0.5"
+        android:layout_above="@id/ll_bottom"
+        android:layout_marginBottom="-1dp"
+        android:background="#e1e1e1" />
+
+
     <client.ediancha.com.myview.ScrollChangedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tv_apply"
+        android:layout_above="@id/ll_bottom"
         android:layout_alignParentTop="true"
         android:background="#fff">
 
@@ -145,9 +172,9 @@
 
             <client.ediancha.com.myview.MyWebView
                 android:id="@+id/webView"
-                android:layout_marginTop="@dimen/size10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></client.ediancha.com.myview.MyWebView>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size5" />
 
             <View
                 android:id="@+id/view_4"
@@ -160,7 +187,6 @@
                 android:id="@+id/tv_event_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:gravity="center"
                 android:padding="@dimen/size12"
                 android:text="- 活动相关 -"

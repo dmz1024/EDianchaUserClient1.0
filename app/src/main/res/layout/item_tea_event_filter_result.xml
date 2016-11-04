@@ -12,8 +12,6 @@
         style="@style/TextSize13Color666"
         android:textColor="#fff"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:paddingTop="@dimen/size1"
         android:paddingBottom="@dimen/size1"
@@ -25,6 +23,8 @@
         android:id="@+id/view_delete"
         android:layout_width="@dimen/size15"
         android:layout_height="@dimen/size15"
+        android:layout_marginLeft="@dimen/size5"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/tv_name"
         android:background="@mipmap/icon_close_orange" />
 

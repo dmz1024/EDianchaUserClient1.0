@@ -30,6 +30,7 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Data1>
     private boolean isHaveMore;
     private boolean isNowMore;
     private boolean isCanMore = true;
+    private boolean isHaveShou;
 
     public TeaEventTypeFilterAdapter(Context ctx, List<TeaEvent.Data1> list) {
         super(ctx, list);
@@ -58,8 +59,13 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Data1>
                 mHolder.tv_title.setText("更多");
             }
         } else {
-            Glide.with(ctx).load(data.cat_pic).into(mHolder.iv_icon);
-            mHolder.tv_title.setText(data.cat_name);
+            if (isNowMore && position + 1 == list.size() && isHaveShou) {
+                Glide.with(ctx).load(R.mipmap.icon_shouqi).into(mHolder.iv_icon);
+                mHolder.tv_title.setText(data.cat_name);
+            } else {
+                Glide.with(ctx).load(data.cat_pic).into(mHolder.iv_icon);
+                mHolder.tv_title.setText(data.cat_name);
+            }
         }
 
 
@@ -71,6 +77,7 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Data1>
         int count = list.size();
         if (count > 8 && isCanMore) {
             isHaveMore = true;
+            isHaveShou = true;
             return 8;
         }
         return list.size();
@@ -93,6 +100,11 @@ public class TeaEventTypeFilterAdapter extends SingleBaseAdapter<TeaEvent.Data1>
                 isNowMore = true;
                 isHaveMore = false;
                 isCanMore = false;
+                notifyDataSetChanged();
+            } else if (isNowMore && layoutPosition + 1 == list.size() && isHaveShou) {
+                isNowMore = false;
+                isHaveMore = true;
+                isCanMore = true;
                 notifyDataSetChanged();
             } else {
                 List<TeaFilter.Cat> cats = new ArrayList<>();

@@ -22,8 +22,10 @@ public class TeaOrder extends BaseListEntity<TeaOrder.Data> {
         public String total;
         public String type;
         public String comment;
-        public int is_comment;
+        public String store_name;
         public Address address;
+        public int is_comment;
+        public int is_return;
     }
 
     public static class OrderProduct implements Serializable {
@@ -31,6 +33,10 @@ public class TeaOrder extends BaseListEntity<TeaOrder.Data> {
         public String name;
         public String pro_num;
         public String pro_price;
+        public int is_comment;
+        public int is_return;
+        public String product_id;
+        public String pigcms_id;
     }
 
     public static class Address implements Serializable {

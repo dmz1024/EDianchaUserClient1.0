@@ -54,7 +54,7 @@ public class UserInfoFragment extends SingleNetWorkBaseFragment<UserInfo> {
         Glide.with(getContext()).load(t.data.avatar).bitmapTransform(new GlideCircleTransform(getContext())).into(iv_head);
         trl_nick_name.setContent(t.data.nickname);
         trl_tel.setContent(t.data.phone);
-        trl_content.setContent(TextUtils.isEmpty(t.data.intro) ? "未设置" : t.data.intro);
+        trl_content.setContent(TextUtils.isEmpty(t.data.intro) ? "" : t.data.intro);
         trl_sex.setContent(t.data.sex == 1 ? "男" : (t.data.sex == 2 ? "女" : "未设置"));
 
     }

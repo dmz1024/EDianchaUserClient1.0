@@ -138,7 +138,7 @@ public class MainActivity extends ToolBarActivity {
                 new SharedPreferenUtil(MainActivity.this, "location").setData(new String[]{"lat", latitude, "long", longitude});
                 if (TextUtils.isEmpty(latitude) || TextUtils.isEmpty(longitude)) {
                     if (!new SharedPreferenUtil(MainActivity.this, "location").getData("tip")) {
-                        new PopMessageTips("定位提示", "为了更精准的为您推送周边茶会、茶馆,建议您同意定位请求!\n设置成功后可退出重新进入", "去设置", "不在提示") {
+                        new PopMessageTips("定位提示", "为了更精准的为您推送周边茶会、茶馆,建议您同意定位请求!\n设置成功后刷新重试", "去设置", "不在提示") {
                             @Override
                             protected void right() {
                                 super.right();

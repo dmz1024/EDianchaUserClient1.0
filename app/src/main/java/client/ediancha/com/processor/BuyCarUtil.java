@@ -262,13 +262,14 @@ public class BuyCarUtil {
      *
      * @param cart_id
      */
-    public void pay(String cart_id) {
+    public void pay(String cart_id,String store_id) {
         Map<String, String> map = new HashMap<>();
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
         map.put("c", "appcart");
         map.put("a", "pay");
         map.put("cart_id", cart_id);
+        map.put("store_id", store_id);
 
         MyRetrofitUtil.getInstance().post("app.php", map, PayOrderNo.class, new MyRetrofitUtil.OnRequestListener<PayOrderNo>() {
 

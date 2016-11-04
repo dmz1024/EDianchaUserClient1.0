@@ -50,7 +50,7 @@
         android:layout_marginTop="@dimen/size10"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="让现在的年轻人提升自己的品味带你走入不一样的世界" />
+         />
 
     <client.ediancha.com.myview.TextImage
         android:id="@+id/tv_time"
@@ -61,7 +61,6 @@
         android:drawablePadding="@dimen/size5"
         android:gravity="center"
         android:maxLines="1"
-        android:text="11/26  9:00-15:30"
         app:TextImage_drawable="@mipmap/icon_time"
         app:TextImage_height="@dimen/size15"
         app:TextImage_seat="1"

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
     private RecyclerView rv_image;
     private EditText et_price;
     private ArrayList<String> resultUrl;
+    private RelativeLayout rl_price;
 
     @Override
     protected String getToolBarTitle() {
@@ -55,6 +57,7 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
         bt_submit = (Button) findViewById(R.id.bt_submit);
         ratingbar = (MyRatingBar) findViewById(R.id.ratingbar);
         tv_core = (TextView) findViewById(R.id.tv_core);
+        rl_price = (RelativeLayout) findViewById(R.id.rl_price);
         rv_image = (RecyclerView) findViewById(R.id.rv_image);
         et_price = (EditText) findViewById(R.id.et_price);
         bt_submit.setOnClickListener(this);
@@ -84,6 +87,8 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
                 }
             }
         });
+
+        rl_price.setVisibility(TextUtils.equals("PRODUCT", getIntent().getStringExtra("type")) ? View.GONE : View.VISIBLE);
 
         initImage();
     }
@@ -137,7 +142,7 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
             Util.skip(this, LoginActivity.class);
             return;
         }
-        if (resultUrl != null && resultUrl.size() >= 0) {
+        if (resultUrl != null && resultUrl.size() > 0) {
             UpImageUtil.getInstance().setContext(this).setOnUpLoadListener(new UpImageUtil.OnUpLoadListener() {
                 @Override
                 public void urls(List<String> urls) {
@@ -176,8 +181,11 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
         map.put("data_id", getIntent().getStringExtra("id"));
         map.put("type", getIntent().getStringExtra("type"));
         map.put("content", et_content.getText().toString());
-        map.put("price", et_price.getText().toString());
-
+        if (TextUtils.equals(getIntent().getStringExtra("type"), "PRODUCT")) {
+            map.put("pigcms_id", getIntent().getStringExtra("pigcms_id"));
+        } else {
+            map.put("price", et_price.getText().toString());
+        }
 
         MyRetrofitUtil.getInstance().post("app.php", map, BaseEntity.class, new MyRetrofitUtil.OnRequestListener<BaseEntity>() {
             @Override

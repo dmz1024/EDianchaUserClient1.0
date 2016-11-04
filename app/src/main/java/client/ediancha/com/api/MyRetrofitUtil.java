@@ -81,12 +81,12 @@ public class MyRetrofitUtil {
         }
 
         StringBuffer sb = new StringBuffer(BASE_URL + url);
-        boolean is=false;
+        boolean is = false;
         for (String key : map.keySet()) {
-            if(is){
+            if (is) {
                 sb.append("&");
-            }else {
-                is=true;
+            } else {
+                is = true;
                 sb.append("?");
             }
             sb.append(key).append("=").append(map.get(key));
@@ -149,12 +149,12 @@ public class MyRetrofitUtil {
         }
 
         StringBuffer sb = new StringBuffer(BASE_URL + url);
-        boolean is=false;
+        boolean is = false;
         for (String key : map.keySet()) {
-            if(is){
+            if (is) {
                 sb.append("&");
-            }else {
-                is=true;
+            } else {
+                is = true;
                 sb.append("?");
             }
             sb.append(key).append("=").append(map.get(key));
@@ -243,12 +243,12 @@ public class MyRetrofitUtil {
         }
 
         StringBuffer sb = new StringBuffer(BASE_URL + url);
-        boolean is=false;
+        boolean is = false;
         for (String key : map.keySet()) {
-            if(is){
+            if (is) {
                 sb.append("&");
-            }else {
-                is=true;
+            } else {
+                is = true;
                 sb.append("?");
             }
             sb.append(key).append("=").append(map.get(key));
@@ -332,12 +332,12 @@ public class MyRetrofitUtil {
         }
 
         StringBuffer sb = new StringBuffer(BASE_URL + url);
-        boolean is=false;
+        boolean is = false;
         for (String key : map.keySet()) {
-            if(is){
+            if (is) {
                 sb.append("&");
-            }else {
-                is=true;
+            } else {
+                is = true;
                 sb.append("?");
             }
             sb.append(key).append("=").append(map.get(key));

@@ -48,10 +48,8 @@ import client.ediancha.com.util.Util;
  */
 
 public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
-
     private RollPagerView rollPagerView;
     private TextView tv_name;
-    private RatingBar ratingbar;
     private TextView tv_ratingbar;
     private TextView tv_ping_num;
     private TextView tv_price;
@@ -59,25 +57,15 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
     private TitleRelativeLayout trl_tel;
     private TitleRelativeLayout trl_tea_package;
     private TitleRelativeLayout trl_tea_recommend;
-    private TitleRelativeLayout trl_tea_info;
-    private TitleRelativeLayout trl_immediately;
     private TitleRelativeLayout trl_other;
     private TitleRelativeLayout trl_evaluate;
-    private TextView tv_package_name;
-    private TextView tv_package_content;
-    private TextView tv_package_price;
-    private TextView tv_package_old_price;
     private TextView tv_info;
     private ImageView iv_package;
     private RecyclerView rv_recommend;
     private RecyclerView rv_info;
     private RecyclerView rv_evaluate;
-    private TextView tv_introduce_name;
     private TextView tv_introduce_content;
-    private TextView tv_event_content;
     private Button bt_more;
-    private Toolbar toolbar;
-    private TextView tv_title;
     private TeaSpaceDesc t;
 
     public static TeaSpaceDescFragment getInstance(String id) {
@@ -109,7 +97,6 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         View view = View.inflate(getContext(), R.layout.fragment_tea_space_desc, null);
         rollPagerView = (RollPagerView) view.findViewById(R.id.roll_view_pager);
         tv_name = (TextView) view.findViewById(R.id.tv_name);
-        ratingbar = (RatingBar) view.findViewById(R.id.ratingbar);
         tv_ratingbar = (TextView) view.findViewById(R.id.tv_ratingbar);
         tv_ping_num = (TextView) view.findViewById(R.id.tv_ping_num);
         tv_price = (TextView) view.findViewById(R.id.tv_price);
@@ -117,26 +104,16 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         trl_tea_recommend = (TitleRelativeLayout) view.findViewById(R.id.trl_tea_recommend);
         trl_tea_recommend.setOnClickListener(this);
         trl_evaluate = (TitleRelativeLayout) view.findViewById(R.id.trl_evaluate);
-        trl_tea_info = (TitleRelativeLayout) view.findViewById(R.id.trl_tea_info);
         trl_other = (TitleRelativeLayout) view.findViewById(R.id.trl_other);
         trl_tel = (TitleRelativeLayout) view.findViewById(R.id.trl_tel);
         trl_tea_package = (TitleRelativeLayout) view.findViewById(R.id.trl_tea_package);
-        tv_package_name = (TextView) view.findViewById(R.id.tv_package_name);
         iv_package = (ImageView) view.findViewById(R.id.iv_package);
-        tv_package_content = (TextView) view.findViewById(R.id.tv_package_content);
-        tv_package_price = (TextView) view.findViewById(R.id.tv_package_price);
-        tv_package_old_price = (TextView) view.findViewById(R.id.tv_package_old_price);
         rv_recommend = (RecyclerView) view.findViewById(R.id.rv_recommend);
         rv_info = (RecyclerView) view.findViewById(R.id.rv_info);
         tv_info = (TextView) view.findViewById(R.id.tv_info);
-        tv_introduce_name = (TextView) view.findViewById(R.id.tv_introduce_name);
         tv_introduce_content = (TextView) view.findViewById(R.id.tv_introduce_content);
-        tv_event_content = (TextView) view.findViewById(R.id.tv_event_content);
-        trl_immediately = (TitleRelativeLayout) view.findViewById(R.id.trl_immediately);
         rv_evaluate = (RecyclerView) view.findViewById(R.id.rv_evaluate);
         bt_more = (Button) view.findViewById(R.id.bt_more);
-        tv_title = (TextView) view.findViewById(R.id.tv_title);
-        toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         scrollView = (ScrollChangedScrollView) view.findViewById(R.id.scrollView);
         scrollView.setScrollViewListener(scrollViewListener);
 
@@ -252,11 +229,7 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
      * @param show
      */
     private void fillRvInfo(TeaSpaceDesc.Show show) {
-
-
         tv_name.setText(show.name);
-//        ratingbar.INDEX = show.commentscore;
-//        ratingbar.invalidate();
         tv_ratingbar.setText(show.commentscore + ".0");
         tv_ping_num.setText(show.commentcount + "条");
 
@@ -268,25 +241,15 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
         }
 
         trl_address.setTitle(show.address);
-        trl_tel.setTitle(show.phone1 + "-" + show.phone2);
-        tv_info.setText("商户名称：" + show.storename + "\n\n营业时间：" + show.business_hours);
+        trl_tel.setTitle(show.phone1 + show.phone2);
+        tv_info.setText("茶馆名称：" + show.storename + "\n\n营业时间：" + show.business_hours);
 
-        tv_introduce_content.setText(TextUtils.isEmpty(show.shortdesc) ? "暂未添加介绍,可联系客服询问" : show.content);
-        tv_event_content.setText("茶馆文化：" + (TextUtils.isEmpty(show.shortdesc) ? "暂未添加介绍,可联系客服询问" : show.shortdesc));
-        trl_evaluate.setTitle("用户评价(" + show.commentcount + ")");
-
-
-        List<TeaSpaceDesc.Event> events = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            TeaSpaceDesc.Event event = new TeaSpaceDesc.Event();
-            event.title = "停车位";
-            event.image = Constant.IMAGE;
-            events.add(event);
+        if ((TextUtils.isEmpty(show.shortdesc))) {
+            tv_introduce_content.setVisibility(View.GONE);
+        } else {
+            tv_introduce_content.setText(show.shortdesc);
         }
-
-        GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
-        rv_info.setLayoutManager(manager);
-        rv_info.setAdapter(new TeaSpaceDescInfoAdapter(getContext(), events));
+        trl_evaluate.setTitle("用户评价(" + show.commentcount + ")");
     }
 
     /**
@@ -295,10 +258,16 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
      * @param bx
      */
     private void fillRecommend(List<TeaSpaceDesc.BaoXiang> bx) {
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        manager.setOrientation(LinearLayout.HORIZONTAL);
-        rv_recommend.setLayoutManager(manager);
-        rv_recommend.setAdapter(new TeaSpaceDescRecommendAdapter(getContext(), bx));
+        if (bx != null && bx.size() > 0) {
+            LinearLayoutManager manager = new LinearLayoutManager(getContext());
+            manager.setOrientation(LinearLayout.HORIZONTAL);
+            rv_recommend.setLayoutManager(manager);
+            rv_recommend.setAdapter(new TeaSpaceDescRecommendAdapter(getContext(), bx));
+        } else {
+            trl_tea_recommend.setContent("没有更多包厢");
+            trl_tea_recommend.setContentOnClick(null);
+        }
+
     }
 
 

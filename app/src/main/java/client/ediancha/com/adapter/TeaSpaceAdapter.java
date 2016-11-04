@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.jude.rollviewpager.OnItemClickListener;
 import com.jude.rollviewpager.RollPagerView;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -25,6 +26,11 @@ import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.R;
+import client.ediancha.com.activity.AllListActivity;
+import client.ediancha.com.activity.OfficialStoreInfoActivity;
+import client.ediancha.com.activity.TeaDescActivity;
+import client.ediancha.com.activity.WebViewActivity;
+import client.ediancha.com.activity.WelcomeActivity;
 import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.DescBaseActivity;
 import client.ediancha.com.base.SingleBaseAdapter;
@@ -80,7 +86,7 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
         } else if (holder instanceof TeaSpaceAdViewHolder) {
             TeaSpaceAdViewHolder mHolder = (TeaSpaceAdViewHolder) holder;
             List<TeaSpace.Data1> datas = list.get(position).data1;
-            mHolder.rv_ad.setPlayDelay(2500);
+            mHolder.rv_ad.setPlayDelay(datas.size() == 1 ? 0 : 4000);
             mHolder.rv_ad.setAnimationDurtion(500);
             List<String> urls = new ArrayList<>();
             for (int i = 0; i < datas.size(); i++) {
@@ -88,33 +94,7 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             }
             mHolder.rv_ad.setAdapter(new AdNormalAdapter(ctx, mHolder.rv_ad, urls));
             mHolder.rv_ad.setHintView(new ColorPointHintView(ctx, ctx.getResources().getColor(R.color.color51b338), Color.WHITE));
-        } else {
-//            if (!map.containsKey(position)) {
-//                map.put(position, false);
-//            }
-//
-//
-//            TeaSpaceTypeViewHolder mHolder = (TeaSpaceTypeViewHolder) holder;
-//            GridLayoutManager manager = new GridLayoutManager(ctx, 4);
-//            List<String> types = new ArrayList<>();
-//            types.add("棋牌室");
-//            types.add("WIFI");
-//            types.add("停车位");
-//            types.add("投影");
-//            types.add("棋牌室");
-//            types.add("WIFI");
-//            types.add("停车位");
-//            types.add("投影");
-//
-//            TeaSpaceTypeContentAdapter mAdapter = new TeaSpaceTypeContentAdapter(ctx, types);
-//            mHolder.rv_type.setLayoutManager(manager);
-//            mHolder.rv_type.setAdapter(mAdapter);
-//            if (!map.get(position)) {
-//                map.put(position, true);
-//                mHolder.rv_type.addItemDecoration(new ItemDecoration(ctx, LinearLayout.HORIZONTAL, 15, "#fbfbfb"));
-//            }
         }
-
 
     }
 
@@ -176,7 +156,7 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
         }
     }
 
-    public static class TeaSpaceAdViewHolder extends BaseViewHolder {
+    public class TeaSpaceAdViewHolder extends BaseViewHolder {
         public RollPagerView rv_ad;
 
         public TeaSpaceAdViewHolder(View itemView) {
@@ -185,6 +165,52 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) rv_ad.getLayoutParams();
             layoutParams.height = (int) (Util.getWidth() / 1.75);
             rv_ad.setLayoutParams(layoutParams);
+            rv_ad.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    TeaSpace.Data1 data = list.get(getLayoutPosition()).data1.get(position);
+                    String key = data.key;
+                    if (TextUtils.equals("chaguanfang", key)) {
+                        Intent intent = new Intent(ctx, OfficialStoreInfoActivity.class);
+                        intent.putExtra("id", data.value);
+                        ctx.startActivity(intent);
+                    } else if (TextUtils.equals("chayeDesc", key)) {
+                        Intent intent = new Intent(ctx, TeaDescActivity.class);
+                        intent.putExtra("type", 1);
+                        intent.putExtra("title", data.name);
+                        intent.putExtra("id", data.value);
+                        ctx.startActivity(intent);
+                    } else if (TextUtils.equals("chayeList", key)) {
+                        Intent intent = new Intent(ctx, AllListActivity.class);
+                        intent.putExtra("type", 3);
+                        ctx.startActivity(intent);
+                    } else if (TextUtils.equals("chaguanDesc", key)) {
+                        Intent intent = new Intent(ctx, DescBaseActivity.class);
+                        intent.putExtra("type", 2);
+                        intent.putExtra("title", data.name);
+                        intent.putExtra("id", data.value);
+                        ctx.startActivity(intent);
+                    } else if (TextUtils.equals("chaguanList", key)) {
+                        Intent intent = new Intent(ctx, AllListActivity.class);
+                        intent.putExtra("type", 2);
+                        ctx.startActivity(intent);
+                    } else if (TextUtils.equals("chahuiDesc", key)) {
+                        Intent intent = new Intent(ctx, DescBaseActivity.class);
+                        intent.putExtra("type", 3);
+                        intent.putExtra("title", data.name);
+                        intent.putExtra("id", data.value);
+                        ctx.startActivity(intent);
+                    } else if (TextUtils.equals("chahuiList", key)) {
+                        Intent intent = new Intent(ctx, AllListActivity.class);
+                        intent.putExtra("type", 1);
+                        ctx.startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(ctx, WebViewActivity.class);
+                        intent.putExtra("url", data.url);
+                        ctx.startActivity(intent);
+                    }
+                }
+            });
         }
 
         @Override
@@ -192,6 +218,16 @@ public class TeaSpaceAdapter extends SingleBaseAdapter<TeaSpace.Data> {
             return false;
         }
     }
+
+    /**
+     chahuiList
+     chahuiDesc
+     chaguanList
+     chaguanDesc
+     chayeList
+     chayeDesc
+     chaguanfang
+     */
 
 
 }

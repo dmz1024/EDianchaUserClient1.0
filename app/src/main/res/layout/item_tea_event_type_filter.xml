@@ -12,8 +12,8 @@
     <ImageView
         android:id="@+id/iv_icon"
         android:scaleType="fitXY"
-        android:layout_width="@dimen/size35"
-        android:layout_height="@dimen/size35"
+        android:layout_width="@dimen/size30"
+        android:layout_height="@dimen/size30"
         android:layout_centerHorizontal="true" />
 
     <TextView

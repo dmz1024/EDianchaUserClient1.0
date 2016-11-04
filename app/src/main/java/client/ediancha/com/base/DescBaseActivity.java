@@ -2,9 +2,7 @@ package client.ediancha.com.base;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ScrollView;
 
 import java.util.ArrayList;
@@ -12,12 +10,10 @@ import java.util.List;
 
 import client.ediancha.com.R;
 import client.ediancha.com.fragment.TeaDescBaseFragment;
-import client.ediancha.com.fragment.TeaSpacePackageDescFragment;
 import client.ediancha.com.interfaces.OnDataHaveListener;
 import client.ediancha.com.processor.ShareUtil;
 import client.ediancha.com.constant.Constant;
 import client.ediancha.com.fragment.TeaEventDescFragment;
-import client.ediancha.com.fragment.TeaProductDescFragment;
 import client.ediancha.com.fragment.TeaSpaceDescFragment;
 import client.ediancha.com.interfaces.ScrollViewListener;
 import client.ediancha.com.processor.CollectionUtil;
@@ -88,17 +84,6 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
                 teaEventDescFragment = TeaEventDescFragment.getInstance(getIntent().getStringExtra("id"));
                 teaEventDescFragment.setScrollViewListener(this);
                 teaEventDescFragment.setOnDataHaveListener(this);
-                teaEventDescFragment.setOnShowDescListener(new TeaEventDescFragment.OnShowDescListener() {
-                    @Override
-                    public void show() {
-                        toolbar.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void hide() {
-                        toolbar.setVisibility(View.VISIBLE);
-                    }
-                });
                 break;
         }
 
@@ -204,17 +189,4 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
         setTitle("");
     }
 
-    @Override
-    protected void back() {
-        if(type==3){
-            if (teaEventDescFragment.getShow()) {
-                teaEventDescFragment.hideDesc();
-            } else {
-                super.back();
-            }
-        }else {
-            super.back();
-        }
-
-    }
 }

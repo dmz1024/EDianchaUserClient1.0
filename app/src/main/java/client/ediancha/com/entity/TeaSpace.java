@@ -20,6 +20,8 @@ public class TeaSpace extends BaseListEntity<TeaSpace.Data> {
         public String name;
         public String pic;
         public String url;
+        public String key;
+        public String value;
     }
 
     public static class Data2 {

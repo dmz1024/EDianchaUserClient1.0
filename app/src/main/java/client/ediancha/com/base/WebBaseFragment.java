@@ -61,7 +61,7 @@ public class WebBaseFragment extends BaseFragment {
 
     @Override
     protected boolean isCanRefresh() {
-        return isCanRefresh;
+        return false;
     }
 
 

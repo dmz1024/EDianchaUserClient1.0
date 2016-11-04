@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/iv_img"
-        android:layout_width="@dimen/size70"
-        android:layout_height="@dimen/size70"
+        android:layout_width="@dimen/size110"
+        android:layout_height="@dimen/size63"
         android:scaleType="fitXY" />
 
     <TextView

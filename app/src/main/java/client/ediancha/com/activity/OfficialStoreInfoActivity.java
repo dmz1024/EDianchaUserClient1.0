@@ -26,7 +26,7 @@ public class OfficialStoreInfoActivity extends ToolBarActivity {
 
     @Override
     protected String getToolBarTitle() {
-        return getIntent().getStringExtra("title");
+        return "官方店铺";
     }
 
     @Override

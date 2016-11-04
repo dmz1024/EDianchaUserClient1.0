@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:paddingBottom="@dimen/size5"
     android:layout_height="wrap_content">
 
 
@@ -12,19 +13,10 @@
         android:layout_marginLeft="@dimen/size10"
         android:background="@mipmap/icon_shopcart_check" />
 
-    <ImageView
-        android:id="@+id/iv_img"
-        android:layout_width="@dimen/size70"
-        android:layout_height="@dimen/size70"
-        android:layout_marginBottom="@dimen/size10"
-        android:layout_marginLeft="@dimen/size10"
-        android:layout_marginTop="@dimen/size10"
-        android:layout_toRightOf="@id/view_choose"
-        android:scaleType="fitXY" />
-
     <TextView
         android:id="@+id/tv_name"
-        style="@style/TextSize15Color333"
+        style="@style/TextSize12Color333"
+        android:maxLines="2"
         android:layout_marginLeft="@dimen/size5"
         android:layout_marginTop="@dimen/size10"
         android:layout_toRightOf="@id/iv_img" />
@@ -34,7 +26,7 @@
         style="@style/TextSize12Color999"
         android:layout_alignLeft="@id/tv_name"
         android:layout_below="@id/tv_name"
-        android:layout_marginTop="@dimen/size5"
+        android:layout_marginTop="@dimen/size2"
         android:text="数量：1" />
 
     <TextView
@@ -56,8 +48,10 @@
 
     <TextView
         android:id="@+id/tv_delete"
+        android:padding="@dimen/size3"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/size90"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_img"
         android:layout_alignParentRight="true"
         android:background="@drawable/touch_bg_51b338"
         android:gravity="center"
@@ -65,7 +59,7 @@
         android:paddingRight="@dimen/size12"
         android:text="删除"
         android:textColor="#fff"
-        android:textSize="@dimen/sp18"
+        android:textSize="@dimen/sp15"
         android:visibility="gone" />
 
     <client.ediancha.com.myview.AddAndSub
@@ -75,4 +69,14 @@
         android:layout_alignBottom="@id/iv_img"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/size10" />
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_marginLeft="@dimen/size10"
+        android:layout_width="@dimen/size70"
+        android:layout_height="@dimen/size70"
+        android:scaleType="fitXY"
+        android:layout_alignTop="@+id/tv_name"
+        android:layout_toRightOf="@+id/view_choose"
+         />
 </RelativeLayout>

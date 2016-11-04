@@ -3,6 +3,7 @@ package client.ediancha.com.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
@@ -60,7 +61,7 @@ public class StoreInfoFragment extends ListNetWorkBaseFragment<StoreInfo.Data, S
     }
 
     @Override
-    protected RecyclerView.LayoutManager getLayoutManager() {
+    protected LinearLayoutManager getLayoutManager() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override

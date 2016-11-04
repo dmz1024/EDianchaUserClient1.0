@@ -255,13 +255,11 @@ public class TeaProductDescFragment extends TeaDescBaseFragment<TeaDesc> {
         });
 
 
-
-
         tv_name.setText(data.name);
         tv_price.setTextNotChange(data.price);
         tv_count_info.setText("运费：￥" + data.postage + "       剩余：" + data.quantity + "件");
         trl_name.setTitle(data.store_name);
-        trl_tel.setTitle(data.phone1 + "-" + data.phone2);
+        trl_tel.setTitle(data.phone1 + data.phone2);
         int coomentCount;
         if (data.comment != null) {
             coomentCount = data.comment.size();

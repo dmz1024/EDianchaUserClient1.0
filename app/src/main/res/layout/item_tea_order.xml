@@ -13,34 +13,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_e1e1e1_fff">
-
-        <TextView
-            android:id="@+id/tv_sn"
+        <client.ediancha.com.myview.TextImage
+            android:id="@+id/tv_store_name"
+            app:TextImage_seat="1"
+            android:drawablePadding="@dimen/size5"
+            android:padding="@dimen/size10"
+            app:TextImage_drawable="@mipmap/icon_shopcart_shore"
+            app:TextImage_width="@dimen/size15"
+            android:text="顶顶顶顶"
             style="@style/TextSize15Color333"
-            android:padding="@dimen/size10"
-            android:text="dddd" />
+            app:TextImage_height="@dimen/size15"
+            />
 
-        <TextView
-            android:id="@+id/tv_state"
-            style="@style/TextSize13Color333"
-            android:layout_alignParentRight="true"
-            android:padding="@dimen/size10"
-            android:text="待付款"
-            android:textColor="#cd6638" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_state"
+            android:layout_below="@id/tv_store_name"
             android:layout_margin="@dimen/size1"
             android:background="#fff"
             android:paddingBottom="@dimen/size10">
+
+            <TextView
+                android:id="@+id/tv_sn"
+                style="@style/TextSize15Color333"
+                android:padding="@dimen/size10"
+                android:text="dddd" />
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_alignBottom="@id/tv_sn"
+                style="@style/TextSize13Color333"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/size10"
+                android:text="待付款"
+                android:textColor="#cd6638" />
 
             <View
                 android:id="@+id/view_1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size1"
-                android:layout_below="@id/tv_name"
+                android:layout_below="@id/tv_sn"
                 android:background="#ebebeb" />
 
             <android.support.v7.widget.RecyclerView
@@ -77,8 +90,8 @@
 
             <Button
                 android:id="@+id/bt_right"
-                android:layout_width="@dimen/size70"
-                android:layout_height="@dimen/size35"
+                android:layout_width="@dimen/size60"
+                android:layout_height="@dimen/size32"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/rv_shop"
                 android:layout_marginLeft="@dimen/size10"
@@ -86,18 +99,18 @@
                 android:layout_marginTop="@dimen/size10"
                 android:background="@drawable/touch_bg_51b338"
                 android:textColor="#fff"
-                android:textSize="@dimen/sp15" />
+                android:textSize="@dimen/sp13" />
 
             <Button
                 android:id="@+id/bt_left"
-                android:layout_width="@dimen/size70"
-                android:layout_height="@dimen/size35"
+                android:layout_width="@dimen/size60"
+                android:layout_height="@dimen/size32"
                 android:layout_below="@id/rv_shop"
                 android:layout_marginTop="@dimen/size10"
                 android:layout_toLeftOf="@id/bt_right"
                 android:background="@drawable/touch_bg_ebebeb"
                 android:textColor="#333"
-                android:textSize="@dimen/sp15" />
+                android:textSize="@dimen/sp13" />
 
 
         </RelativeLayout>
