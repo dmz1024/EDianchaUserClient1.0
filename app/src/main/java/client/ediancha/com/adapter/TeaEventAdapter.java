@@ -60,6 +60,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
             mHolder.tv_title.setText(data.name);
             mHolder.tv_content.setText(data.desc);
             mHolder.tv_time.setText(data.sttime + "至" + data.endtime);
+            mHolder.tv_state.setVisibility(data.baoming == 1 ? View.VISIBLE : View.GONE);
             mHolder.tv_price.setText(TextUtils.equals("免费", data.price) ? "免费" : "￥" + data.price);
         } else {
             TeaEventTypeViewHolder mHolder = (TeaEventTypeViewHolder) holder;

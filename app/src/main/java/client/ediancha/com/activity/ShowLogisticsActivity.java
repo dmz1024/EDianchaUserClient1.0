@@ -93,6 +93,7 @@ public class ShowLogisticsActivity extends ToolBarActivity {
                     showLogistics(0);
                 } else {
                     MyToast.showToast(orderLogistics.msg);
+                    finish();
                 }
             }
 

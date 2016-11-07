@@ -60,6 +60,7 @@ public abstract class ToolBarActivity extends BaseActivity  {
 //        onCreateCustomToolBar(toolbar);
 
         ViewGroup rootView = (ViewGroup) findViewById(android.R.id.content);
+        rootView.setBackgroundColor(getResources().getColor(R.color.colorfff));
         RelativeLayout baseLinearLayout = new RelativeLayout(this);
         baseLinearLayout.setBackgroundColor(getResources().getColor(R.color.colorfff));
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

@@ -66,24 +66,47 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
         et_content.addTextChangedListener(new SingleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_content.getText().toString()) || TextUtils.isEmpty(et_price.getText().toString())) {
-                    bt_submit.setAlpha(0.3f);
-                    bt_submit.setEnabled(false);
-                } else {
-                    bt_submit.setAlpha(1f);
-                    bt_submit.setEnabled(true);
+                if (TextUtils.equals(getIntent().getStringExtra("type"), "PRODUCT")) {
+                    if (TextUtils.isEmpty(et_content.getText().toString())) {
+                        bt_submit.setAlpha(0.3f);
+                        bt_submit.setEnabled(false);
+                    } else {
+                        bt_submit.setAlpha(1f);
+                        bt_submit.setEnabled(true);
+                    }
+                }else {
+                    if (TextUtils.isEmpty(et_content.getText().toString()) || TextUtils.isEmpty(et_price.getText().toString())) {
+
+                        bt_submit.setAlpha(0.3f);
+                        bt_submit.setEnabled(false);
+                    } else {
+                        bt_submit.setAlpha(1f);
+                        bt_submit.setEnabled(true);
+                    }
                 }
+
             }
         });
         et_price.addTextChangedListener(new SingleTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (TextUtils.isEmpty(et_content.getText().toString()) || TextUtils.isEmpty(et_price.getText().toString())) {
-                    bt_submit.setAlpha(0.3f);
-                    bt_submit.setEnabled(false);
-                } else {
-                    bt_submit.setAlpha(1f);
-                    bt_submit.setEnabled(true);
+                if (TextUtils.equals(getIntent().getStringExtra("type"), "PRODUCT")) {
+                    if (TextUtils.isEmpty(et_content.getText().toString())) {
+                        bt_submit.setAlpha(0.3f);
+                        bt_submit.setEnabled(false);
+                    } else {
+                        bt_submit.setAlpha(1f);
+                        bt_submit.setEnabled(true);
+                    }
+                }else {
+                    if (TextUtils.isEmpty(et_content.getText().toString()) || TextUtils.isEmpty(et_price.getText().toString())) {
+
+                        bt_submit.setAlpha(0.3f);
+                        bt_submit.setEnabled(false);
+                    } else {
+                        bt_submit.setAlpha(1f);
+                        bt_submit.setEnabled(true);
+                    }
                 }
             }
         });
@@ -177,7 +200,10 @@ public class AddCommentActivity extends ToolBarActivity implements MyRatingBar.O
         map.put("uid", UserInfo.uid);
         map.put("token", UserInfo.token);
         map.put("score", ratingbar.getCurrentCore() + "");
-        map.put("images", images);
+        if(!TextUtils.isEmpty(images)){
+            map.put("images", images);
+        }
+
         map.put("data_id", getIntent().getStringExtra("id"));
         map.put("type", getIntent().getStringExtra("type"));
         map.put("content", et_content.getText().toString());

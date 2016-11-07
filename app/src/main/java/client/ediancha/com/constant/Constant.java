@@ -17,4 +17,5 @@ public interface Constant {
     int LIST_DATA = 0x7;
     int TEA_ORDER_SPACECOMMENT = 0x8;
     int TEA_ORDER_PAY = 0x9;
+    int BACK_SHOP_INFO = 0x10;
 }

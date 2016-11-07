@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eee"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextSize12Color999"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/size10"
+        android:background="#fff"
+        android:padding="@dimen/size10" />
+
+    <TextView
+        android:id="@+id/tv_gs"
+        style="@style/TextSize12Color999"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:padding="@dimen/size10"
+         />
+
+    <TextView
+        android:id="@+id/tv_sn"
+        style="@style/TextSize12Color999"
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:padding="@dimen/size10" />
+
+    <TextView
+        style="@style/TextSize12Color999"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/size10"
+        android:background="#fff"
+        android:padding="@dimen/size10"
+        android:text="物流跟踪" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_logistics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/size1"
+        android:background="#fff"
+        android:padding="@dimen/size15" />
+</LinearLayout>

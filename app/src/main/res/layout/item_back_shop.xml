@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/tv_sn"
+        style="@style/TextSize15Color333"
+        android:padding="@dimen/size10" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:textColor="#cd6638"
+        style="@style/TextSize15Color333"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/size10" />
+
+    <View
+       android:id="@+id/view_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size1"
+        android:layout_below="@id/tv_sn"
+        android:background="#ebebeb" />
+
+    <RelativeLayout
+        android:id="@+id/rl_shop"
+        android:layout_marginTop="@dimen/size10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_1"
+        android:padding="@dimen/size10">
+
+        <ImageView
+            android:id="@+id/iv_img"
+            android:layout_width="@dimen/size70"
+            android:layout_height="@dimen/size70"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/TextSize14Color333"
+            android:layout_marginLeft="@dimen/size10"
+            android:layout_marginTop="@dimen/size5"
+            android:layout_toRightOf="@id/iv_img" />
+
+        <TextView
+            android:id="@+id/tv_now_price"
+            style="@style/TextSize15Color333"
+            android:layout_alignBottom="@id/iv_img"
+            android:layout_alignLeft="@id/tv_name"
+            android:layout_marginBottom="@dimen/size5"
+            android:textColor="#cd6638" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/TextSize15Color333"
+            android:layout_alignBottom="@id/iv_img"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/size7" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view_2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size1"
+        android:layout_below="@id/rl_shop"
+        android:layout_marginTop="@dimen/size10"
+        android:background="#ebebeb" />
+    <TextView
+        android:id="@+id/tv_right"
+        android:text="退货物流"
+        style="@style/TextSize15Color333"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/view_2"
+        android:padding="@dimen/size10" />
+
+</RelativeLayout>

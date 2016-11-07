@@ -162,6 +162,12 @@ public class TeaEventDescFragment extends TeaDescBaseFragment<TeaEventDesc> {
      */
     private void fillData(TeaEventDesc.Show show) {
 
+        if (show.baoming == 1) {
+            bt_apply.setEnabled(false);
+            bt_apply.setAlpha(0.2f);
+            bt_apply.setText("活动已结束");
+        }
+
         webView.loadUrl(t.data.show.content);
         webView.setWebViewClient(new WebViewClient() {
             @Override

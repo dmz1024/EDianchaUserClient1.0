@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <Button
+        android:id="@+id/bt_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size40"
+        android:background="@drawable/touch_bg_51b338"
+        android:text="提交"
+        android:layout_alignParentBottom="true"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp15" />
+
+
+    <ScrollView
+        android:layout_above="@id/bt_submit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextSize15Color333"
+                android:layout_height=".05dp"
+                android:maxLines="1"
+                android:padding="@dimen/size10"
+                android:text="                                                                                                                                                                                                                                                                                                                                                                                                                            " />
+
+            <TextView
+                android:id="@+id/tv_sn"
+
+                style="@style/TextSize15Color333"
+                android:padding="@dimen/size10" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#ebebeb" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size10"
+                android:padding="@dimen/size10">
+
+                <ImageView
+                    android:id="@+id/iv_img"
+                    android:layout_width="@dimen/size70"
+                    android:layout_height="@dimen/size70"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/TextSize14Color333"
+                    android:layout_marginLeft="@dimen/size10"
+                    android:layout_marginTop="@dimen/size5"
+                    android:layout_toRightOf="@id/iv_img" />
+
+                <TextView
+                    android:id="@+id/tv_now_price"
+                    style="@style/TextSize15Color333"
+                    android:layout_alignBottom="@id/iv_img"
+                    android:layout_alignLeft="@id/tv_name"
+                    android:layout_marginBottom="@dimen/size5"
+                    android:textColor="#cd6638" />
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    style="@style/TextSize15Color333"
+                    android:layout_alignBottom="@id/iv_img"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/size7" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#ebebeb" />
+
+            <TextView
+                android:id="@+id/tv_back_count"
+                style="@style/TextSize15Color333"
+                android:padding="@dimen/size10" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#ebebeb" />
+
+            <client.ediancha.com.myview.Color2Text
+                android:id="@+id/tv_back_reason"
+                style="@style/TextSize15Color333"
+                android:layout_width="match_parent"
+                android:padding="@dimen/size10"
+                android:text="退货原因  "
+                app:Color2Text_color="#999"
+
+                app:Color2Text_size="@dimen/sp14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#ebebeb" />
+
+            <client.ediancha.com.myview.Color2Text
+                android:id="@+id/tv_back_tel"
+                style="@style/TextSize15Color333"
+                android:layout_width="match_parent"
+                android:padding="@dimen/size10"
+                android:text="手机号码  "
+                app:Color2Text_color="#999"
+
+                app:Color2Text_size="@dimen/sp14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#ebebeb" />
+
+            <TextView
+                android:id="@+id/tv_back_desc"
+                style="@style/TextSize13Color999"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/size5"
+                android:minLines="2"
+                android:padding="@dimen/size10"
+                android:text="请填写退货说明" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:layout_marginTop="@dimen/size20"
+                android:background="#ebebeb" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size10" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size1"
+                android:background="#ebebeb" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

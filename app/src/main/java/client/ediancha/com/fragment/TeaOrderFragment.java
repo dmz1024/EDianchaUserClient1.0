@@ -14,6 +14,7 @@ import java.util.Map;
 import client.ediancha.com.activity.AddCommentActivity;
 import client.ediancha.com.activity.BackShopActivity;
 import client.ediancha.com.activity.BuyTeaActivity;
+import client.ediancha.com.activity.WriteBackShopActivity;
 import client.ediancha.com.adapter.TeaOrderAdapter;
 import client.ediancha.com.base.ListNetWorkBaseFragment;
 import client.ediancha.com.constant.Constant;
@@ -66,7 +67,7 @@ public class TeaOrderFragment extends ListNetWorkBaseFragment<TeaOrder.Data, Tea
                     protected void choose(int position) {
                         TeaOrderFragment.this.layoutPosition = layoutPosition;
                         Intent intent = new Intent(ctx, AddCommentActivity.class);
-                        intent.putExtra("id", totalList.get(layoutPosition).order_id);
+                        intent.putExtra("id", list.get(position).product_id);
                         intent.putExtra("type", "PRODUCT");
                         intent.putExtra("pigcms_id", list.get(position).pigcms_id);
                         startActivityForResult(intent, Constant.TEA_ORDER_SPACECOMMENT);
@@ -77,7 +78,7 @@ public class TeaOrderFragment extends ListNetWorkBaseFragment<TeaOrder.Data, Tea
             }
 
             @Override
-            protected void back(int layoutPosition) {
+            protected void back(final int layoutPosition) {
                 final List<TeaOrder.OrderProduct> list = new ArrayList<>();
                 List<TeaOrder.OrderProduct> order_product_list = totalList.get(layoutPosition).order_product_list;
                 for (int i = 0; i < order_product_list.size(); i++) {
@@ -89,7 +90,9 @@ public class TeaOrderFragment extends ListNetWorkBaseFragment<TeaOrder.Data, Tea
                 new ChooseTeaOrderView(getContext(), list, 2) {
                     @Override
                     protected void choose(int position) {
-                        Intent intent = new Intent(ctx, BackShopActivity.class);
+                        Intent intent = new Intent(ctx, WriteBackShopActivity.class);
+                        intent.putExtra("data", list.get(position));
+                        intent.putExtra("sn", "YDC" + totalList.get(layoutPosition).order_no);
                         startActivityForResult(intent, Constant.TEA_ORDER_SPACECOMMENT);
                     }
                 }.showAtLocation();

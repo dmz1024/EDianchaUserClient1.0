@@ -87,6 +87,9 @@
         <activity android:name="client.ediancha.com.activity.AddressActivity" />
         <activity android:name="client.ediancha.com.activity.BackShopActivity" />
         <activity android:name="client.ediancha.com.activity.AddressManagerActivity" />
+        <activity android:name="client.ediancha.com.activity.BackShopInfoActivity" />
+        <activity android:name="client.ediancha.com.activity.BackShopLogisticsActivity" />
+        <activity android:name="client.ediancha.com.activity.WriteBackShopActivity" />
         <activity
             android:name="client.ediancha.com.activity.BuyTeaActivity"
             android:launchMode="singleTask" />
@@ -101,6 +104,7 @@
         <activity android:name="client.ediancha.com.activity.FirstSetPasswordActivity" />
         <activity android:name="client.ediancha.com.activity.SetPasswordActivity" />
         <activity android:name="client.ediancha.com.activity.OfficialStoreInfoActivity" />
+
         <activity
             android:name="client.ediancha.com.activity.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar">

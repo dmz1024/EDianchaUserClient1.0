@@ -96,6 +96,12 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
                 left.setText("查看物流");
                 return "已发货";
             case 4:
+                if (pingjia) {
+                    right.setVisibility(View.VISIBLE);
+                    right.setText("评价");
+
+                }
+                return "已完成";
             case 7:
                 if (pingjia) {
                     right.setVisibility(View.VISIBLE);
@@ -110,7 +116,6 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
                         right.setText("退货");
                     }
                 }
-
                 return "已完成";
             case 5:
                 return "已取消";
@@ -180,11 +185,14 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
                 receive(layoutPosition);
                 break;
             case 4:
+                if (list.get(layoutPosition).is_comment == 0) {
+                    pingjia(layoutPosition);
+                }
+                break;
             case 7:
                 if (list.get(layoutPosition).is_comment == 0) {
                     pingjia(layoutPosition);
                 } else {
-                    Log.d("退货","true");
                     back(layoutPosition);
                 }
                 break;
@@ -216,7 +224,7 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
             public void resultFaile() {
 
             }
-        }).receive(list.get(layoutPosition).order_no);
+        }).receive("YDC" + list.get(layoutPosition).order_no);
     }
 
     protected void pay(int layoutPosition) {
@@ -247,7 +255,7 @@ public class TeaOrderAdapter extends SingleBaseAdapter<TeaOrder.Data> {
                 break;
             case 4:
             case 7:
-                Log.d("退货","true");
+                Log.d("退货", "true");
                 back(layoutPosition);
                 break;
         }

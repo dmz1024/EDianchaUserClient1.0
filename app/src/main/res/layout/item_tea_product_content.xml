@@ -14,30 +14,47 @@
 
 
 
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_below="@id/iv_img"
+        style="@style/TextSize15Color333"
+        android:text="3333顶顶顶顶"
+        android:layout_marginTop="@dimen/size6"
+        android:layout_marginLeft="@dimen/size5"
+        android:layout_marginRight="@dimen/size5"
+        android:ellipsize="end"
+        android:maxLines="2" />
 
+
+
+    <TextView
+        android:id="@+id/tv_price"
+        style="@style/TextSize15Color333"
+        android:text="￥786"
+        android:layout_marginTop="@dimen/size6"
+        android:layout_below="@id/tv_title"
+        android:textColor="#cd6638"
+        android:textSize="@dimen/sp17"
+        />
 
     <TextView
         android:id="@+id/tv_old_price"
         style="@style/TextSize15Color666"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/iv_img"
-        android:layout_marginRight="@dimen/size20"
-        android:layout_marginTop="@dimen/size12"
+        android:layout_toRightOf="@id/tv_price"
+        android:layout_alignBottom="@id/tv_price"
+        android:layout_marginLeft="@dimen/size10"
         android:text="￥786"
         android:textSize="@dimen/sp13" />
 
     <TextView
-        android:id="@+id/tv_title"
-        android:layout_toLeftOf="@id/tv_price"
-        android:layout_alignParentLeft="true"
-        style="@style/TextSize15Color333"
-
-        android:layout_marginLeft="@dimen/size5"
-        android:layout_marginRight="@dimen/size10"
-        android:layout_alignBottom="@id/tv_old_price"
-        android:ellipsize="end"
-        android:maxLines="1" />
-
+        android:id="@+id/tv_recommend_title"
+        style="@style/TextSize14Color333"
+        android:layout_below="@id/tv_old_price"
+        android:layout_marginLeft="@dimen/size10"
+        android:text="乌龙茶"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/size6"
+         />
 
 
     <ImageView
@@ -61,15 +78,4 @@
         android:textColor="#fff" />
 
 
-    <TextView
-        android:id="@+id/tv_price"
-        style="@style/TextSize15Color333"
-        android:text="￥786"
-        android:layout_alignBottom="@id/tv_old_price"
-        android:textColor="#cd6638"
-        android:layout_marginRight="@dimen/size10"
-        android:textSize="@dimen/sp17"
-        android:layout_alignBaseline="@+id/tv_old_price"
-        android:layout_toLeftOf="@+id/tv_old_price"
-         />
 </RelativeLayout>

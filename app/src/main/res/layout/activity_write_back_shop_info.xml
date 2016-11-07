@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+
+    <Button
+        android:id="@+id/bt_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size45"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/touch_bg_51b338"
+        android:text="提交"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp15" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bt_submit">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_state"
+                style="@style/TextSize15Color333"
+                android:layout_marginLeft="@dimen/size10"
+                android:paddingBottom="@dimen/size20"
+                android:paddingRight="@dimen/size10"
+                android:paddingTop="@dimen/size20"
+                android:textSize="@dimen/sp17" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    style="@style/TextSize15Color333"
+                    android:padding="@dimen/size10"
+                    android:text="退货商品信息" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size10"
+                    android:padding="@dimen/size10">
+
+                    <ImageView
+                        android:id="@+id/iv_img"
+                        android:layout_width="@dimen/size70"
+                        android:layout_height="@dimen/size70"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        style="@style/TextSize14Color333"
+                        android:layout_marginLeft="@dimen/size10"
+                        android:layout_marginTop="@dimen/size5"
+                        android:layout_toRightOf="@id/iv_img" />
+
+                    <TextView
+                        android:id="@+id/tv_now_price"
+                        style="@style/TextSize15Color333"
+                        android:layout_alignBottom="@id/iv_img"
+                        android:layout_alignLeft="@id/tv_name"
+                        android:layout_marginBottom="@dimen/size5"
+                        android:textColor="#cd6638" />
+
+                    <TextView
+                        android:id="@+id/tv_count"
+                        style="@style/TextSize15Color333"
+                        android:layout_alignBottom="@id/iv_img"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="@dimen/size7" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    style="@style/TextSize15Color333"
+                    android:padding="@dimen/size10"
+                    android:text="申请退货信息" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    android:id="@+id/tv_client"
+                    style="@style/TextSize14Color999"
+                    android:padding="@dimen/size10"
+                    android:text="申请退货信息" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/size10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_business"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    style="@style/TextSize15Color333"
+                    android:padding="@dimen/size10"
+                    android:text="商家审核信息" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    android:id="@+id/tv_business"
+                    style="@style/TextSize14Color999"
+                    android:padding="@dimen/size10"
+                    android:text="商家审核信息" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_logistics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    style="@style/TextSize15Color333"
+                    android:padding="@dimen/size10"
+                    android:text="退货物流信息" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <client.ediancha.com.myview.Color2Text
+                    android:id="@+id/tv_gs"
+                    style="@style/TextSize14Color333"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/size10"
+                    android:text="快递公司："
+                    app:Color2Text_color="#999"
+                    app:Color2Text_content="请选择快递公司"
+                    app:Color2Text_size="@dimen/sp12" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <client.ediancha.com.myview.Color2Text
+                    android:id="@+id/tv_sn"
+                    style="@style/TextSize14Color333"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/size10"
+                    android:text="快递单号："
+                    app:Color2Text_color="#999"
+                    app:Color2Text_content="请填写快递单号"
+                    app:Color2Text_size="@dimen/sp12" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_not"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    style="@style/TextSize15Color333"
+                    android:padding="@dimen/size10"
+                    android:text="未通过信息" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size1"
+                    android:background="#fbfbfb" />
+
+                <TextView
+                    android:id="@+id/tv_not"
+                    style="@style/TextSize14Color999"
+                    android:padding="@dimen/size10"
+                    android:text="申请退货信息" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

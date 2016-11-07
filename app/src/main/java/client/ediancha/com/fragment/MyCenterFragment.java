@@ -126,12 +126,14 @@ public class MyCenterFragment extends SingleNetWorkBaseFragment<MyCenterInfo> {
         MyCenterIcon m4 = new MyCenterIcon("喜欢", 0, R.mipmap.center_like, "client.ediancha.com.activity.LikeActivity");
         MyCenterIcon m5 = new MyCenterIcon("购物车", 0, R.mipmap.center_buy_car, "client.ediancha.com.activity.BuyCarActivity");
         MyCenterIcon m6 = new MyCenterIcon("收货地址", 0, R.mipmap.center_address, "client.ediancha.com.activity.AddressActivity");
+        MyCenterIcon m7 = new MyCenterIcon("退货订单", 0, R.mipmap.center_tea_back, "client.ediancha.com.activity.BackShopActivity");
         list.add(m1);
         list.add(m2);
         list.add(m3);
         list.add(m4);
         list.add(m5);
         list.add(m6);
+        list.add(m7);
         return list;
     }
 

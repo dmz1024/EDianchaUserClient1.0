@@ -44,6 +44,9 @@ public class TeaOrder extends BaseListEntity<TeaOrder.Data> {
         public String province;
         public String city;
         public String area;
+        public String province_txt;
+        public String city_txt;
+        public String county_txt;
     }
 
 }

@@ -32,6 +32,7 @@ public class TeaEventDesc extends BaseEntity {
         public String physical_id;
         public double zlat;
         public double zlong;
+        public int baoming;
 
     }
 
