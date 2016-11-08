@@ -441,4 +441,21 @@ public class Util {
     }
 
 
+
+    public static boolean CheckInstall(Context ctx,String packageName){
+        boolean checkResult=false;
+        try {
+            PackageInfo packageInfo=ctx.getPackageManager().getPackageInfo(packageName, 0);
+            if (packageInfo == null) {
+                checkResult=false;
+            } else {
+                checkResult=true;
+            }
+        } catch (Exception e) {
+            checkResult=false;
+        }
+        return checkResult;
+    }
+
+
 }

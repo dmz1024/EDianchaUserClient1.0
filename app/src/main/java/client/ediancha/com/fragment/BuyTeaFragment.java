@@ -32,6 +32,7 @@ import client.ediancha.com.entity.TeaOrder;
 import client.ediancha.com.myview.ChooseStringView;
 import client.ediancha.com.processor.PayInfoUtil;
 import client.ediancha.com.util.MyToast;
+import client.ediancha.com.util.Util;
 
 /**
  * Created by dengmingzhi on 2016/10/26.
@@ -183,9 +184,22 @@ public class BuyTeaFragment extends SingleNetWorkBaseFragment<OrderInfo> {
         List<String> list = new ArrayList<>();
         list.add("微信支付");
         list.add("支付宝支付");
+
+
+
+
+
         new ChooseStringView(getContext(), list) {
             @Override
             protected void itemClick(int position) {
+                if(position==1){
+                    if(!Util.CheckInstall(getContext(),"com.alipay.security.mobile.authenticator")){
+                        MyToast.showToast("请先安装支付宝");
+                        return;
+                    }
+                }
+
+
                 bt_pay.setText("正在请求支付信息...");
                 if (position == 0) {
                     PayInfoUtil.getInstance().setContext(getContext()).setOnPayInfoListener(new PayInfoUtil.OnPayInfoListener() {

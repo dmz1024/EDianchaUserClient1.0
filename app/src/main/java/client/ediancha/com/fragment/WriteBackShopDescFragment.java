@@ -84,6 +84,7 @@ public class WriteBackShopDescFragment extends SingleNetWorkBaseFragment<WriteBa
             case 3:
 //                ll_business.setVisibility(View.VISIBLE);
                 ll_logistics.setVisibility(View.VISIBLE);
+                bt_submit.setVisibility(View.VISIBLE);
                 break;
             case 2:
                 ll_business.setVisibility(View.VISIBLE);

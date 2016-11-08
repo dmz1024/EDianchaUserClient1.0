@@ -130,4 +130,12 @@
         android:text="清空历史记录"
         android:textColor="#70ff0000"
         android:textSize="@dimen/sp13" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_hot"
+        android:background="#fbfbfb"
+        android:padding="@dimen/size15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

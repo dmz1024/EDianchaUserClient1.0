@@ -2,6 +2,8 @@ package client.ediancha.com.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
@@ -61,10 +63,18 @@ public class MainActivity extends ToolBarActivity {
         tv_filter.setOnClickListener(this);
         layout = (TabLayout) findViewById(R.id.tablayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+//        getItems(this);
     }
 
     PhotoUtil photoUtil;
+    public void getItems(Context context) {
+//        PackageManager pckMan = context.getPackageManager();
+//        List<PackageInfo> packageInfo = pckMan.getInstalledPackages(0);
+//        for (PackageInfo pInfo : packageInfo) {
+//            Log.d("应用包名", pInfo.packageName);
+//        }
 
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -126,7 +136,6 @@ public class MainActivity extends ToolBarActivity {
         layout.setupWithViewPager(viewPager);
         Util.setUserInfo(this);
         UserInfo.change = false;
-        Log.d("账号信息", UserInfo.uid + "--" + UserInfo.token);
         initMap();
 
     }

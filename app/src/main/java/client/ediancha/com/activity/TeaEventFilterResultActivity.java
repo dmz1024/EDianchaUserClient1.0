@@ -95,21 +95,23 @@ public class TeaEventFilterResultActivity extends ToolBarActivity implements OnT
     @Override
     public void change(int totalSize, int position) {
         if (totalSize == 0) {
-            rv_filter.setVisibility(View.GONE);
+            finish();
+        }else {
+            switch (type) {
+                case 0:
+                    teaEventFragment.setIsP(true);
+                    teaEventFragment.setFilterMap(list);
+                    break;
+                case 1:
+                    teaSpaceFragment.setIsP(true);
+                    teaSpaceFragment.setFilterMap(list);
+                    break;
+                case 2:
+                    teaProductFragment.setIsP(true);
+                    teaProductFragment.setFilterMap(list);
+                    break;
+            }
         }
-        switch (type) {
-            case 0:
-                teaEventFragment.setIsP(true);
-                teaEventFragment.setFilterMap(list);
-                break;
-            case 1:
-                teaSpaceFragment.setIsP(true);
-                teaSpaceFragment.setFilterMap(list);
-                break;
-            case 2:
-                teaProductFragment.setIsP(true);
-                teaProductFragment.setFilterMap(list);
-                break;
-        }
+
     }
 }

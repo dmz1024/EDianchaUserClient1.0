@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:background="#603a9409"
+            android:background="#983a9409"
             android:gravity="center"
             android:text="加入购物车"
             android:textColor="#fff"

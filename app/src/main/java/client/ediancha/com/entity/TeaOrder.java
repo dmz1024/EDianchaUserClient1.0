@@ -12,17 +12,17 @@ public class TeaOrder extends BaseListEntity<TeaOrder.Data> {
     public static class Data extends client.ediancha.com.entity.Data implements Serializable {
         public List<OrderProduct> order_product_list;
         public String add_time;
-        public String address_tel;
-        public String address_user;
-        public String order_id;
-        public String order_no;
-        public String postage;
+         public String address_tel;
+         public String address_user;
+         public String order_id;
+         public String order_no;
+         public String postage;
         public int status;
-        public String sub_total;
-        public String total;
+         public String sub_total;
+         public String total;
         public String type;
         public String comment;
-        public String store_name;
+         public String store_name;
         public Address address;
         public int is_comment;
         public int is_return;

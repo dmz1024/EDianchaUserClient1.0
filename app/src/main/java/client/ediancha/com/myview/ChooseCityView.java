@@ -39,6 +39,7 @@ public class ChooseCityView extends PopBaseView {
         final PickerView pv_1 = (PickerView) view.findViewById(R.id.pv_1);
         final PickerView pv_2 = (PickerView) view.findViewById(R.id.pv_2);
         final PickerView pv_3 = (PickerView) view.findViewById(R.id.pv_3);
+        pv_1.setIsMiddle(true);
         pv_2.setIsMiddle(true);
         pv_3.setIsMiddle(true);
         pv_1.setSize(Util.dp2Px(15), Util.dp2Px(10));

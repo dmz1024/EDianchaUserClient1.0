@@ -3,6 +3,8 @@ package client.ediancha.com.processor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -14,6 +16,7 @@ import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
+import java.util.List;
 import java.util.Map;
 
 import client.ediancha.com.activity.BuyTeaActivity;
@@ -69,6 +72,7 @@ public class PayUtil {
                 msg.what = 1;
                 msg.obj = result;
                 handler.sendMessage(msg);
+
             }
         }).start();
 
@@ -106,4 +110,7 @@ public class PayUtil {
         }
 
     };
+
+
+
 }

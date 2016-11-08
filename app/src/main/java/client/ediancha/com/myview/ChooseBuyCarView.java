@@ -83,7 +83,7 @@ public class ChooseBuyCarView extends PopBaseView {
                     tv_price.setText("￥" + skuList.price);
                     tv_count.setText("库存" + skuList.quantity + "件");
                     sku_id = skuList.sku_id;
-                    add_sub.setCount(0, skuList.quantity).setCount(add_sub.getCurrent());
+                    add_sub.setCount(skuList.quantity == 0 ? 0 : 1, skuList.quantity).setCount(add_sub.getCurrent());
                     break exit;
 
                 }
