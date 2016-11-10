@@ -32,7 +32,7 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
 
     @Override
     protected String getToolBarTitle() {
-        return getIntent().getStringExtra("title");
+        return null;
     }
 
     @Override
@@ -78,7 +78,6 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
                 teaSpaceDescFragment = TeaSpaceDescFragment.getInstance(getIntent().getStringExtra("id"));
                 teaSpaceDescFragment.setScrollViewListener(this);
                 teaSpaceDescFragment.setOnDataHaveListener(this);
-
                 break;
             case 3:
                 teaEventDescFragment = TeaEventDescFragment.getInstance(getIntent().getStringExtra("id"));
@@ -150,18 +149,13 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
             color = "#" + currentColor + "333333";
         }
 
-        if (currentColor >= 50) {
-            setTitle(getIntent().getStringExtra("title"));
-        } else {
-            setTitle("");
-        }
 
         if (y <= 10) {
-            setTitle("");
+//            setTitle("");
             color = "#00333333";
         } else if (y >= Util.getHeight() / 4) {
             color = "#333333";
-            setTitle(getIntent().getStringExtra("title"));
+//            setTitle(getIntent().getStringExtra("title"));
         }
         toolbar.setBackgroundColor(Color.parseColor(color));
 
@@ -186,7 +180,7 @@ public class DescBaseActivity extends ShareBaseActivity implements ScrollViewLis
     @Override
     public void dataHave() {
         toolbar.setBackgroundColor(Color.parseColor("#00333333"));
-        setTitle("");
+//        setTitle("");
     }
 
 }

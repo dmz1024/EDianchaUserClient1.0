@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 
 import java.io.ByteArrayInputStream;
@@ -249,8 +250,8 @@ public class Util {
         int w = newOpts.outWidth;
         int h = newOpts.outHeight;
         //现在主流手机比较多是800*480分辨率，所以高和宽我们设置为
-        float hh = 80f;//这里设置高度为800f
-        float ww = 48f;//这里设置宽度为480f
+        float hh = 160f;//这里设置高度为800f
+        float ww = 96f;//这里设置宽度为480f
         //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
         int be = 1;//be=1表示不缩放
         if (w > h && w > ww) {//如果宽度大的话根据宽度固定大小缩放
@@ -403,14 +404,13 @@ public class Util {
         popUpdateApk.setOnUpdateApkListener(new PopUpdateApk.OnUpdateApkListener() {
             @Override
             public void cancle(final int code) {
-
-                new PopMessageTips("提示", "下次不再提示该版本更新?", "不再提示", "再想想") {
+                new PopMessageTips("提示", "下次不再提示该版本更新?", "不再提示", "下次提示") {
                     @Override
                     protected void right() {
                         super.right();
                         new SharedPreferenUtil(ctx).setData(new String[]{"code", code + ""});
                     }
-                };
+                }.showView(ctx);
             }
 
             @Override

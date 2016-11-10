@@ -12,13 +12,13 @@
     <ImageView
         android:id="@+id/iv_icon"
         android:scaleType="fitXY"
-        android:layout_width="@dimen/size30"
-        android:layout_height="@dimen/size30"
+        android:layout_width="@dimen/size25"
+        android:layout_height="@dimen/size25"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/TextSize13Color333"
+        style="@style/TextSize11Color333"
         android:layout_below="@id/iv_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/size5"

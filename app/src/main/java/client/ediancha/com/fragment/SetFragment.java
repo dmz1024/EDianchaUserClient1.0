@@ -18,6 +18,7 @@ import client.ediancha.com.constant.Constant;
 import client.ediancha.com.constant.UserInfo;
 import client.ediancha.com.myview.ChooseStringView;
 import client.ediancha.com.myview.TitleRelativeLayout;
+import client.ediancha.com.util.ImageCatchUtil;
 import client.ediancha.com.util.MyToast;
 import client.ediancha.com.util.Util;
 
@@ -49,7 +50,7 @@ public class SetFragment extends BaseFragment {
         trl_clear_cache.setOnClickListener(this);
         trl_about_us.setOnClickListener(this);
         trl_contact_us.setOnClickListener(this);
-        trl_clear_cache.setContent("0M");
+        trl_clear_cache.setContent(ImageCatchUtil.getInstance().getCacheSize(getContext()));
         trl_clear_cache.setOnClickListener(this);
         trl_about_us.setOnClickListener(this);
         trl_contact_us.setOnClickListener(this);
@@ -66,7 +67,8 @@ public class SetFragment extends BaseFragment {
                 userInfo();
                 break;
             case R.id.trl_clear_cache:
-                trl_clear_cache.setContent("0M");
+                ImageCatchUtil.getInstance().clearImageAllCache();
+                trl_clear_cache.setContent(ImageCatchUtil.getInstance().getCacheSize(getContext()) );
                 break;
             case R.id.trl_about_us:
                 Util.skip(getActivity(), AboutUsActivity.class);

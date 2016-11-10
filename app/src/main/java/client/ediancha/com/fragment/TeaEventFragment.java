@@ -63,9 +63,9 @@ public class TeaEventFragment extends ListNetWorkBaseFragment<TeaEvent.Data, Tea
         map.put("a", "index");
         map.put("type", "1");
         map.putAll(filterMap);
-        if (filterMap.size() == 0 && !isSearch) {
-            map.putAll(new SharedPreferenUtil(getContext(), "location").getData(new String[]{"lat", "long"}));
-        }
+//        if (filterMap.size() == 0 && !isSearch) {
+//            map.putAll(new SharedPreferenUtil(getContext(), "location").getData(new String[]{"lat", "long"}));
+//        }
         if (isP || filterMap.size() > 0) {
             map.put("search", "1");
         }

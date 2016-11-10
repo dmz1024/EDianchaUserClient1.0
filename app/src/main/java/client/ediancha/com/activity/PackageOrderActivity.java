@@ -223,6 +223,12 @@ public class PackageOrderActivity extends ToolBarActivity {
             return;
         }
 
+        if(TextUtils.isEmpty(UserInfo.uid)){
+            MyToast.showToast("请先登录");
+            Util.skip(this,LoginActivity.class);
+            return;
+        }
+
         Map<String, String> map = new HashMap<>();
         map.put("c", "chaguan");
         map.put("a", "yuyue");
@@ -255,7 +261,17 @@ public class PackageOrderActivity extends ToolBarActivity {
                     Util.skip(PackageOrderActivity.this, AppointmentActivity.class);
                     finish();
                 } else {
-                    MyToast.showToast("预订失败：" + baseEntity.msg);
+                    if (baseEntity.msg.contains("token")) {
+                        new PopMessageTips("账号信息", "账号信息已过期,请重新登录!", "去登录", "再等等") {
+                            @Override
+                            protected void right() {
+                                super.right();
+                                Util.skip(PackageOrderActivity.this, LoginActivity.class);
+                            }
+                        }.showView(PackageOrderActivity.this);
+                    }else {
+                        MyToast.showToast("预订失败：" + baseEntity.msg);
+                    }
                 }
             }
 
@@ -267,16 +283,7 @@ public class PackageOrderActivity extends ToolBarActivity {
 
             @Override
             public void resultNo0(String s) {
-                BaseEntity baseEntity = new Gson().fromJson(s, BaseEntity.class);
-                if (baseEntity.msg.contains("token")) {
-                    new PopMessageTips("账号信息", "账号信息已过期,请重新登录!", "去登录", "再等等") {
-                        @Override
-                        protected void right() {
-                            super.right();
-                            Util.skip(PackageOrderActivity.this, LoginActivity.class);
-                        }
-                    }.showView(PackageOrderActivity.this);
-                }
+
             }
 
             @Override

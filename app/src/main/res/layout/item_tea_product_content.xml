@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:paddingBottom="@dimen/size8">
+    android:paddingBottom="@dimen/size5">
 
     <View
         android:id="@+id/view"
@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_below="@id/iv_img"
-        style="@style/TextSize15Color333"
+        style="@style/TextSize12Color333"
         android:text="3333顶顶顶顶"
         android:layout_marginTop="@dimen/size6"
         android:layout_marginLeft="@dimen/size5"
@@ -29,26 +29,26 @@
 
     <TextView
         android:id="@+id/tv_price"
-        style="@style/TextSize15Color333"
+        style="@style/TextSize11Color333"
         android:text="￥786"
-        android:layout_marginTop="@dimen/size6"
+        android:layout_marginTop="@dimen/size5"
         android:layout_below="@id/tv_title"
         android:textColor="#cd6638"
-        android:textSize="@dimen/sp17"
+        android:textSize="@dimen/sp14"
         />
 
     <TextView
         android:id="@+id/tv_old_price"
-        style="@style/TextSize15Color666"
+        style="@style/TextSize11Color666"
         android:layout_toRightOf="@id/tv_price"
         android:layout_alignBottom="@id/tv_price"
-        android:layout_marginLeft="@dimen/size10"
+        android:layout_marginLeft="@dimen/size5"
         android:text="￥786"
-        android:textSize="@dimen/sp13" />
+        android:textSize="@dimen/sp12" />
 
     <TextView
         android:id="@+id/tv_recommend_title"
-        style="@style/TextSize14Color333"
+        style="@style/TextSize12Color333"
         android:layout_below="@id/tv_old_price"
         android:layout_marginLeft="@dimen/size10"
         android:text="乌龙茶"

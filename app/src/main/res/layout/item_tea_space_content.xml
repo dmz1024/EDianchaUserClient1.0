@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:paddingBottom="@dimen/size15">
+    android:paddingBottom="@dimen/size5">
 
     <View
         android:id="@+id/view"
@@ -22,11 +22,11 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/TextSize15Color333"
+        style="@style/TextSize12Color333"
         android:layout_below="@id/iv_img"
         android:layout_marginLeft="@dimen/size5"
         android:layout_marginRight="@dimen/size70"
-        android:layout_marginTop="@dimen/size10"
+        android:layout_marginTop="@dimen/size5"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="对对对" />
@@ -34,9 +34,9 @@
     <TextView
         android:id="@+id/tv_pos"
         android:layout_alignLeft="@id/tv_title"
-        style="@style/TextSize13Color666"
+        style="@style/TextSize11Color666"
         android:layout_below="@id/tv_title"
-        android:layout_marginTop="@dimen/size10"
+        android:layout_marginTop="@dimen/size5"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="2"
@@ -44,11 +44,11 @@
 
     <TextView
         android:id="@+id/tv_price"
-        style="@style/TextSize14Color333"
+        style="@style/TextSize11Color333"
         android:layout_alignBottom="@id/tv_title"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/size2"
         android:layout_marginRight="@dimen/size10"
-        android:layout_marginTop="@dimen/size10" />
+        android:layout_marginTop="@dimen/size5" />
 
 </RelativeLayout>

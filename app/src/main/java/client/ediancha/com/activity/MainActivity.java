@@ -108,6 +108,8 @@ public class MainActivity extends ToolBarActivity {
     @Override
     protected void initData() {
 
+        Util.checkUpdate(this);
+
         if (getIntent().getBooleanExtra("isFromMessage", false)) {
             startActivity(new Intent(this, MessageActivity.class));
         }

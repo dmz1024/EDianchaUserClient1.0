@@ -63,50 +63,50 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name="client.ediancha.com.activity.MainActivity"
-            android:launchMode="singleTask" />
-        <activity android:name="client.ediancha.com.activity.MyCenterActivity" />
-        <activity android:name="client.ediancha.com.activity.SetActivity" />
-        <activity android:name="client.ediancha.com.activity.TeaOrderActivity" />
-        <activity android:name="client.ediancha.com.activity.LikeActivity" />
-        <activity android:name="client.ediancha.com.activity.ApplyOrderActivity" />
-        <activity android:name="client.ediancha.com.activity.AppointmentActivity" />
-        <activity android:name="client.ediancha.com.activity.TeaEventFilterActivity" />
-        <activity android:name="client.ediancha.com.activity.TestActivity" />
-        <activity android:name="client.ediancha.com.activity.TeaDescActivity" />
-        <activity android:name="client.ediancha.com.activity.MoreEvaluateActivity" />
-        <activity android:name="client.ediancha.com.activity.MoreTeaPackageActivity" />
-        <activity android:name="client.ediancha.com.activity.AllListActivity" />
-        <activity android:name="client.ediancha.com.activity.LoginActivity" />
-        <activity android:name="client.ediancha.com.activity.WebViewActivity" />
-        <activity android:name="client.ediancha.com.activity.CheckLoginActivity" />
-        <activity android:name="client.ediancha.com.activity.TeaEventFilterResultActivity" />
-        <activity android:name="client.ediancha.com.base.DescBaseActivity" />
-        <activity android:name="client.ediancha.com.activity.AddCommentActivity" />
-        <activity android:name="client.ediancha.com.activity.TeaSpaceOtherRecommendActivity" />
-        <activity android:name="client.ediancha.com.activity.UserInfoActivity" />
-        <activity android:name="client.ediancha.com.activity.AddressActivity" />
-        <activity android:name="client.ediancha.com.activity.BackShopActivity" />
-        <activity android:name="client.ediancha.com.activity.AddressManagerActivity" />
-        <activity android:name="client.ediancha.com.activity.BackShopInfoActivity" />
-        <activity android:name="client.ediancha.com.activity.BackShopLogisticsActivity" />
-        <activity android:name="client.ediancha.com.activity.WriteBackShopActivity" />
+            android:launchMode="singleTask" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.MyCenterActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.SetActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.TeaOrderActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.LikeActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.ApplyOrderActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.AppointmentActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.TeaEventFilterActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.TestActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.TeaDescActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.MoreEvaluateActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.MoreTeaPackageActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.AllListActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.WebViewActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.CheckLoginActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.TeaEventFilterResultActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.base.DescBaseActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.AddCommentActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.TeaSpaceOtherRecommendActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.UserInfoActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.AddressActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.BackShopActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.AddressManagerActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.BackShopInfoActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.BackShopLogisticsActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.WriteBackShopActivity" android:screenOrientation="portrait" />
         <activity
-            android:name="client.ediancha.com.activity.BuyTeaActivity"
+            android:name="client.ediancha.com.activity.BuyTeaActivity" android:screenOrientation="portrait"
             android:launchMode="singleTask" />
-        <activity android:name="client.ediancha.com.activity.SearchActivity" />
-        <activity android:name="client.ediancha.com.activity.BuyCarActivity" />
-        <activity android:name="client.ediancha.com.activity.OtherStoreActivity" />
-        <activity android:name="client.ediancha.com.activity.PackageOrderActivity" />
-        <activity android:name="client.ediancha.com.activity.ShowLogisticsActivity" />
-        <activity android:name="client.ediancha.com.activity.MessageActivity" />
-        <activity android:name="client.ediancha.com.activity.AboutUsActivity" />
-        <activity android:name="client.ediancha.com.activity.OrderDescActivity" />
-        <activity android:name="client.ediancha.com.activity.FirstSetPasswordActivity" />
-        <activity android:name="client.ediancha.com.activity.SetPasswordActivity" />
-        <activity android:name="client.ediancha.com.activity.OfficialStoreInfoActivity" />
+        <activity android:name="client.ediancha.com.activity.SearchActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.BuyCarActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.OtherStoreActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.PackageOrderActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.ShowLogisticsActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.MessageActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.AboutUsActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.OrderDescActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.FirstSetPasswordActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.SetPasswordActivity" android:screenOrientation="portrait" />
+        <activity android:name="client.ediancha.com.activity.OfficialStoreInfoActivity" android:screenOrientation="portrait" />
 
         <activity
-            android:name="client.ediancha.com.activity.WelcomeActivity"
+            android:name="client.ediancha.com.activity.WelcomeActivity" android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -160,10 +160,11 @@
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
-
                 <category android:name="client.ediancha.com" />
             </intent-filter>
         </receiver>
+        <!--Glide配置文件-->
+        <meta-data android:name="client.ediancha.com.util.GlideConfiguration" android:value="GlideModule" />
     </application>
 
 </manifest>

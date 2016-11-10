@@ -12,9 +12,13 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import client.ediancha.com.R;
 import client.ediancha.com.activity.MainActivity;
 import client.ediancha.com.api.DownFile;
+import client.ediancha.com.api.UpdateRetrofitUtil;
 import client.ediancha.com.entity.FirimEntity;
 import client.ediancha.com.myview.HorizontalProgressBarWithNumber;
 import client.ediancha.com.util.MyToast;
@@ -35,26 +39,74 @@ public class PopUpdateApk {
         this.ctx = ctx;
     }
 
+    //    http://api.fir.im/apps/latest/57b58a49959d6927ad00118e?api_token=2fa659a23dd2c510e76aa917bdebf2a7
     public void CheckUpdate() {
         final int currentCode = Util.getAppVersionCode();
-        String json = new SharedPreferenUtil(ctx, "apkUpdate").getString("info");
-        if (json.length() > 40) {
-            FirimEntity firimEntity = new Gson().fromJson(json, FirimEntity.class);
-            if (!TextUtils.isEmpty(firimEntity.name)) {
-                if (firimEntity.version > currentCode) {
+//        String json = new SharedPreferenUtil(ctx, "apkUpdate").getString("info");
+//        if (json.length() > 40) {
+//            FirimEntity firimEntity = new Gson().fromJson(json, FirimEntity.class);
+//            if (!TextUtils.isEmpty(firimEntity.name)) {
+//                if (firimEntity.version > currentCode) {
+//                    if (onUpdateApkListener != null) {
+//                        if (onUpdateApkListener.needUpdate(firimEntity.version)) {
+//                            showUpdate(firimEntity);
+//                        }
+//                    }
+//                } else {
+//                    if (onUpdateApkListener != null) {
+//                        onUpdateApkListener.currentIsNew();
+//                    }
+//                }
+//            }
+//        }
 
-                    if (onUpdateApkListener != null) {
-                        if (onUpdateApkListener.needUpdate(firimEntity.version)) {
-                            showUpdate(firimEntity);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("api_token", "2fa659a23dd2c510e76aa917bdebf2a7");
+        UpdateRetrofitUtil.getInstance().post("", map, FirimEntity.class, new UpdateRetrofitUtil.OnRequestListener<FirimEntity>() {
+            @Override
+            public void noNetwork() {
+
+            }
+
+            @Override
+            public void serverErr() {
+
+            }
+
+            @Override
+            public void haveData(FirimEntity firimEntity) {
+                if (!TextUtils.isEmpty(firimEntity.name)) {
+                    if (firimEntity.version > currentCode) {
+                        if (onUpdateApkListener != null) {
+                            if (onUpdateApkListener.needUpdate(firimEntity.version)) {
+                                showUpdate(firimEntity);
+                            }
                         }
-                    }
-                } else {
-                    if (onUpdateApkListener != null) {
-                        onUpdateApkListener.currentIsNew();
+                    } else {
+                        if (onUpdateApkListener != null) {
+                            onUpdateApkListener.currentIsNew();
+                        }
                     }
                 }
             }
-        }
+
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void resultNo0(String s) {
+
+            }
+
+            @Override
+            public void start() {
+
+            }
+        });
+
 
 
     }

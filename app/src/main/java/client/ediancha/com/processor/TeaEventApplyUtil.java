@@ -71,7 +71,7 @@ public class TeaEventApplyUtil {
                                 }.showView(ctx);
                             } else {
                                 if (baseEntity.msg.contains("已报名")) {
-                                    MyToast.showToast("您已预约过该活动");
+                                    MyToast.showToast("同一账号只能预约一次该活动",4000);
                                 }else {
                                     MyToast.showToast(baseEntity.msg);
                                 }

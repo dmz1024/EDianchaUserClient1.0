@@ -4,7 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#fff"
-    android:paddingBottom="@dimen/size15">
+    android:paddingBottom="@dimen/size5">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_marginLeft="@dimen/size5"
+        android:layout_width="@dimen/size30"
+        android:layout_height="@dimen/size30"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="@dimen/size5" />
 
     <ImageView
         android:id="@+id/iv_img"
@@ -12,7 +20,8 @@
         android:layout_height="@dimen/size250"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/iv_logo"
+        android:layout_marginTop="@dimen/size5"
         android:scaleType="fitXY" />
 
     <View
@@ -24,61 +33,47 @@
 
     <TextView
         android:id="@+id/tv_title"
-        style="@style/TextSize15Color333"
-        android:layout_below="@id/iv_img"
+        style="@style/TextSize12Color333"
         android:layout_marginLeft="@dimen/size5"
-        android:layout_marginRight="@dimen/size70"
-        android:layout_marginTop="@dimen/size10"
+        android:layout_toRightOf="@id/iv_logo"
+        android:layout_marginRight="@dimen/size5"
+        android:layout_below="@id/view"
+        android:layout_marginTop="@dimen/size11"
         android:ellipsize="end"
+        android:gravity="fill_vertical"
         android:maxLines="1" />
-
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="@dimen/size45"
-        android:layout_height="@dimen/size45"
-        android:layout_alignBottom="@id/tv_title"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/size5"
-        android:layout_marginRight="@dimen/size10" />
 
 
     <TextView
         android:id="@+id/tv_content"
-        style="@style/TextSize14Color666"
-        android:layout_below="@id/tv_title"
-        android:layout_marginLeft="@dimen/size5"
+        style="@style/TextSize11Color666"
+        android:layout_below="@id/iv_img"
+        android:layout_marginLeft="@dimen/size6"
 
-        android:layout_marginTop="@dimen/size10"
+        android:layout_marginTop="@dimen/size5"
         android:ellipsize="end"
         android:maxLines="1" />
 
-    <client.ediancha.com.myview.TextImage
+    <TextView
         android:id="@+id/tv_time"
-        style="@style/TextSize14Color666"
+        style="@style/TextSize11Color666"
         android:layout_below="@id/tv_content"
-        android:layout_marginLeft="@dimen/size5"
-        android:layout_marginTop="@dimen/size10"
-        android:drawablePadding="@dimen/size5"
-        android:gravity="center"
-        android:maxLines="1"
-        app:TextImage_drawable="@mipmap/icon_time"
-        app:TextImage_height="@dimen/size15"
-        app:TextImage_seat="1"
-        app:TextImage_width="@dimen/size15" />
+        android:layout_marginLeft="@dimen/size6"
+        android:layout_marginTop="@dimen/size5" />
 
     <TextView
         android:id="@+id/tv_price"
-        style="@style/TextSize14Color333"
+        style="@style/TextSize12Color333"
         android:layout_alignBottom="@id/tv_time"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/size20"
+        android:layout_marginRight="@dimen/size10"
         android:text="免费"
         android:textColor="#cd6638" />
 
     <TextView
         android:id="@+id/tv_state"
         style="@style/TextSize13Color333"
-        android:layout_below="@id/view"
+        android:layout_alignTop="@id/iv_img"
         android:background="#999"
         android:paddingBottom="@dimen/size6"
         android:paddingLeft="@dimen/size10"

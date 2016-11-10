@@ -59,7 +59,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
             Glide.with(ctx).load(data.logo).transform(new GlideCircleTransform(ctx)).into(mHolder.iv_logo);
             mHolder.tv_title.setText(data.name);
             mHolder.tv_content.setText(data.desc);
-            mHolder.tv_time.setText(data.sttime + "至" + data.endtime);
+            mHolder.tv_time.setText(data.sttime);
             mHolder.tv_state.setVisibility(data.baoming == 1 ? View.VISIBLE : View.GONE);
             mHolder.tv_price.setText(TextUtils.equals("免费", data.price) ? "免费" : "￥" + data.price);
         } else {
@@ -97,7 +97,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
         public TextView tv_content;
         public TextView tv_title;
         public TextView tv_price;
-        public TextImage tv_time;
+        public TextView tv_time;
 
         public TeaEventViewHolder(View itemView) {
             super(itemView);
@@ -107,7 +107,7 @@ public class TeaEventAdapter extends SingleBaseAdapter<TeaEvent.Data> {
             tv_state = (TextView) itemView.findViewById(R.id.tv_state);
             tv_content = (TextView) itemView.findViewById(R.id.tv_content);
             tv_price = (TextView) itemView.findViewById(R.id.tv_price);
-            tv_time = (TextImage) itemView.findViewById(R.id.tv_time);
+            tv_time = (TextView) itemView.findViewById(R.id.tv_time);
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) iv_img.getLayoutParams();
             layoutParams.height = (int) (Util.getWidth() / 1.75);
             iv_img.setLayoutParams(layoutParams);

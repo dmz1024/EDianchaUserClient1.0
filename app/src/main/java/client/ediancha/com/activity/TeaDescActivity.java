@@ -54,7 +54,7 @@ public class TeaDescActivity extends ShareBaseActivity {
 
     @Override
     protected String getToolBarTitle() {
-        return getIntent().getStringExtra("title");
+        return null;
     }
 
     @Override

@@ -232,7 +232,7 @@ public abstract class NetworkBaseFragment<D> extends BaseFragment {
     protected View getIsLoadingView() {
         View view = inflateView(R.layout.view_show_load);
         ImageView iv_load = (ImageView) view.findViewById(R.id.iv_load);
-        Glide.with(getContext()).load(R.mipmap.loading).into(iv_load);
+        Glide.with(getContext()).load(R.mipmap.loading).asGif().into(iv_load);
         return view;
     }
 

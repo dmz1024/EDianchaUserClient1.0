@@ -264,8 +264,8 @@ public class TeaSpaceDescFragment extends TeaDescBaseFragment<TeaSpaceDesc> {
             rv_recommend.setLayoutManager(manager);
             rv_recommend.setAdapter(new TeaSpaceDescRecommendAdapter(getContext(), bx));
         } else {
-            trl_tea_recommend.setContent("没有更多包厢");
-            trl_tea_recommend.setContentOnClick(null);
+            trl_tea_recommend.setContent("没有可推荐包厢");
+            trl_tea_recommend.setOnClickListener(this);
         }
 
     }

@@ -100,9 +100,9 @@ public class MyJPushReceiver extends BroadcastReceiver {
 
     //send msg to MainActivity
     private void processCustomMessage(Context context, Bundle bundle) {
-        String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-        String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-        Log.d("自定义", message + "---" + extras);
+//        String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+//        String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+//        Log.d("自定义", message + "---" + extras);
 //        new SharedPreferenUtil(context, "apkUpdate").setData("info", message);
 //        if(!new SharedPreferenUtil(context, "background").getData("isback")){
 //            Util.checkUpdate(context);

@@ -117,6 +117,7 @@
                 app:TitleRelativeLayout_show_view="2"
                 app:TitleRelativeLayout_title="艺草堂文化基地"
                 app:TitleRelativeLayout_title_h="@dimen/size14"
+                app:TitleRelativeLayout_content_image_visi="false"
                 app:TitleRelativeLayout_title_image="@mipmap/activity_detail_name"
                 app:TitleRelativeLayout_title_style="@style/TextSize13Color333"
                 app:TitleRelativeLayout_title_w="@dimen/size14" />

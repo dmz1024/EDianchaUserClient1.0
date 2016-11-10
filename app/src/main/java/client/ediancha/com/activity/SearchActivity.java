@@ -34,6 +34,7 @@ import client.ediancha.com.base.BaseViewHolder;
 import client.ediancha.com.base.SingleBaseAdapter;
 import client.ediancha.com.base.SingleNetWorkBaseFragment;
 import client.ediancha.com.base.ToolBarActivity;
+import client.ediancha.com.divider.ItemDecoration;
 import client.ediancha.com.entity.History;
 import client.ediancha.com.entity.Hot;
 import client.ediancha.com.entity.TeaFilter;
@@ -117,6 +118,7 @@ public class SearchActivity extends ToolBarActivity {
                     hotAdapter = new HotAdapter(SearchActivity.this, hotList);
                     LinearLayoutManager manager = new LinearLayoutManager(SearchActivity.this);
                     manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    rv_hot.addItemDecoration(new ItemDecoration(SearchActivity.this,LinearLayoutManager.HORIZONTAL,10,"#fbfbfb"));
                     rv_hot.setLayoutManager(manager);
                     rv_hot.setAdapter(hotAdapter);
                 }
@@ -342,7 +344,7 @@ public class SearchActivity extends ToolBarActivity {
     }
 
 
-    class HotAdapter extends SingleBaseAdapter<Hot.Cat> {
+   public class HotAdapter extends SingleBaseAdapter<Hot.Cat> {
 
         public HotAdapter(Context ctx, List<Hot.Cat> list) {
             super(ctx, list);
@@ -361,29 +363,30 @@ public class SearchActivity extends ToolBarActivity {
         public void onBindViewHolder(BaseViewHolder holder, int position) {
             ((HotViewHolder) holder).tv_content.setText(list.get(position).name);
         }
+       class HotViewHolder extends BaseViewHolder {
+           public TextView tv_content;
+
+           public HotViewHolder(View itemView) {
+               super(itemView);
+               tv_content = (TextView) itemView;
+           }
+
+           @Override
+           protected void onClick(int layoutPosition) {
+               List<TeaFilter.Cat> cats = new ArrayList<>();
+               TeaFilter.Cat cat = new TeaFilter.Cat();
+               cat.key = h.data.get(type).key;
+               cat.name = HotAdapter.this.list.get(layoutPosition).name;
+               cat.value = HotAdapter.this.list.get(layoutPosition).name;
+               cats.add(cat);
+               String listJson = new Gson().toJson(cats);
+               Intent intent = new Intent(SearchActivity.this, TeaEventFilterResultActivity.class);
+               intent.putExtra("data", listJson);
+               intent.putExtra("type", type);
+               startActivity(intent);
+           }
+       }
     }
 
-    class HotViewHolder extends BaseViewHolder {
-        public TextView tv_content;
 
-        public HotViewHolder(View itemView) {
-            super(itemView);
-            tv_content = (TextView) itemView;
-        }
-
-        @Override
-        protected void onClick(int layoutPosition) {
-            List<TeaFilter.Cat> cats = new ArrayList<>();
-            TeaFilter.Cat cat = new TeaFilter.Cat();
-            cat.key = h.data.get(type).key;
-            cat.name = list.get(layoutPosition).content;
-            cat.value = list.get(layoutPosition).content;
-            cats.add(cat);
-            String listJson = new Gson().toJson(cats);
-            Intent intent = new Intent(SearchActivity.this, TeaEventFilterResultActivity.class);
-            intent.putExtra("data", listJson);
-            intent.putExtra("type", type);
-            startActivity(intent);
-        }
-    }
 }

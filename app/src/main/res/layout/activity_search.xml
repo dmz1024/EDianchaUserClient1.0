@@ -134,7 +134,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_hot"
         android:background="#fbfbfb"
-        android:padding="@dimen/size15"
+        android:paddingTop="@dimen/size5"
+        android:paddingRight="@dimen/size15"
+        android:paddingLeft="@dimen/size15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

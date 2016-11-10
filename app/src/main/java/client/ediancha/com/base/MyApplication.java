@@ -2,8 +2,6 @@ package client.ediancha.com.base;
 
 import android.app.Application;
 
-import com.squareup.leakcanary.LeakCanary;
-
 import cn.jpush.android.api.JPushInterface;
 
 /**
